@@ -1,0 +1,120 @@
+1-Context/AURA-Theses/ABCDX/abcdx-segmentation.md	ABCDX-сегментация: разделение клиентов на группы по маржинальности и удовлетворённости
+1-Context/AURA-Theses/AJTBD/b2b.md	B2B-специфика AJTBD: отличия от B2C в подходе к созданию продуктов
+1-Context/AURA-Theses/AJTBD/communication.md	Коммуникация продукта: трансляция подтверждённой ценности подтверждённому сегменту
+1-Context/AURA-Theses/AJTBD/critical-chain.md	Критическая цепочка работ: все работы ниже уровня, необходимые для выполнения работы выше
+1-Context/AURA-Theses/AJTBD/fundamentals.md	Фундаментальные принципы AJTBD: человек действует для выполнения целей, формируемых мозгом для удовлетворения потребностей
+1-Context/AURA-Theses/AJTBD/graph-of-jobs.md	Граф работ — вторая ключевая единица анализа AJTBD, влияющая на стратегию продукта
+1-Context/AURA-Theses/AJTBD/job-structure.md	Структура описания работы: работа — это прогресс, которого человек хочет достичь в определённом контексте
+1-Context/AURA-Theses/AJTBD/job-types-and-properties.md	Типы и свойства работ: цепочки шагов для достижения результата
+1-Context/AURA-Theses/AJTBD/main-idea.md	Четыре силы прогресса — ключевой тезис JTBD, дополненный автором
+1-Context/AURA-Theses/AJTBD/psychology.md	Психологические основы покупательского поведения и глубинные причины покупок
+1-Context/AURA-Theses/AJTBD/segmentation.md	Сегментация клиентов по работам вместо демографии
+1-Context/AURA-Theses/AJTBD/value-creation.md	Создание ценности: фича — не самоцель, разные люди используют одну фичу для разных работ
+1-Context/AURA-Theses/AURA/local-vs-global-optimum.md	Локальный vs глобальный оптимум: метафора холма для продуктовых решений
+1-Context/AURA-Theses/AURA/overview.md	AURA: интегральный мета-фреймворк, объединяющий AJTBD, Unit Economics, RAT и ABCDX-сегментацию
+1-Context/AURA-Theses/AURA/product-strategy.md	Продуктовая стратегия: все стратегические решения сводятся к выбору работ и сегментов
+1-Context/AURA-Theses/Algorithms/create-acquisition-channel.md	Алгоритм создания канала привлечения через выход на предыдущую работу
+1-Context/AURA-Theses/Algorithms/create-value.md	Алгоритм создания ценности: от бизнес-задачи к работающему решению
+1-Context/AURA-Theses/Algorithms/decrease-churn.md	Алгоритм снижения оттока: привычка как гравитационное притяжение к продукту
+1-Context/AURA-Theses/Algorithms/exit-competition.md	Алгоритм выхода из прямой конкуренции через смену джобов в графе
+1-Context/AURA-Theses/Algorithms/grow-existing-product.md	Алгоритм роста существующего продукта через ABCD-сегментацию
+1-Context/AURA-Theses/Algorithms/increase-average-check.md	Алгоритм повышения среднего чека через работы внутри одного клиента
+1-Context/AURA-Theses/Algorithms/increase-conversion.md	Алгоритм роста конверсии: устранение барьеров клиента
+1-Context/AURA-Theses/Algorithms/increase-retention.md	Алгоритм повышения ретеншена через выполнение следующих работ в цепочке
+1-Context/AURA-Theses/Algorithms/launch-product.md	Алгоритм запуска продукта, применимый и к новым фичам
+1-Context/AURA-Theses/Algorithms/main-algorithm.md	Главный алгоритм: интегральный подход к принятию продуктовых решений
+1-Context/AURA-Theses/Algorithms/position-product.md	Алгоритм позиционирования: трансляция ценности с учётом контекста и триггеров клиента
+1-Context/AURA-Theses/Algorithms/scale-product.md	Алгоритм масштабирования: добавление новых сегментов
+1-Context/AURA-Theses/HowTos/conduct-ajtbd-interviews.md	Как проводить AJTBD-интервью: универсальные вопросы для изучения работ
+1-Context/AURA-Theses/HowTos/conduct-b2b-interviews.md	Как проводить B2B-интервью: специфика работы с ЛПР
+1-Context/AURA-Theses/HowTos/conduct-expert-interviews.md	Как проводить экспертные интервью с предпринимателями на целевом рынке
+1-Context/AURA-Theses/HowTos/do-quantitative-research.md	Как проводить количественное исследование для проверки гипотез о работах
+1-Context/AURA-Theses/HowTos/do-switch-interviews.md	Как проводить Switch-интервью: изучение контекста смены решений
+1-Context/AURA-Theses/HowTos/find-segmentation-criteria.md	Как найти критерии сегментации: последовательное применение критериев
+1-Context/AURA-Theses/HowTos/formulate-jobs-correctly.md	Как правильно формулировать работы: всё, что начинается с глагола — работа
+1-Context/AURA-Theses/HowTos/load-activating-knowledge.md	Как загружать активирующее знание: знание, которое привело к решению о работе
+1-Context/AURA-Theses/HowTos/run-ux-tests.md	Как проводить UX-тесты: быстрый и дешёвый поиск ошибок в медиа
+1-Context/AURA-Theses/HowTos/validate-value.md	Как валидировать ценность: лучший способ — живые продажи
+1-Context/AURA-Theses/RAT/risk-assumption-test.md	Risk Assumption Test: фреймворк приоритизации рискованных предположений в продукте
+1-Context/AURA-Theses/Raw Source/ajtbd-key-theses.md	Исходный документ с полным перечнем тезисов AJTBD и AURA
+1-Context/AURA-Theses/Raw Source/course-transcriptions.md	Транскрипция воркшопа №1: ввод, правила и методология курса
+1-Context/AURA-Theses/Raw Source/lectures-transcription.md	Транскрипции лекций
+1-Context/AURA-Theses/Raw Source/mechanics-and-strategies.md	Каталог механик и стратегий создания ценности по бизнес-задачам
+1-Context/AURA-Theses/TODO.md	Список задач по доработке базы знаний
+1-Context/AURA-Theses/UnitEconomics/growth-points.md	Точки роста: если 1% доли рынка — вероятно, пропускаете привлекательные сегменты
+1-Context/AURA-Theses/UnitEconomics/unit-economics.md	Unit Economics: юнит-экономика как фильтр для принятия решений
+1-Context/AURA-Theses/_index.md	Оглавление базы знаний со ссылками на все файлы по категориям
+1-Context/AURA-Theses/_uncategorized.md	Тезисы, не вошедшие в основные категории
+1-Context/boost-knowledge-base/01-course-overview.md	Обзор интенсива: формат (7 воркшопов за неделю), тарифы (29 900–79 900 ₽), автор, проекты 11 выпускников, юрлицо
+1-Context/boost-knowledge-base/02-target-audience-and-jobs.md	6 сегментов ЦА с сайта (фаундеры, владельцы бизнеса, менеджеры, мамы в декрете) + детальный AJTBD-анализ 9 сегментов
+1-Context/boost-knowledge-base/03-program.md	Программа: 7 воркшопов от установки до демо, стек Next.js/Tailwind/PostgreSQL, 10 ключевых навыков
+1-Context/boost-knowledge-base/04-competitors.md	Анализ 10 конкурентов (Product University, ZeroCoder, Eduson и др.) с ценами и позиционированием
+1-Context/boost-knowledge-base/05-landing-and-communication.md	Тексты лендинга, блоки "для кого", барьеры и возражения, 10 отзывов участников, слоганы
+1-Context/boost-knowledge-base/06-faq.md	FAQ: нужно ли программировать, тарифы, подготовка, подписка Claude Code Max ($100/мес), возврат денег
+1-Context/producthowto-knowledge-base/01-course-overview.md	Обзор тренинга: формат, программа 8 модулей, тарифы, автор Ваня Замесин
+1-Context/producthowto-knowledge-base/02-target-audience-and-jobs.md	Целевая аудитория: продакт-менеджеры, фаундеры, маркетологи и их задачи
+1-Context/producthowto-knowledge-base/03-ajtbd-methodology.md	Методология AJTBD: теория, дающая алгоритмы создания продуктов на основе знания работ клиентов
+1-Context/producthowto-knowledge-base/04-book-chapters.md	Главы книги, основанной на 80+ тренингах и 40+ кейсах
+1-Context/producthowto-knowledge-base/05-interview-guides.md	Гайды интервью: Switch, AJTBD, B2B, экспертные
+1-Context/producthowto-knowledge-base/06-cases.md	19 кейсов выпускников с применением AJTBD
+1-Context/producthowto-knowledge-base/07-results-summary.md	Сводка результатов: переход от демографической сегментации к сегментации по работам
+1-Context/producthowto-knowledge-base/08-reviews.md	Отзывы: 12 000+ участников, средняя оценка 9.2/10
+1-Context/producthowto-knowledge-base/09-faq.md	FAQ по тренингу
+3-Marketing/Webinars/web-260626.md/deep-research-report.md	Deep research: 13 новых принципов создания продуктов когда код и исследования почти бесплатны
+3-Marketing/Webinars/web-260626.md/first-principles-15.md	15 принципов: конкурентная динамика, retention-флайвилы, сегментация в AI-native контексте
+3-Marketing/Webinars/web-260626.md/ideas.md	Идеи для вебинара: агентные интерфейсы, вайб-кодинг, fullstack-билдеры, agent optimization
+3-Marketing/Webinars/web-260626.md/prompt-first-principles-analysis.md	Промпт для анализа новых принципов создания продуктов из первых принципов
+3-Marketing/Webinars/web-260626.md/web-260226.md	Программа вебинара 26.02.2026: как AI меняет подход к разработке продуктов (теория, демо, Q&A)
+3-Marketing/Webinars/web-skills.md/web.md	Заглушка
+3-Marketing/ideas.md	Маркетинговые идеи: публичный календарь вебинаров, страница офферов компании, ежемесячные лид-магниты, скилл для написания PRD
+3-SMM/Drafts/future of Saas.md	Статья: AI-кодинг снижает барьеры к кастомному софту, угрожая low-moat SaaS продуктам
+3-SMM/Drafts/future-of-saas-2.md	Контраргументы к тезису "AI убивает SaaS": корпоративный консерватизм, сложность, сжатие маржи
+3-SMM/Drafts/hackernoon-article-pmf-pivot-theses.md	Статья для Hackernoon: как быстро найти PMF с помощью Risk Assumption Test
+3-SMM/Drafts/love.md	Эссе: вайб-кодинг позволяет делать больше любимой работы и может перестроить экономику
+3-SMM/Drafts/openclaw-and-agents.md	Заглушка со ссылками на OpenClaw и Apple Intelligence
+3-SMM/Drafts/techstory-saas-golden-age-ending-article-final.md	Готовая статья: золотой век SaaS заканчивается, вайб-кодинг делает кастомные инструменты дешевле подписок
+3-SMM/Drafts/why-four-forces-do-not-work.md	Критика Four Forces из JTBD: почему они не описывают рыночную динамику, и что предлагает Advanced JTBD
+3-SMM/IDEAS.md	Идеи для SMM: системы обратной связи определяют качество продукта, UI с чатом и канвасом
+3-SMM/Linkedin-posts/2026-02-25-agent-optimization-distribution.md	Пост: agent optimization как третий этап дистрибуции — продукты конкурируют за интеграцию в агентские воркфлоу
+3-SMM/Linkedin-posts/image-styles-library.md	Библиотека стилей иллюстраций для LinkedIn: 5+ проверенных стилей с метриками
+3-SMM/Linkedin-posts/linkedin-post-2026-02-20-pm-hypothesis-factory.md	Пост: PM больше не шипит фичи, а управляет конвейером гипотез — 30 экспериментов за спринт
+3-SMM/Linkedin-posts/linkedin-post-2026-02-21-ceo-vibe-coding.md	Пост: CEO сами вайбкодят прототипы и разблокируют разработку за 30 минут
+3-SMM/Telegram-posts/2026-02-22-vibe-coding-love-work.md	Пост: вайб-кодинг позволяет делать больше того, что любишь, и страсть станет главным конкурентным преимуществом
+3-Writing-Book/1-Raw-Thoughts/changes-how-we-make-products.md	Бриф для Mind The Product: как AI-агенты и вайб-кодинг трансформируют роль PM
+3-Writing-Book/1-Raw-Thoughts/chapter-name.md	Пусто
+3-Writing-Book/1-Raw-Thoughts/how-to-find-pmf-hackernoon.md	Бриф для Hackernoon: как быстро найти PMF с помощью вайб-кодинга и тестирования гипотез
+3-Writing-Book/1-Raw-Thoughts/what-for.md	Заметка
+3-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-MtP.md	Тезисы v1: как AI и вайб-кодинг трансформируют роль PM (90.6% покрытие, 43 экспертных источника)
+3-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-condensed.md	Тезисы v3: сокращённая версия до 6 тезисов для Mind The Product
+3-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role.md	Тезисы v2: 12 тезисов с 90.9% покрытием и практическими рекомендациями
+3-Writing-Book/2-Theses/Theses-How-to-Find-PMF-Fast.md	Тезисы v4: 38 тезисов о PMF через Risk Assumption Test (97% покрытие)
+3-Writing-Book/3-Drafts/Draft-AI-Changes-PM-Role-old.md	Черновик статьи: роль PM раздваивается — устаревание vs стратегический строитель с AI
+3-Writing-Book/bookconcept.md	Концепт книги AURA Framework: целевая аудитория (PM и фаундеры), бесплатные главы для SEO, воронка монетизации
+3-Writing-Book/ideas.md	Заметки и идеи для книги
+3-Writing-Book/linkedin-sprint-detailed-theses.md	База знаний из курса LinkedIn Growth Sprint (7+ часов): стратегия, методы исследования, принципы вирусных постов
+3-Writing-Book/skills.md	Задачи: генерация иллюстраций, автоматизация, LinkedIn-скилл, AI-агенты
+3-Writing-Book/zamesin_top50_full.md	Топ-50 постов @zamesin в LinkedIn (янв 2024 — фев 2026) с метриками вовлечённости и полным текстом
+5-ZIS/LMS/ideas.md	Идея: экран "что тебе нужно сделать дальше" для LMS
+_dir_:1-Context	Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт"
+_dir_:1-Context/AURA-Theses	Тезисы методологии AJTBD и мета-фреймворка AURA, структурированные по темам
+_dir_:1-Context/boost-knowledge-base	База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.
+_dir_:1-Context/producthowto-knowledge-base	База знаний о тренинге "Как делать продукт" — курс по Advanced Jobs To Be Done, 12 000+ выпускников.
+_dir_:2-Products	Продуктовые материалы и новые продукты
+_dir_:2-Products/BoostUS	Материалы по запуску BOOST на американский рынок.
+_dir_:3-Marketing	Маркетинг: вебинары, идеи продвижения
+_dir_:3-SMM	Контент: LinkedIn-посты, Telegram-посты, черновики статей
+_dir_:3-SMM/Drafts	Черновики статей для публикации.
+_dir_:3-SMM/Experts	Транскрипции интервью экспертов.
+_dir_:3-SMM/Linkedin-posts	LinkedIn-посты с иллюстрациями.
+_dir_:3-SMM/Telegram-posts	Telegram-посты.
+_dir_:3-Writing-Book	Книга об AURA Framework: сырые мысли, тезисы, черновики
+_dir_:3-Writing-Book/1-Raw-Thoughts	Сырые мысли и брифы для статей.
+_dir_:3-Writing-Book/2-Theses	Тезисы для статей — итерации с разными версиями и покрытием.
+_dir_:3-Writing-Book/3-Drafts	Черновики статей.
+_dir_:3-Writing-Book/4-Edited	Отредактированные финальные версии.
+_dir_:4-Personal-files	Персональные рабочие папки участников команды
+_dir_:5-ZIS	Zamesin Innovation School: LMS и идеи
+_dir_:5-ZIS/LMS	Learning Management System.
+_dir_:8-Prompts-and-Scripts	Промпты и скрипты для автоматизации
+ideas-for-space.md	Идеи по организации пространства: фреймворки через "what if" вопросы, документы по работе с каждым сотрудником
+space-todo.md	Задачи: обновить сегменты клиентов для Figma-курса, экспортировать формы входа/выхода

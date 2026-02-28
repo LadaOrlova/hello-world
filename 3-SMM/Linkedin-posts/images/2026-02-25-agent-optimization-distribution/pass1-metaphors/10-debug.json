@@ -1,0 +1,60 @@
+{
+  "id": "gen-1772046858-S7n0cro1yd4wp27y0Dld",
+  "provider": "Google",
+  "model": "google/gemini-3-pro-image-preview",
+  "object": "chat.completion",
+  "created": 1772046859,
+  "choices": [
+    {
+      "error": {
+        "message": "JSON error injected into SSE stream",
+        "code": 502,
+        "metadata": {
+          "raw": "{\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.\",\n    \"status\": \"RESOURCE_EXHAUSTED\"\n  }\n}\n",
+          "provider_name": "Google"
+        }
+      },
+      "logprobs": null,
+      "finish_reason": "stop",
+      "native_finish_reason": "STOP",
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "",
+        "refusal": null,
+        "reasoning": "**Imagining a Scene**\n\nI'm focusing on the user's need for an image. The user's prompt is quite detailed, specifying an illustration in the *New Yorker* style, with particular artists and a limited color palette. I'm taking this into account when developing a scene for the illustration.\n\n\n**Composing the Elements**\n\nI'm now carefully crafting the components of the image. My plan involves a vertical split composition. I'm focusing on contrasting an old shop with the future. The illustration will have a color palette inspired by the request. The mood should be uplifting and hopeful, using line work and watercolor washes.\n\n\n",
+        "reasoning_details": [
+          {
+            "format": "google-gemini-v1",
+            "index": 0,
+            "type": "reasoning.text",
+            "text": "**Imagining a Scene**\n\nI'm focusing on the user's need for an image. The user's prompt is quite detailed, specifying an illustration in the *New Yorker* style, with particular artists and a limited color palette. I'm taking this into account when developing a scene for the illustration.\n\n\n**Composing the Elements**\n\nI'm now carefully crafting the components of the image. My plan involves a vertical split composition. I'm focusing on contrasting an old shop with the future. The illustration will have a color palette inspired by the request. The mood should be uplifting and hopeful, using line work and watercolor washes.\n\n\n"
+          }
+        ],
+        "annotations": []
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 296,
+    "completion_tokens": 0,
+    "total_tokens": 296,
+    "cost": 0.000592,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.000592,
+      "upstream_inference_prompt_cost": 0.000592,
+      "upstream_inference_completions_cost": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0
+    }
+  }
+}
