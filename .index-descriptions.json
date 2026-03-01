@@ -51,6 +51,7 @@
 1-Context/boost-knowledge-base/04-competitors.md	Анализ 10 конкурентов (Product University, ZeroCoder, Eduson и др.) с ценами и позиционированием
 1-Context/boost-knowledge-base/05-landing-and-communication.md	Тексты лендинга, блоки "для кого", барьеры и возражения, 10 отзывов участников, слоганы
 1-Context/boost-knowledge-base/06-faq.md	FAQ: нужно ли программировать, тарифы, подготовка, подписка Claude Code Max ($100/мес), возврат денег
+1-Context/boost-knowledge-base/README.md	База знаний: интенсив BOOST
 1-Context/producthowto-knowledge-base/01-course-overview.md	Обзор тренинга: формат, программа 8 модулей, тарифы, автор Ваня Замесин
 1-Context/producthowto-knowledge-base/02-target-audience-and-jobs.md	Целевая аудитория: продакт-менеджеры, фаундеры, маркетологи и их задачи
 1-Context/producthowto-knowledge-base/03-ajtbd-methodology.md	Методология AJTBD: теория, дающая алгоритмы создания продуктов на основе знания работ клиентов
@@ -60,6 +61,8 @@
 1-Context/producthowto-knowledge-base/07-results-summary.md	Сводка результатов: переход от демографической сегментации к сегментации по работам
 1-Context/producthowto-knowledge-base/08-reviews.md	Отзывы: 12 000+ участников, средняя оценка 9.2/10
 1-Context/producthowto-knowledge-base/09-faq.md	FAQ по тренингу
+1-Context/producthowto-knowledge-base/README.md	База знаний: тренинг "Как делать продукт" Вани Замесина
+2-Products/BoostUS/market-report-анализ-идеи-boostus-go.md	Анализ идеи: BoostUS — GO
 3-Marketing/Webinars/web-260626.md/deep-research-report.md	Deep research: 13 новых принципов создания продуктов когда код и исследования почти бесплатны
 3-Marketing/Webinars/web-260626.md/first-principles-15.md	15 принципов: конкурентная динамика, retention-флайвилы, сегментация в AI-native контексте
 3-Marketing/Webinars/web-260626.md/ideas.md	Идеи для вебинара: агентные интерфейсы, вайб-кодинг, fullstack-билдеры, agent optimization
@@ -95,6 +98,8 @@
 3-Writing-Book/skills.md	Задачи: генерация иллюстраций, автоматизация, LinkedIn-скилл, AI-агенты
 3-Writing-Book/zamesin_top50_full.md	Топ-50 постов @zamesin в LinkedIn (янв 2024 — фев 2026) с метриками вовлечённости и полным текстом
 5-ZIS/LMS/ideas.md	Идея: экран "что тебе нужно сделать дальше" для LMS
+8-Prompts-and-Scripts/Prompts/generate-segment.md	Промт: Выбор 5 привлекательных сегментов по AJTBD
+8-Prompts-and-Scripts/Prompts/riskiest-assumption-test.md	Что делать первым сообщением
 _dir_:1-Context	Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт"
 _dir_:1-Context/AURA-Theses	Тезисы методологии AJTBD и мета-фреймворка AURA, структурированные по темам
 _dir_:1-Context/boost-knowledge-base	База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.

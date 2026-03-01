@@ -82,9 +82,6 @@
 - `run-ux-tests.md` — Как проводить UX-тесты: быстрый и дешёвый поиск ошибок в медиа
 - `validate-value.md` — Как валидировать ценность: лучший способ — живые продажи
 
-**Knowledge/**
-
-
 **RAT/**
 
 - `risk-assumption-test.md` — Risk Assumption Test: фреймворк приоритизации рискованных предположений в продукте
@@ -137,6 +134,7 @@
 
 Материалы по запуску BOOST на американский рынок.
 
+- `market-report-анализ-идеи-boostus-go.md` — Анализ идеи: BoostUS — GO
 
 ---
 
@@ -180,7 +178,7 @@
 - `openclaw-and-agents.md` — Заглушка со ссылками на OpenClaw и Apple Intelligence
 - `techstory-saas-golden-age-ending-article-final.md` — Готовая статья: золотой век SaaS заканчивается, вайб-кодинг делает кастомные инструменты дешевле подписок
 - `why-four-forces-do-not-work.md` — Критика Four Forces из JTBD: почему они не описывают рыночную динамику, и что предлагает Advanced JTBD
-- `Продажный пост 58 поток.md`
+- `Продажный пост 58 поток.md`
 
 ### 3-SMM/Experts/
 
@@ -243,22 +241,11 @@ Telegram-посты.
 
 - `Draft-AI-Changes-PM-Role-old.md` — Черновик статьи: роль PM раздваивается — устаревание vs стратегический строитель с AI
 
-### 3-Writing-Book/4-Edited/
-
-Отредактированные финальные версии.
-
-
 ---
 
 ## 4-Personal-files/
 
 Персональные рабочие папки участников команды
-
-
-### 4-Personal-files/Alena-Mins/
-
-
-### 4-Personal-files/Alena-Zamesina/
 
 
 ### 4-Personal-files/Alina-Kovkova/
@@ -274,12 +261,6 @@ Telegram-посты.
 
 
 ### 4-Personal-files/Ilya-Mokhov/
-
-
-### 4-Personal-files/Ivan-Zamesin/
-
-
-### 4-Personal-files/Lera-Panteleeva/
 
 
 ### 4-Personal-files/Maxim-Kurepov/
@@ -316,6 +297,12 @@ Learning Management System.
 
 Промпты и скрипты для автоматизации
 
+
+### 8-Prompts-and-Scripts/Prompts/
+
+- `generate-segment.md` — Промт: Выбор 5 привлекательных сегментов по AJTBD
+- `landing-page-copy.md`
+- `riskiest-assumption-test.md` — Что делать первым сообщением
 
 ---
 
