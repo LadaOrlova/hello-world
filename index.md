@@ -129,6 +129,24 @@
 Продуктовые материалы и новые продукты
 
 
+### 2-Products/BoostUS/
+
+Материалы по запуску BOOST на американский рынок.
+
+- `01-prd.md` — PRD: AI-гайд по продуктовому мышлению и вайбкодингу
+- `02-analytics-plan.md` — Аналитический план LaunchPilot — PostHog
+- `03-landing-copy.md` — LaunchPilot: Landing Page Copy
+- `04-marketing-hypotheses.md` — Маркетинговые гипотезы и стратегия воронки: LaunchPilot
+- `05-unit-economics.md` — Юнит-экономика: LaunchPilot
+
+### 2-Products/BoostUS-Course/
+
+- `01-prd.md` — PRD: From Zero to First Product — Записанный онлайн-курс
+- `02-analytics-plan.md` — Аналитический план: From Zero to First Product — PostHog
+- `03-landing-copy.md` — Лендинг-копи: From Zero to First Product
+- `04-marketing-hypotheses.md` — Маркетинговые гипотезы: From Zero to First Product
+- `05-unit-economics.md` — Юнит-экономика: From Zero to First Product
+
 ### 2-Products/BoostUS-v1-ai-platform/
 
 - `01-prd.md` — PRD: LaunchPilot -- AI-платформа "от идеи до работающего продукта"
