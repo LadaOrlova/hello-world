@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaunchPilot — From Raw Idea to Build-Ready Documents in 60 Minutes</title>
+  <meta name="description" content="AI guide that turns your raw idea into build-ready documents and a vibe-coding plan in under 60 minutes. Free for your first project.">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            indigo: {
+              950: '#1e1b4b',
+              900: '#272362',
+              800: '#312e81',
+              700: '#3730a3',
+              600: '#4f46e5',
+            },
+            amber: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+            },
+            warm: {
+              50: '#fafaf9',
+              100: '#f5f5f4',
+              200: '#e7e5e4',
+              300: '#d6d3d1',
+              400: '#a8a29e',
+              500: '#78716c',
+              600: '#57534e',
+              700: '#44403c',
+              800: '#292524',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* Scroll animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger children */
+    .stagger-children > .fade-up:nth-child(1) { transition-delay: 0ms; }
+    .stagger-children > .fade-up:nth-child(2) { transition-delay: 100ms; }
+    .stagger-children > .fade-up:nth-child(3) { transition-delay: 200ms; }
+    .stagger-children > .fade-up:nth-child(4) { transition-delay: 300ms; }
+    .stagger-children > .fade-up:nth-child(5) { transition-delay: 400ms; }
+    .stagger-children > .fade-up:nth-child(6) { transition-delay: 500ms; }
+
+    /* Step connector line */
+    .step-line {
+      position: absolute;
+      left: 24px;
+      top: 48px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #4f46e5, #f59e0b);
+    }
+
+    /* Comparison table striping */
+    .comparison-row:nth-child(even) {
+      background-color: rgba(30, 27, 75, 0.03);
+    }
+
+    /* Active step glow */
+    .step-active .step-number {
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+    }
+
+    /* Smooth accordion */
+    .accordion-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.35s ease;
+    }
+    .accordion-body.open {
+      grid-template-rows: 1fr;
+    }
+    .accordion-body > div {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body class="bg-warm-50 text-warm-800 font-sans antialiased">
+
+  <!-- ============================================ -->
+  <!-- BLOCK 1: HERO                                -->
+  <!-- ============================================ -->
+  <section class="relative overflow-hidden bg-indigo-950 text-white">
+    <!-- Subtle gradient orbs -->
+    <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-700/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/4"></div>
+    <div class="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4"></div>
+
+    <div class="relative max-w-5xl mx-auto px-6 py-24 md:py-32 lg:py-40 text-center">
+      <!-- Badge -->
+      <div class="fade-up inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-4 py-1.5 text-sm text-amber-400 font-medium mb-8">
+        <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+        Methodology tested on 11,000+ graduates
+      </div>
+
+      <!-- One-liner -->
+      <h1 class="fade-up text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight max-w-4xl mx-auto">
+        AI guide that turns your raw idea into
+        <span class="text-amber-400"> build-ready documents</span>
+        and a vibe-coding plan in under
+        <span class="text-amber-400"> 60 minutes</span>.
+      </h1>
+
+      <!-- Tagline -->
+      <p class="fade-up mt-6 text-lg md:text-xl text-indigo-200 max-w-2xl mx-auto leading-relaxed">
+        Go from "I have an idea" to a PRD, risk assessment, landing copy, and vibe-coding plan — in one guided session, for free.
+      </p>
+
+      <!-- CTA -->
+      <div class="fade-up mt-10">
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold text-lg px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5">
+          Start free — describe your idea
+        </a>
+        <p class="mt-3 text-sm text-indigo-300">No credit card. No scheduling. Your first project is 100% free.</p>
+      </div>
+
+      <!-- Social proof badges -->
+      <div class="fade-up mt-14 flex flex-wrap justify-center gap-6 md:gap-10 text-sm text-indigo-300">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <span>9.6/10 avg. course rating</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+          <span>11,000+ graduates</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>30-60 min to full doc set</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- BLOCK 2: CORE JOB + VALUE                    -->
+  <!-- ============================================ -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="fade-up text-3xl md:text-4xl font-bold text-indigo-950 leading-tight">
+          From confused idea to clear plan — in one sitting, not one semester.
+        </h2>
+        <p class="fade-up mt-6 text-lg text-warm-600 leading-relaxed">
+          You have a business idea. You're ready to invest time and money. But you don't know what to build first, who exactly it's for, or whether it'll work.
+        </p>
+      </div>
+
+      <!-- The usual path -->
+      <div class="fade-up mb-14">
+        <h3 class="text-lg font-semibold text-warm-600 uppercase tracking-wider mb-6">The usual path</h3>
+        <div class="overflow-x-auto rounded-xl border border-warm-200">
+          <table class="w-full text-left text-sm md:text-base">
+            <thead>
+              <tr class="bg-warm-100 text-warm-700">
+                <th class="px-5 py-3 font-semibold">What people do today</th>
+                <th class="px-5 py-3 font-semibold">Time</th>
+                <th class="px-5 py-3 font-semibold">Cost</th>
+              </tr>
+            </thead>
+            <tbody class="text-warm-600">
+              <tr class="comparison-row border-t border-warm-100">
+                <td class="px-5 py-3">Watch YouTube tutorials on product strategy</td>
+                <td class="px-5 py-3 whitespace-nowrap">15-30 hours</td>
+                <td class="px-5 py-3">Free, but scattered</td>
+              </tr>
+              <tr class="comparison-row border-t border-warm-100">
+                <td class="px-5 py-3">Take an online course on product management</td>
+                <td class="px-5 py-3 whitespace-nowrap">20-40 hrs / 4-8 wks</td>
+                <td class="px-5 py-3">$200 – $4,000</td>
+              </tr>
+              <tr class="comparison-row border-t border-warm-100">
+                <td class="px-5 py-3">Hire a product consultant</td>
+                <td class="px-5 py-3 whitespace-nowrap">2-5 hrs + weeks wait</td>
+                <td class="px-5 py-3">$150 – $500/hr</td>
+              </tr>
+              <tr class="comparison-row border-t border-warm-100">
+                <td class="px-5 py-3">Use ChatGPT to "write a PRD"</td>
+                <td class="px-5 py-3 whitespace-nowrap">3-5 hours</td>
+                <td class="px-5 py-3">$20/mo, no methodology</td>
+              </tr>
+              <tr class="comparison-row border-t border-warm-100">
+                <td class="px-5 py-3">Jump into Cursor/Lovable without a plan</td>
+                <td class="px-5 py-3 whitespace-nowrap">20-40 hours</td>
+                <td class="px-5 py-3">$20-50/mo + wasted time</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-4 text-warm-500 text-sm">The result? Months spent. Thousands burned. Still no confidence the idea is worth building.</p>
+      </div>
+
+      <!-- LaunchPilot path -->
+      <div class="fade-up">
+        <h3 class="text-lg font-semibold text-amber-600 uppercase tracking-wider mb-6">With LaunchPilot</h3>
+        <div class="overflow-x-auto rounded-xl border-2 border-amber-400/40 bg-amber-50/30">
+          <table class="w-full text-left text-sm md:text-base">
+            <thead>
+              <tr class="bg-amber-100/50 text-indigo-950">
+                <th class="px-5 py-3 font-semibold">What you get</th>
+                <th class="px-5 py-3 font-semibold">Time</th>
+                <th class="px-5 py-3 font-semibold">What it replaces</th>
+              </tr>
+            </thead>
+            <tbody class="text-warm-700">
+              <tr class="border-t border-amber-200/50">
+                <td class="px-5 py-3">AI interview that structures your raw idea</td>
+                <td class="px-5 py-3 whitespace-nowrap font-medium text-indigo-700">10-15 min</td>
+                <td class="px-5 py-3 text-warm-500">Weeks of self-research</td>
+              </tr>
+              <tr class="border-t border-amber-200/50">
+                <td class="px-5 py-3">Target segments with real jobs and success criteria</td>
+                <td class="px-5 py-3 whitespace-nowrap font-medium text-indigo-700">5 min</td>
+                <td class="px-5 py-3 text-warm-500">Hours of guesswork</td>
+              </tr>
+              <tr class="border-t border-amber-200/50">
+                <td class="px-5 py-3">Prioritized risk assessment (RAT framework)</td>
+                <td class="px-5 py-3 whitespace-nowrap font-medium text-indigo-700">5-10 min</td>
+                <td class="px-5 py-3 text-warm-500">Guessing which risk kills you</td>
+              </tr>
+              <tr class="border-t border-amber-200/50">
+                <td class="px-5 py-3">Complete PRD for Cursor / Claude Code / Lovable</td>
+                <td class="px-5 py-3 whitespace-nowrap font-medium text-indigo-700">2 min</td>
+                <td class="px-5 py-3 text-warm-500">$150-500/hr consultant</td>
+              </tr>
+              <tr class="border-t border-amber-200/50">
+                <td class="px-5 py-3">Landing copy, analytics plan, competitor analysis</td>
+                <td class="px-5 py-3 whitespace-nowrap font-medium text-indigo-700">3 min</td>
+                <td class="px-5 py-3 text-warm-500">A week of research</td>
+              </tr>
+              <tr class="border-t border-amber-200/50">
+                <td class="px-5 py-3">Vibe-coding plan with tool recommendation + prompts</td>
+                <td class="px-5 py-3 whitespace-nowrap font-medium text-indigo-700">5 min</td>
+                <td class="px-5 py-3 text-warm-500">$400/yr bootcamp</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="mt-6 flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+          <div class="flex items-center gap-3 bg-indigo-950 text-white px-5 py-3 rounded-lg">
+            <span class="text-2xl font-bold text-amber-400">30-60 min</span>
+            <span class="text-sm text-indigo-200">from sign-up to full doc set</span>
+          </div>
+          <div class="flex items-center gap-3 bg-indigo-950 text-white px-5 py-3 rounded-lg">
+            <span class="text-2xl font-bold text-amber-400">$0</span>
+            <span class="text-sm text-indigo-200">for your first project</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up text-center mt-12">
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5">
+          Start free — describe your idea
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- BLOCK 3: MICRO JOBS                          -->
+  <!-- ============================================ -->
+  <section class="py-20 md:py-28 bg-warm-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="fade-up text-3xl md:text-4xl font-bold text-indigo-950">
+          Six things you'll accomplish in your first session.
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6 stagger-children">
+        <!-- Job 1 -->
+        <div class="fade-up bg-white rounded-2xl p-7 border border-warm-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 bg-indigo-950 text-amber-400 rounded-xl flex items-center justify-center font-bold text-lg">1</span>
+            <div>
+              <h3 class="font-bold text-indigo-950 text-lg leading-snug">Structure your messy idea into a clear product concept</h3>
+              <p class="mt-2 text-warm-600 text-sm leading-relaxed">Describe your idea in your own words. AI asks 5-8 smart questions about your user, their problem, and the context. In 10 minutes, your raw thought becomes structured.</p>
+              <div class="mt-3 flex items-center gap-2 text-xs font-medium text-indigo-700 bg-indigo-50 rounded-lg px-3 py-1.5 w-fit">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+                Output: Idea Summary
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="fade-up bg-white rounded-2xl p-7 border border-warm-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 bg-indigo-950 text-amber-400 rounded-xl flex items-center justify-center font-bold text-lg">2</span>
+            <div>
+              <h3 class="font-bold text-indigo-950 text-lg leading-snug">Discover who your product is really for</h3>
+              <p class="mt-2 text-warm-600 text-sm leading-relaxed">AI generates 2-4 target segments with their specific jobs, success criteria, and current alternatives. You pick the segment with the highest potential.</p>
+              <div class="mt-3 flex items-center gap-2 text-xs font-medium text-indigo-700 bg-indigo-50 rounded-lg px-3 py-1.5 w-fit">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+                Output: Segments &amp; Jobs
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="fade-up bg-white rounded-2xl p-7 border border-warm-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 bg-indigo-950 text-amber-400 rounded-xl flex items-center justify-center font-bold text-lg">3</span>
+            <div>
+              <h3 class="font-bold text-indigo-950 text-lg leading-snug">Find out what could kill your idea before you spend a dollar</h3>
+              <p class="mt-2 text-warm-600 text-sm leading-relaxed">AI identifies 5-10 riskiest assumptions and ranks them by: (Probability &times; Impact) / Cost to Test. You know exactly what to validate first.</p>
+              <div class="mt-3 flex items-center gap-2 text-xs font-medium text-indigo-700 bg-indigo-50 rounded-lg px-3 py-1.5 w-fit">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+                Output: Risk Priority + Validation Plan
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 4 -->
+        <div class="fade-up bg-white rounded-2xl p-7 border border-warm-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 bg-indigo-950 text-amber-400 rounded-xl flex items-center justify-center font-bold text-lg">4</span>
+            <div>
+              <h3 class="font-bold text-indigo-950 text-lg leading-snug">Get a PRD that AI coding tools actually understand</h3>
+              <p class="mt-2 text-warm-600 text-sm leading-relaxed">Not a vague wishlist — a precise document with user stories, MVP scope, and technical instructions optimized for Cursor, Claude Code, and Lovable.</p>
+              <div class="mt-3 flex items-center gap-2 text-xs font-medium text-indigo-700 bg-indigo-50 rounded-lg px-3 py-1.5 w-fit">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+                Output: Production-ready PRD
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 5 -->
+        <div class="fade-up bg-white rounded-2xl p-7 border border-warm-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 bg-indigo-950 text-amber-400 rounded-xl flex items-center justify-center font-bold text-lg">5</span>
+            <div>
+              <h3 class="font-bold text-indigo-950 text-lg leading-snug">Get landing copy, analytics plan, and competitor analysis — automatically</h3>
+              <p class="mt-2 text-warm-600 text-sm leading-relaxed">While you work through the guided flow, LaunchPilot generates three bonus documents: landing page copy, a PostHog-ready analytics plan, and a competitor analysis.</p>
+              <div class="mt-3 flex items-center gap-2 text-xs font-medium text-indigo-700 bg-indigo-50 rounded-lg px-3 py-1.5 w-fit">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+                Output: 3 bonus documents
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 6 -->
+        <div class="fade-up bg-white rounded-2xl p-7 border border-warm-200 hover:border-amber-400/50 hover:shadow-lg transition-all duration-300 group">
+          <div class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-10 h-10 bg-indigo-950 text-amber-400 rounded-xl flex items-center justify-center font-bold text-lg">6</span>
+            <div>
+              <h3 class="font-bold text-indigo-950 text-lg leading-snug">Know exactly how to build it with AI tools</h3>
+              <p class="mt-2 text-warm-600 text-sm leading-relaxed">AI recommends the right vibe-coding tool, gives you a setup guide, prompts based on YOUR PRD, and a checklist to your first working prototype.</p>
+              <div class="mt-3 flex items-center gap-2 text-xs font-medium text-indigo-700 bg-indigo-50 rounded-lg px-3 py-1.5 w-fit">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>
+                Output: Vibe-Coding Plan
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up text-center mt-12">
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5">
+          Start free — describe your idea
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- BLOCK 4: AHA MOMENT                          -->
+  <!-- ============================================ -->
+  <section class="py-20 md:py-28 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="fade-up text-3xl md:text-4xl font-bold text-indigo-950">See the difference in 30 seconds.</h2>
+        <p class="fade-up mt-4 text-warm-600 text-lg">Here's what happens when you describe your idea to LaunchPilot vs. ChatGPT.</p>
+      </div>
+
+      <!-- Input -->
+      <div class="fade-up max-w-3xl mx-auto mb-10">
+        <div class="bg-warm-100 rounded-xl p-5 border border-warm-200">
+          <p class="text-xs uppercase tracking-wider font-semibold text-warm-500 mb-2">Your input (same in both cases)</p>
+          <p class="text-warm-700 font-medium italic">"I want to build an app that helps people find good coffee shops when they travel."</p>
+        </div>
+      </div>
+
+      <!-- Side by side -->
+      <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <!-- ChatGPT -->
+        <div class="fade-up rounded-2xl border border-warm-200 p-6 bg-warm-50">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-warm-300 flex items-center justify-center">
+              <span class="text-warm-600 text-sm font-bold">G</span>
+            </div>
+            <span class="text-sm font-semibold text-warm-500">ChatGPT output</span>
+          </div>
+          <div class="text-sm text-warm-600 leading-relaxed space-y-2">
+            <p>"Great idea! Here's a PRD for a coffee shop finder app.</p>
+            <p>Features: search by location, user reviews, filtering by rating, map integration, saved favorites..."</p>
+          </div>
+          <div class="mt-5 text-xs text-warm-400 font-medium uppercase tracking-wider">Features list. No user context. No risks.</div>
+        </div>
+
+        <!-- LaunchPilot -->
+        <div class="fade-up rounded-2xl border-2 border-amber-400 p-6 bg-amber-50/50 relative">
+          <div class="absolute -top-3 right-4 bg-amber-500 text-indigo-950 text-xs font-bold px-3 py-1 rounded-full">Real clarity</div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-indigo-950 flex items-center justify-center">
+              <span class="text-amber-400 text-sm font-bold">LP</span>
+            </div>
+            <span class="text-sm font-semibold text-indigo-950">LaunchPilot output</span>
+          </div>
+          <div class="text-sm text-warm-700 leading-relaxed font-mono space-y-3">
+            <div>
+              <p class="font-bold text-indigo-800">Segment 1 (highest potential): Remote Workers Who Travel</p>
+              <p class="mt-1">When I arrive in a new city and need to work for 4-6 hours, I want to find a coffee shop with fast WiFi, power outlets, and a quiet atmosphere — so I can stay productive without wasting 30-60 minutes trying random places.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-indigo-700">Success criteria:</p>
+              <p>Found a workspace-quality coffee shop within 10 min of arriving.</p>
+            </div>
+            <div>
+              <p class="font-semibold text-indigo-700">Risk #1:</p>
+              <p>Do digital nomads struggle with this enough to pay? <span class="text-amber-600 font-bold">(test first)</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up max-w-3xl mx-auto mt-10 text-center">
+        <p class="text-warm-600 leading-relaxed">
+          ChatGPT gives you features. LaunchPilot gives you <strong class="text-indigo-950">clarity about who cares and why.</strong> That clarity is the difference between a product people use and a product people ignore.
+        </p>
+      </div>
+
+      <!-- LaunchPilot vs PRD generator -->
+      <div class="fade-up max-w-3xl mx-auto mt-10 bg-indigo-950 text-white rounded-2xl p-7">
+        <h4 class="font-bold text-amber-400 text-lg mb-3">LaunchPilot vs a PRD generator (like ChatPRD)</h4>
+        <p class="text-indigo-200 text-sm leading-relaxed">
+          PRD generators create documents. Some even coach you on specific document quality. But they don't teach you to think about products from scratch. They're built for product managers refining existing products inside companies. LaunchPilot is built for founders going from zero to one — it teaches you WHY you need each document, helps you discover your segments and risks, and gives you a vibe-coding plan to actually build what you've defined.
+        </p>
+      </div>
+
+      <div class="fade-up text-center mt-12">
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5">
+          Get this clarity for YOUR idea — free
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- BLOCK 5: VALUE BY JOBS (TABS)                -->
+  <!-- ============================================ -->
+  <section class="py-20 md:py-28 bg-warm-50" x-data="{ activeTab: 0 }">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="fade-up text-3xl md:text-4xl font-bold text-indigo-950">
+          Why LaunchPilot, not YouTube, ChatGPT, or a $4,000 bootcamp.
+        </h2>
+        <p class="fade-up mt-4 text-warm-600 text-lg">Four layers of value that no single competitor offers.</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="fade-up flex flex-wrap justify-center gap-2 mb-10">
+        <button @click="activeTab = 0" :class="activeTab === 0 ? 'bg-indigo-950 text-amber-400' : 'bg-white text-warm-600 hover:bg-warm-100'" class="px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 border border-warm-200">
+          Personalization
+        </button>
+        <button @click="activeTab = 1" :class="activeTab === 1 ? 'bg-indigo-950 text-amber-400' : 'bg-white text-warm-600 hover:bg-warm-100'" class="px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 border border-warm-200">
+          Speed
+        </button>
+        <button @click="activeTab = 2" :class="activeTab === 2 ? 'bg-indigo-950 text-amber-400' : 'bg-white text-warm-600 hover:bg-warm-100'" class="px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 border border-warm-200">
+          Insurance
+        </button>
+        <button @click="activeTab = 3" :class="activeTab === 3 ? 'bg-indigo-950 text-amber-400' : 'bg-white text-warm-600 hover:bg-warm-100'" class="px-5 py-2.5 rounded-xl font-medium text-sm transition-all duration-200 border border-warm-200">
+          Price
+        </button>
+      </div>
+
+      <!-- Tab content -->
+      <div class="fade-up max-w-3xl mx-auto">
+        <!-- Personalization -->
+        <div x-show="activeTab === 0" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+          <div class="bg-white rounded-2xl p-8 border border-warm-200">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-indigo-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold text-indigo-950">Personalization — everything is about YOUR idea</h3>
+            </div>
+            <p class="text-warm-600 leading-relaxed">
+              Every document, every recommendation, every prompt is generated for your specific idea, your specific user segment, and your specific context. This isn't a template with blanks to fill in. It's an AI that interviews you, understands your idea, and produces documents unique to your situation.
+            </p>
+            <div class="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-5">
+              <p class="text-sm font-semibold text-amber-700 mb-1">Concrete difference</p>
+              <p class="text-sm text-warm-600">A generic PRD from ChatGPT has 0% of your context. A LaunchPilot PRD contains your specific segments, their specific jobs, your specific risks, and your specific MVP scope — because AI asked you the right questions first.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Speed -->
+        <div x-show="activeTab === 1" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+          <div class="bg-white rounded-2xl p-8 border border-warm-200">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-indigo-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold text-indigo-950">Speed — 2-3 hours instead of 20-40</h3>
+            </div>
+            <p class="text-warm-600 leading-relaxed">
+              The typical path from "I have an idea" to "I have a clear plan and documents" takes 20-40 hours across courses, YouTube, consultants, and trial-and-error. LaunchPilot gives you the same output in 30-60 minutes of guided work. Add a weekend of building with your vibe-coding plan, and you have a working prototype.
+            </p>
+            <div class="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-5">
+              <p class="text-sm font-semibold text-amber-700 mb-1">Concrete difference</p>
+              <p class="text-sm text-warm-600">Sunday afternoon. You have an idea. By Sunday evening, you have a PRD, a risk assessment, landing copy, an analytics plan, and a vibe-coding plan. Next weekend, you have a working prototype.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insurance -->
+        <div x-show="activeTab === 2" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+          <div class="bg-white rounded-2xl p-8 border border-warm-200">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-indigo-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold text-indigo-950">Insurance against $5-20K mistakes</h3>
+            </div>
+            <p class="text-warm-600 leading-relaxed">
+              The #1 reason first-time founders fail: they build before they think. They spend $5,000-$20,000 on development only to discover nobody wants what they built. LaunchPilot forces you through the thinking process first — segments, jobs, risks, validation plan — using a methodology tested on 11,000+ graduates.
+            </p>
+            <div class="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-5">
+              <p class="text-sm font-semibold text-amber-700 mb-1">Concrete difference</p>
+              <p class="text-sm text-warm-600">Before you write a single line of code, you'll know: (1) who your product is for, (2) what job it does for them, (3) what the riskiest assumptions are, and (4) how to test them for $0-$100 instead of $5,000-$20,000.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div x-show="activeTab === 3" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+          <div class="bg-white rounded-2xl p-8 border border-warm-200">
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-indigo-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </div>
+              <h3 class="text-xl font-bold text-indigo-950">$29/month guide instead of $150-500/hr consultant</h3>
+            </div>
+            <p class="text-warm-600 leading-relaxed">
+              A good product consultant charges $150-$500 per hour. For a proper product strategy session, you're looking at $1,500-$5,000. LaunchPilot delivers structured segments, jobs, risks, PRD, and a validation plan — for $29/month (or $0 for your first project). Available 24/7, not "next Thursday at 3pm."
+            </p>
+            <p class="mt-3 text-xs text-warm-400 italic">Note: AI-generated documents are a starting point for your product thinking, not a replacement for expert judgment on critical decisions.</p>
+            <div class="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-5">
+              <p class="text-sm font-semibold text-amber-700 mb-1">Concrete difference</p>
+              <p class="text-sm text-warm-600">You don't wait for a meeting. You open LaunchPilot, describe your idea, and get a structured output that gives you clarity and direction — in 30 minutes, at midnight, in your pajamas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up text-center mt-12">
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5">
+          Get your first project free
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- BLOCK 6: SOUND FAMILIAR? (SEGMENTS)          -->
+  <!-- ============================================ -->
+  <section class="py-20 md:py-28 bg-white" x-data="{ showMore: false }">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="fade-up text-3xl md:text-4xl font-bold text-indigo-950">Sound familiar?</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6 stagger-children">
+        <!-- Segment 1 -->
+        <div class="fade-up bg-gradient-to-br from-indigo-950 to-indigo-900 text-white rounded-2xl p-7 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-[60px]"></div>
+          <div class="relative">
+            <span class="text-xs uppercase tracking-wider text-amber-400 font-semibold">Non-Technical Founder</span>
+            <h3 class="mt-3 text-xl font-bold leading-snug">"I have a business idea that won't leave me alone."</h3>
+            <p class="mt-4 text-indigo-200 text-sm leading-relaxed">
+              You've been thinking about this for weeks. Maybe months. You've told friends, Googled competitors, even opened Cursor once and stared at the blank screen. But you're not a developer.
+            </p>
+            <div x-show="showMore" x-transition class="mt-3 text-indigo-200 text-sm leading-relaxed">
+              <p>You don't know if the idea is good enough to invest $5,000-$20,000 in. You don't know what to build first. And every YouTube video gives you a different answer.</p>
+              <p class="mt-3 text-amber-400 font-semibold">LaunchPilot was built for this moment. In 30 minutes, you'll have clarity you couldn't get from 30 hours of research.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Segment 2 -->
+        <div class="fade-up bg-gradient-to-br from-indigo-950 to-indigo-900 text-white rounded-2xl p-7 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-[60px]"></div>
+          <div class="relative">
+            <span class="text-xs uppercase tracking-wider text-amber-400 font-semibold">Solopreneur / Side-Hustler</span>
+            <h3 class="mt-3 text-xl font-bold leading-snug">"I have 5-10 hours a week. I can't afford to waste them."</h3>
+            <p class="mt-4 text-indigo-200 text-sm leading-relaxed">
+              You have a day job. You want a side project that generates income. You've probably tried vibe-coding already — and built something that looks like an app but doesn't feel like a product.
+            </p>
+            <div x-show="showMore" x-transition class="mt-3 text-indigo-200 text-sm leading-relaxed">
+              <p>Nobody's using it. You started with code, not with thinking. You built features, not value. You need a fast way to figure out: is this idea worth my evenings?</p>
+              <p class="mt-3 text-amber-400 font-semibold">LaunchPilot gives you the answer in 2-3 evenings. A clear GO, PIVOT, or KILL — with a plan for what to do next.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Segment 3 -->
+        <div class="fade-up bg-gradient-to-br from-indigo-950 to-indigo-900 text-white rounded-2xl p-7 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-[60px]"></div>
+          <div class="relative">
+            <span class="text-xs uppercase tracking-wider text-amber-400 font-semibold">AI-Curious Professional</span>
+            <h3 class="mt-3 text-xl font-bold leading-snug">"AI is changing everything. I need to keep up."</h3>
+            <p class="mt-4 text-indigo-200 text-sm leading-relaxed">
+              You're a PM, designer, marketer, or analyst. You see your industry being reshaped by AI. Colleagues are building side projects. You need a practical framework — not another $4,000 certificate.
+            </p>
+            <div x-show="showMore" x-transition class="mt-3 text-indigo-200 text-sm leading-relaxed">
+              <p>You want to understand product thinking (JTBD, risk assessment, MVP scoping) and combine it with hands-on AI tool skills. You want a portfolio case, not a diploma.</p>
+              <p class="mt-3 text-amber-400 font-semibold">LaunchPilot teaches you by doing. Apply a real product framework to a real idea. Walk out with documents, a vibe-coding plan, and a case for your portfolio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toggle -->
+      <div class="fade-up text-center mt-8">
+        <button @click="showMore = !showMore" class="text-indigo-700 hover:text-indigo-900 font-medium text-sm inline-flex items-center gap-1.5 transition-colors">
+          <span x-text="showMore ? 'Show less' : 'Read full stories'"></span>
+          <svg :class="showMore && 'rotate-180'" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </button>
+      </div>
+
+      <div class="fade-up text-center mt-10">
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5">
+          Which one is you? Start free.
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- BLOCK 7: HOW IT WORKS (5 STEPS)              -->
+  <!-- ============================================ -->
+  <section class="py-20 md:py-28 bg-warm-50" x-data="{ activeStep: -1 }">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="fade-up text-3xl md:text-4xl font-bold text-indigo-950">
+          Five steps. One session. Every document you need.
+        </h2>
+        <p class="fade-up mt-4 text-warm-600 text-lg">From raw idea to a complete build plan in 30-60 minutes.</p>
+      </div>
+
+      <div class="space-y-0 relative">
+        <!-- Connecting line -->
+        <div class="absolute left-6 md:left-8 top-12 bottom-12 w-0.5 bg-gradient-to-b from-indigo-600 via-indigo-400 to-amber-400 hidden md:block"></div>
+
+        <!-- Step 1 -->
+        <div class="fade-up step-item relative pl-0 md:pl-20 pb-10" x-intersect:enter="activeStep = Math.max(activeStep, 0)">
+          <div class="hidden md:flex absolute left-0 top-0 w-16 h-16 items-center justify-center">
+            <div :class="activeStep >= 0 ? 'bg-amber-500 text-indigo-950 scale-110' : 'bg-indigo-950 text-amber-400'" class="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg transition-all duration-500 step-number z-10">1</div>
+          </div>
+          <div :class="activeStep >= 0 ? 'border-amber-400/50 shadow-lg' : 'border-warm-200'" class="bg-white rounded-2xl p-6 md:p-8 border transition-all duration-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="md:hidden w-8 h-8 bg-indigo-950 text-amber-400 rounded-lg flex items-center justify-center font-bold text-sm">1</span>
+              <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">10-15 minutes</span>
+            </div>
+            <h3 class="text-lg font-bold text-indigo-950">Tell LaunchPilot about your idea</h3>
+            <p class="mt-2 text-warm-600 text-sm leading-relaxed">Describe your idea in plain English. AI conducts a structured interview: asks about your user, their problem, the context, current alternatives. On every question, it explains <em>why</em> it's asking — so you learn product thinking as you go.</p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <span class="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded-lg font-medium">Output: Idea Summary</span>
+              <span class="text-xs bg-warm-100 text-warm-600 px-3 py-1 rounded-lg">Learn: Problem-first thinking</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="fade-up step-item relative pl-0 md:pl-20 pb-10" x-intersect:enter="activeStep = Math.max(activeStep, 1)">
+          <div class="hidden md:flex absolute left-0 top-0 w-16 h-16 items-center justify-center">
+            <div :class="activeStep >= 1 ? 'bg-amber-500 text-indigo-950 scale-110' : 'bg-indigo-950 text-amber-400'" class="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg transition-all duration-500 step-number z-10">2</div>
+          </div>
+          <div :class="activeStep >= 1 ? 'border-amber-400/50 shadow-lg' : 'border-warm-200'" class="bg-white rounded-2xl p-6 md:p-8 border transition-all duration-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="md:hidden w-8 h-8 bg-indigo-950 text-amber-400 rounded-lg flex items-center justify-center font-bold text-sm">2</span>
+              <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">5 minutes</span>
+            </div>
+            <h3 class="text-lg font-bold text-indigo-950">Discover your target segments and their jobs</h3>
+            <p class="mt-2 text-warm-600 text-sm leading-relaxed">AI generates 2-4 user segments with their jobs, success criteria, frequency, and current alternatives. You pick the one with the highest potential. AI explains the formula behind the recommendation.</p>
+            <div class="mt-4 bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+              <strong>This is where the magic happens.</strong> At minute 20-25, you see your raw idea transformed into a structured map of real human needs.
+            </div>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <span class="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded-lg font-medium">Output: Segments &amp; Jobs</span>
+              <span class="text-xs bg-warm-100 text-warm-600 px-3 py-1 rounded-lg">Learn: JTBD segmentation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="fade-up step-item relative pl-0 md:pl-20 pb-10" x-intersect:enter="activeStep = Math.max(activeStep, 2)">
+          <div class="hidden md:flex absolute left-0 top-0 w-16 h-16 items-center justify-center">
+            <div :class="activeStep >= 2 ? 'bg-amber-500 text-indigo-950 scale-110' : 'bg-indigo-950 text-amber-400'" class="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg transition-all duration-500 step-number z-10">3</div>
+          </div>
+          <div :class="activeStep >= 2 ? 'border-amber-400/50 shadow-lg' : 'border-warm-200'" class="bg-white rounded-2xl p-6 md:p-8 border transition-all duration-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="md:hidden w-8 h-8 bg-indigo-950 text-amber-400 rounded-lg flex items-center justify-center font-bold text-sm">3</span>
+              <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">5-10 minutes</span>
+            </div>
+            <h3 class="text-lg font-bold text-indigo-950">Assess your risks before you spend a dollar</h3>
+            <p class="mt-2 text-warm-600 text-sm leading-relaxed">AI identifies 5-10 riskiest assumptions and ranks them using the RAT formula: (Probability &times; Impact) / Cost to Test. You get a validation plan with interview scripts and testing methods.</p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <span class="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded-lg font-medium">Output: Risk Priority + Validation Plan</span>
+              <span class="text-xs bg-warm-100 text-warm-600 px-3 py-1 rounded-lg">Learn: RAT framework</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="fade-up step-item relative pl-0 md:pl-20 pb-10" x-intersect:enter="activeStep = Math.max(activeStep, 3)">
+          <div class="hidden md:flex absolute left-0 top-0 w-16 h-16 items-center justify-center">
+            <div :class="activeStep >= 3 ? 'bg-amber-500 text-indigo-950 scale-110' : 'bg-indigo-950 text-amber-400'" class="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg transition-all duration-500 step-number z-10">4</div>
+          </div>
+          <div :class="activeStep >= 3 ? 'border-amber-400/50 shadow-lg' : 'border-warm-200'" class="bg-white rounded-2xl p-6 md:p-8 border transition-all duration-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="md:hidden w-8 h-8 bg-indigo-950 text-amber-400 rounded-lg flex items-center justify-center font-bold text-sm">4</span>
+              <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">2 minutes</span>
+            </div>
+            <h3 class="text-lg font-bold text-indigo-950">Get your PRD and bonus documents</h3>
+            <p class="mt-2 text-warm-600 text-sm leading-relaxed">AI generates a complete PRD with user stories, MVP scope, and technical instructions optimized for Cursor, Claude Code, and Lovable. Plus: landing page copy, analytics plan, and competitor analysis — generated automatically.</p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <span class="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded-lg font-medium">Output: PRD + 3 bonus docs</span>
+              <span class="text-xs bg-warm-100 text-warm-600 px-3 py-1 rounded-lg">Learn: MVP scoping</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="fade-up step-item relative pl-0 md:pl-20" x-intersect:enter="activeStep = Math.max(activeStep, 4)">
+          <div class="hidden md:flex absolute left-0 top-0 w-16 h-16 items-center justify-center">
+            <div :class="activeStep >= 4 ? 'bg-amber-500 text-indigo-950 scale-110' : 'bg-indigo-950 text-amber-400'" class="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg transition-all duration-500 step-number z-10">5</div>
+          </div>
+          <div :class="activeStep >= 4 ? 'border-amber-400/50 shadow-lg' : 'border-warm-200'" class="bg-white rounded-2xl p-6 md:p-8 border transition-all duration-500">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="md:hidden w-8 h-8 bg-indigo-950 text-amber-400 rounded-lg flex items-center justify-center font-bold text-sm">5</span>
+              <span class="text-xs font-semibold text-amber-600 uppercase tracking-wider">5 minutes</span>
+            </div>
+            <h3 class="text-lg font-bold text-indigo-950">Get your vibe-coding plan</h3>
+            <p class="mt-2 text-warm-600 text-sm leading-relaxed">AI recommends the right tool for your project type (Cursor, Claude Code, Lovable, Bolt.new), gives you a setup guide, prompts based on YOUR PRD, and a step-by-step checklist to your first working prototype.</p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <span class="text-xs bg-indigo-50 text-indigo-700 px-3 py-1 rounded-lg font-medium">Output: Vibe-Coding Plan</span>
+              <span class="text-xs bg-warm-100 text-warm-600 px-3 py-1 rounded-lg">Learn: AI tool mastery</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary bar -->
+      <div class="fade-up mt-12 bg-indigo-950 rounded-2xl p-6 md:p-8 text-white">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div>
+            <div class="text-2xl font-bold text-amber-400">30-60 min</div>
+            <div class="text-xs text-indigo-300 mt-1">Total time</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-amber-400">8</div>
+            <div class="text-xs text-indigo-300 mt-1">Documents generated</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-amber-400">5</div>
+            <div class="text-xs text-indigo-300 mt-1">Guided steps</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-amber-400">$0</div>
+            <div class="text-xs text-indigo-300 mt-1">First project</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up text-center mt-10">
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5">
+          Start Step 1 — free
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- BLOCK 8: POINT B VISION                      -->
+  <!-- ============================================ -->
+  <section class="py-20 md:py-28 bg-indigo-950 text-white relative overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-indigo-700/20 rounded-full blur-[150px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="fade-up text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          Imagine it's <span class="text-amber-400">30 days</span> from now.
+        </h2>
+      </div>
+
+      <div class="space-y-8 stagger-children">
+        <!-- Founder -->
+        <div class="fade-up bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7">
+          <span class="text-xs uppercase tracking-wider text-amber-400 font-semibold">If you're a founder</span>
+          <p class="mt-3 text-indigo-100 leading-relaxed">
+            You've validated your idea with real people. Your PRD is in Cursor. Your prototype is live. Three potential customers have signed up for early access. You're not wondering "should I build this?" anymore — you're wondering "how fast can I ship the next feature?"
+          </p>
+          <p class="mt-3 text-indigo-300 text-sm">You didn't quit your job. You didn't spend $20,000. You spent a few evenings and a $29/month subscription.</p>
+        </div>
+
+        <!-- Side-hustler -->
+        <div class="fade-up bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7">
+          <span class="text-xs uppercase tracking-wider text-amber-400 font-semibold">If you're a side-hustler</span>
+          <p class="mt-3 text-indigo-100 leading-relaxed">
+            Your side project has a landing page, 47 email signups, and a working MVP. You showed it to your Indie Hackers community and got your first paying customer — $12/month. It's not life-changing money yet. But it's proof.
+          </p>
+          <p class="mt-3 text-indigo-300 text-sm">Proof that you can build something people want, on your own time, with your own hands.</p>
+        </div>
+
+        <!-- Professional -->
+        <div class="fade-up bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7">
+          <span class="text-xs uppercase tracking-wider text-amber-400 font-semibold">If you're a professional</span>
+          <p class="mt-3 text-indigo-100 leading-relaxed">
+            You presented a structured product proposal at work — segments, jobs, risks, MVP scope. Your manager asked where you learned this. Now you're leading the AI integration project.
+          </p>
+        </div>
+      </div>
+
+      <div class="fade-up text-center mt-12">
+        <p class="text-indigo-200 text-lg mb-6 max-w-2xl mx-auto">
+          You stopped consuming and started creating. You stopped asking "will it work?" and started testing. You went from idea to action in hours, not months.
+        </p>
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5">
+          Start building your future — free
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- BLOCK 9: OBJECTION HANDLING (ACCORDION)      -->
+  <!-- ============================================ -->
+  <section class="py-20 md:py-28 bg-white" x-data="{ openFaq: 0 }">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="fade-up text-3xl md:text-4xl font-bold text-indigo-950">"Yeah, but..."</h2>
+        <p class="fade-up mt-3 text-warm-600 text-lg">We've heard every objection. Here are honest answers.</p>
+      </div>
+
+      <div class="space-y-3 stagger-children">
+        <!-- FAQ 1 -->
+        <div class="fade-up bg-warm-50 rounded-xl border border-warm-200 overflow-hidden">
+          <button @click="openFaq = openFaq === 0 ? -1 : 0" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4">
+            <span class="font-semibold text-indigo-950">"I'm not technical. I can't build a product."</span>
+            <svg :class="openFaq === 0 && 'rotate-180'" class="w-5 h-5 text-warm-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="accordion-body" :class="openFaq === 0 && 'open'">
+            <div>
+              <div class="px-6 pb-5 text-warm-600 text-sm leading-relaxed">
+                You don't need to be. LaunchPilot doesn't ask you to code. It teaches you to <em>think</em> about products and generates the documents that AI coding tools understand. When you open Cursor or Lovable with a well-structured PRD and targeted prompts, the tool does the coding — you do the thinking. 11,000+ non-technical people have built products using the methodology behind LaunchPilot.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="fade-up bg-warm-50 rounded-xl border border-warm-200 overflow-hidden">
+          <button @click="openFaq = openFaq === 1 ? -1 : 1" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4">
+            <span class="font-semibold text-indigo-950">"AI-generated documents are generic and useless."</span>
+            <svg :class="openFaq === 1 && 'rotate-180'" class="w-5 h-5 text-warm-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="accordion-body" :class="openFaq === 1 && 'open'">
+            <div>
+              <div class="px-6 pb-5 text-warm-600 text-sm leading-relaxed">
+                They are — if you don't give AI the right context. That's exactly what LaunchPilot solves. It conducts a structured interview about YOUR idea, YOUR users, YOUR context before generating anything. The output isn't a template with your name plugged in. It's a document that reflects your specific segments, their specific jobs, and your specific risks.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="fade-up bg-warm-50 rounded-xl border border-warm-200 overflow-hidden">
+          <button @click="openFaq = openFaq === 2 ? -1 : 2" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4">
+            <span class="font-semibold text-indigo-950">"I've already tried Cursor/Lovable and it didn't work."</span>
+            <svg :class="openFaq === 2 && 'rotate-180'" class="w-5 h-5 text-warm-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="accordion-body" :class="openFaq === 2 && 'open'">
+            <div>
+              <div class="px-6 pb-5 text-warm-600 text-sm leading-relaxed">
+                That's actually the best starting point. The reason vibe-coding "doesn't work" for most people is not the tool — it's the input. A vague prompt produces a vague product. LaunchPilot gives you the precise input: a PRD with user stories, MVP scope, and prompts specifically written for AI coding tools. Same tool, dramatically better results.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="fade-up bg-warm-50 rounded-xl border border-warm-200 overflow-hidden">
+          <button @click="openFaq = openFaq === 3 ? -1 : 3" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4">
+            <span class="font-semibold text-indigo-950">"How is this different from ChatGPT?"</span>
+            <svg :class="openFaq === 3 && 'rotate-180'" class="w-5 h-5 text-warm-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="accordion-body" :class="openFaq === 3 && 'open'">
+            <div>
+              <div class="px-6 pb-5 text-warm-600 text-sm leading-relaxed">
+                ChatGPT answers questions. LaunchPilot <em>asks</em> the right questions. ChatGPT doesn't know JTBD, RAT, or critical job chains. It doesn't conduct a structured interview. It doesn't prioritize risks by formula. It doesn't generate prompts optimized for Cursor. You could spend 5 hours trying to make ChatGPT do what LaunchPilot does in 30 minutes — and the output still won't be as structured.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="fade-up bg-warm-50 rounded-xl border border-warm-200 overflow-hidden">
+          <button @click="openFaq = openFaq === 4 ? -1 : 4" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4">
+            <span class="font-semibold text-indigo-950">"What if my idea is bad?"</span>
+            <svg :class="openFaq === 4 && 'rotate-180'" class="w-5 h-5 text-warm-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="accordion-body" :class="openFaq === 4 && 'open'">
+            <div>
+              <div class="px-6 pb-5 text-warm-600 text-sm leading-relaxed">
+                Then LaunchPilot is the cheapest way to find out. Step 3 (Risk Assessment) gives you a clear signal: GO, PIVOT, or KILL. If your idea has critical unvalidated risks, you'll know in 25 minutes — not after spending $10,000 on development. Finding out your idea needs pivoting is not a failure. It's saving you months and thousands of dollars.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="fade-up bg-warm-50 rounded-xl border border-warm-200 overflow-hidden">
+          <button @click="openFaq = openFaq === 5 ? -1 : 5" class="w-full text-left px-6 py-5 flex items-center justify-between gap-4">
+            <span class="font-semibold text-indigo-950">"$29/month is another subscription I'll forget about."</span>
+            <svg :class="openFaq === 5 && 'rotate-180'" class="w-5 h-5 text-warm-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+          </button>
+          <div class="accordion-body" :class="openFaq === 5 && 'open'">
+            <div>
+              <div class="px-6 pb-5 text-warm-600 text-sm leading-relaxed">
+                Your first project is completely free. You'll have all 8 documents before you ever see a pricing page. If the free project doesn't convince you, don't subscribe — you still keep all the documents. And if you do subscribe: cancel anytime, no commitments, no hidden fees. Most users generate enough value in one session to justify 6 months of subscription.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up text-center mt-12">
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5">
+          Try free. Decide later.
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- BLOCK 10: COMPETITOR DISPLACEMENT             -->
+  <!-- ============================================ -->
+  <section class="py-20 md:py-28 bg-warm-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <h2 class="fade-up text-3xl md:text-4xl font-bold text-indigo-950">
+          You've probably tried some of these. Here's what's missing.
+        </h2>
+      </div>
+
+      <!-- Competitor cards -->
+      <div class="space-y-4 mb-12 stagger-children">
+        <!-- Competitor 1 -->
+        <div class="fade-up bg-white rounded-xl border border-warm-200 p-6">
+          <div class="flex flex-col md:flex-row md:items-start gap-4">
+            <div class="flex-1">
+              <h3 class="font-bold text-indigo-950">"I'll just use ChatGPT / Claude"</h3>
+              <p class="mt-1 text-sm text-green-700"><span class="font-medium">Does well:</span> General Q&A, brainstorming, basic docs</p>
+              <p class="mt-1 text-sm text-red-700"><span class="font-medium">Missing:</span> No methodology. No structured interview. No risk prioritization. No vibe-coding prompts. Every conversation starts from zero.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Competitor 2 -->
+        <div class="fade-up bg-white rounded-xl border border-warm-200 p-6">
+          <div class="flex flex-col md:flex-row md:items-start gap-4">
+            <div class="flex-1">
+              <h3 class="font-bold text-indigo-950">"I'll take a course (Buildcamp, Scrimba, Product School)"</h3>
+              <p class="mt-1 text-sm text-green-700"><span class="font-medium">Does well:</span> Teaching coding skills or PM theory</p>
+              <p class="mt-1 text-sm text-red-700"><span class="font-medium">Missing:</span> Generic examples. 20-40 hours. No documents for YOUR idea. No vibe-coding combo. By the time you finish, motivation may be gone.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Competitor 3 -->
+        <div class="fade-up bg-white rounded-xl border border-warm-200 p-6">
+          <div class="flex flex-col md:flex-row md:items-start gap-4">
+            <div class="flex-1">
+              <h3 class="font-bold text-indigo-950">"I'll use a PRD generator (ChatPRD, PRDGPT)"</h3>
+              <p class="mt-1 text-sm text-green-700"><span class="font-medium">Does well:</span> PRD generation, inline coaching on doc quality</p>
+              <p class="mt-1 text-sm text-red-700"><span class="font-medium">Missing:</span> Built for PMs in companies, not founders from scratch. No risk assessment. No landing copy. No vibe-coding prompts. A PRD without product thinking is just a fancy to-do list.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Competitor 4 -->
+        <div class="fade-up bg-white rounded-xl border border-warm-200 p-6">
+          <div class="flex flex-col md:flex-row md:items-start gap-4">
+            <div class="flex-1">
+              <h3 class="font-bold text-indigo-950">"I'll validate with DimeADozen or IdeaProof"</h3>
+              <p class="mt-1 text-sm text-green-700"><span class="font-medium">Does well:</span> Quick market reports, viability scores</p>
+              <p class="mt-1 text-sm text-red-700"><span class="font-medium">Missing:</span> You get a 40-page report and then... what? No teaching. No PRD. No vibe-coding. A one-time snapshot that sits in your Downloads folder.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Competitor 5 -->
+        <div class="fade-up bg-white rounded-xl border border-warm-200 p-6">
+          <div class="flex flex-col md:flex-row md:items-start gap-4">
+            <div class="flex-1">
+              <h3 class="font-bold text-indigo-950">"I'll just jump into Lovable / Cursor and figure it out"</h3>
+              <p class="mt-1 text-sm text-green-700"><span class="font-medium">Does well:</span> Generating code from natural language</p>
+              <p class="mt-1 text-sm text-red-700"><span class="font-medium">Missing:</span> The tool is only as good as the input. "Build me an app" produces a generic prototype. A detailed PRD with user stories produces something you can test with users. LaunchPilot creates that input.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison matrix -->
+      <div class="fade-up overflow-x-auto">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-indigo-950 text-white">
+              <th class="text-left px-4 py-3 rounded-tl-xl">Alternative</th>
+              <th class="px-4 py-3 text-center">Documents</th>
+              <th class="px-4 py-3 text-center">Teaching</th>
+              <th class="px-4 py-3 text-center">Vibe-Coding</th>
+              <th class="px-4 py-3 text-center">Risk Assessment</th>
+              <th class="px-4 py-3 text-center rounded-tr-xl">Personalized</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-warm-200 bg-white">
+              <td class="px-4 py-3 font-medium">ChatGPT/Claude</td>
+              <td class="px-4 py-3 text-center text-warm-400">Generic</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+            </tr>
+            <tr class="border-b border-warm-200 bg-warm-50">
+              <td class="px-4 py-3 font-medium">Courses</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-warm-400">Generic</td>
+              <td class="px-4 py-3 text-center text-warm-400">Partial</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+            </tr>
+            <tr class="border-b border-warm-200 bg-white">
+              <td class="px-4 py-3 font-medium">ChatPRD/PRDGPT</td>
+              <td class="px-4 py-3 text-center text-warm-400">PRD only</td>
+              <td class="px-4 py-3 text-center text-warm-400">Coaching</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-warm-400">Partial</td>
+            </tr>
+            <tr class="border-b border-warm-200 bg-warm-50">
+              <td class="px-4 py-3 font-medium">DimeADozen/IdeaProof</td>
+              <td class="px-4 py-3 text-center text-warm-400">Report</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-warm-400">Partial</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+            </tr>
+            <tr class="border-b border-warm-200 bg-white">
+              <td class="px-4 py-3 font-medium">Lovable/Cursor</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-warm-400">N/A</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+              <td class="px-4 py-3 text-center text-red-500">&#10005;</td>
+            </tr>
+            <tr class="bg-amber-50 border-2 border-amber-400">
+              <td class="px-4 py-3 font-bold text-indigo-950">LaunchPilot</td>
+              <td class="px-4 py-3 text-center font-bold text-green-700">8 docs</td>
+              <td class="px-4 py-3 text-center font-bold text-green-700">Contextual</td>
+              <td class="px-4 py-3 text-center font-bold text-green-700">Personalized</td>
+              <td class="px-4 py-3 text-center font-bold text-green-700">RAT</td>
+              <td class="px-4 py-3 text-center font-bold text-green-700">AI interview</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="fade-up text-center mt-12">
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold px-8 py-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/25 hover:-translate-y-0.5">
+          See the difference yourself — start free
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- BLOCK 11: FINAL CTA                          -->
+  <!-- ============================================ -->
+  <section class="py-20 md:py-28 bg-indigo-950 text-white relative overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-amber-500/10 rounded-full blur-[150px]"></div>
+    </div>
+
+    <div class="relative max-w-3xl mx-auto px-6 text-center">
+      <h2 class="fade-up text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+        Your idea deserves more than <span class="text-amber-400">"maybe someday."</span>
+      </h2>
+
+      <p class="fade-up mt-6 text-indigo-200 text-lg leading-relaxed">
+        You've been thinking about this idea. You've been Googling competitors, watching videos, reading threads. The research phase is over.
+      </p>
+
+      <div class="fade-up mt-10 text-left max-w-lg mx-auto">
+        <p class="text-indigo-200 text-sm mb-4">In the next 30 minutes, you can have:</p>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            <span class="text-indigo-100 text-sm">A structured description of your product</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            <span class="text-indigo-100 text-sm">Target segments with real human needs</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            <span class="text-indigo-100 text-sm">A risk assessment that tells you what to test first</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            <span class="text-indigo-100 text-sm">A complete PRD ready for Cursor or Lovable</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            <span class="text-indigo-100 text-sm">A vibe-coding plan to build your first prototype this week</span>
+          </li>
+        </ul>
+      </div>
+
+      <p class="fade-up mt-8 text-indigo-300 text-sm">
+        All for free. No credit card. No meeting. No course to finish.
+      </p>
+
+      <p class="fade-up mt-6 text-indigo-100 text-lg font-medium max-w-xl mx-auto">
+        The people who launch businesses aren't smarter than you. They just stop researching and start building.
+      </p>
+
+      <div class="fade-up mt-10">
+        <a href="#" class="inline-block bg-amber-500 hover:bg-amber-400 text-indigo-950 font-extrabold text-lg px-10 py-5 rounded-xl transition-all duration-200 hover:shadow-xl hover:shadow-amber-500/30 hover:-translate-y-1">
+          Describe your idea — start free
+        </a>
+        <p class="mt-4 text-sm text-indigo-300">Takes 30 seconds to sign up. 30 minutes to your first document set. 100% free for your first project.</p>
+      </div>
+
+      <!-- Social proof -->
+      <div class="fade-up mt-16 pt-10 border-t border-white/10">
+        <p class="text-indigo-300 italic text-sm max-w-lg mx-auto">
+          "I went from a 3-paragraph idea to a full PRD and risk assessment in 28 minutes. This is what ChatGPT should have been for founders."
+        </p>
+        <p class="mt-2 text-indigo-400 text-xs">— Beta User</p>
+        <p class="mt-4 text-indigo-400 text-xs">Methodology tested on 11,000+ graduates. Average course rating: 9.6/10.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- FOOTER                                       -->
+  <!-- ============================================ -->
+  <footer class="bg-indigo-950 border-t border-white/10 py-8">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <p class="text-indigo-400 text-sm">&copy; 2026 LaunchPilot. All rights reserved.</p>
+    </div>
+  </footer>
+
+
+  <!-- ============================================ -->
+  <!-- SCROLL ANIMATION SCRIPT                      -->
+  <!-- ============================================ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    });
+  </script>
+
+</body>
+</html>
