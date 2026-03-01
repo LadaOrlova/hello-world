@@ -4,13 +4,13 @@
 # Для неизменённых файлов сохраняет существующие описания.
 #
 # Использование:
-#   bash scripts/generate-index.sh              — обновить только изменённые файлы
-#   bash scripts/generate-index.sh --full       — перегенерировать все описания
-#   bash scripts/generate-index.sh --structure  — обновить только структуру (без AI)
+#   bash 8-Prompts-and-Scripts/scripts/generate-index.sh              — обновить только изменённые файлы
+#   bash 8-Prompts-and-Scripts/scripts/generate-index.sh --full       — перегенерировать все описания
+#   bash 8-Prompts-and-Scripts/scripts/generate-index.sh --structure  — обновить только структуру (без AI)
 
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+REPO_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 INDEX_FILE="$REPO_ROOT/index.md"
 DESCRIPTIONS_FILE="$REPO_ROOT/.index-descriptions.json"
 MODE="${1:-}"

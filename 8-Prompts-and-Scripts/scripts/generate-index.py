@@ -5,9 +5,9 @@
 Для неизменённых файлов сохраняет существующие описания.
 
 Использование:
-  python3 scripts/generate-index.py              — обновить только изменённые файлы
-  python3 scripts/generate-index.py --full       — перегенерировать все описания
-  python3 scripts/generate-index.py --structure  — обновить только структуру (без AI)
+  python3 8-Prompts-and-Scripts/scripts/generate-index.py              — обновить только изменённые файлы
+  python3 8-Prompts-and-Scripts/scripts/generate-index.py --full       — перегенерировать все описания
+  python3 8-Prompts-and-Scripts/scripts/generate-index.py --structure  — обновить только структуру (без AI)
 """
 
 import os
@@ -16,7 +16,7 @@ import json
 import subprocess
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 DESCRIPTIONS_FILE = REPO_ROOT / ".index-descriptions.json"
 INDEX_FILE = REPO_ROOT / "index.md"
 

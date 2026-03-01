@@ -18,7 +18,7 @@ jobs:
       - name: Generate index.md
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-        run: python3 scripts/generate-index.py
+        run: python3 8-Prompts-and-Scripts/scripts/generate-index.py
 
       - name: Commit and push if changed
         run: |
