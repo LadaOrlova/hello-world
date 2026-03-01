@@ -62,41 +62,36 @@
 1-Context/producthowto-knowledge-base/08-reviews.md	Отзывы: 12 000+ участников, средняя оценка 9.2/10
 1-Context/producthowto-knowledge-base/09-faq.md	FAQ по тренингу
 1-Context/producthowto-knowledge-base/README.md	База знаний: тренинг "Как делать продукт" Вани Замесина
-2-Products/BoostUS/market-report-анализ-идеи-boostus-go.md	Анализ идеи: BoostUS — GO
-3-Marketing/Webinars/web-260626.md/deep-research-report.md	Deep research: 13 новых принципов создания продуктов когда код и исследования почти бесплатны
-3-Marketing/Webinars/web-260626.md/first-principles-15.md	15 принципов: конкурентная динамика, retention-флайвилы, сегментация в AI-native контексте
-3-Marketing/Webinars/web-260626.md/ideas.md	Идеи для вебинара: агентные интерфейсы, вайб-кодинг, fullstack-билдеры, agent optimization
-3-Marketing/Webinars/web-260626.md/prompt-first-principles-analysis.md	Промпт для анализа новых принципов создания продуктов из первых принципов
-3-Marketing/Webinars/web-260626.md/web-260226.md	Программа вебинара 26.02.2026: как AI меняет подход к разработке продуктов (теория, демо, Q&A)
-3-Marketing/Webinars/web-skills.md/web.md	Заглушка
+2-Products/BoostUS-v1-ai-platform/01-prd.md	PRD: LaunchPilot -- AI-платформа "от идеи до работающего продукта"
+2-Products/BoostUS-v1-ai-platform/02-analytics-plan.md	Аналитический план LaunchPilot — PostHog
+2-Products/BoostUS-v1-ai-platform/03-landing-copy.md	LaunchPilot: Landing Page Copy
+2-Products/BoostUS-v1-ai-platform/04-marketing-hypotheses.md	Маркетинговые гипотезы и стратегия воронки: LaunchPilot
+2-Products/BoostUS-v1-ai-platform/05-unit-economics.md	Юнит-экономика: LaunchPilot
+2-Products/BoostUS-v1-ai-platform/market-report-анализ-идеи-boostus-go.md	Анализ идеи: BoostUS — GO
+3-Marketing/1-SMM/Drafts/future of Saas.md	Будущее SaaS: почему спрос изменится
+3-Marketing/1-SMM/Drafts/future-of-saas-2.md	TODO
+3-Marketing/1-SMM/Drafts/hackernoon-article-pmf-pivot-theses.md	How to Find Product-Market Fit Fast — and Pivot the Right Way
+3-Marketing/1-SMM/Drafts/techstory-saas-golden-age-ending-article-final.md	Is the Golden Age of SaaS Ending?
+3-Marketing/1-SMM/Linkedin-posts/2026-02-25-agent-optimization-distribution.md	Agent Optimization — The Next Distribution Layer
+3-Marketing/1-SMM/Linkedin-posts/image-styles-library.md	Image Styles Library for LinkedIn Posts
+3-Marketing/1-SMM/Linkedin-posts/linkedin-post-2026-02-20-pm-hypothesis-factory.md	LinkedIn Post: PM as Hypothesis Factory Operator
+3-Marketing/1-SMM/Telegram-posts/2026-02-22-vibe-coding-love-work.md	Telegram-пост: У меня безумная гипотеза про вайбкодинг
+3-Marketing/1-Webinars/web-260626.md/deep-research-report.md	Новые принципы создания продуктов из первых принципов в мире, где «построить софт ≈ почти бесплатно»
+3-Marketing/1-Webinars/web-260626.md/first-principles-15.md	15 новых принципов создания продуктов (from first principles)
+3-Marketing/1-Webinars/web-260626.md/prompt-first-principles-analysis.md	Промпт: Анализ новых принципов создания продуктов из первых принципов
+3-Marketing/1-Webinars/web-260626.md/web-260226.md	TODO
+3-Marketing/2-Writing-Book/1-Raw-Thoughts/changes-how-we-make-products.md	Вводные
+3-Marketing/2-Writing-Book/1-Raw-Thoughts/how-to-find-pmf-hackernoon.md	Бриф от издания
+3-Marketing/2-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-MtP.md	Инструкция для draft-этапа
+3-Marketing/2-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-condensed.md	📝 Инструкция для draft-этапа
+3-Marketing/2-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role.md	📝 Инструкция для draft-этапа
+3-Marketing/2-Writing-Book/2-Theses/Theses-How-to-Find-PMF-Fast.md	📝 Инструкция для draft-этапа
+3-Marketing/2-Writing-Book/3-Drafts/Draft-AI-Changes-PM-Role-old.md	📝 Инструкция от Вани Замесина
+3-Marketing/2-Writing-Book/bookconcept.md	Концепт книги AURA Framework
+3-Marketing/2-Writing-Book/linkedin-sprint-detailed-theses.md	LinkedIn Growth Sprint -- Детальные тезисы для скилла
+3-Marketing/2-Writing-Book/zamesin_top50_full.md	Топ 50 постов @zamesin (полные тексты)
 3-Marketing/ideas.md	Маркетинговые идеи: публичный календарь вебинаров, страница офферов компании, ежемесячные лид-магниты, скилл для написания PRD
-3-SMM/Drafts/future of Saas.md	Статья: AI-кодинг снижает барьеры к кастомному софту, угрожая low-moat SaaS продуктам
-3-SMM/Drafts/future-of-saas-2.md	Контраргументы к тезису "AI убивает SaaS": корпоративный консерватизм, сложность, сжатие маржи
-3-SMM/Drafts/hackernoon-article-pmf-pivot-theses.md	Статья для Hackernoon: как быстро найти PMF с помощью Risk Assumption Test
-3-SMM/Drafts/love.md	Эссе: вайб-кодинг позволяет делать больше любимой работы и может перестроить экономику
-3-SMM/Drafts/openclaw-and-agents.md	Заглушка со ссылками на OpenClaw и Apple Intelligence
-3-SMM/Drafts/techstory-saas-golden-age-ending-article-final.md	Готовая статья: золотой век SaaS заканчивается, вайб-кодинг делает кастомные инструменты дешевле подписок
-3-SMM/Drafts/why-four-forces-do-not-work.md	Критика Four Forces из JTBD: почему они не описывают рыночную динамику, и что предлагает Advanced JTBD
-3-SMM/IDEAS.md	Идеи для SMM: системы обратной связи определяют качество продукта, UI с чатом и канвасом
-3-SMM/Linkedin-posts/2026-02-25-agent-optimization-distribution.md	Пост: agent optimization как третий этап дистрибуции — продукты конкурируют за интеграцию в агентские воркфлоу
-3-SMM/Linkedin-posts/image-styles-library.md	Библиотека стилей иллюстраций для LinkedIn: 5+ проверенных стилей с метриками
-3-SMM/Linkedin-posts/linkedin-post-2026-02-20-pm-hypothesis-factory.md	Пост: PM больше не шипит фичи, а управляет конвейером гипотез — 30 экспериментов за спринт
-3-SMM/Linkedin-posts/linkedin-post-2026-02-21-ceo-vibe-coding.md	Пост: CEO сами вайбкодят прототипы и разблокируют разработку за 30 минут
-3-SMM/Telegram-posts/2026-02-22-vibe-coding-love-work.md	Пост: вайб-кодинг позволяет делать больше того, что любишь, и страсть станет главным конкурентным преимуществом
-3-Writing-Book/1-Raw-Thoughts/changes-how-we-make-products.md	Бриф для Mind The Product: как AI-агенты и вайб-кодинг трансформируют роль PM
-3-Writing-Book/1-Raw-Thoughts/chapter-name.md	Пусто
-3-Writing-Book/1-Raw-Thoughts/how-to-find-pmf-hackernoon.md	Бриф для Hackernoon: как быстро найти PMF с помощью вайб-кодинга и тестирования гипотез
-3-Writing-Book/1-Raw-Thoughts/what-for.md	Заметка
-3-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-MtP.md	Тезисы v1: как AI и вайб-кодинг трансформируют роль PM (90.6% покрытие, 43 экспертных источника)
-3-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-condensed.md	Тезисы v3: сокращённая версия до 6 тезисов для Mind The Product
-3-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role.md	Тезисы v2: 12 тезисов с 90.9% покрытием и практическими рекомендациями
-3-Writing-Book/2-Theses/Theses-How-to-Find-PMF-Fast.md	Тезисы v4: 38 тезисов о PMF через Risk Assumption Test (97% покрытие)
-3-Writing-Book/3-Drafts/Draft-AI-Changes-PM-Role-old.md	Черновик статьи: роль PM раздваивается — устаревание vs стратегический строитель с AI
-3-Writing-Book/bookconcept.md	Концепт книги AURA Framework: целевая аудитория (PM и фаундеры), бесплатные главы для SEO, воронка монетизации
-3-Writing-Book/ideas.md	Заметки и идеи для книги
-3-Writing-Book/linkedin-sprint-detailed-theses.md	База знаний из курса LinkedIn Growth Sprint (7+ часов): стратегия, методы исследования, принципы вирусных постов
-3-Writing-Book/skills.md	Задачи: генерация иллюстраций, автоматизация, LinkedIn-скилл, AI-агенты
-3-Writing-Book/zamesin_top50_full.md	Топ-50 постов @zamesin в LinkedIn (янв 2024 — фев 2026) с метриками вовлечённости и полным текстом
+4-Hiring/hiring-requirements.md	Каких людей мы нанимаем
 5-ZIS/LMS/ideas.md	Идея: экран "что тебе нужно сделать дальше" для LMS
 8-Prompts-and-Scripts/Prompts/generate-segment.md	Промт: Выбор 5 привлекательных сегментов по AJTBD
 8-Prompts-and-Scripts/Prompts/riskiest-assumption-test.md	Что делать первым сообщением

@@ -9,8 +9,7 @@
 | `1-Context/` | Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт" |
 | `2-Products/` | Продуктовые материалы и новые продукты |
 | `3-Marketing/` | Маркетинг: вебинары, идеи продвижения |
-| `3-SMM/` | Контент: LinkedIn-посты, Telegram-посты, черновики статей |
-| `3-Writing-Book/` | Книга об AURA Framework: сырые мысли, тезисы, черновики |
+| `4-Hiring/` | — |
 | `4-Personal-files/` | Персональные рабочие папки участников команды |
 | `5-ZIS/` | Zamesin Innovation School: LMS и идеи |
 | `8-Prompts-and-Scripts/` | Промпты и скрипты для автоматизации |
@@ -130,10 +129,13 @@
 Продуктовые материалы и новые продукты
 
 
-### 2-Products/BoostUS/
+### 2-Products/BoostUS-v1-ai-platform/
 
-Материалы по запуску BOOST на американский рынок.
-
+- `01-prd.md` — PRD: LaunchPilot -- AI-платформа "от идеи до работающего продукта"
+- `02-analytics-plan.md` — Аналитический план LaunchPilot — PostHog
+- `03-landing-copy.md` — LaunchPilot: Landing Page Copy
+- `04-marketing-hypotheses.md` — Маркетинговые гипотезы и стратегия воронки: LaunchPilot
+- `05-unit-economics.md` — Юнит-экономика: LaunchPilot
 - `market-report-анализ-идеи-boostus-go.md` — Анализ идеи: BoostUS — GO
 
 ---
@@ -144,102 +146,83 @@
 
 - `ideas.md` — Маркетинговые идеи: публичный календарь вебинаров, страница офферов компании, ежемесячные лид-магниты, скилл для написания PRD
 
-### 3-Marketing/Webinars/
+### 3-Marketing/1-SMM/
 
+- `IDEAS.md`
 
-**web-260626.md/**
+**Drafts/**
 
-- `deep-research-report.md` — Deep research: 13 новых принципов создания продуктов когда код и исследования почти бесплатны
-- `first-principles-15.md` — 15 принципов: конкурентная динамика, retention-флайвилы, сегментация в AI-native контексте
-- `ideas.md` — Идеи для вебинара: агентные интерфейсы, вайб-кодинг, fullstack-билдеры, agent optimization
-- `prompt-first-principles-analysis.md` — Промпт для анализа новых принципов создания продуктов из первых принципов
-- `web-260226.md` — Программа вебинара 26.02.2026: как AI меняет подход к разработке продуктов (теория, демо, Q&A)
-
-**web-skills.md/**
-
-- `web.md` — Заглушка
-
----
-
-## 3-SMM/
-
-Контент: LinkedIn-посты, Telegram-посты, черновики статей
-
-- `IDEAS.md` — Идеи для SMM: системы обратной связи определяют качество продукта, UI с чатом и канвасом
-
-### 3-SMM/Drafts/
-
-Черновики статей для публикации.
-
-- `future of Saas.md` — Статья: AI-кодинг снижает барьеры к кастомному софту, угрожая low-moat SaaS продуктам
-- `future-of-saas-2.md` — Контраргументы к тезису "AI убивает SaaS": корпоративный консерватизм, сложность, сжатие маржи
-- `hackernoon-article-pmf-pivot-theses.md` — Статья для Hackernoon: как быстро найти PMF с помощью Risk Assumption Test
-- `love.md` — Эссе: вайб-кодинг позволяет делать больше любимой работы и может перестроить экономику
-- `openclaw-and-agents.md` — Заглушка со ссылками на OpenClaw и Apple Intelligence
-- `techstory-saas-golden-age-ending-article-final.md` — Готовая статья: золотой век SaaS заканчивается, вайб-кодинг делает кастомные инструменты дешевле подписок
-- `why-four-forces-do-not-work.md` — Критика Four Forces из JTBD: почему они не описывают рыночную динамику, и что предлагает Advanced JTBD
+- `future of Saas.md` — Будущее SaaS: почему спрос изменится
+- `future-of-saas-2.md` — TODO
+- `hackernoon-article-pmf-pivot-theses.md` — How to Find Product-Market Fit Fast — and Pivot the Right Way
+- `love.md`
+- `openclaw-and-agents.md`
+- `techstory-saas-golden-age-ending-article-final.md` — Is the Golden Age of SaaS Ending?
+- `why-four-forces-do-not-work.md`
 - `Продажный пост 58 поток.md`
 
-### 3-SMM/Experts/
-
-Транскрипции интервью экспертов.
+**Experts/**
 
 - `boris_cherny_interview_transcript.txt`
 - `marc_andreessen_transcript.txt`
 
-### 3-SMM/Linkedin-posts/
+**Linkedin-posts/**
 
-LinkedIn-посты с иллюстрациями.
+- `2026-02-25-agent-optimization-distribution.md` — Agent Optimization — The Next Distribution Layer
+- `image-styles-library.md` — Image Styles Library for LinkedIn Posts
+- `linkedin-post-2026-02-20-pm-hypothesis-factory.md` — LinkedIn Post: PM as Hypothesis Factory Operator
+- `linkedin-post-2026-02-21-ceo-vibe-coding.md`
 
-- `2026-02-25-agent-optimization-distribution.md` — Пост: agent optimization как третий этап дистрибуции — продукты конкурируют за интеграцию в агентские воркфлоу
-- `image-styles-library.md` — Библиотека стилей иллюстраций для LinkedIn: 5+ проверенных стилей с метриками
-- `linkedin-post-2026-02-20-pm-hypothesis-factory.md` — Пост: PM больше не шипит фичи, а управляет конвейером гипотез — 30 экспериментов за спринт
-- `linkedin-post-2026-02-21-ceo-vibe-coding.md` — Пост: CEO сами вайбкодят прототипы и разблокируют разработку за 30 минут
+**Telegram-posts/**
 
-**images/**
+- `2026-02-22-vibe-coding-love-work.md` — Telegram-пост: У меня безумная гипотеза про вайбкодинг
+
+### 3-Marketing/1-Webinars/
 
 
-### 3-SMM/Telegram-posts/
+**web-260626.md/**
 
-Telegram-посты.
+- `deep-research-report.md` — Новые принципы создания продуктов из первых принципов в мире, где «построить софт ≈ почти бесплатно»
+- `first-principles-15.md` — 15 новых принципов создания продуктов (from first principles)
+- `ideas.md`
+- `prompt-first-principles-analysis.md` — Промпт: Анализ новых принципов создания продуктов из первых принципов
+- `web-260226.md` — TODO
 
-- `2026-02-22-vibe-coding-love-work.md` — Пост: вайб-кодинг позволяет делать больше того, что любишь, и страсть станет главным конкурентным преимуществом
+**web-skills.md/**
+
+- `web.md`
+
+### 3-Marketing/2-Writing-Book/
+
+- `bookconcept.md` — Концепт книги AURA Framework
+- `ideas.md`
+- `linkedin-sprint-detailed-theses.md` — LinkedIn Growth Sprint -- Детальные тезисы для скилла
+- `skills.md`
+- `zamesin_top50_full.md` — Топ 50 постов @zamesin (полные тексты)
+
+**1-Raw-Thoughts/**
+
+- `changes-how-we-make-products.md` — Вводные
+- `chapter-name.md`
+- `how-to-find-pmf-hackernoon.md` — Бриф от издания
+- `what-for.md`
+
+**2-Theses/**
+
+- `Theses-AI-Changes-PM-Role-MtP.md` — Инструкция для draft-этапа
+- `Theses-AI-Changes-PM-Role-condensed.md` — 📝 Инструкция для draft-этапа
+- `Theses-AI-Changes-PM-Role.md` — 📝 Инструкция для draft-этапа
+- `Theses-How-to-Find-PMF-Fast.md` — 📝 Инструкция для draft-этапа
+
+**3-Drafts/**
+
+- `Draft-AI-Changes-PM-Role-old.md` — 📝 Инструкция от Вани Замесина
 
 ---
 
-## 3-Writing-Book/
+## 4-Hiring/
 
-Книга об AURA Framework: сырые мысли, тезисы, черновики
-
-- `bookconcept.md` — Концепт книги AURA Framework: целевая аудитория (PM и фаундеры), бесплатные главы для SEO, воронка монетизации
-- `ideas.md` — Заметки и идеи для книги
-- `linkedin-sprint-detailed-theses.md` — База знаний из курса LinkedIn Growth Sprint (7+ часов): стратегия, методы исследования, принципы вирусных постов
-- `skills.md` — Задачи: генерация иллюстраций, автоматизация, LinkedIn-скилл, AI-агенты
-- `zamesin_top50_full.md` — Топ-50 постов @zamesin в LinkedIn (янв 2024 — фев 2026) с метриками вовлечённости и полным текстом
-
-### 3-Writing-Book/1-Raw-Thoughts/
-
-Сырые мысли и брифы для статей.
-
-- `changes-how-we-make-products.md` — Бриф для Mind The Product: как AI-агенты и вайб-кодинг трансформируют роль PM
-- `chapter-name.md` — Пусто
-- `how-to-find-pmf-hackernoon.md` — Бриф для Hackernoon: как быстро найти PMF с помощью вайб-кодинга и тестирования гипотез
-- `what-for.md` — Заметка
-
-### 3-Writing-Book/2-Theses/
-
-Тезисы для статей — итерации с разными версиями и покрытием.
-
-- `Theses-AI-Changes-PM-Role-MtP.md` — Тезисы v1: как AI и вайб-кодинг трансформируют роль PM (90.6% покрытие, 43 экспертных источника)
-- `Theses-AI-Changes-PM-Role-condensed.md` — Тезисы v3: сокращённая версия до 6 тезисов для Mind The Product
-- `Theses-AI-Changes-PM-Role.md` — Тезисы v2: 12 тезисов с 90.9% покрытием и практическими рекомендациями
-- `Theses-How-to-Find-PMF-Fast.md` — Тезисы v4: 38 тезисов о PMF через Risk Assumption Test (97% покрытие)
-
-### 3-Writing-Book/3-Drafts/
-
-Черновики статей.
-
-- `Draft-AI-Changes-PM-Role-old.md` — Черновик статьи: роль PM раздваивается — устаревание vs стратегический строитель с AI
+- `hiring-requirements.md` — Каких людей мы нанимаем
 
 ---
 
