@@ -139,6 +139,10 @@
 - `04-marketing-hypotheses.md` — Маркетинговые гипотезы и стратегия воронки: LaunchPilot
 - `05-unit-economics.md` — Юнит-экономика: LaunchPilot
 
+**landing/**
+
+- `index.html`
+
 ### 2-Products/BoostUS-Course/
 
 - `01-prd.md` — PRD: From Zero to First Product — Записанный онлайн-курс
