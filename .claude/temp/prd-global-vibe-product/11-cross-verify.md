@@ -1,7 +1,7 @@
-# Cross-Verification: Аудит согласованности продуктового пакета LaunchPilot
+# Кросс-верификация: аудит согласованности продуктового пакета LaunchPilot v2
 
 Дата: 2026-03-01
-Аудитор: Agent 6 (Скептик)
+Аудитор: Agent 6 (скептик и аудитор)
 
 ---
 
@@ -9,208 +9,252 @@
 
 ### 1.1. Core Jobs из PRD покрыты событиями аналитики?
 
-| Core Job в PRD | FR | Покрытие в аналитике | Статус |
-|---|---|---|---|
-| Сформулировать, что строить (Product Thinking) | FR-1.x | idea_described, prd_generated, prd_edited, segment_selected, mvp_scope_defined | Покрыто |
-| Построить работающий прототип (AI-Coding) | FR-2.x | landing_generated, mvp_generated, preview_opened, iteration_requested, iteration_completed, code_error_occurred | Покрыто |
-| Задеплоить и показать людям (Launch) | FR-3.x | deploy_initiated, project_deployed, project_redeployed, custom_domain_connected, deploy_link_copied | Покрыто |
-| Валидировать идею (Validation) | FR-4.x | validation_plan_viewed, validation_checklist_item_completed, project_analytics_viewed, feedback_submitted, ai_recommendation_applied | Покрыто |
-| Монетизировать продукт (Monetization) | FR-5.x | stripe_integration_started, stripe_integration_completed | Покрыто |
-| Освоить AI-инструменты (Learning) | FR-6.x | learning_tip_shown, learning_tip_expanded, learning_tip_dismissed, knowledge_base_article_viewed, knowledge_base_searched | Покрыто |
+| Core Job из PRD | Покрытие в аналитике | Статус |
+|---|---|---|
+| CJ1: "Понять, что строить" (AI Interview + Segments) | `flow_step_completed` (step 1, 2), `idea_summary_generated`, `segments_jobs_generated` | Покрыто |
+| CJ2: "Провалидировать идею" (Risk Assessment) | `risk_assessment_generated`, verdict property | Покрыто |
+| CJ3: "Получить чёткое ТЗ" (Document Generation) | `prd_generated`, `landing_copy_generated`, `analytics_plan_generated`, `document_copied`, `document_downloaded` | Покрыто |
+| CJ4: "Научиться ставить задачу AI" (Vibe-Coding) | `vibe_coding_plan_generated`, `checklist_item_completed` | Частично покрыто |
+| CJ5: "Освоить product thinking" (Education) | `learning_block_expanded`, `knowledge_base_article_viewed` | Покрыто |
 
-**Вывод:** Все 6 core jobs имеют соответствующие события. Покрытие полное.
+**РАЗРЫВ: CJ4 покрыт неполностью.** PRD описывает FR-4.1 (рекомендация инструмента), FR-4.2 (микро-гайды по установке), FR-4.3 (prompt engineering), FR-4.4 (чеклист "Первый результат"). В аналитике есть `vibe_coding_plan_generated` и `checklist_item_completed`, но нет события для трекинга прохождения конкретных микро-гайдов по установке (FR-4.2). Пользователь может получить план, но мы не знаем, дошёл ли он до установки инструмента и запуска первого промпта.
 
 ### 1.2. Aha-момент: PRD vs Аналитика
 
-- **PRD (раздел "Aha-момент"):** "Пользователь видит свою идею превращённой в работающий лендинг с кодом, который можно открыть в браузере -- за первые 15-20 минут" (для Non-technical Founders).
-- **Аналитика:** `aha_moment_reached` трекается когда пользователь провёл > 5 секунд на preview сгенерированного лендинга. Составное событие: `landing_generated` + `preview_opened` + 5 секунд.
+PRD (раздел 4, таблица Aha-моментов по сегментам):
+- **Founders:** "Пользователь видит сырую идею превращённой в структурированный PRD с сегментами, jobs, рисками" -- "конец AI-интервью (шаг 2 из guided flow)"
+- **Solopreneurs:** "Чёткий вердикт 'стоит ли тратить время' с обоснованием по рискам" -- "шаг 3 (Risk Assessment)"
+- **AI-Curious Professionals:** "Применяет AJTBD к реальной задаче и получает инсайт" -- "шаг 2 (сегментация и jobs)"
 
-**РАЗРЫВ:** В PRD описаны РАЗНЫЕ Aha-моменты для разных сегментов (для Solopreneurs: PRD + прототип + рекомендации; для Career Builders: демо-прототип для руководства), но в аналитике есть ТОЛЬКО ОДИН aha_moment_reached, привязанный к preview лендинга. Aha-момент Solopreneurs (шаг 4) и Career Builders (шаг 3, но с другим определением) не трекаются отдельно.
+Аналитика: Единый `aha_moment_reached` фиксируется при генерации Segments & Jobs документа на шаге 2 для ВСЕХ сегментов.
+
+**РАЗРЫВ:** PRD явно описывает, что для Solopreneurs настоящий Aha-момент наступает на шаге 3 (Risk Assessment), а не на шаге 2. Но аналитика фиксирует единый `aha_moment_reached` на шаге 2 для всех. Это значит, что для Solopreneurs мы будем измерять ложный Aha-момент, и все производные метрики (time to Aha, aha -> paywall conversion) будут искажены для этого сегмента.
 
 ### 1.3. Метрики успеха из PRD трекаются в аналитике?
 
-| Метрика из PRD (раздел 8) | Трекается в аналитике? | Как |
+| Метрика из PRD (раздел 8) | Событие в аналитике | Статус |
 |---|---|---|
-| Projects Deployed per Week (North Star) | ДА | project_deployed, агрегация по неделям |
-| Sign-up to Guided Flow Start Rate > 80% | ДА | signup_completed -> guided_flow_started |
-| Guided Flow Completion Rate > 50% | ДА | guided_flow_started -> guided_flow_completed |
-| Time to Aha-moment < 15 мин | ДА | aha_moment_reached.time_from_signup_seconds |
-| Time to First Deploy < 60 мин | ДА | project_deployed.time_from_signup_seconds |
-| D7 Retention > 30% | ДА | когортная таблица |
-| D30 Retention > 15% | ДА | когортная таблица |
-| Free-to-Paid Conversion > 3% | ДА | signup_completed -> purchase_completed |
-| MRR > $5K к 3 мес | ДА | purchase_completed + subscription_renewed |
-| ARPU $29-49 | ДА | MRR / paying_users |
-| Payback Period < 3 мес | ДА | Дашборд 3 |
-| Projects per User > 1.5 | ДА | project_created агрегация |
-| Sessions per Week > 2 | ДА | session_started агрегация |
+| North Star: Documents Generated per Week | `flow_completed` + document generation events | Покрыто |
+| Sign-up to Flow Start Rate >80% | `signup_completed` -> `flow_started` | Покрыто |
+| Guided Flow Completion Rate >40% | `flow_started` -> `flow_completed` | Покрыто |
+| Time to Aha <25 мин | `aha_moment_reached.time_since_signup_sec` | Покрыто |
+| Time to Full Document Set <60 мин | `flow_completed.total_duration_sec` | Покрыто |
+| Step-by-step Drop-off Rate <20% | `flow_step_started` -> `flow_step_completed` | Покрыто |
+| D7 Return Rate >25% | `session_started` + `days_since_last_session` | Покрыто |
+| D30 Return Rate >15% | `session_started` + когортный анализ | Покрыто |
+| Projects per User >1.3 | `project_created.project_number` | Покрыто |
+| PRD Iteration Rate >20% | `prd_iteration_started` | Покрыто |
+| Free-to-Paid >5% | `signup_completed` -> `purchase_completed` | Покрыто |
+| MRR >$5K к 3 мес | Вычисляется из revenue events | Частично (нет серверного расчёта MRR) |
+| ARPU $29-49 | `purchase_completed.price` по когортам | Покрыто |
+| Churn Rate <8%/мес | `subscription_cancelled` | Покрыто |
+| Payback Period <2 мес | LTV / CAC | Частично (CAC не в PostHog) |
+| **NPS >40** | Нет события | **НЕ ПОКРЫТО** |
+| **CSAT per step >4.0/5.0** | Нет события | **НЕ ПОКРЫТО** |
+| **PMF survey ("very disappointed") >40%** | Нет события | **НЕ ПОКРЫТО** |
+| **Document Quality Score >7/10** | Нет события | **НЕ ПОКРЫТО** |
+| Knowledge Base Sessions >2/мес | `knowledge_base_article_viewed` | Покрыто |
 
-**Вывод:** Все метрики успеха покрыты. Сильная работа.
+**РАЗРЫВ:** 4 ключевых метрики качества (NPS, CSAT, PMF survey, Document Quality Score) не имеют соответствующих событий в аналитическом плане. Это метрики, которые PRD явно называет критически важными для оценки product-market fit. Команда будет "летать вслепую" по самым важным качественным сигналам.
 
-### 1.4. Воронка в аналитике покрывает полный путь?
+### 1.4. Воронка покрывает полный путь пользователя?
 
-Путь в PRD: Регистрация -> AI-интервью -> PRD -> Лендинг (Aha) -> MVP -> Итерация -> Деплой -> Валидация.
+Воронка в аналитике (AARRR): Acquisition -> Activation (Aha) -> Revenue -> Retention -> Referral. Покрывает полный путь от лендинга до referral.
 
-Воронка в аналитике: page_viewed -> cta_clicked -> signup_started -> signup_completed -> guided_flow_started -> idea_described -> prd_generated -> landing_generated -> preview_opened (aha) -> mvp_generated -> project_deployed -> validation_plan_viewed.
-
-**Вывод:** Полный путь покрыт. Но есть пробел: шаг "Customize" (итерация, FR-2.3) в воронке guided flow не выделен отдельным шагом. Есть iteration_requested/iteration_completed, но они не являются обязательной частью воронки активации.
+**Замечание:** Воронка не покрывает путь ПОСЛЕ продукта: PRD описывает чеклист "Next Steps" (FR-7.2) с конкретными действиями (экспертные интервью, лендинг-тест, сбор фидбека). В аналитике есть `checklist_item_completed`, но нет трекинга результатов этих действий (например, "пользователь вернулся с фидбеком" vs "пользователь просто отметил пункт"). Это делает retention-метрики поверхностными.
 
 ---
 
 ## Проверка 2: Сегменты <-> Лендинг
 
-### 2.1. Все выбранные сегменты представлены в лендинге?
+### 2.1. Все сегменты представлены в лендинге?
 
 | Сегмент из 03-chosen-segments | Представлен в блоке "Sound familiar?" | Статус |
 |---|---|---|
-| Сегмент 1: Non-technical Founders "0->1" | ДА, "The Non-Technical Founder" | OK |
-| Сегмент 2: Career Builders | ДА, "The Career Builder" | OK |
-| Сегмент 3: Solopreneurs / Side-hustlers | ДА, "The Solopreneur / Side-Hustler" | OK |
-| Сегмент 4: Builders в организации | НЕТ | РАЗРЫВ |
-| Сегмент 5: AI Future-Proofers | НЕТ | РАЗРЫВ |
+| Сегмент 1: Non-Technical Founders (0->1) | Да -- "I have a business idea that won't leave me alone." | Совпадает |
+| Сегмент 2: Solopreneurs / Side-Hustlers | Да -- "I have 5-10 hours a week. I can't afford to waste them." | Совпадает |
+| Сегмент 3: AI-Curious Professionals | Да -- "AI is changing everything. I need to keep up." | Совпадает |
 
-**РАЗРЫВ:** Сегменты 4 и 5 из файла 03-chosen-segments полностью отсутствуют в лендинге. Они помечены как "вторичные", но это не оговорено как сознательное решение. В PRD для них описаны требования и критерии, что создаёт ожидание покрытия в маркетинге.
+**Статус: Полное покрытие.** Все 3 сегмента из 03-chosen-segments (где Сегмент 3 объединяет Career Builders + AI Future-Proofers + Builders в организации из v1) корректно представлены.
 
 ### 2.2. Jobs из сегментов корректно отражены в лендинге?
 
-| Core Job из 03-chosen-segments | Как отражена в лендинге | Корректность |
+| Core Job из 03-chosen-segments | Отражение в лендинге | Статус |
 |---|---|---|
-| Founders: превратить идею в работающий прототип, не тратить $10-50K | "I can't code, every developer wanted $15,000 just for an MVP" | Корректно |
-| Career Builders: освоить AI-инструменты, оставаться конкурентоспособным | "My colleague showed a working prototype to our VP... I feel behind" | Корректно |
-| Solopreneurs: построить SaaS, не терять месяцы, повторить путь indie hackers | "I follow Pieter Levels and Marc Lou... Started 4 side projects. Finished zero." | Корректно |
+| Founders: "понять, что именно строить и в каком порядке" | Блок 6: "you don't know what to build first" | Совпадает |
+| Founders: "провалидировать идею до разработки, чтобы не выбросить $5-20K" | Блок 6: "You don't know if the idea is good enough to invest $5,000-$20,000" | Совпадает |
+| Founders: "иметь чёткое ТЗ (PRD)" | Блок 3 (Micro Job 4): "PRD that AI coding tools actually understand" | Совпадает |
+| Solopreneurs: "быстро понять, стоит ли идея моего времени" | Блок 6: "fast way to figure out: Is this idea worth my evenings?" | Совпадает |
+| Solopreneurs: "пошаговый план с микро-гайдами" | Блок 6: отсутствует в секции сегмента | **Упущено в блоке "Sound familiar?"** |
+| Solopreneurs: "научиться правильно ставить задачу AI" | Блок 6: "started with code, not with thinking" | Косвенно |
+| AI-Curious: "научиться создавать продукты с AI" | Блок 6: "practical framework" + "hands-on AI tool skills" | Совпадает |
+| AI-Curious: "framework для product thinking" | Блок 6: "understand product thinking (JTBD, risk assessment, MVP scoping)" | Совпадает |
+| AI-Curious: "практический опыт, кейс в портфолио" | Блок 6: "a case for your portfolio" | Совпадает |
 
-**Вывод:** Для представленных 3 сегментов jobs транслированы точно и эмоционально. Сильная работа.
+**Замечание:** Для Solopreneurs core job "пошаговый план с микро-гайдами, чтобы не тратить время на поиск информации" не отражена явно в блоке "Sound familiar?". Вместо этого акцент на проблеме ("started with code, not with thinking"), а не на решении ("дай мне конкретный план на 5-8 часов"). Эта job покрыта в других блоках лендинга (Блок 3, Micro Job 6; Блок 7), но не в точке "узнаёшь себя", где человек принимает решение "это для меня".
 
-### 2.3. Утверждения лендинга vs анализ конкурентов?
+### 2.3. Противоречия с анализом конкурентов?
 
-**РАЗРЫВ в лендинге:** "Production-ready code... the same stack used by Vercel, Netflix, and Notion." В PRD (FR-2.2) стек определён как Next.js + Tailwind + PostgreSQL/SQLite. Упоминание Netflix и Notion как пользователей этого стека -- допустимое, но рискованное утверждение. Netflix использует микросервисы на Java, а Notion -- кастомный стек. Это может подорвать доверие у технически грамотной аудитории.
+**ЗАМЕЧАНИЕ:** Лендинг (Блок 4, Aha-момент) сравнивает LaunchPilot с "ChatGPT" (generic AI), но не с ChatPRD (ближайший конкурент в категории PRD-генерации, 100,000+ PM-ов). Конкурентный анализ показывает, что ChatPRD тоже предоставляет "AI-коучинг уровня CPO" и "выявление стратегических пробелов". Сравнение только с ChatGPT создаёт ложное чувство уникальности. Пользователь, знакомый с ChatPRD, не увидит на лендинге ответа "чем вы лучше ChatPRD за $15/мес".
 
-**РАЗРЫВ в лендинге:** "You can export the code and keep building." В PRD (раздел 9, Что НЕ входит в scope) явно указано: "Экспорт кода (download project) -- MVP -- код живёт на платформе. Экспорт -- в paid tier следующего этапа." Лендинг обещает функциональность, которая не входит в MVP.
+**ЗАМЕЧАНИЕ:** Лендинг (Блок 10) утверждает про PRD-генераторы: "They don't teach you WHY the PRD looks this way." Конкурентный анализ фиксирует, что ChatPRD имеет "AI-коучинг: ревью документов уровня CPO -- выявление стратегических пробелов, проверка предположений" и "inline-подсказки и оценка качества документа". Это частично учит "WHY". Лендинг преувеличивает разрыв. Более честная формулировка: "They coach PMs on specific documents. We teach founders to THINK about products from scratch."
 
-### 2.4. Критерии успеха в лендинге vs сегменты?
+### 2.4. Критерии успеха из сегментов vs лендинг
 
-| Критерий из 03-chosen-segments | Критерий в лендинге | Совпадение |
+| Критерий из 03-chosen-segments | В лендинге | Статус |
 |---|---|---|
-| Founders: прототип за < 2 недели | "30-60 minutes" | Лендинг обещает НАМНОГО больше, чем критерий сегмента. Риск завышенных ожиданий, но в правильную сторону |
-| Founders: не потратить > $500 | "$0 to start", "$29/month" | Совпадает |
-| Solopreneurs: продукт за < 1 месяц | "30-60 minutes" | Лендинг обещает больше. Но "30-60 минут" -- это прототип, а не готовый бизнес. Может запутать |
-| Solopreneurs: не тратить > $100/мес | "$0-29/month" | Совпадает |
+| Founders: "Прототип за <1 неделю после документов" | Micro Job 6: "Estimated time to prototype: 2-4 hours" | **Противоречие** |
+| Founders: "Готовые документы для Cursor/Claude Code/Lovable" | Блок 3: "Production-ready PRD in Markdown" | Совпадает |
+| Solopreneurs: "За 2-3 вечера (5-8 часов) понял стоит ли" | Блок 6: "LaunchPilot gives you the answer in 2-3 evenings" | Совпадает |
+| Solopreneurs: "MVP за 2-3 недели вечерней работы" | Нет в лендинге | **Упущено** |
+| AI-Curious: "Кейс в портфолио" | Блок 6: "a case for your portfolio" | Совпадает |
+| AI-Curious: "Настроенный Cursor/Claude Code" | Блок 7, Step 5 | Совпадает |
+
+**РАЗРЫВ по таймингу прототипа:** Сегмент Founders: "Прототип за <1 неделю после документов". Лендинг: "Estimated time to prototype: 2-4 hours". Лендинг обещает в 10-40 раз быстрее, чем заявлено в критериях сегмента. LaunchPilot НЕ генерирует код -- пользователь делает прототип сам через Cursor/Lovable. 2-4 часа -- крайне агрессивная оценка для нетехнического человека, который впервые работает с AI-кодинг инструментом. Если реальный опыт ближе к "1 неделе", пользователь разочаруется.
 
 ---
 
 ## Проверка 3: Конкуренты <-> PRD <-> Лендинг
 
-### 3.1. Функциональный паритет выдержан?
+### 3.1. Функциональный паритет с конкурентами
 
-Из анализа конкурентов (06-competitors.md), таблица конкурентных фич:
+| Критическая фича конкурента | Конкурент | Покрыта в PRD? | Статус |
+|---|---|---|---|
+| AI-генерация PRD | ChatPRD ($15/мес), PRDGPT ($5/мес) | FR-1.3 | Покрыто |
+| AI-коучинг / обратная связь на документы | ChatPRD | FR-5.1 (контекстное обучение) | Покрыто (другой подход) |
+| Валидация бизнес-идеи | IdeaProof, DimeADozen | FR-2.1 (Risk Assessment) | Покрыто |
+| JTBD-анализ | LeanPivot | FR-1.2 (AJTBD-based) | Покрыто |
+| Интеграции с кодинг-инструментами (Linear, Notion, Slack) | ChatPRD | Исключено из MVP | Roadmap (месяц 4) |
+| Revenue-моделирование / финансовые прогнозы | IdeaProof | Нет | **Разрыв** |
+| Lean Canvas Generator | LeanPivot, LEANSpark | Нет | **Разрыв** |
+| Бесплатные калькуляторы (ROI, LTV, CAC) | IdeaProof | Нет (Unit Economics Calculator -- roadmap, месяц 3) | **Разрыв** |
+| Обучение вайбкодингу привязанное к задаче | Никто (наше УТП) | FR-4.1 -- FR-4.4 | Покрыто |
+| VIBE Coding Tool | LeanPivot (один инструмент) | FR-4.1 -- FR-4.4 (5 инструментов) | Превосходство |
+| Gamification | LeanPivot | Нет | Осознанный trade-off |
+| Голосовые консультации | ValidatorAI | Исключено из MVP | Осознанный trade-off |
 
-| Критическая фича конкурентов | Есть ли в PRD? | Статус |
+**РАЗРЫВ: Юнит-экономический калькулятор.** Бизнес-контекст (01-business-context) перечисляет "Страховка от ошибок: экономит $5-20K+" как один из 4 слоёв ценности. FR-5.1 обещает обучение юнит-экономике (LTV, CAC, ARPU). Но в PRD нет инструмента для расчёта -- только теория. IdeaProof конкурент даёт бесплатные калькуляторы ROI/LTV/CAC. Это слабое место: пользователь узнаёт про юнит-экономику из обучающих блоков, но не может посчитать для своего продукта.
+
+### 3.2. Заявленные преимущества лендинга обеспечены PRD?
+
+| Заявление на лендинге | Обеспечение в PRD | Статус |
 |---|---|---|
-| AI-генерация кода из промптов | ДА (FR-2.1, FR-2.2) | OK |
-| Работа без навыков кодинга | ДА (вся концепция) | OK |
-| Встроенный деплой | ДА (FR-3.1) | OK |
-| Предпросмотр в реальном времени | ДА (FR-2.4) | OK |
-| Freemium модель | ДА (Приложение A) | OK |
-| Self-service | ДА | OK |
-| Монетизация через Stripe (Replit, Maven) | ДА (FR-5.1) | OK |
-| GitHub-интеграция (Lovable) | НЕТ | ВНИМАНИЕ |
-| Шаблоны проектов (Lovable: 50+) | ЧАСТИЧНО (FR-7.2: предзаполненные шаблоны, но не библиотека) | ВНИМАНИЕ |
-| Мобильные приложения (Maven) | НЕТ (явно исключено) | OK (осознанное решение) |
+| "in under 60 minutes" (One-liner) | FR-6.1: "Общее время: 30-60 минут" | Совпадает |
+| "investor-ready documents" (One-liner) | PRD не содержит требований к "investor-ready" формату. Нет pitch deck, executive summary, финмоделей. Раздел 9 PRD явно исключает "Генерация бизнес-плана / финмодели" | **Ложное обещание** |
+| "methodology tested on 11,000+ graduates" | Бизнес-контекст: ProductHowTo -- 11000+ выпускников | Покрыто, но методология AJTBD, а не AI-гайд |
+| "6 documents" (Summary table, Блок 7) | PRD перечисляет: Idea Summary, Segments & Jobs, Risk Assessment + Validation Plan, PRD, Vibe-Coding Plan + бонусы: Landing Copy, Analytics Plan, Competitor Analysis | Фактически 8 документов, лендинг говорит "6" |
+| "$500+ product consultant" за 5 минут | FR-1.2: генерация сегментов | Количественно покрыто, качественно сравнение спорно |
+| "$2,000-5,000 agency" за бонусные документы | FR-3.1, FR-3.2 | Сильное преувеличение: AI-генерация != работа агентства |
+| "$400/year bootcamp" за Vibe-Coding Plan | FR-4.1 -- FR-4.4 | Корректное сравнение |
 
-**РАЗРЫВ:** GitHub-интеграция -- ключевая фича Lovable ("Real code, no vendor lock-in"). В PRD нет GitHub sync, а экспорт кода исключён из MVP. При этом лендинг утверждает "You can export the code and keep building", создавая ложное ожидание отсутствия lock-in.
+**КРИТИЧЕСКИЙ РАЗРЫВ:** One-liner лендинга обещает "investor-ready documents". PRD явно исключает из scope "Генерация бизнес-плана / финмодели" и отличает себя от PitchBob (раздел 9). Документы PRD + Risk Assessment + Landing Copy НЕ являются "investor-ready" -- для этого нужен pitch deck, финмодель, executive summary. Это привлечёт founders, ожидающих fundraising-материалы, и вызовет разочарование.
 
-### 3.2. Заявленные преимущества в лендинге обеспечены PRD?
-
-| Заявление лендинга | Обеспечено в PRD? | Статус |
-|---|---|---|
-| "Turns your idea into a working product in 30 minutes" | ДА (FR-7.1: 30-60 мин) | OK |
-| "Built-in product thinking" (PRD, сегменты, jobs) | ДА (FR-1.1-1.4) | OK |
-| "Guided step-by-step by AI" | ДА (FR-7.1, FR-7.2) | OK |
-| "Same stack used by Netflix and Notion" | СПОРНО (см. выше) | РИСК |
-| "You can export the code and keep building" | НЕТ в MVP | КРИТИЧЕСКИЙ РАЗРЫВ |
-| "12,000+ product builders trained" | ДА (данные из существующих продуктов автора) | OK, но пруф для НОВОГО продукта отсутствует |
-| "AI generates payment code, you connect your Stripe" | ДА (FR-5.1) | OK |
-| "Validation playbook: where to find first 10 users" | ДА (FR-4.2) | OK |
+**ЗАМЕЧАНИЕ по "6 документам":** Лендинг (Блок 7, Summary) обещает "6 documents", но фактически PRD генерирует 8 (Idea Summary, Segments & Jobs, Risk Assessment, Validation Plan, PRD, Vibe-Coding Plan + бонусы Landing Copy, Analytics Plan, Competitor Analysis). Лучше обещать меньше и давать больше -- но несовпадение чисел может запутать.
 
 ### 3.3. "Увольнение конкурентов" опирается на реальные слабости?
 
-| Утверждение в блоке "увольнение" | Подтверждено анализом конкурентов? | Статус |
-|---|---|---|
-| "Bolt/Lovable/Replit don't help you figure out WHAT to build" | ДА: сводная таблица подтверждает -- "Продуктовая стратегия / JTBD" = Нет у всех | OK |
-| "Maven/FI: $599-799 for 2-5 weeks, fixed schedule" | ДА: Maven $799, FI $599 | OK |
-| "Bubble: no-code is becoming obsolete" | СПОРНО: Bubble -- зрелая платформа с 6000+ плагинами, называть её "obsolete" рискованно | РИСК |
-| "They're a hammer. We're the architect + the hammer + the blueprint" | Метафора соответствует анализу: gap = "Обучение + Инструмент" | OK |
+| Конкурент в лендинге (Блок 10) | Заявленная слабость | Подтверждение из анализа | Статус |
+|---|---|---|---|
+| ChatGPT/Claude | "No methodology, no structured interview" | Подтверждено: ChatGPT -- generic | Валидно |
+| Courses (Buildcamp, Scrimba, Product School) | "20-40 hours, generic examples" | Подтверждено: Buildcamp -- чистое обучение кодингу, 4-6 часов/неделю на 4-6 недель | Валидно |
+| ChatPRD/PRDGPT | "Built for PMs in companies, not for founders" | Подтверждено: ChatPRD ориентирован на PM-ов | Валидно |
+| DimeADozen/IdeaProof | "One-time snapshot, no teaching" | Подтверждено: одноразовые отчёты | Валидно |
+| Lovable/Cursor | "Tool is only as good as the input" | Подтверждено: нет обучения, нет гайденса | Валидно |
+
+**Статус: "Увольнение конкурентов" обосновано корректно.** Каждое утверждение подтверждается данными конкурентного анализа.
 
 ---
 
 ## Проверка 4: Риски <-> PRD <-> Аналитика
 
-### 4.1. Все выбранные риски учтены в PRD?
+### 4.1. Все риски учтены в PRD?
 
-| Риск из 05-chosen-risks | Учтён в PRD? | Как | Статус |
-|---|---|---|---|
-| Риск #1 (10.0): Guided AI experience не даёт результата | ДА | FR-7.1 (guided flow), FR-7.2 (anti-stuck), раздел 7 PRD | Полностью покрыт |
-| Риск #2 (7.5): Не готовы платить за self-service подписку | ДА | Aha до paywall, free tier, Приложение A, раздел 7 PRD | Полностью покрыт |
-| Риск #6 (5.3): Retention будет низким | ДА | FR-8.1-8.3, раздел 7 PRD, retention-механики | Полностью покрыт |
-
-**Вывод:** Все 3 учитываемых риска детально проработаны в PRD. Сильная работа.
-
-### 4.2. Есть ли события аналитики для раннего обнаружения рисков?
-
-| Риск | Аналитические сигналы | Покрытие |
+| Риск из 05-chosen-risks | Учтён в PRD (раздел 7)? | Как именно? |
 |---|---|---|
-| Guided experience не даёт результата | stuck_detected, escape_hatch_clicked, code_error_occurred, guided_flow_step_skipped, guided_flow drop-off воронка | ПОЛНОЕ |
-| Не готовы платить | paywall_shown -> paywall_dismissed (высокий dismiss rate), purchase_initiated -> abandoned (не завершили оплату), subscription_cancelled.reason | ПОЛНОЕ, но нет события abandon_checkout |
-| Низкий retention | churn_risk_detected, session_started gaps, win_back_email_sent -> win_back_email_clicked (низкий click rate) | ПОЛНОЕ |
+| #1: ChatGPT как конкурент (Score 10.0) | Да | FR-1.2 (AJTBD), FR-6.1 (guided flow), FR-6.2 (anti-stuck), FR-3.3 (workspace) |
+| #2: Рынок фрагментирован (9.0) | Да | FR-6.4 (адаптивный flow), FR-5.2 (Knowledge Base как SEO) |
+| #3: Micro-guides устаревают (8.0) | Да | FR-4.2 (модульный контент), фокус на принципах |
+| #4: WTP за подписку (6.0) | Да | Aha до paywall, fallback на разовые покупки |
+| #5: Методология не переносима (6.0) | Да | FR-5.1 (контекстные объяснения), FR-6.1 (guided flow) |
+| #6: Completion rate (5.3) | Да | FR-6.1 (короткий flow), FR-6.2 (anti-stuck), FR-6.3 (milestones) |
+| #7: Retention (5.3) | Да | FR-7.1-7.4 (множественные проекты, PRD-итерация, email-nudges) |
+| #8: Качество AI-guided experience (5.0) | Да | FR-1.2 (методология как "рельсы"), FR-1.1 (adaptive questions) |
+| #9: Каналы привлечения (4.5) | Да | FR-5.2 (Knowledge Base как SEO), free tier как acquisition |
 
-**РАЗРЫВ:** Нет события `purchase_abandoned` или `checkout_abandoned` -- когда пользователь начал оплату (purchase_initiated), но не завершил (не дошёл до purchase_completed). Это критический сигнал для Риска #2.
+**Статус: Все 9 рисков учтены в PRD.** Это одна из сильнейших сторон пакета. Каждый риск имеет конкретные FR и метрику валидации.
+
+### 4.2. Аналитические события для раннего обнаружения рисков
+
+| Риск | Событие-индикатор в аналитике | Покрытие |
+|---|---|---|
+| #1: ChatGPT как конкурент | `subscription_cancelled.reason`, `flow_abandoned` | Частично (нет exit survey "why not") |
+| #2: Рынок фрагментирован | `signup_completed.utm_source` + `flow_completed` по сегментам | Покрыто |
+| #3: Micro-guides устаревают | Нет события "шаг гайда не сработал" | **НЕ ПОКРЫТО** |
+| #4: WTP за подписку | `paywall_viewed` -> `purchase_completed` conversion | Покрыто |
+| #5: Методология не переносима | Нет прямого события для качества обучения | **НЕ ПОКРЫТО** |
+| #6: Completion rate | `flow_started` -> `flow_completed`, `flow_abandoned` | Покрыто |
+| #7: Retention | `session_started`, D7/D30 return, `prd_iteration_started` | Покрыто |
+| #8: Качество AI experience | Нет CSAT/NPS события | **НЕ ПОКРЫТО** |
+| #9: Каналы привлечения | UTM-параметры, `signup_completed` по каналам | Покрыто (CAC вне PostHog) |
+
+**РАЗРЫВ:** 3 из 9 рисков не имеют аналитических событий для раннего обнаружения:
+- **Риск #3** (micro-guides устаревают): PRD предусматривает "step failed rate <10%", но в аналитике нет события `micro_guide_step_failed` или обратной связи по актуальности.
+- **Риск #5** (методология не переносима): Нет NPS/CSAT для оценки качества обучения. PRD ставит цель "NPS >40", но сбор не описан.
+- **Риск #8** (качество AI experience): PRD требует "CSAT >4.0/5.0 на каждом шаге", но аналитика не содержит события сбора CSAT.
 
 ### 4.3. Маркетинговые гипотезы учитывают риски?
 
-- **Риск #1** (guided experience): Гипотезы M-2 (Twitter thread) и M-7 (YouTube tutorial) показывают полный guided flow, что создаёт ожидания. Если flow не работает, эти каналы генерируют разочарование. Рисков в маркетинге нет -- это нормально, но следует учитывать.
-- **Риск #2** (не готовы платить): Все маркетинговые гипотезы акцентируют "free", что правильно. Но ни одна гипотеза не описывает стратегию конверсии free -> paid. Маркетинг привлекает, но не конвертирует.
-- **Риск #6** (retention): Retention-механики есть в лендинге (10-landing-copy, часть 4), email-nudges покрыты. Но маркетинговые гипотезы полностью сфокусированы на acquisition. Нет ни одной retention-маркетинговой гипотезы (re-engagement campaigns, win-back).
+| Риск | Адресован в маркетинге? | Где |
+|---|---|---|
+| #1: ChatGPT как конкурент | Да | Лендинг Блок 9 (Страх 4), Блок 10 (увольнение ChatGPT) |
+| #4: WTP за подписку | Да | Лендинг Блок 9 (Страх 6 -- "$29/month subscription") |
+| #6: Completion rate | Частично | Лендинг Блок 7 (показывает простоту 5 шагов) |
+| #3: Micro-guides устаревают | Нет | Не адресован |
+| #7: Retention | Нет | Лендинг не объясняет, зачем возвращаться |
+| #8: Качество AI | Частично | "methodology from 11,000+ graduates" -- но нет реальных testimonials |
+
+**Не адресованные риски в маркетинге:**
+- Риск #7 (retention): лендинг не объясняет, зачем возвращаться после первого flow. Нет блока "Here's why you'll come back".
+- Маркетинговые гипотезы (Часть 2, 10-landing-copy) полностью сфокусированы на acquisition. Нет ни одной retention-маркетинговой гипотезы (re-engagement campaigns, win-back emails).
 
 ---
 
-## Проверка 5: Revenue-события аналитики <-> Бизнес-модель
+## Проверка 5: Revenue-события <-> Бизнес-модель
 
-### 5.1. Монетизационная модель отражена в revenue events?
+### 5.1. Монетизация из бизнес-контекста отражена в revenue events
 
-- **Бизнес-модель (01-business-context):** Freemium -> платная конверсия.
-- **Тиры (PRD, Приложение A):** Free ($0) -> Pro ($29/мес) -> Builder ($49/мес).
-- **Revenue events в аналитике:** paywall_shown, upgrade_initiated, purchase_initiated, purchase_completed, subscription_renewed, upgrade_completed (Pro->Builder), downgrade_completed, subscription_cancelled.
+Бизнес-контекст (01-business-context): Freemium -> paid. $0 / $29 / $49.
 
-**Вывод:** Полная цепочка покрыта. Отлично.
+Аналитика: `paywall_viewed`, `plan_selected` (plan: "pro" | "builder"), `purchase_completed` (plan, price, currency, billing_period), `subscription_renewed`, `subscription_cancelled`, `upgrade_completed`, `downgrade_completed`, `refund_requested`.
 
-### 5.2. Трекаются ли ключевые метрики для юнит-экономики?
+**Статус: Полное покрытие.** Вся цепочка от показа paywall до отмены подписки трекается.
 
-| Метрика юнит-экономики | Данные для расчёта | Покрытие |
+### 5.2. Ключевые метрики для юнит-экономики
+
+| Метрика юнит-экономики | Трекается? | Как? |
 |---|---|---|
-| CAC | utm_source + рекламные расходы (вручную) / signup_completed | ДА (Дашборд 3, 7) |
-| LTV | purchase_completed + subscription_renewed кумулятивно | ДА (Дашборд 3) |
-| LTV/CAC | расчёт из вышеперечисленных | ДА |
-| Payback Period | CAC / monthly_revenue | ДА (Дашборд 3) |
-| ARPU | MRR / paying_users | ДА |
-| Monthly Churn Rate | subscription_cancelled / active_subscriptions | ДА (Дашборд 5) |
-| Net MRR Growth | New + Expansion - Contraction - Churn | ДА (Дашборд 5, MRR Trend) |
+| LTV | Да | `subscription_renewed.lifetime_revenue` + `subscription_cancelled.lifetime_revenue` |
+| CAC | Частично | UTM-параметры в PostHog, стоимость привлечения -- в рекламных кабинетах |
+| ARPU | Да | `purchase_completed.price` по когортам |
+| Churn Rate | Да | `subscription_cancelled` / active subscriptions |
+| Payback Period | Вычисляется | LTV / CAC |
+| MRR | Частично | Нет серверного события `mrr_snapshot` |
 
-**Вывод:** Все ключевые метрики юнит-экономики покрыты. Сильная работа.
+**РАЗРЫВ:** PRD ставит цель "MRR >$5K к 3 мес" (раздел 8, Монетизация), но аналитический план не описывает, как считать MRR в PostHog. Нет серверного расчёта или интеграции с billing-системой. Рекомендация: добавить серверное событие `mrr_snapshot` (mrr, new_mrr, churned_mrr, expansion_mrr) или интеграцию со Stripe Dashboard.
 
-### 5.3. Cross-sell / upsell из лендинга имеют события?
+### 5.3. Cross-sell / upsell механики
 
-| Механика из лендинга (часть 4) | Событие аналитики | Статус |
-|---|---|---|
-| Cross-sell 1: AI Marketing Assistant (после деплоя) | НЕТ специального события | РАЗРЫВ |
-| Cross-sell 2: Stripe Setup Wizard | stripe_integration_started / completed | ДА |
-| Cross-sell 3: Новый проект | project_created | ДА |
-| Cross-sell 4: Growth Playbook | НЕТ специального события | РАЗРЫВ |
-| Cross-sell 5: Become a Mentor / реферальная программа | share_link_clicked, referral_converted | ЧАСТИЧНО |
-| Upsell 1: Лимит проектов -> Pro | paywall_shown (trigger: project_limit) | ДА |
-| Upsell 2: Pro -> Builder | upgrade_completed | ДА |
-| Upsell 3: Кастомный домен -> Pro | paywall_shown (trigger: custom_domain) | ДА |
+PRD описывает 4 upsell-триггера:
+1. Попытка создать 3-й проект (лимит free tier)
+2. Попытка экспорта в PDF
+3. Попытка итерации PRD (>1 итерации)
+4. Исчерпание AI-запросов
 
-**РАЗРЫВ:** Cross-sell механики 1 (AI Marketing Assistant) и 4 (Growth Playbook) описаны в лендинге как будущие фичи, но для них нет ни функциональных требований в PRD, ни событий в аналитике. Это фантомные обещания.
+Аналитика: `paywall_viewed.trigger` покрывает все 4 триггера ("project_limit" | "export_limit" | "iteration_limit" | "ai_limit"). `ai_limit_reached` отдельно трекает исчерпание лимитов.
+
+**Статус: Покрыто.**
+
+**ЗАМЕЧАНИЕ:** PRD (Приложение A) упоминает fallback "Project Pack: $19-29 за один проект" (one-time purchase) и "Annual plan: $199/год". В аналитике `billing_period` покрывает monthly/annual, но нет события для one-time project pack. Если команда запустит этот fallback, потребуется новое событие.
 
 ---
 
@@ -218,56 +262,40 @@
 
 ### 6.1. Critical и High edge-кейсы включены в PRD?
 
-| Edge-кейс (Critical) | Учтён в PRD как требование? | Статус |
+| # Edge-кейс | Приоритет | Включён в PRD как требование? | Статус |
+|---|---|---|---|
+| 1: Prompt injection | Critical | FR-1.5 (AI Content Disclaimer) -- не про injection protection. NF-13 (данные не используются без согласия) -- не про injection | **НЕ ВКЛЮЧЁН** |
+| 2: AI-галлюцинации в конкурентном анализе | Critical | FR-1.5 (disclaimer), FR-2.3 (disclaimer на конкурентах) | Частично (disclaimer != prevention) |
+| 3: Пользователь копирует промпты в ChatGPT и получает ~80% результата | Critical (бизнес) | Риск #1 в разделе 7. Но нет FR на защиту IP промптов | Частично |
+| 4: Бесконечный free tier через новые аккаунты | High | Нет FR и нет NF на anti-abuse | **НЕ ВКЛЮЧЁН** |
+
+**РАЗРЫВ:** Два самых критичных edge-кейса (Prompt Injection и Anti-Abuse) не оформлены как функциональные или нефункциональные требования в PRD. Edge-cases описывают подробные рекомендации (многоуровневая защита, regex-фильтрация, red-team тестирование), но PRD их не содержит. Разработчик, работающий по PRD, их не реализует.
+
+### 6.2. Edge-кейсы, которые убивают ключевые jobs
+
+| Edge-кейс | Какой job убивает | Критичность |
 |---|---|---|
-| #1: AI генерирует нерабочий код | ЧАСТИЧНО: FR-7.2 (auto-fix ошибок), но нет явного FR на pipeline lint->build->smoke test | ПРОБЕЛ |
-| #2: Потеря соединения при генерации | НЕТ явного FR на серверное сохранение промежуточных результатов | ПРОБЕЛ |
-| #3: Деплой падает из-за ошибки в коде | ЧАСТИЧНО: FR-3.1 упоминает деплой, но нет pre-deploy validation | ПРОБЕЛ |
-| #4: Закрытие браузера на середине flow | НЕТ явного FR на persistence состояния guided flow | ПРОБЕЛ |
-| #5: Google OAuth падает | НЕТ явного FR на fallback авторизации (только "Google OAuth + email/password" в NF-10) | ЧАСТИЧНО |
-| #6: Claude API таймаут/rate limit | НЕТ явного FR на retry, queue, fallback модель | ПРОБЕЛ |
-| #7: Утечка данных между пользователями | ДА: NF-12, NF-13 | OK |
-| #8: Утёкшие Stripe API-ключи в коде | НЕТ явного FR на валидацию секретов | ПРОБЕЛ |
-| #9: Prompt injection | НЕТ явного FR на input sanitization | ПРОБЕЛ |
-| #10: XSS в задеплоенных приложениях | НЕТ явного FR на security scan | ПРОБЕЛ |
+| AI-галлюцинации в конкурентном анализе | CJ2: "Провалидировать идею" -- пользователь принимает решение GO/KILL на основе ложных данных | Критическая |
+| Пользователь не имеет идеи (пришёл "посмотреть") | CJ1: "Понять, что строить" -- guided flow не запускается без входных данных | Высокая |
+| Слишком короткие / абстрактные ответы | CJ1: все документы будут generic и бесполезны | Высокая |
 
-**КРИТИЧЕСКИЙ ВЫВОД:** 8 из 10 Critical edge-кейсов НЕ имеют соответствующих явных функциональных требований в PRD. Edge-кейсы выявлены, рекомендации даны, но PRD их не включает. Это означает, что разработчик, работающий только по PRD, НЕ реализует защиты от этих кейсов.
+PRD адресует 2 из 3:
+- "Нет идеи" -- FR-6.2 (шаблонные идеи для практики: "SaaS for freelancers / Newsletter tool / Habit tracker / AI writing assistant"). Покрыто.
+- "Короткие ответы" -- FR-6.2 ("AI мягко просит конкретизировать: Could you tell me more about..."). Покрыто.
+- "AI-галлюцинации" -- FR-1.5 (disclaimer) + FR-2.3 (disclaimer на конкурентах). Частично: disclaimer не предотвращает ошибку, а только снимает формальную ответственность. Пользователь всё равно может принять неверное решение.
 
-| Edge-кейс (High) | Учтён в PRD? | Статус |
+### 6.3. Аналитические события для детектирования критических edge-кейсов
+
+| Edge-кейс | Событие в аналитике | Покрытие |
 |---|---|---|
-| #11: Ввод на не-английском языке | НЕТ | ПРОБЕЛ |
-| #12: Слишком абстрактная идея | ЧАСТИЧНО (FR-7.2: шаблоны) | ЧАСТИЧНО |
-| #14: 50+ итераций ломают код | НЕТ явного FR на code refactoring / snapshot | ПРОБЕЛ |
-| #20: AI-галлюцинации в PRD | НЕТ disclaimer как FR | ПРОБЕЛ |
-| #21: Лимит запросов на середине flow | ПРОТИВОРЕЧИЕ: PRD говорит "1 полный guided flow" в free, но нет явного FR, гарантирующего это | ПРОТИВОРЕЧИЕ |
-| #25: Один flow для tech и non-tech | ЧАСТИЧНО (онбординг с 1 вопросом), но нет FR на адаптивный flow | ПРОБЕЛ |
+| Prompt injection | Нет | **НЕ ПОКРЫТО** |
+| AI-галлюцинации | Нет (нет `ai_quality_issue_reported`) | **НЕ ПОКРЫТО** |
+| Anti-abuse (мультиаккаунты) | Нет явного `abuse_detected` | **НЕ ПОКРЫТО** |
+| Пользователь застрял | `stuck_detected`, `stuck_help_offered`, `stuck_help_accepted` | Покрыто |
+| Flow abandoned | `flow_abandoned` с `last_step` и `time_on_last_step_sec` | Покрыто |
+| Template idea selected | `template_idea_selected` | Покрыто |
 
-### 6.2. Есть ли edge-кейсы, убивающие ключевые jobs?
-
-| Edge-кейс | Какой job убивает? | Серьёзность |
-|---|---|---|
-| #1: Нерабочий код | Core Job 2: "Построить работающий прототип" -- полностью убивает Aha-момент | ФАТАЛЬНО |
-| #3: Падение деплоя | Core Job 3: "Задеплоить и показать людям" -- обрыв на последнем шаге | ФАТАЛЬНО |
-| #6: API таймаут | Core Job 2: "Построить прототип" -- блокирует Aha-момент | ФАТАЛЬНО |
-| #4: Потеря состояния | Все jobs -- обнуление 30 минут усилий | КРИТИЧНО |
-| #9: Prompt injection | Core Job 1: "Сформулировать, что строить" -- компрометация AI | КРИТИЧНО |
-
-### 6.3. Есть ли в аналитике события для детектирования критических edge-кейсов?
-
-| Critical Edge-кейс | Событие аналитики для детекции | Покрытие |
-|---|---|---|
-| #1: Нерабочий код | code_error_occurred (error_type, auto_fixed) | ДА |
-| #2: Потеря соединения | НЕТ события (нет connection_lost или session_interrupted) | НЕТ |
-| #3: Падение деплоя | deploy_initiated без project_deployed (по воронке) | КОСВЕННО |
-| #4: Закрытие на середине | guided_flow_started без guided_flow_completed + session_ended | КОСВЕННО |
-| #5: OAuth падает | signup_started без signup_completed | КОСВЕННО |
-| #6: API таймаут | code_error_occurred (error_type: timeout) | ДА |
-| #7: Утечка данных | НЕТ security audit event | НЕТ |
-| #8: Утечка ключей Stripe | НЕТ secret_leak_detected event | НЕТ |
-| #9: Prompt injection | НЕТ injection_attempt_detected event | НЕТ |
-| #10: XSS | НЕТ security_scan_failed event | НЕТ |
-
-**РАЗРЫВ:** 4 из 10 Critical edge-кейсов не имеют ни прямых, ни косвенных событий аналитики для их обнаружения. Security-события полностью отсутствуют в аналитическом плане.
+**РАЗРЫВ:** Для трёх самых критичных edge-кейсов (prompt injection, AI-галлюцинации, anti-abuse) нет аналитических событий. Команда не узнает о проблеме, пока пользователи не пожалуются через support.
 
 ---
 
@@ -275,11 +303,11 @@
 
 | # | Документ А | Документ Б | Противоречие / разрыв | Рекомендация по исправлению |
 |---|---|---|---|---|
-| 1 | 10-landing-copy (Блок 9) | 07-prd (раздел 9, Исключения) | Лендинг обещает "You can export the code and keep building", но PRD явно исключает экспорт кода из MVP: "Экспорт кода (download project) -- код живёт на платформе". Это прямой обман пользователя | Удалить утверждение об экспорте из лендинга ИЛИ добавить экспорт кода в MVP scope |
-| 2 | 08-edge-cases (10 Critical) | 07-prd (FR-требования) | 8 из 10 Critical edge-кейсов не имеют соответствующих функциональных требований в PRD. Разработчик по PRD не реализует защиту от нерабочего кода, потери соединения, API-таймаута, prompt injection, XSS | Добавить в PRD минимум 5 критических FR: (1) FR-9.1 Code Validation Pipeline, (2) FR-9.2 State Persistence, (3) FR-9.3 API Resilience, (4) FR-9.4 Input Sanitization, (5) FR-9.5 Deploy Security Scan |
-| 3 | 07-prd (Aha-момент, разные по сегментам) | 09-analytics-plan (один aha_moment_reached) | PRD определяет РАЗНЫЕ Aha-моменты для разных сегментов, но аналитика трекает ТОЛЬКО один -- preview лендинга > 5 сек. Aha-момент для Solopreneurs (PRD + прототип + рекомендации, шаг 4) не трекается | Добавить сегмент-специфичные aha-события ИЛИ пересмотреть определение Aha-момента и унифицировать его в PRD |
-| 4 | 09-analytics-plan (revenue events) | 07-prd (risk #2) | Нет события purchase_abandoned / checkout_abandoned. Пользователь начал оплату (purchase_initiated) но не завершил -- это критический сигнал для Риска #2 (не готовы платить). Без этого события невозможно диагностировать, проблема в цене, в UX оплаты или в доверии | Добавить событие checkout_abandoned: когда purchase_initiated есть, а purchase_completed нет в течение 30 минут |
-| 5 | 03-chosen-segments (5 сегментов) | 10-landing-copy (3 сегмента в блоке "Sound familiar?") | Сегменты 4 (Builders в организации) и 5 (AI Future-Proofers) полностью отсутствуют в лендинге. В PRD для них есть отдельные разделы с jobs, критериями, даже метриками -- но маркетинг их не адресует | Либо (а) добавить эти сегменты в лендинг, либо (б) явно задокументировать решение НЕ таргетировать их в MVP и убрать из PRD детальные описания |
+| 1 | 10-landing-copy (Блок 1, One-liner) | 07-prd (раздел 9, Исключения) | **"investor-ready documents"** заявлено на лендинге, но PRD явно исключает pitch deck, финмодели, business plan из scope. PRD специально отличает себя от PitchBob. Документы PRD+Risk+Landing НЕ являются investor-ready. Это привлечёт founders, ожидающих fundraising-материалы, и вызовет разочарование | Убрать "investor-ready" из one-liner. Заменить на "build-ready documents and a vibe-coding plan" или "documents that AI coding tools actually understand". Это точнее отражает реальную ценность продукта |
+| 2 | 07-prd (раздел 4, таблица Aha-моментов) | 09-analytics-plan (Activation, aha_moment_reached) | **Aha-момент определён по-разному для сегментов в PRD, но трекается единым событием в аналитике.** PRD: Solopreneurs -- Aha на шаге 3 (Risk Assessment, "стоит ли тратить время"). Аналитика: единый `aha_moment_reached` на шаге 2 (Segments & Jobs) для всех. Все метрики "time to Aha" и "aha -> paywall conversion" будут искажены для сегмента Solopreneurs | Привести к единому определению. Рекомендация: (А) унифицировать Aha-момент в PRD = шаг 2 для всех сегментов (т.к. это "первая ощутимая ценность"), а шаг 3 считать "второй активацией" (отдельное событие `risk_assessment_value_realized`). Или (Б) трекать три сегмент-специфичных события |
+| 3 | 07-prd (раздел 8, Метрики качества) | 09-analytics-plan | **4 ключевых метрики PMF не имеют событий.** PRD ставит цели: NPS >40, CSAT per step >4.0/5.0, PMF survey "very disappointed" >40%, Document Quality Score >7/10. Ни одна из них не имеет соответствующего события в аналитическом плане. Команда не сможет оценить product-market fit | Добавить в аналитику: `nps_survey_submitted` (score, comment, days_since_signup), `csat_submitted` (step, score), `pmf_survey_submitted` (answer: "very_disappointed" / "somewhat_disappointed" / "not_disappointed"). Описать триггеры показа: NPS -- D7 после первого flow; CSAT -- после каждого шага для первых 200 пользователей; PMF -- D14 |
+| 4 | 08-edge-cases (#1 Prompt Injection, Critical) | 07-prd (все FR) | **Prompt injection -- Critical edge-кейс с подробной рекомендацией, но НЕТ FR в PRD.** Edge-cases описывают 4-уровневую защиту, но PRD не содержит ни FR, ни NF на prompt injection protection. Разработчик по PRD этого не реализует | Добавить в PRD: NF-18 "Prompt Injection Protection" с критериями: (1) фильтрация ввода на injection-паттерны, (2) output-фильтр, (3) логирование подозрительных запросов, (4) red-team тестирование перед запуском. Добавить в аналитику: `injection_attempt_detected` |
+| 5 | 03-chosen-segments (Founders, "прототип <1 неделя") | 10-landing-copy (Micro Job 6, "2-4 hours") | **10-40x разница в обещании тайминга прототипа.** Сегменты: "<1 неделя после документов". Лендинг: "2-4 hours". LaunchPilot НЕ генерирует код, прототип делается пользователем самостоятельно. 2-4 часа -- нереалистично для non-technical founder, впервые работающего с Cursor | Привести к единому таймингу. Рекомендация: лендинг -- "your first working prototype THIS WEEKEND" (это ближе к реальности и сохраняет мотивацию). Убрать конкретные "2-4 hours" |
 
 ---
 
@@ -287,16 +315,14 @@
 
 | # | Документ | Что упущено | Рекомендация |
 |---|---|---|---|
-| 1 | 09-analytics-plan | Нет security-событий: prompt_injection_detected, secret_leak_detected, security_scan_failed. Edge-кейсы #7-10 невозможно обнаружить через аналитику | Добавить секцию "Security Events" с 4-5 событиями для мониторинга безопасности |
-| 2 | 09-analytics-plan | Нет события connection_lost или session_interrupted для детекции edge-кейса #2 (потеря соединения при генерации). Один из самых болезненных сценариев не детектируется | Добавить событие session_interrupted с properties: step, progress_saved, reconnected |
-| 3 | 10-landing-copy (Блок 9) | Лендинг утверждает "same stack used by Vercel, Netflix, and Notion". Netflix использует Java-based микросервисы, Notion -- кастомный стек. Технически грамотная аудитория (Career Builders) может заметить | Заменить на компании, которые реально используют Next.js: Vercel, Hulu, TikTok, или убрать конкретные имена |
-| 4 | 10-landing-copy | Cross-sell 1 (AI Marketing Assistant) и Cross-sell 4 (Growth Playbook) описаны как часть стратегии, но не имеют ни FR в PRD, ни событий в аналитике. Это фантомные обещания | Либо удалить из стратегии, либо добавить минимум события-заглушки для трекинга интереса |
-| 5 | 07-prd | Нет явного FR на адаптивный guided flow для разных уровней пользователей (edge-кейс #25). Один вопрос онбординга "What best describes you?" определяет сегмент, но flow одинаковый | Добавить FR-7.4: Adaptive Flow с минимум 2 вариантами (tech/non-tech), включая возможность пропуска шагов для опытных |
-| 6 | 07-prd | Нет FR на disclaimer для AI-генерируемого контента (edge-кейс #20). PRD генерирует оценки рынка и конкурентов, которые могут быть галлюцинациями | Добавить FR-1.5: AI Content Disclaimer -- маркировка AI-оценок как "Estimate", disclaimer на PRD |
-| 7 | 10-landing-copy | "12,000+ product builders trained" -- это данные о существующих русскоязычных продуктах (BOOST + ProductHowTo). LaunchPilot -- новый продукт с 0 пользователей. Утверждение "Join 12,000+ builders who turned ideas into products" создаёт ложное впечатление, что 12000 человек уже используют LaunchPilot | Переформулировать: "From the creators of BOOST Intensive (9.6/10) and ProductHowTo (12,000+ graduates)" -- ссылка на экспертизу, а не на базу пользователей нового продукта |
-| 8 | 07-prd (Приложение A) | Free tier: "1 полный guided flow + 2 базовых" -- но edge-кейс #21 и сам PRD одновременно указывают лимит 20 AI-запросов/день. Нет явного FR, гарантирующего завершение первого flow без ограничений | Добавить явный FR: "Первый guided flow не ограничен лимитом AI-запросов" с технической реализацией (флаг is_first_flow) |
-| 9 | 09-analytics-plan | Нет события для deploy_failed. deploy_initiated есть, project_deployed есть, но провал деплоя не трекается. Для edge-кейса #3 это необходимо | Добавить событие deploy_failed с properties: error_type, auto_retry_count, resolved |
-| 10 | 01-business-context | Горизонт "< 2 недель до первого рабочего результата (MVP)" -- но PRD содержит 50+ функциональных требований, 6 core jobs, 7-шаговый guided flow, интеграции PostHog+Stripe+OAuth. Это невозможно реализовать за 2 недели даже с vibe-coding | Пересмотреть scope MVP или timeline. Предложение: выделить "MVP-0" (1-2 недели): только FR-1.1 + FR-2.1 + FR-2.4 (AI-интервью -> лендинг -> preview). Остальное -- MVP-1 (4-6 недель) |
+| 1 | 09-analytics-plan | Нет событий для трекинга прохождения микро-гайдов (FR-4.2). Мы не знаем, установил ли пользователь Cursor после получения Vibe-Coding Plan. Также не покрыт Риск #3 (micro-guides устаревают) | Добавить: `micro_guide_started` (guide_id, tool), `micro_guide_step_completed` (guide_id, step), `micro_guide_completed` (guide_id, total_time_sec), `micro_guide_step_failed` (guide_id, step, feedback) |
+| 2 | 07-prd | Нет FR на anti-abuse механику. Бесплатные пользователи могут создавать бесконечные аккаунты через разные email для обхода лимита 2 проектов | Добавить NF-17: "Anti-abuse: rate limiting по IP (макс 3 аккаунта / IP / день), device fingerprinting для free tier". Добавить в аналитику: `abuse_detected` (type, user_id, ip) |
+| 3 | 09-analytics-plan | Нет серверного расчёта MRR. PRD цель: "MRR >$5K к 3 мес", но аналитика не описывает как считать | Добавить серверное событие `mrr_snapshot` (mrr, new_mrr, churned_mrr, expansion_mrr, period) -- ежедневный расчёт. Или описать интеграцию Stripe -> PostHog |
+| 4 | 10-landing-copy (Блок 2) | Сравнение "$2,000-5,000 agency" за Landing Copy + Analytics Plan + Competitor Analysis -- преувеличение. AI-генерированные бонусные документы не заменяют работу агентства | Смягчить: "What would take a week of research -- generated in minutes alongside your PRD." Убрать конкретные суммы агентств для бонусных документов |
+| 5 | 10-landing-copy (Блок 4, Aha-момент) | Сравнение только с ChatGPT (generic), но не с ChatPRD -- ближайшим конкурентом с 100,000+ пользователей, $15/мес. Пользователь, знающий ChatPRD, не увидит отличия | Добавить второе сравнение: "LaunchPilot vs a PRD generator" -- показать, что PRD-генераторы создают документы, но не учат думать, не оценивают риски, не дают vibe-coding план |
+| 6 | 07-prd (раздел 5, Roadmap) | Unit Economics Calculator стоит в roadmap на месяц 3, хотя юнит-экономика заявлена как один из ключевых обучающих компонентов (FR-5.1). IdeaProof даёт калькуляторы бесплатно | Перенести простой калькулятор LTV/CAC/ARPU в MVP или месяц 1. Без инструмента обучение юнит-экономике останется теоретическим |
+| 7 | 09-analytics-plan | Нет аналитического события для детектирования AI-галлюцинаций. Пользователь может принять решение GO/KILL на основе ложных данных о конкурентах | Добавить: `ai_content_flagged` (document_type, flag_type: "inaccurate" / "outdated", user_feedback). Кнопка "Is this accurate?" на конкурентном анализе и рыночных оценках |
+| 8 | 10-landing-copy (Часть 2, маркетинговые гипотезы) | Все 8 маркетинговых гипотез сфокусированы на acquisition. Нет ни одной retention-маркетинговой гипотезы | Добавить гипотезу 9: "Re-engagement email sequence" -- что триггерит возврат (D+3: tip по инструменту, D+7: "talked to users?", D+14: "update your PRD"). И гипотезу 10: "Build in Public community" -- showcase проектов пользователей |
 
 ---
 
@@ -304,36 +330,37 @@
 
 | # | Область | Идея | Ожидаемый эффект |
 |---|---|---|---|
-| 1 | 09-analytics-plan | Добавить A/B тест Aha-момента: вариант A (текущий: preview лендинга) vs вариант B (интерактивная 3D-карточка продукта). PostHog feature flags позволяют это из коробки | Валидация гипотезы Aha-момента данными, а не интуицией |
-| 2 | 10-landing-copy | Добавить блок с 1-2 реальными кейсами пользователей бета-версии перед запуском. Сейчас лендинг не имеет ни одного отзыва от реального пользователя LaunchPilot | Повышение конверсии через социальное доказательство от реальных, а не гипотетических пользователей |
-| 3 | 07-prd | Добавить FR для "Showcase Gallery" -- публичная галерея проектов, созданных на LaunchPilot. Виральная механика + социальное доказательство | Referral coefficient рост, снижение CAC, доказательство ценности |
-| 4 | 06-competitors | Добавить раздел "Потенциальные новые конкуренты": что если Bolt.new или Lovable добавят guided flow? Какова защитная стратегия? | Стратегическая готовность к ответу конкурентов |
-| 5 | 09-analytics-plan | Добавить трекинг NPS/CSAT: micro-survey после первого деплоя ("How likely are you to recommend?", 1 вопрос) | Ранний сигнал product-market fit, коррелирует с retention |
-| 6 | 07-prd | Рассмотреть модель "one-time purchase" как fallback для Риска #2 (не готовы платить подписку). PRD упоминает "Launch Pack за $99", но нет FR | Снижение зависимости от subscription-only модели. Расширение воронки монетизации |
-| 7 | 10-landing-copy | Добавить маркетинговую гипотезу для сегмента 4 (Builders в организации): B2B LinkedIn Ads + кейс "PM built internal tool in 1 hour" | Раскрытие потенциала 4-го сегмента, B2B = более высокий ARPU |
+| 1 | Лендинг | Добавить интерактивный demo на лендинге -- не статический пример (Блок 4), а возможность ввести свою идею в 1 предложение и увидеть preview сегмента (без регистрации). Сдвинуть Aha-момент до signup | Увеличение конверсии landing -> signup на 20-30%. Реализация принципа "откусить кусочек пользы авансом" из AURA |
+| 2 | PRD | Добавить "Export to Cursor" / "Export to Claude Code" -- не просто "copy to clipboard", а форматирование документа специально под промпт конкретного инструмента (например, для Cursor -- в формате .cursorrules) | Усилит CJ3 и CJ4. Создаст реальное преимущество перед ChatPRD, который тоже интегрируется с Cursor/Lovable |
+| 3 | Аналитика | Добавить когортный анализ по источнику (SEO vs Reddit vs LinkedIn vs Paid) с привязкой к completion rate и paid conversion. UTM есть, но нет описания конкретных когортных дашбордов по каналам | Рано определит, какой канал приносит качественных пользователей, а не просто sign-ups. Критично для Риска #9 |
+| 4 | Аналитика | Добавить proxy-метрику "document_used_externally": `document_copied` -> `session_started` (в течение 7 дней) -- как сигнал, что документ реально использовался в Cursor/Lovable | Proxy для "продукт реально помогает строить", а не просто "документ сгенерирован" |
+| 5 | Edge-cases | Добавить "sunset scenario": что происходит с документами, если LaunchPilot закроется. Для серьёзных founders важный фактор доверия | Снижает барьер для paid-подписки. Добавить в FAQ: "Your documents are always yours. Export anytime, no lock-in" |
+| 6 | Конкуренты | Добавить раздел "Defensive strategy": что если ChatPRD добавит обучение? Что если Lovable добавит guided flow? Какова защитная стратегия? | Стратегическая готовность к ответу конкурентов. Ключевой актив -- методология AJTBD, отработанная на 11000+ |
 
 ---
 
 ## Вердикт
 
-**Оценка согласованности пакета: 7/10**
+**Оценка согласованности пакета: 7.5/10**
 
 ### Обоснование
 
-Пакет документов демонстрирует высокий уровень проработки и внутренней логики. Все 6 core jobs связаны от сегментов через PRD до аналитики. Воронка покрывает полный путь пользователя. Юнит-экономика трекается полностью. Однако обнаружены 5 критических разрывов, из которых 2 представляют реальную угрозу: ложное обещание экспорта кода в лендинге и отсутствие критических edge-кейсов в функциональных требованиях PRD.
+Пакет демонстрирует высокий уровень продуманности и внутренней связности. Все 9 рисков системно учтены в PRD с конкретными FR и метриками валидации. Сегменты корректно переносятся в лендинг. Аналитический план покрывает основную воронку AARRR с 60+ уникальными событиями и готовым TypeScript-кодом для PostHog. Конкурентный анализ глубокий (14 конкурентов, 5 категорий) и корректно используется для обоснования решений в PRD и лендинге.
+
+Снижение оценки на 2.5 балла обусловлено 5 критическими разрывами: (1) ложное обещание "investor-ready documents" при явном исключении fundraising-материалов; (2) рассогласование Aha-момента между PRD и аналитикой; (3) 4 ключевых метрики PMF без механизма сбора; (4) Critical edge-кейсы без FR в PRD; (5) 10-40x расхождение в обещании тайминга прототипа. Разрывы #1 и #5 наиболее опасны -- они создают "expectation gap", который убьёт retention даже при хорошем привлечении.
 
 ### Топ-3 сильные стороны
 
-1. **Аналитический план -- эталонный.** 70+ событий, 7 дашбордов, полный TypeScript-код, триггеры для автоматических коммуникаций, серверная логика churn risk scoring. Каждая метрика из PRD имеет соответствующее событие. Это лучший документ в пакете.
+1. **Системный учёт рисков.** Все 9 рисков из 05-chosen-risks детально проработаны в разделе 7 PRD с конкретными мерами минимизации, привязкой к FR и метриками валидации. Каждый риск имеет чёткий "что делаем, если риск реализовался" -- это уровень продуктовой работы выше среднего.
 
-2. **Конкурентный анализ -> PRD -> Лендинг: цепочка работает.** Gap на рынке (обучение + инструмент) идентифицирован, преобразован в 6 core jobs в PRD, и транслирован в конкретные блоки лендинга. "Увольнение конкурентов" опирается на реальные слабости.
+2. **Глубина и реализуемость аналитического плана.** 14 категорий событий, 60+ уникальных событий, полный TypeScript-код для PostHog, типизированные функции для каждого события. Аналитический план можно сразу копировать в код -- это экономит 2-3 дня разработки. Привязка событий к конкретным FR -- отличная трассируемость.
 
-3. **Учёт рисков в PRD -- системный.** Все 3 выбранных риска имеют конкретные FR, метрики валидации и целевые значения. Anti-stuck механики (FR-7.2), retention-механики (FR-8.x) и стратегия paywall -- продуманы и взаимосвязаны.
+3. **Корректное и честное "увольнение" конкурентов.** Каждое заявление о преимуществе на лендинге подтверждается конкретными данными конкурентного анализа. Нет голословных утверждений. Слабости конкурентов описаны конкретно и верифицируемо. Сводная таблица "конкурент x фича" в анализе -- отличный инструмент для принятия решений.
 
 ### Топ-3 слабые стороны
 
-1. **Edge-кейсы отделены от PRD.** 58 edge-кейсов выявлены и приоритизированы, но 8 из 10 Critical НЕ превращены в функциональные требования. Документ 08-edge-cases остаётся "рекомендательным", а не "обязательным" -- разработчик его проигнорирует. Это системная ошибка процесса: edge-кейсы должны порождать FR, а не жить в отдельном документе.
+1. **Лендинг систематически завышает ожидания.** "Investor-ready documents" (нет fundraising-материалов), "2-4 hours to prototype" (нереалистично для non-technical), "$2,000-5,000 agency" (преувеличение для бонусных документов). Паттерн: маркетинг обещает больше, чем продукт может дать. Это приведёт к высокому churn в первые 30 дней.
 
-2. **Лендинг обещает больше, чем PRD.** Экспорт кода ("keep building"), "12,000+ builders" (подмена базы нового продукта экспертизой автора), "Netflix и Notion" (некорректные примеры стека). Маркетинг опережает продукт -- это создаёт "expectation gap", который убьёт retention даже если привлечение сработает.
+2. **Метрики качества не трекаются.** PRD определяет NPS, CSAT, PMF survey и Document Quality Score как ключевые индикаторы product-market fit, ставит конкретные цели (NPS >40, CSAT >4.0, PMF >40%). Но аналитический план не содержит ни одного события для их сбора. Команда сможет отслеживать количественные метрики (конверсии, retention), но не качественные (удовлетворённость, ценность, готовность рекомендовать).
 
-3. **Scope vs Timeline -- нереалистичное ожидание.** Бизнес-контекст ставит "< 2 недель до MVP", но PRD описывает продукт на 2-3 месяца разработки: 6 core jobs, 50+ FR, интеграции с PostHog/Stripe/OAuth, guided flow из 7 шагов, retention-механики, email-автоматизация. Без чёткого выделения "MVP-0" (минимально работающее ядро) команда из 1-3 человек не сможет выполнить обещания ни PRD, ни лендинга.
+3. **Critical edge-кейсы не оформлены как требования.** Prompt injection (Critical) и anti-abuse (High) подробно описаны в edge-cases с конкретными рекомендациями, но не перенесены в PRD как FR или NF. При разработке по PRD эти защиты не будут реализованы. Это системная процессная ошибка: edge-кейсы должны порождать требования, а не оставаться отдельным "рекомендательным" документом.

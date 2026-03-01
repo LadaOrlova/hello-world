@@ -1,472 +1,11 @@
-# LaunchPilot: Landing Page Copy + Marketing Hypotheses
+# Маркетинговые гипотезы и стратегия воронки: LaunchPilot
 
 Дата: 2026-03-01
-Версия: 2.0
+Версия: 2.1 (с учётом кросс-верификации)
 
 ---
 
-# ЧАСТЬ 1: Полный текст лендинга (11 блоков)
-
-Язык лендинга: English (US market)
-
----
-
-## Блок 1: Hero-секция
-
-**Описание блока (RU):** Первый экран лендинга. Задача -- за 3 секунды объяснить, что это, какую работу выполняет и какую ценность даёт. Формула One-liner: [Что это] + [Core Job] + [Ценность]. Big Job (финансовая независимость) заходит через подзаголовок. Три варианта tagline по формулам AURA.
-
-### One-liner
-
-**LaunchPilot -- AI guide that turns your raw idea into investor-ready documents and a build plan in under 60 minutes.**
-
-### Tagline (3 варианта)
-
-**Вариант 1 (Core Job для Big Job):**
-> Think through your product like a pro, get the documents to build it yourself -- and launch your business weeks, not months from now.
-
-**Вариант 2 (Core Job + ценность):**
-> Go from "I have an idea" to a PRD, risk assessment, landing copy, and vibe-coding plan -- in one guided session, for free.
-
-**Вариант 3 (Триггер -> Core Job):**
-> Tried building with Cursor or Lovable and got a mess? The problem wasn't the tool -- it was the brief. Fix that in 30 minutes.
-
-### Подзаголовок
-
-LaunchPilot is the only AI-powered platform that combines product thinking education, personalized document generation, and vibe-coding guidance -- all in one flow. Describe your idea, and walk out with a PRD, a risk assessment, landing page copy, and a step-by-step plan for building your first prototype with Cursor, Claude Code, or Lovable. No code generated. No fluff. Just the clarity and documents you need to build something people actually want.
-
-### CTA-кнопка
-
-**Text:** Start free -- describe your idea
-**Подпись под кнопкой:** No credit card. No scheduling. Your first project is 100% free.
-
----
-
-## Блок 2: Core Job + Ценность
-
-**Описание блока (RU):** Сообщение 1 (какие работы выполняем) + Сообщение 2 (какую ценность дадим, с конкретными критериями успеха). Показываем конкретные числа и сравнение с альтернативами. Формула: "Дорогой клиент, мы твои работы выполним настолько эффективнее".
-
-### Заголовок
-
-**From confused idea to clear plan -- in one sitting, not one semester.**
-
-### Текст
-
-You have a business idea. You're ready to invest time and money. But you don't know what to build first, who exactly it's for, or whether it'll work.
-
-The usual path looks like this:
-
-| What people do today | Time it takes | What it costs |
-|---|---|---|
-| Watch YouTube tutorials on product strategy | 15-30 hours | Free, but scattered and generic |
-| Take an online course on product management | 20-40 hours over 4-8 weeks | $200-$4,000 |
-| Hire a product consultant for a "strategy session" | 2-5 hours, then weeks waiting | $150-500/hour |
-| Use ChatGPT to "write a PRD" | 3-5 hours of prompt engineering | $20/month, but no methodology |
-| Jump straight into Cursor/Lovable without a plan | 20-40 hours | $20-50/month + wasted time |
-
-**The result?** Months spent. Thousands burned. And still no confidence that the idea is worth building.
-
-**LaunchPilot compresses all of this into one guided session:**
-
-| What you get | How long it takes | What it replaces |
-|---|---|---|
-| AI interview that structures your raw idea | 10-15 minutes | Weeks of self-research |
-| Target segments with real jobs and success criteria | 5 minutes | $500+ product consultant |
-| Prioritized risk assessment (RAT framework) | 5-10 minutes | Guessing which risk kills you |
-| Complete PRD, optimized for Cursor/Claude Code/Lovable | 2 minutes | $150-500/hour consultant |
-| Landing page copy, analytics plan, competitor analysis | 3 minutes | $2,000-5,000 agency |
-| Vibe-coding plan with tool recommendation + prompts | 5 minutes | $400/year bootcamp |
-
-**Total time from sign-up to full document set: 30-60 minutes.**
-**Total cost for your first project: $0.**
-
-### CTA
-
-Start free -- describe your idea
-
----
-
-## Блок 3: Micro Jobs (6 micro-jobs)
-
-**Описание блока (RU):** 6 micro-jobs -- конкретные работы, которые продукт выполняет пошагово. Каждая micro-job имеет конкретный output и конкретную ценность. Формулировки через язык клиента: "я хочу..." -> "вот что получишь".
-
-### Заголовок
-
-**Six things you'll accomplish in your first session.**
-
-### Micro Jobs
-
-**1. Structure your messy idea into a clear product concept**
-You describe your idea in your own words -- no templates, no jargon. AI asks 5-8 smart questions about your user, their problem, and the context. In 10 minutes, your raw thought becomes a structured Idea Summary document.
-*What you get: Idea Summary -- a clear, structured description of what you're building and why. Shareable with co-founders, advisors, or investors.*
-
-**2. Discover who your product is really for**
-AI generates 2-4 target segments with their specific jobs (goals), success criteria, and current alternatives. You pick the segment with the highest potential. No demographics -- real human motivations.
-*What you get: Segments & Jobs document -- your target user described in a way that drives every product decision you'll make.*
-
-**3. Find out what could kill your idea before you spend a dollar**
-AI identifies 5-10 riskiest assumptions behind your idea and ranks them by a formula: (Probability x Impact) / Cost to Test. You know exactly what to validate first.
-*What you get: Risk Priority document + Validation Plan with interview scripts and testing methods for your top 3 risks.*
-
-**4. Get a PRD that AI coding tools actually understand**
-Your PRD isn't a vague wishlist -- it's a precise document with user stories, MVP scope, and technical instructions optimized for Cursor, Claude Code, and Lovable.
-*What you get: Production-ready PRD in Markdown. Copy, paste into your AI coding tool, and start building.*
-
-**5. Get landing copy, analytics plan, and competitor analysis -- automatically**
-While you work through the guided flow, LaunchPilot generates three bonus documents: conversion-optimized landing page copy, a PostHog-ready analytics plan, and a competitor analysis through the lens of real user jobs.
-*What you get: Three ready-to-use documents that would normally take a week and cost $3,000-$8,000.*
-
-**6. Know exactly how to build it with AI tools**
-AI recommends the right vibe-coding tool for your project type, gives you a setup guide, a library of prompts based on YOUR PRD, and a step-by-step checklist to your first working prototype.
-*What you get: Vibe-Coding Plan -- tool recommendation, setup guide, personalized prompts, and a "first prototype" checklist. Estimated time to prototype: 2-4 hours.*
-
-### CTA
-
-Start free -- describe your idea
-
----
-
-## Блок 4: Aha-момент (дать прожить ценность на лендинге)
-
-**Описание блока (RU):** Сдвигаем Aha-момент влево -- даём пользователю прожить кусочек ценности прямо на лендинге, до регистрации. Это реализация механики "откусить кусочек пользы и дать раньше". Интерактивный элемент: пример трансформации "сырая идея -> структурированное описание через AJTBD".
-
-### Заголовок
-
-**See the difference in 30 seconds.**
-
-### Текст
-
-Here's what happens when you describe your idea to LaunchPilot vs. when you describe it to ChatGPT.
-
-**Your input (same in both cases):**
-*"I want to build an app that helps people find good coffee shops when they travel."*
-
-**ChatGPT output:**
-> "Great idea! Here's a PRD for a coffee shop finder app. Features: search by location, user reviews, filtering by rating, map integration, saved favorites..."
-
-**LaunchPilot output:**
-> **Segment 1 (highest potential): Remote Workers Who Travel (digital nomads, 25-40)**
-> When I arrive in a new city and need to work for 4-6 hours, I want to find a coffee shop with fast WiFi, power outlets, and a quiet atmosphere -- so I can stay productive without wasting 30-60 minutes trying random places.
->
-> **Success criteria:** Found a workspace-quality coffee shop within 10 minutes of arriving. Didn't have to visit 3 places first.
->
-> **Current alternatives:** Google Maps reviews (unreliable for work-specific criteria), asking in Slack communities (slow), Workfrom.co (limited cities).
->
-> **Risk #1:** Do digital nomads actually struggle with this enough to pay? (Probability: 7, Impact: 9, Test cost: 3 -- **test first**)
-
-Notice the difference? ChatGPT gives you features. LaunchPilot gives you *clarity about who cares and why.*
-
-That clarity is the difference between a product people use and a product people ignore.
-
-### CTA
-
-Get this clarity for YOUR idea -- free
-
----
-
-## Блок 5: Ценность по jobs
-
-**Описание блока (RU):** Развёрнутое описание ценности. Каждая ценность привязана к конкретному критерию успеха. Никаких абстракций -- только конкретика. Структура: "Чем мы лучше" по каждому из 4 слоёв ценности.
-
-### Заголовок
-
-**Why LaunchPilot, not YouTube, ChatGPT, or a $4,000 bootcamp.**
-
-### Подзаголовок
-
-Four layers of value that no single competitor offers.
-
-### Ценность 1: Personalization -- everything is about YOUR idea
-
-Every document, every recommendation, every prompt is generated for your specific idea, your specific user segment, and your specific context. This isn't a template with blanks to fill in. It's an AI that interviews you, understands your idea, and produces documents that are unique to your situation.
-
-**Concrete difference:** A generic PRD from ChatGPT has 0% of your context. A LaunchPilot PRD contains your specific segments, their specific jobs, your specific risks, and your specific MVP scope -- because AI asked you the right questions first.
-
-### Ценность 2: Speed -- 2-3 hours instead of 20-40
-
-The typical path from "I have an idea" to "I have a clear plan and documents" takes 20-40 hours across courses, YouTube, consultants, and trial-and-error. LaunchPilot gives you the same output in 30-60 minutes of guided work. Add 2-4 hours for your first prototype with the vibe-coding plan, and you're at under half a day total.
-
-**Concrete difference:** Sunday afternoon. You have an idea. By Sunday evening, you have a PRD, a risk assessment, landing copy, an analytics plan, and a vibe-coding plan. Monday morning, you start building. That's not a pitch -- it's the actual timeline.
-
-### Ценность 3: Insurance against $5-20K mistakes
-
-The #1 reason first-time founders fail: they build before they think. They spend $5,000-$20,000 on development (or 200+ hours vibe-coding) only to discover nobody wants what they built. LaunchPilot forces you through the thinking process first -- segments, jobs, risks, validation plan -- using a methodology tested on 11,000+ graduates.
-
-**Concrete difference:** Before you write a single line of code or spend a single dollar, you'll know: (1) who your product is for, (2) what job it does for them, (3) what the riskiest assumptions are, and (4) how to test them for $0-$100 instead of $5,000-$20,000.
-
-### Ценность 4: A $29/month product consultant (instead of $150-500/hour)
-
-A good product consultant charges $150-$500 per hour. For a proper product strategy session, you're looking at $1,500-$5,000. LaunchPilot delivers a comparable output -- structured segments, jobs, risks, PRD, validation plan -- for $29/month (or $0 for your first project). And it's available 24/7, not "next Thursday at 3pm."
-
-**Concrete difference:** You don't wait for a meeting. You don't prepare a deck. You open LaunchPilot, describe your idea, and get the output that a consultant would deliver after a $500 session -- in 30 minutes, at midnight, in your pajamas.
-
-### CTA
-
-Get your first project free
-
----
-
-## Блок 6: "Узнаёшь себя?" (сегменты и триггеры)
-
-**Описание блока (RU):** Человек узнаёт себя через контекст и триггер -- это крючок внимания по AURA. Три блока -- три сегмента. Каждый блок описывает конкретную ситуацию, конкретный триггер, конкретную эмоцию. Не демография -- контекст.
-
-### Заголовок
-
-**Sound familiar?**
-
-### Сегмент 1: Non-Technical Founder
-
-**"I have a business idea that won't leave me alone."**
-
-You've been thinking about this for weeks. Maybe months. You've told friends about it. You've Googled competitors. You've even opened Cursor once and stared at the blank screen.
-
-But here's the thing: you're not a developer. You don't know if the idea is good enough to invest $5,000-$20,000 in. You don't know what to build first. And every YouTube video gives you a different answer.
-
-You need someone (or something) to sit you down and say: "Here's exactly what you should build, for whom, and why -- and here's how to do it yourself with AI tools."
-
-**LaunchPilot was built for this moment.** In 30 minutes, you'll have clarity you couldn't get from 30 hours of research.
-
-### Сегмент 2: Solopreneur / Side-Hustler
-
-**"I have 5-10 hours a week. I can't afford to waste them."**
-
-You have a day job. You want a side project that generates income. You've probably tried vibe-coding already -- Cursor, Lovable, Bolt -- and built something that looks like an app but doesn't feel like a product.
-
-Nobody's using it. The problem? You started with code, not with thinking. You built features, not value.
-
-You need a fast way to figure out: Is this idea worth my evenings? And if yes -- what's the fastest path from here to something people will pay for?
-
-**LaunchPilot gives you the answer in 2-3 evenings.** Not "maybe." A clear GO, PIVOT, or KILL -- with a plan for what to do next.
-
-### Сегмент 3: AI-Curious Professional
-
-**"AI is changing everything. I need to keep up."**
-
-You're a PM, a designer, a marketer, an analyst. You see your industry being reshaped by AI. Colleagues are building side projects. Twitter is full of "I built this in a weekend" posts. You need a practical framework -- not another $4,000 certificate.
-
-You want to understand product thinking (JTBD, risk assessment, MVP scoping) and combine it with hands-on AI tool skills. You want a portfolio case, not a diploma.
-
-**LaunchPilot teaches you by doing.** Apply a real product framework to a real idea. Walk out with documents, a vibe-coding plan, and a case for your portfolio.
-
-### CTA
-
-Which one is you? Start free.
-
----
-
-## Блок 7: Как это работает (5 шагов guided flow)
-
-**Описание блока (RU):** Визуальное описание 5 шагов guided flow из PRD. Для каждого шага: конкретное время, конкретный output, конкретная ценность. На каждом шаге -- напоминание, к какой Big Job ведём (не ломать клиента -- механика из AURA).
-
-### Заголовок
-
-**Five steps. One session. Every document you need.**
-
-### Подзаголовок
-
-From raw idea to a complete build plan in 30-60 minutes. Here's exactly how it works.
-
-### Шаги
-
-**Step 1: Tell LaunchPilot about your idea** (10-15 minutes)
-Describe your idea in plain English -- no jargon, no templates. AI conducts a structured interview: asks about your user, their problem, the context, current alternatives. On every question, it explains *why* it's asking -- so you learn product thinking as you go.
-*Output: Idea Summary -- a clear, structured description of your product concept.*
-*What you learn: How to think about ideas through the lens of real human needs, not features.*
-
-**Step 2: Discover your target segments and their jobs** (5 minutes)
-AI generates 2-4 user segments with their jobs (goals), success criteria, frequency, and current alternatives. You pick the one with the highest potential. AI explains the formula behind the recommendation.
-*Output: Segments & Jobs document -- your north star for every decision.*
-*What you learn: JTBD segmentation -- why "who has this problem" matters more than "who is 25-35 years old."*
-
-> **This is where the magic happens.** At minute 20-25, you see your raw idea transformed into a structured map of real human needs. Most founders say this is the moment they realize: "Now I actually understand what I'm building."
-
-**Step 3: Assess your risks before you spend a dollar** (5-10 minutes)
-AI identifies 5-10 riskiest assumptions and ranks them using the RAT formula: (Probability x Impact) / Cost to Test. You get a validation plan with interview scripts and testing methods for your top 3 risks.
-*Output: Risk Priority document + Validation Plan.*
-*What you learn: RAT framework -- the same risk prioritization used by the best product teams.*
-
-**Step 4: Get your PRD and bonus documents** (2 minutes)
-AI generates a complete PRD with user stories, MVP scope, and technical instructions optimized for Cursor, Claude Code, and Lovable. Plus: landing page copy, analytics plan, and competitor analysis -- generated automatically.
-*Output: PRD + Landing Copy + Analytics Plan + Competitor Analysis.*
-*What you learn: How to define MVP scope -- what to build first and what to cut (and why).*
-
-**Step 5: Get your vibe-coding plan** (5 minutes)
-AI recommends the right tool for your project type (Cursor, Claude Code, Lovable, Bolt.new), gives you a setup micro-guide, a library of prompts based on YOUR PRD, and a step-by-step checklist to your first working prototype.
-*Output: Vibe-Coding Plan -- tool + setup + prompts + checklist.*
-*What you learn: How to give AI the right instructions -- the skill that separates a working product from a broken demo.*
-
-### Summary
-
-| Step | Time | Output | What you learn |
-|------|------|--------|----------------|
-| 1. Tell your idea | 10-15 min | Idea Summary | Problem-first thinking |
-| 2. Segments & Jobs | 5 min | Segments doc | JTBD segmentation |
-| 3. Risk Assessment | 5-10 min | Risk + Validation Plan | RAT framework |
-| 4. PRD + Documents | 2 min | PRD, Landing, Analytics | MVP scoping |
-| 5. Vibe-Coding Plan | 5 min | Prompts + Checklist | AI tool mastery |
-| **Total** | **30-60 min** | **6 documents** | **Product thinking framework** |
-
-### CTA
-
-Start Step 1 -- free
-
----
-
-## Блок 8: Точка Б (Big Job + эмоции)
-
-**Описание блока (RU):** Показываем Big Job -- не Core Job. Баннер про то, как ты себя чувствуешь в точке B. Эмоциональный блок, который отвечает на вопрос "зачем всё это?" для каждого сегмента. Формула AURA: визуализируй точку B, а не процесс.
-
-### Заголовок
-
-**Imagine it's 30 days from now.**
-
-### Текст
-
-**If you're a founder:**
-You've validated your idea with real people. Your PRD is in Cursor. Your prototype is live. Three potential customers have signed up for early access. You're not wondering "should I build this?" anymore -- you're wondering "how fast can I ship the next feature?"
-
-You didn't quit your job. You didn't spend $20,000. You spent a few evenings and a $29/month subscription.
-
-**If you're a side-hustler:**
-Your side project has a landing page, 47 email signups, and a working MVP. You showed it to your Indie Hackers community and got your first paying customer -- $12/month. It's not life-changing money yet. But it's proof. Proof that you can build something people want, on your own time, with your own hands.
-
-**If you're a professional:**
-You presented a structured product proposal at work -- segments, jobs, risks, MVP scope. Your manager asked where you learned this. "I used a tool that teaches you product thinking by applying it to a real idea," you said. Now you're leading the AI integration project.
-
-**The common thread:** You stopped consuming and started creating. You stopped asking "will it work?" and started testing. You went from idea to action in hours, not months.
-
-### CTA
-
-Start building your future -- free
-
----
-
-## Блок 9: Снижение барьеров (6 страхов)
-
-**Описание блока (RU):** Сообщение 3: "У тебя есть страхи -- мы их снизим". Конкретные страхи реальных людей, конкретные ответы. Два типа страхов по AURA: (1) страхи к работе ("получится ли у меня вообще?"), (2) страхи к нашему решению ("сработает ли именно ваш продукт?").
-
-### Заголовок
-
-**"Yeah, but..."**
-We've heard every objection. Here are honest answers.
-
-### Страх 1: "I'm not technical. I can't build a product."
-
-You don't need to be. LaunchPilot doesn't ask you to code. It teaches you to *think* about products and generates the *documents* that AI coding tools understand. When you open Cursor or Lovable with a well-structured PRD and targeted prompts, the tool does the coding -- you do the thinking. 11,000+ non-technical people have built products using the methodology behind LaunchPilot.
-
-### Страх 2: "AI-generated documents are generic and useless."
-
-They are -- if you don't give AI the right context. That's exactly what LaunchPilot solves. It conducts a structured interview about YOUR idea, YOUR users, YOUR context before generating anything. The output isn't a template with your name plugged in. It's a document that reflects your specific segments, their specific jobs, and your specific risks. Compare our Aha-moment example above with what ChatGPT gives you.
-
-### Страх 3: "I've already tried Cursor/Lovable and it didn't work."
-
-That's actually the best starting point. The reason vibe-coding "doesn't work" for most people is not the tool -- it's the input. A vague prompt produces a vague product. LaunchPilot gives you the precise input: a PRD with user stories, MVP scope, and prompts specifically written for AI coding tools. Same tool, dramatically better results.
-
-### Страх 4: "How is this different from ChatGPT? I can do all of this for $20/month."
-
-You can't -- unless you already know product thinking methodology. ChatGPT answers questions. LaunchPilot *asks* the right questions. ChatGPT doesn't know JTBD, RAT, or critical job chains. It doesn't conduct a structured interview. It doesn't prioritize risks by formula. It doesn't generate prompts optimized for Cursor. You could spend 5 hours trying to make ChatGPT do what LaunchPilot does in 30 minutes -- and the output still won't be as structured.
-
-### Страх 5: "What if my idea is bad?"
-
-Then LaunchPilot is the cheapest way to find out. Step 3 (Risk Assessment) gives you a clear signal: GO, PIVOT, or KILL. If your idea has critical unvalidated risks, you'll know in 25 minutes -- not after spending $10,000 on development. Finding out your idea needs pivoting is not a failure. It's saving you months and thousands of dollars.
-
-### Страх 6: "$29/month is another subscription I'll forget about."
-
-Your first project is completely free. You'll have all 6 documents before you ever see a pricing page. If the free project doesn't convince you, don't subscribe -- you still keep all the documents. And if you do subscribe: you can cancel anytime, no commitments, no hidden fees. Most users generate enough value in one session to justify 6 months of subscription.
-
-### CTA
-
-Try free. Decide later.
-
----
-
-## Блок 10: Увольнение конкурентов
-
-**Описание блока (RU):** Активирующее знание по AURA: (1) есть более эффективный способ, (2) он не страшный, (3) текущий способ хуже. Показываем, почему текущие решения не выполняют работу полностью. Не атакуем конкурентов -- увольняем их через конкретные критерии.
-
-### Заголовок
-
-**You've probably tried some of these. Here's what's missing.**
-
-### Конкурент 1: "I'll just use ChatGPT / Claude"
-
-**What it does well:** General Q&A, brainstorming, basic document generation.
-**What's missing:** No methodology. No structured interview. No risk prioritization. No vibe-coding prompts. Every conversation starts from zero -- no project memory. You need to already know what questions to ask, which defeats the purpose. You spend 3-5 hours prompt-engineering to get what LaunchPilot gives you in 30 minutes -- and the output is still less structured.
-
-### Конкурент 2: "I'll take a course (Buildcamp, Scrimba, Product School)"
-
-**What it does well:** Teaching coding skills or product management theory.
-**What's missing:** Courses teach generic skills on generic examples. They take 20-40 hours. They don't generate documents for YOUR idea. They don't combine product thinking with vibe-coding. By the time you finish a course, your motivation may be gone. LaunchPilot teaches you the same principles -- by applying them to your real idea, in one session.
-
-### Конкурент 3: "I'll use a PRD generator (ChatPRD, PRDGPT)"
-
-**What it does well:** Generating PRD documents for product managers.
-**What's missing:** They're built for PMs in companies, not for founders building from scratch. They don't teach you *why* the PRD looks this way. They don't assess risks. They don't generate landing copy or analytics plans. They don't give you vibe-coding prompts. A PRD without product thinking behind it is just a fancy to-do list.
-
-### Конкурент 4: "I'll validate my idea with DimeADozen or IdeaProof"
-
-**What it does well:** Quick market reports and business viability scores.
-**What's missing:** You get a 40-page report and then... what? No teaching. No action plan. No PRD. No vibe-coding guidance. It's a one-time snapshot that doesn't help you build. You paid $45-$99 for a document that sits in your Downloads folder.
-
-### Конкурент 5: "I'll just jump into Lovable / Cursor and figure it out"
-
-**What it does well:** Generating code from natural language prompts.
-**What's missing:** The tool is only as good as the input. "Build me a coffee shop finder app" produces a generic, unusable prototype. But "Build Step 1 of this PRD: [detailed user stories, MVP scope, technical requirements]" produces something you can actually test with users. LaunchPilot creates that input. The coding tool executes it.
-
-### Summary
-
-| Alternative | Documents | Teaching | Vibe-Coding Plan | Risk Assessment | Personalized |
-|---|---|---|---|---|---|
-| ChatGPT/Claude | Generic | No | No | No | No |
-| Courses | No | Yes (generic) | Partial | No | No |
-| ChatPRD/PRDGPT | PRD only | No | No | No | Partial |
-| DimeADozen/IdeaProof | Report only | No | No | Partial | No |
-| Lovable/Cursor | No | No | N/A | No | No |
-| **LaunchPilot** | **6 documents** | **Yes (contextual)** | **Yes (personalized)** | **Yes (RAT)** | **Yes (AI interview)** |
-
-### CTA
-
-See the difference yourself -- start free
-
----
-
-## Блок 11: Финальный CTA
-
-**Описание блока (RU):** Последний экран. Напоминание о Big Job. Максимально простой CTA. Снятие последнего барьера (бесплатно, без карты, быстро).
-
-### Заголовок
-
-**Your idea deserves more than "maybe someday."**
-
-### Текст
-
-You've been thinking about this idea. You've been Googling competitors, watching videos, reading threads. The research phase is over.
-
-In the next 30 minutes, you can have:
-- A structured description of your product
-- Target segments with real human needs
-- A risk assessment that tells you what to test first
-- A complete PRD ready for Cursor or Lovable
-- A vibe-coding plan to build your first prototype this week
-
-All for free. No credit card. No meeting. No course to finish.
-
-The people who launch businesses aren't smarter than you. They just stop researching and start building.
-
-### CTA
-
-**Primary button:** Describe your idea -- start free
-**Secondary text:** Takes 30 seconds to sign up. 30 minutes to your first document set. 100% free for your first project.
-
-### Social proof placeholder (для заполнения после запуска)
-
-*"I went from a 3-paragraph idea to a full PRD and risk assessment in 28 minutes. This is what ChatGPT should have been for founders." -- [Beta User Name]*
-
-*Methodology tested on 11,000+ graduates. Average course rating: 9.6/10.*
-
----
----
-
-# ЧАСТЬ 2: Маркетинговые гипотезы каналов
+# ЧАСТЬ 1: Маркетинговые гипотезы каналов
 
 ---
 
@@ -682,13 +221,49 @@ Try it. 30 minutes. Free. Your next project will thank you."
 **Стратегия AURA:** Загрузка активирующего знания (3 вопроса). Увольнение конкурирующего подхода ("skip thinking, jump to building"). Конкретная формула > абстрактный совет.
 
 ---
+
+## Гипотеза 9: Re-engagement email sequence
+
+> *Добавлена по результатам кросс-верификации (Важное улучшение #8): все 8 предыдущих гипотез сфокусированы на acquisition, нет ни одной retention-маркетинговой гипотезы.*
+
+**Канал:** Email (automated)
+**Сегмент:** Все -- пользователи, не вернувшиеся после первого flow
+**Триггер:** D+3 / D+7 / D+14 после первого flow completion
+**Формат:** Email-цепочка
+
+**Сообщения:**
+
+- **D+3:** "Quick tip: here's how to get more from your Vibe-Coding Plan" (полезный контент)
+- **D+7:** "Have you talked to potential users yet? Here's what to ask" (активирующие знания)
+- **D+14:** "Your market changed. Time to update your PRD?" (триггер возврата)
+
+**CTA:** "Update your project" / "Start a new idea"
+**Метрика успеха:** Open rate >30%, Click rate >5%, D30 return rate +10pp
+**Почему сработает:** Привязка к Next Job (валидация, обновление) создаёт реальную причину вернуться. Каждый email содержит конкретную ценность (инсайт, скрипт, действие), а не просто напоминание. Принцип AURA: ценность привлекает, push отталкивает.
+
 ---
 
-# ЧАСТЬ 3: Гипотезы стратегии воронки
+## Гипотеза 10: Build in Public community
+
+> *Добавлена по результатам кросс-верификации (Важное улучшение #8): дополнение к retention-маркетингу + создание вирального канала.*
+
+**Канал:** Community (Twitter/X + Discord/Slack)
+**Сегмент:** Founders 0->1, Solopreneurs
+**Триггер:** Пользователь завершил guided flow
+**Формат:** Шаблон "My LaunchPilot journey" для Twitter + community-канал
+**Сообщение:** "Share your product idea journey -- get feedback from other builders"
+**CTA:** "Post your progress" / "Join the community"
+**Метрика успеха:** 10% пользователей share, 5% referral conversion
+**Почему сработает:** Виральная job -- "Share my progress" создаёт бесплатный канал и повышает retention через accountability. Пользователи получают фидбек от сообщества, что создаёт причину вернуться и обновить документы. Принцип AURA: виральная работа -- работа, которая выполняется для других людей или вместе с другими людьми.
+
+---
+---
+
+# ЧАСТЬ 2: Гипотезы стратегии воронки
 
 ---
 
-## 3.1. Previous Job -> Lead Magnet
+## 2.1. Previous Job -> Lead Magnet
 
 **Принцип AURA:** Выход на предыдущую работу -- перехватить клиента до того, как он начал искать наших прямых конкурентов.
 
@@ -733,7 +308,7 @@ Previous Job: "Получить шаблон PRD для Cursor/Lovable"
 
 ---
 
-## 3.2. Активирующие знания -> Контент
+## 2.2. Активирующие знания -> Контент
 
 **Принцип AURA:** Активирующее знание -- это 3 компонента: (1) знание про более эффективный способ, (2) снижение страхов, (3) увольнение конкурентов.
 
@@ -761,7 +336,7 @@ Previous Job: "Получить шаблон PRD для Cursor/Lovable"
 
 ---
 
-## 3.3. Виральные Jobs
+## 2.3. Виральные Jobs
 
 **Принцип AURA:** Виральная работа -- работа, которая выполняется для других людей или вместе с другими людьми.
 
@@ -781,7 +356,7 @@ Previous Job: "Получить шаблон PRD для Cursor/Lovable"
 
 ---
 
-## 3.4. Aha-момент на лендинге
+## 2.4. Aha-момент на лендинге
 
 **Принцип AURA:** Сдвиг Aha-момента влево -- дать прожить ценность до регистрации.
 
@@ -798,12 +373,12 @@ Previous Job: "Получить шаблон PRD для Cursor/Lovable"
 
 ---
 
-## 3.5. Семь факторов конверсии -- чеклист для LaunchPilot
+## 2.5. Семь факторов конверсии -- чеклист для LaunchPilot
 
 | # | Фактор | Как обеспечиваем |
 |---|--------|-----------------|
 | 1 | Привлекли лида с работой | SEO/GEO-статьи по "how to validate idea", "how to write PRD for AI", "vibe-coding plan". Reddit/IH посты с конкретными кейсами. Google Ads по intent-запросам. |
-| 2 | Предложили ценность выше ожиданий | 6 документов за 30 минут vs 20-40 часов. $0 vs $150-500/час. Обучение в процессе vs отдельный курс. Персонализация vs шаблоны. |
+| 2 | Предложили ценность выше ожиданий | 8 документов за 30 минут vs 20-40 часов. $0 vs $150-500/час. Обучение в процессе vs отдельный курс. Персонализация vs шаблоны. |
 | 3 | Лид понял ценность продукта | Лендинг построен по AURA: Блок 2 (конкретные числа), Блок 4 (Aha-момент на лендинге), Блок 7 (5 шагов с конкретными outputs). Язык клиента, не фич. |
 | 4 | У лида нет тревог к работе | Блок 9 (страх 1: "I'm not technical", страх 5: "what if my idea is bad"). Конкретные ответы с кейсами. |
 | 5 | У лида нет тревог к нашему решению | Блок 9 (страх 2: "AI is generic", страх 4: "how is this different from ChatGPT"). Блок 4 (живой пример). Блок 10 (сравнение с альтернативами). Social proof: 11,000+ graduates, 9.6/10. |
@@ -813,7 +388,7 @@ Previous Job: "Получить шаблон PRD для Cursor/Lovable"
 ---
 ---
 
-# ЧАСТЬ 4: Cross-sell, Upsell, Retention-механики
+# ЧАСТЬ 3: Cross-sell, Upsell, Retention-механики
 
 ---
 
@@ -867,8 +442,8 @@ Previous Job: "Получить шаблон PRD для Cursor/Lovable"
 
 **Триггер:** Пользователь завершил первый бесплатный проект и хочет начать второй.
 **Момент:** При нажатии "New Project" после лимита 2 бесплатных проектов.
-**Сообщение:** "Your first project used LaunchPilot's free tier. You generated [6 documents] in [38 minutes]. Ready for your next idea? Pro plan: unlimited projects, unlimited PRD iterations, full prompt library, PDF export. $29/month -- cancel anytime."
-**Механика AURA:** Напоминание о полученной ценности ("you generated 6 documents in 38 minutes") + конкретные критерии Pro ("unlimited projects, unlimited iterations").
+**Сообщение:** "Your first project used LaunchPilot's free tier. You generated [8 documents] in [38 minutes]. Ready for your next idea? Pro plan: unlimited projects, unlimited PRD iterations, full prompt library, PDF export. $29/month -- cancel anytime."
+**Механика AURA:** Напоминание о полученной ценности ("you generated 8 documents in 38 minutes") + конкретные критерии Pro ("unlimited projects, unlimited iterations").
 **Метрика:** Free-to-Pro conversion rate. Цель: >5%.
 
 ### Upsell 2: Pro -> Builder ($49/мес)
@@ -969,20 +544,10 @@ LaunchPilot: PRD + Risk Assessment + Vibe-Coding Plan
 **Почему это работает для retention:** Каждое новое знание (интервью, метрики, фидбек) -- причина вернуться и обновить документы. Документы становятся "источником правды" о проекте. Чем больше итераций -- тем выше switching costs (уйти = потерять историю и контекст).
 
 ---
----
 
-# Приложение: Резюме ключевых решений
+## Приложение: Список изменений по результатам кросс-верификации
 
-## Язык лендинга
-Английский (US market). Все тексты готовы к публикации.
-
-## Методология
-Лендинг построен по AURA: One-liner -> Core Job + Ценность -> Micro Jobs -> Aha-момент -> Ценность по jobs -> Сегменты и триггеры -> Как это работает -> Big Job -> Снижение барьеров -> Увольнение конкурентов -> Финальный CTA.
-
-## Ключевые коммуникационные решения
-1. **Заходим через Big Job** ("launch your business", "financial independence"), не через Core Job ("generate a PRD")
-2. **Конкретные числа везде**: 30 минут, 6 документов, $0, 11,000+ graduates, 9.6/10
-3. **Язык клиента**: "messy idea", "vibe-coding", "Cursor", "side project", не "AI-powered document generation platform"
-4. **Aha-момент на лендинге**: Блок 4 показывает трансформацию идеи до регистрации
-5. **Увольнение конкурентов через конкретику**: не "мы лучше", а таблица с конкретными критериями
-6. **Freemium как снижение барьера**: "First project 100% free" повторяется на каждом CTA
+| # | Что изменено | Где | Причина |
+|---|---|---|---|
+| 1 | Добавлены гипотезы 9 и 10 (retention-маркетинг) | ЧАСТЬ 1, после гипотезы 8 | Важное улучшение #8: все acquisition-гипотезы, нет retention. Добавлены re-engagement email sequence и Build in Public community |
+| 2 | "6 documents" исправлено на "8 documents" | ЧАСТЬ 2 (чеклист конверсии), ЧАСТЬ 3 (Upsell 1) | Кросс-верификация: фактически генерируется 8 документов |
