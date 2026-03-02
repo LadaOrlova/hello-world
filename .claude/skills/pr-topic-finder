@@ -1,0 +1,290 @@
+---
+name: pr-topic-finder
+description: Scan the entire repository and build a fresh digest of Ivan's strongest insights, cases, and frameworks. Run this before working with the PR manager on new pitches for media outlets. Runs fresh every time.
+user-invocable: true
+---
+
+# Skill: PR Topic Finder — Repository Digest
+
+This skill scans the entire Zamesin-Academy-Team repository and produces a structured digest of Ivan's best material. The PR manager loads this digest into Claude.ai to brainstorm article topics and theses for specific media outlets.
+
+Runs fresh every time — no caching, no stale data.
+
+## Input
+
+Optional: outlet name and/or URL.
+If provided — the digest will flag which materials are most relevant for that outlet's audience.
+If not provided — produces a general digest of the strongest current material.
+
+---
+
+## STAGE 1: Map the repository
+
+### Step 1.1: Read the main index
+```
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/1-Context/AURA-Theses/_index.md
+```
+
+Note all sections, folders, and their descriptions.
+
+### Step 1.2: Read the book concept
+```
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/3-Marketing/2-Writing-Book/bookconcept.md
+```
+
+Extract:
+- Main themes of the book
+- Target audience segments and their Jobs
+- Key methodologies (AURA, AJTBD, RAT, etc.)
+- What Ivan considers his core intellectual contribution
+
+### Step 1.3: Check what has already been published
+
+Read all files from:
+```
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/3-Marketing/2-PR-Articles/Theses/
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/3-Marketing/2-PR-Articles/Drafts/
+```
+
+For each file note:
+- Topic
+- Outlet (if specified)
+- Whether a full article was written or just theses
+
+This list = **DO NOT REPEAT** list. Flag these topics when they come up later.
+
+---
+
+## STAGE 2: Collect material from across the repository
+
+### Step 2.1: Recent book chapters
+
+Read the 3–5 most recently modified files from:
+```
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/3-Marketing/2-Writing-Book/
+```
+
+For each chapter extract:
+- Main argument (1–2 sentences)
+- The most surprising or counterintuitive claim
+- Any concrete cases with numbers or named companies/teams
+- Ivan's specific frameworks or named concepts
+
+### Step 2.2: Core knowledge base
+
+Read key files from these folders. Use the _index.md to navigate — do not read everything blindly, pick the most substantive files:
+```
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/1-Context/AURA-Theses/AJTBD/
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/1-Context/AURA-Theses/AURA/
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/1-Context/AURA-Theses/Algorithms/
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/1-Context/AURA-Theses/RAT/
+```
+
+And any other folders found in the index that seem relevant.
+
+For each substantive file extract:
+- Core idea (1–2 sentences)
+- Any claim that contradicts mainstream product management thinking
+- Concrete mechanisms or step-by-step frameworks
+- Cases with specifics
+
+### Step 2.3: Raw sources and uncategorised material
+
+Check:
+```
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/1-Context/AURA-Theses/Raw Source/
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/1-Context/AURA-Theses/_uncategorized.md
+```
+
+Look for: fresh thinking that has not made it into the main knowledge base yet — these are often the most original ideas.
+
+---
+
+## STAGE 3: Categorise and prioritise material
+
+Sort everything found into four categories:
+
+### Category 1: Provocative (against mainstream)
+Claims that most product managers or founders would push back on.
+These make the strongest article hooks and pitches.
+Test: "Would a senior PM at Google say this is wrong?" If yes — flag it here.
+
+### Category 2: Practical (Ivan's cases with specifics)
+Material that includes real examples from Ivan's practice — named teams, numbers, outcomes.
+First-person experience = credibility = what editors want.
+Test: Is there a named situation, a before/after, a concrete number?
+
+### Category 3: Frameworks and algorithms
+Structured, named methodologies that can be presented as a "method" or "system".
+These work well for how-to and guide formats that many outlets prefer.
+Test: Can you describe this in 3–5 steps?
+
+### Category 4: Fresh / not yet published
+Material from the repository that has NOT become an article yet.
+Cross-check against the DO NOT REPEAT list from Stage 1.3.
+
+---
+
+## STAGE 4: Build outlet focus (if outlet specified)
+
+If an outlet name/URL was provided:
+
+Think through what you know about this outlet's audience:
+- Who reads it? (founders, PMs, engineers, investors, generalist tech audience?)
+- What format do they prefer? (how-to, opinion, data-driven, case study?)
+- What level of sophistication? (beginner-friendly vs assumes deep domain knowledge?)
+
+Flag which materials from Stages 2–3 best match this audience.
+Note: which category (provocative / practical / framework) tends to work best for this outlet type.
+
+---
+
+## STAGE 5: Build the digest file
+
+Create the output file:
+```
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/3-Marketing/2-PR-Articles/PR-digest-{YYYY-MM-DD}.md
+```
+
+### Digest format:
+```markdown
+# PR Topic Digest — {date}
+{If outlet specified: "Focus: {outlet name} — {one sentence on their audience}"}
+Generated fresh on {date}. Load this file into Claude.ai to work on pitches.
+
+---
+
+## Context: What Ivan writes about
+
+{3–4 sentences: main themes, key methodologies, who the target audience is.
+Written so a PR manager can quickly explain Ivan's expertise to an editor.}
+
+---
+
+## Topics already covered — do not repeat
+
+| Topic | Article written? | Outlet |
+|-------|-----------------|--------|
+| {topic} | Yes / Theses only | {outlet if known} |
+| ... | ... | ... |
+
+---
+
+## 🔥 Provocative — against mainstream thinking
+
+> These make the strongest pitches. Editors want takes that challenge received wisdom.
+
+### {Claim title}
+**The claim:** {1–2 sentences — what Ivan argues}
+**Why it's provocative:** {what most people believe instead}
+**Supporting material:** {concrete case or data point if available}
+**Source in repository:** {file path}
+{If outlet specified: **Fit for {outlet}:** {why this works or doesn't for their audience}}
+
+### {Next claim}
+...
+
+---
+
+## 💼 Practical — Ivan's cases with specifics
+
+> First-person experience with named situations and numbers. Editors love this.
+
+### {Case title}
+**What happened:** {2–3 sentences — specific situation, what Ivan or his clients did}
+**Result:** {numbers or outcome}
+**The lesson:** {1 sentence — what this illustrates}
+**Source in repository:** {file path}
+{If outlet specified: **Fit for {outlet}:** {why this works or doesn't}}
+
+### {Next case}
+...
+
+---
+
+## 🧩 Frameworks and algorithms
+
+> Structured methods that can be presented as a "system" or "guide". Works well for how-to formats.
+
+### {Framework name}
+**What it is:** {1–2 sentences}
+**The steps:** {brief list}
+**Why it's not obvious:** {what makes this different from generic advice}
+**Source in repository:** {file path}
+{If outlet specified: **Fit for {outlet}:** {why this works or doesn't}}
+
+### {Next framework}
+...
+
+---
+
+## 🌱 Fresh material — not yet published anywhere
+
+> Material from the repository that has not become an article yet. Highest priority for new pitches.
+
+### {Topic}
+**Core idea:** {1–2 sentences}
+**Why it's pitchable:** {what makes this interesting to an editor}
+**Available material:** {what exists in the repo — cases, frameworks, data?}
+**Source in repository:** {file path}
+
+### {Next topic}
+...
+
+---
+
+## Suggested starting points for pitches
+
+Top 3 strongest candidates for new articles based on everything above:
+
+1. **{Topic}** — {one sentence why this is the strongest pick right now}
+   Best format: {how-to / opinion / case study / framework}
+   {If outlet specified: Best fit outlet section: {specific section or column}}
+
+2. **{Topic}** — ...
+
+3. **{Topic}** — ...
+
+---
+
+## How to use this digest
+
+Load this file into Claude.ai and say:
+"Here is Ivan's material digest. I'm pitching to {outlet}. Help me develop topics and theses for a pitch."
+
+Claude will use the material here to build specific topics and thesis drafts grounded in Ivan's actual expertise.
+```
+
+---
+
+## Quality checklist
+
+- [ ] Main index read and repository structure mapped
+- [ ] bookconcept.md read — themes and audience understood
+- [ ] All existing articles and theses checked — DO NOT REPEAT list built
+- [ ] Recent book chapters read (3–5 most recent)
+- [ ] Core knowledge base folders scanned via index
+- [ ] Raw Source and uncategorised material checked
+- [ ] All four categories populated with material
+- [ ] Every item has a source file path from the repository
+- [ ] DO NOT REPEAT list cross-checked — no already-published topics included as suggestions
+- [ ] If outlet specified — fit assessment added to each item
+- [ ] Top 3 suggested starting points included
+- [ ] Digest file saved with today's date in the filename
+- [ ] Final sentence in digest tells PR manager exactly how to use it
+```
+
+---
+
+Оба скилла готовы. Теперь команда для Вани — он запускает её в Claude Code и оба файла создаются сразу в нужных папках:
+
+---
+
+**Команда для Вани:**
+```
+Create two new skill folders in the repository:
+
+1. /Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/.claude/skills/pr-article-draft/SKILL.md
+2. /Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/.claude/skills/pr-topic-finder/SKILL.md
+
+The PR manager will paste the content of each file.
