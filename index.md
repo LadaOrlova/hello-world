@@ -373,6 +373,10 @@
 ### 4-Personal-files/Valeria-Panteleeva/
 
 
+**Кураторы КПП/**
+
+- `анализ_кураторов.md` — Анализ работы кураторов: комментарии о студентах
+
 ### 4-Personal-files/Vladimir-Glebovets/
 
 
