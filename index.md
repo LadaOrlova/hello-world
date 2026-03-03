@@ -6,6 +6,7 @@
 
 | Папка | Что внутри |
 |-------|-----------|
+| `.codex/` | — |
 | `1-Context/` | Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт" |
 | `2-Products/` | Продуктовые материалы и новые продукты |
 | `3-Marketing/` | Маркетинг: вебинары, идеи продвижения |
@@ -13,6 +14,70 @@
 | `4-Personal-files/` | Персональные рабочие папки участников команды |
 | `5-ZIS/` | Zamesin Innovation School: LMS и идеи |
 | `8-Prompts-and-Scripts/` | Промпты и скрипты для автоматизации |
+
+---
+
+## .codex/
+
+
+### .codex/skills/
+
+
+**new-article-draft/**
+
+- `SKILL.md` — Скилл: New Article Draft (Double Diamond — СТРУКТУРИРОВАНИЕ)
+
+*agents/*
+
+- `openai.yaml`
+
+*references/*
+
+- `humanity-pass-checklist.md` — Humanity Pass Checklist
+- `style-fingerprint-template.md` — Style Fingerprint Template
+
+**new-article-thesis/**
+
+- `SKILL.md` — Скилл: Создание тезисов главы (Double Diamond — РАСХОЖДЕНИЕ)
+
+*agents/*
+
+- `openai.yaml`
+
+### .codex/temp/
+
+
+**draft-ai-changes-pm-role-mtp/**
+
+- `00-must-include.md` — 00 — MUST-INCLUDE checklist (raw extraction)
+- `01-publication-signal-pack.md` — 01 — Publication signal pack (Mind the Product)
+- `02-style-fingerprint.md` — 02 — Style fingerprint (Mind the Product)
+- `03-case-pack.md` — 03 — Case pack (URLs + boundaries)
+- `04-narrative-plan.md` — 04 — Narrative plan (Mind the Product)
+- `05-section-briefs.md` — 05 — Section briefs (blueprint for draft)
+- `06-draft-v1.md` — 📝 Author notes for iteration
+- `07-quality-report.md` — 07 — Quality report (v1)
+- `_spring-context.md` — Draft context: AI Changes the PM Role (Mind the Product)
+
+**thesis-changes-how-we-make-products/**
+
+- `_spring-context.md` — Spring Context — Thesis: Changes How We Make Products (MindTheProduct)
+
+**thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/**
+
+- `01-raw-theses.md` — 01 — Raw Theses Extract (извлечённые тезисы без потерь)
+- `02-first-principles.md` — 02 — First-Principles разбор (декомпозиция на факты, инварианты, допущения)
+- `03-order-effects.md` — 03 — Последствия 2-го и 3-го порядка (карта эффектов)
+- `03-thesis-bank.md` — 03 — Thesis Bank (30–60 кандидатных тезисов)
+- `03-thesis-combinatorics.md` — 03 — Комбинаторика тезисов (гибриды через 5 операторов)
+- `04-synthesis.md` — 04 — Synthesis (объединённые тезисы перед финальным файлом)
+- `_spring-context.md` — Spring Context — Thesis: How to Find Product-Market Fit Fast — and Pivot the Right Way
+- `agent-contrarian.md` — Agent Report — contrarian
+- `agent-expert-hunter.md` — Agent Report — expert-hunter
+- `agent-knowledge-researcher.md` — Agent Report — knowledge-researcher
+- `agent-log.md` — Agent Log
+- `agent-requests.md` — Agent Requests
+- `coverage-round-1.md` — Coverage Round 1 — Quality Control
 
 ---
 
@@ -213,6 +278,25 @@
 
 - `web.md`
 
+### 3-Marketing/2-PR-Articles/
+
+- `web-theses.md` — Тезисы из вебинара: "Внедрение Jobs 3.0: кейс Дениса"
+- `web.md` — Расшифровка: Внедрение Jobs 3.0: кейс Дениса
+
+**1-Thoughts/**
+
+- `changes-how-we-make-products.md` — Вводные
+- `how-to-find-pmf-hackernoon.md` — Бриф от издания
+
+**2-Theses/**
+
+- `Theses-AI-Changes-PM-Role-MtP.md` — Инструкция для draft-этапа
+- `Theses-How-to-Find-Product-Market-Fit-Fast-and-Pivot-the-Right-Way.md` — 📝 Инструкция для draft-этапа
+
+**3-Drafts/**
+
+- `Draft-AI-Changes-PM-Role-MtP.md` — Инструкция от Вани Замесина
+
 ### 3-Marketing/2-Writing-Book/
 
 - `bookconcept.md` — Концепт книги AURA Framework
@@ -238,6 +322,7 @@
 **3-Drafts/**
 
 - `Draft-AI-Changes-PM-Role-old.md` — 📝 Инструкция от Вани Замесина
+- `Draft-From-PRDs-to-Pipelines-MtP.md` — 📝 Инструкция автора для итерации
 
 ---
 
@@ -318,6 +403,17 @@ Learning Management System.
 - `generate-segment.md` — Промт: Выбор 5 привлекательных сегментов по AJTBD
 - `landing-page-copy.md`
 - `riskiest-assumption-test.md` — Что делать первым сообщением
+
+### 8-Prompts-and-Scripts/codex-skills/
+
+
+**new-article-thesis/**
+
+- `SKILL.md` — New Article Thesis
+
+*agents/*
+
+- `openai.yaml`
 
 ---
 

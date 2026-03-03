@@ -1,3 +1,30 @@
+.codex/skills/new-article-draft/SKILL.md	Скилл: New Article Draft (Double Diamond — СТРУКТУРИРОВАНИЕ)
+.codex/skills/new-article-draft/references/humanity-pass-checklist.md	Humanity Pass Checklist
+.codex/skills/new-article-draft/references/style-fingerprint-template.md	Style Fingerprint Template
+.codex/skills/new-article-thesis/SKILL.md	Скилл: Создание тезисов главы (Double Diamond — РАСХОЖДЕНИЕ)
+.codex/temp/draft-ai-changes-pm-role-mtp/00-must-include.md	00 — MUST-INCLUDE checklist (raw extraction)
+.codex/temp/draft-ai-changes-pm-role-mtp/01-publication-signal-pack.md	01 — Publication signal pack (Mind the Product)
+.codex/temp/draft-ai-changes-pm-role-mtp/02-style-fingerprint.md	02 — Style fingerprint (Mind the Product)
+.codex/temp/draft-ai-changes-pm-role-mtp/03-case-pack.md	03 — Case pack (URLs + boundaries)
+.codex/temp/draft-ai-changes-pm-role-mtp/04-narrative-plan.md	04 — Narrative plan (Mind the Product)
+.codex/temp/draft-ai-changes-pm-role-mtp/05-section-briefs.md	05 — Section briefs (blueprint for draft)
+.codex/temp/draft-ai-changes-pm-role-mtp/06-draft-v1.md	📝 Author notes for iteration
+.codex/temp/draft-ai-changes-pm-role-mtp/07-quality-report.md	07 — Quality report (v1)
+.codex/temp/draft-ai-changes-pm-role-mtp/_spring-context.md	Draft context: AI Changes the PM Role (Mind the Product)
+.codex/temp/thesis-changes-how-we-make-products/_spring-context.md	Spring Context — Thesis: Changes How We Make Products (MindTheProduct)
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/01-raw-theses.md	01 — Raw Theses Extract (извлечённые тезисы без потерь)
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/02-first-principles.md	02 — First-Principles разбор (декомпозиция на факты, инварианты, допущения)
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/03-order-effects.md	03 — Последствия 2-го и 3-го порядка (карта эффектов)
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/03-thesis-bank.md	03 — Thesis Bank (30–60 кандидатных тезисов)
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/03-thesis-combinatorics.md	03 — Комбинаторика тезисов (гибриды через 5 операторов)
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/04-synthesis.md	04 — Synthesis (объединённые тезисы перед финальным файлом)
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/_spring-context.md	Spring Context — Thesis: How to Find Product-Market Fit Fast — and Pivot the Right Way
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/agent-contrarian.md	Agent Report — contrarian
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/agent-expert-hunter.md	Agent Report — expert-hunter
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/agent-knowledge-researcher.md	Agent Report — knowledge-researcher
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/agent-log.md	Agent Log
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/agent-requests.md	Agent Requests
+.codex/temp/thesis-how-to-find-product-market-fit-fast-and-pivot-the-right-way/coverage-round-1.md	Coverage Round 1 — Quality Control
 1-Context/AURA-Theses/ABCDX/abcdx-segmentation.md	ABCDX-сегментация: разделение клиентов на группы по маржинальности и удовлетворённости
 1-Context/AURA-Theses/AJTBD/b2b.md	B2B-специфика AJTBD: отличия от B2C в подходе к созданию продуктов
 1-Context/AURA-Theses/AJTBD/communication.md	Коммуникация продукта: трансляция подтверждённой ценности подтверждённому сегменту
@@ -90,6 +117,13 @@
 3-Marketing/1-Webinars/web-260626.md/first-principles-15.md	15 новых принципов создания продуктов (from first principles)
 3-Marketing/1-Webinars/web-260626.md/prompt-first-principles-analysis.md	Промпт: Анализ новых принципов создания продуктов из первых принципов
 3-Marketing/1-Webinars/web-260626.md/web-260226.md	TODO
+3-Marketing/2-PR-Articles/1-Thoughts/changes-how-we-make-products.md	Вводные
+3-Marketing/2-PR-Articles/1-Thoughts/how-to-find-pmf-hackernoon.md	Бриф от издания
+3-Marketing/2-PR-Articles/2-Theses/Theses-AI-Changes-PM-Role-MtP.md	Инструкция для draft-этапа
+3-Marketing/2-PR-Articles/2-Theses/Theses-How-to-Find-Product-Market-Fit-Fast-and-Pivot-the-Right-Way.md	📝 Инструкция для draft-этапа
+3-Marketing/2-PR-Articles/3-Drafts/Draft-AI-Changes-PM-Role-MtP.md	Инструкция от Вани Замесина
+3-Marketing/2-PR-Articles/web-theses.md	Тезисы из вебинара: "Внедрение Jobs 3.0: кейс Дениса"
+3-Marketing/2-PR-Articles/web.md	Расшифровка: Внедрение Jobs 3.0: кейс Дениса
 3-Marketing/2-Writing-Book/1-Raw-Thoughts/changes-how-we-make-products.md	Вводные
 3-Marketing/2-Writing-Book/1-Raw-Thoughts/how-to-find-pmf-hackernoon.md	Бриф от издания
 3-Marketing/2-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-MtP.md	Инструкция для draft-этапа
@@ -97,6 +131,7 @@
 3-Marketing/2-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role.md	📝 Инструкция для draft-этапа
 3-Marketing/2-Writing-Book/2-Theses/Theses-How-to-Find-PMF-Fast.md	📝 Инструкция для draft-этапа
 3-Marketing/2-Writing-Book/3-Drafts/Draft-AI-Changes-PM-Role-old.md	📝 Инструкция от Вани Замесина
+3-Marketing/2-Writing-Book/3-Drafts/Draft-From-PRDs-to-Pipelines-MtP.md	📝 Инструкция автора для итерации
 3-Marketing/2-Writing-Book/bookconcept.md	Концепт книги AURA Framework
 3-Marketing/2-Writing-Book/linkedin-sprint-detailed-theses.md	LinkedIn Growth Sprint -- Детальные тезисы для скилла
 3-Marketing/2-Writing-Book/zamesin_top50_full.md	Топ 50 постов @zamesin (полные тексты)
@@ -107,6 +142,7 @@
 5-ZIS/LMS/ideas.md	Идея: экран "что тебе нужно сделать дальше" для LMS
 8-Prompts-and-Scripts/Prompts/generate-segment.md	Промт: Выбор 5 привлекательных сегментов по AJTBD
 8-Prompts-and-Scripts/Prompts/riskiest-assumption-test.md	Что делать первым сообщением
+8-Prompts-and-Scripts/codex-skills/new-article-thesis/SKILL.md	New Article Thesis
 _dir_:1-Context	Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт"
 _dir_:1-Context/AURA-Theses	Тезисы методологии AJTBD и мета-фреймворка AURA, структурированные по темам
 _dir_:1-Context/boost-knowledge-base	База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.
