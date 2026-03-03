@@ -1,0 +1,4 @@
+interface:
+  display_name: "New Article Draft"
+  short_description: "Черновик статьи: ToV + virality + human pass"
+  default_prompt: "Используй $new-article-draft, чтобы превратить тезисы в живой черновик под конкретное издание: разбор most-read/top материалов, tone of voice и viral-паттернов, section briefs, humanization pass и quality gates."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "New Article Thesis"
+  short_description: "Тезисы статьи: создание и итерации"
+  default_prompt: "Используй $new-article-thesis, чтобы создать или доработать тезисы статьи из raw thoughts или фидбэка."

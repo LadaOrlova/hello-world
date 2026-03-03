@@ -165,9 +165,15 @@ CTA: "What lesson took you the longest to learn?"
 
 ## WORKFLOW: Step-by-Step Post Creation
 
-### ROUND 1 — Context (AskUserQuestion, 3 questions)
+### INITIAL ROUND — All Questions At Once
 
-Ask these 3 questions using AskUserQuestion:
+Collect ALL input from the author in ONE round. No "are you ready?" or "shall I write?" — go straight to collecting information.
+
+This round has 2 parts that happen back-to-back with NO processing between them.
+
+#### Part A: Structured Questions (AskUserQuestion, 4 questions)
+
+Ask these 4 questions in a SINGLE AskUserQuestion call:
 
 **Question 1 — Target Audience:**
 "Who is the primary audience for this post?"
@@ -177,51 +183,12 @@ Options:
 - Marketers & growth people
 - Engineers & technical leaders
 
-**Question 2 — Business Goals (multiSelect: true):**
-"What business goals should this post achieve? (select all that apply)"
-Options:
-- Maximum reach (likes, comments, reposts)
-- Warm up audience for future product
-- Give massive value to subscribers
-- Product/service sales or signups
-
-**Question 3 — Content Format:**
-"What format should the post be?"
-Options:
-- Text + photo (Recommended)
-- Carousel (PDF slides)
-- Pure text
-- Text + video reference
-
----
-
-### ROUND 2 — Raw Content (AskUserQuestion, 1 open question)
-
-Ask ONE open-ended question:
-
-**Question:**
-"Tell me what the post is about. Just dump your thoughts — a story, an insight, an observation, a case study, numbers, a lesson learned. The more details, the better. Raw stream of consciousness is perfect."
-
-This is the MAIN input — the author's raw thoughts. Capture EVERYTHING.
-
----
-
-### ROUND 3 — Creative Choices (AskUserQuestion, 3 questions)
-
-**Question 1 — Viral Topic Angle:**
-"Which viral topic angle fits best?"
-Options:
-- Professional journey / career milestone
-- Money, numbers, and results
-- Advice to my past self / lessons learned
-- Before/After transformation
-
 **Question 2 — Content Type:**
 "What type of value should the post deliver?"
 Options:
-- Useful (reader learns something new)
+- Useful (reader learns something new) (Recommended)
 - Positive (energizes, inspires)
-- Both useful and positive (Recommended)
+- Both useful and positive
 
 **Question 3 — Product Integration:**
 "How should the product/service be integrated?"
@@ -231,12 +198,45 @@ Options:
 - Links in profile only (no mention in post)
 - No integration (pure brand/value post)
 
----
+**Question 4 — Content Format:**
+"What format should the post be?"
+Options:
+- Text + photo (Recommended)
+- Carousel (PDF slides)
+- Pure text
+- Text + video reference
 
-### ROUND 4 — Reference (AskUserQuestion, 1 question)
+#### Part B: Raw Content + Reference (AskUserQuestion, 3 questions)
 
-**Question:**
-"Do you have a reference post that inspired you? Paste it or describe it. Or say 'no' to skip."
+IMMEDIATELY after Part A (no processing), ask these 3 questions:
+
+**Question 1 — Raw Content:**
+"What is the post about? Dump your raw stream of consciousness — a story, insight, observation, case study, numbers, lesson learned. The more detail, the better."
+Options:
+- Story / personal journey
+- Framework / methodology / insight
+- Numbers / results / case study
+- Lesson learned / advice
+
+NOTE: The author will likely select "Other" and type their full raw thoughts. The options are just conversation starters. If the author picks an option without detail, ask ONE follow-up to get more substance.
+
+**Question 2 — Reference Post:**
+"Do you have a reference LinkedIn post that inspired you? Paste it or describe it."
+Options:
+- No reference, skip
+- I'll paste it (use text field)
+
+**Question 3 — Business Goals (multiSelect: true):**
+"What business goals should this post achieve? (select all that apply)"
+Options:
+- Maximum reach (likes, comments, reposts)
+- Warm up audience for future product
+- Give massive value to subscribers
+- Product/service sales or signups
+
+After Part B, Claude has ALL the input needed. Proceed directly to thesis extraction.
+
+**Viral topic angle** is NOT asked — Claude infers the best angle (professional journey / money & numbers / advice to past self / before-after) from the raw content. If ambiguous, Claude picks the strongest match.
 
 ---
 
@@ -257,7 +257,7 @@ Display extracted theses to the author and save to temp file.
 #### Step 2: Create temp directory and save raw theses
 
 ```bash
-mkdir -p /Users/zamesinivan/Documents/Cursor/1-Zamesin/.claude/temp/linkedin-{slug}/
+mkdir -p .claude/temp/linkedin-{slug}/
 ```
 
 Save extracted theses to: `temp-dir/01-raw-theses.md`
@@ -268,7 +268,7 @@ Build a prompt for Deep Research based on the template below. Save to `temp-dir/
 
 Launch via Bash with `run_in_background=true`:
 ```bash
-python3 /Users/zamesinivan/Documents/Cursor/1-Zamesin/6-Prompts-and-Scripts/Scripts/deep-research-call.py \
+python3 8-Prompts-and-Scripts/scripts/deep-research-call.py \
   "{temp-dir}/dr-prompt.md" \
   "{temp-dir}/agent-deep-research.md" \
   --model gpt-5.2-pro \
@@ -292,9 +292,9 @@ You are a world-class content strategist at the intersection of technology, prod
 
 The author is writing a LinkedIn post for product managers, product leaders, founders, and engineers. The post should deliver sharp, useful insights that make readers stop scrolling.
 
-**Target audience:** {selected audience from Round 1}
-**Topic angle:** {selected viral topic from Round 3}
-**Content type:** {useful / positive / both from Round 3}
+**Target audience:** {selected audience}
+**Topic angle:** {inferred viral topic angle}
+**Content type:** {useful / positive / both}
 
 ## AUTHOR'S RAW THESES
 
@@ -426,7 +426,7 @@ Use AskUserQuestion:
 
 ### HOOK GENERATION STAGE
 
-Based on selected theses + all context from Rounds 1-4 + viral post patterns from knowledge base:
+Based on selected theses + all context from the initial round + viral post patterns from knowledge base:
 
 **Generate 5 hooks** (each exactly 2 lines, as visible before "See more"):
 - Hook 1: Numeric/list-based ("X things I learned...")
@@ -464,26 +464,34 @@ You are a world-class LinkedIn content writer. Your posts consistently get 1000+
 ## THESES TO WEAVE INTO THE POST
 {Selected theses with their enrichments — expert opinions, counterarguments, first principles}
 
+## CRITICAL: ONE COHESIVE POST
+You are writing ONE single LinkedIn post — NOT a blog article with sections.
+- Do NOT create separate sections with headings (## or ###) for each thesis
+- Do NOT use --- separators to split the post into parts
+- Do NOT treat each thesis as a standalone mini-post
+- Instead: weave ALL theses into ONE continuous narrative flow where each idea naturally leads to the next
+- The post should read like ONE person sharing ONE insight that has multiple facets — not like a listicle or a multi-chapter article
+- Think of it as a single conversation, not a structured report
+
 ## LINKEDIN FORMATTING RULES (MANDATORY)
 1. Hook = first 2 lines (before "See more"). Use the hook provided above EXACTLY.
 2. Short paragraphs: 1-3 sentences MAX per paragraph.
 3. **Information-dense sentences** — each sentence carries a complete, specific thought with enough context to stand on its own. Avoid ultra-short choppy fragments. A sentence like "Agents search for structured specifications: API docs, MCP integration schemas, machine-readable contracts and policies" is better than splitting into 4 separate lines.
-4. Bullet points or numbered lists where appropriate.
+4. Bullet points or arrow lists (→) where appropriate — but use them sparingly, ONE list max per post.
 5. Address reader as "you" throughout.
 6. CTA at the end — question that invites comments.
-7. NO wall of text — mandatory paragraph breaks, whitespace between sections.
-8. Use --- separators between major sections.
-9. Arrow bullets (→) for lists work great.
-10. Conversational, confident tone — NOT academic.
+7. NO wall of text — mandatory paragraph breaks.
+8. Conversational, confident tone — NOT academic.
+9. NO section headings inside the post — it's a LinkedIn post, not a blog article.
 
 ## COUNTERARGUMENTS TO ADDRESS
 Where useful, acknowledge counterarguments to strengthen credibility. Don't strawman — show you understand the nuance.
 
 ## REFERENCE STYLE
-{If author provided reference post from Round 4, include it here}
+{If author provided reference post, include it here}
 
 ## LENGTH
-Can be long (400-700 words) if the content is information-dense and scannable. Better a long post that keeps the reader engaged than a short post that feels incomplete.
+Target: 200-350 words. This is a LinkedIn post, not a blog article. Every sentence must earn its place. If a thesis doesn't fit naturally into the flow, it's better to drop it than to bloat the post. Longer posts (up to 500 words) are acceptable ONLY if every extra word adds value and the post remains scannable.
 
 ## WRITE THE POST
 Output ONLY the post text, ready to copy-paste into LinkedIn. No commentary, no meta-text, no "Here's your post:" prefix.
@@ -501,7 +509,9 @@ with open("{temp-dir}/post-prompt.md", "r") as f:
 
 # Read API key from .env
 api_key = None
-env_path = "/Users/zamesinivan/Documents/Cursor/1-Zamesin/.env"
+for env_path in [".env", os.path.expanduser("~/.env")]:
+    if os.path.exists(env_path):
+        break
 with open(env_path, "r") as f:
     for line in f:
         if line.startswith("OPENAI_API_KEY="):
@@ -555,7 +565,7 @@ Display the generated post in a markdown code block so the author can copy-paste
 
 Generate a short title slug from the post content (3-4 words, kebab-case, English).
 
-Save the post file as: `3-SMM/LinkedIn-posts/{YYYY-MM-DD}-{slug}.md`
+Save the post file as: `3-Marketing/1-SMM/Linkedin-posts/{YYYY-MM-DD}-{slug}.md`
 
 The file should contain the frontmatter, the post text, and a placeholder for image metadata (to be filled in after image generation).
 
@@ -575,21 +585,17 @@ product_integration: {selected integration level}
 {the full post text, ready to copy-paste into LinkedIn}
 ```
 
-After image generation is complete, UPDATE the same file to add image metadata (chosen_metaphor, chosen_style, final_image, prompts table, etc.).
+After image generation is complete, UPDATE the same file to add image metadata (chosen_metaphor, final_image, prompts table).
 
 ---
 
-### IMAGE GENERATION STAGE (Two-Pass Process)
+### IMAGE GENERATION STAGE (New Yorker Classic Style)
 
-Image generation happens in TWO passes:
-- **Pass 1 — Metaphor Discovery:** 10 different visual metaphors, ALL in New Yorker Classic style. Author picks the best metaphor.
-- **Pass 2 — Style Exploration:** The chosen metaphor rendered in 5 different styles. Author picks the final image.
+Generate 10 different visual metaphors, ALL in New Yorker Classic style. Author picks the best one as the final image.
 
 ---
 
-#### PASS 1 — METAPHOR DISCOVERY
-
-**Step 1.1: Read the post and brainstorm 10 visual metaphors**
+**Step 1: Read the post and brainstorm 10 visual metaphors**
 
 Read the finished post carefully. Think about what makes this post UNIQUE — not generic "person at laptop" scenes, but specific, inventive visual metaphors that capture the post's core insight.
 
@@ -603,12 +609,12 @@ Guidelines for metaphors:
 - EVERY scene must be framed as optimistic, empowering, joyful
 - NO generic business scenes: no "person at laptop", no "team in meeting room", no "handshake", no "graph going up"
 
-**Step 1.2: Display metaphors and generate all 10 in New Yorker Classic style**
+**Step 2: Display metaphors and generate all 10 in New Yorker Classic style**
 
 Display the list to the author:
 
 ```
-## Pass 1: 10 Visual Metaphors (all in New Yorker Classic style)
+## 10 Visual Metaphors (New Yorker Classic style)
 
 1. {metaphor description in 10-15 words}
 2. {metaphor description}
@@ -628,17 +634,17 @@ No text, no captions, no speech bubbles, no words.
 [SCENE: {metaphor scene description}]
 ```
 
-**Step 1.3: Generate 10 images via OpenRouter API (parallel)**
+**Step 3: Generate 10 images via OpenRouter API (parallel)**
 
 ```bash
-# Generate Pass 1 images in parallel batches
+# Generate images in parallel batches
 # Batch 1: images 1-5
 for i in 1 2 3 4 5; do
   curl -s https://openrouter.ai/api/v1/chat/completions \
     -H "Authorization: Bearer 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" \
     -H "Content-Type: application/json" \
     -d "{
-      \"model\": \"google/gemini-3-pro-image-preview\",
+      \"model\": \"google/gemini-3.1-flash-image-preview\",
       \"messages\": [{\"role\": \"user\", \"content\": \"Generate an image: {full_prompt_for_metaphor_$i}\"}]
     }" > /tmp/openrouter_pass1_${i}.json &
 done
@@ -650,27 +656,27 @@ for i in 6 7 8 9 10; do
     -H "Authorization: Bearer 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" \
     -H "Content-Type: application/json" \
     -d "{
-      \"model\": \"google/gemini-3-pro-image-preview\",
+      \"model\": \"google/gemini-3.1-flash-image-preview\",
       \"messages\": [{\"role\": \"user\", \"content\": \"Generate an image: {full_prompt_for_metaphor_$i}\"}]
     }" > /tmp/openrouter_pass1_${i}.json &
 done
 wait
 ```
 
-**Step 1.4: Save Pass 1 images to subfolder**
+**Step 4: Save images to subfolder**
 
 ```bash
 python3 << 'PYEOF'
 import json, base64, os
 
-images_dir = '{images_dir}/{date}-{slug}'
-pass1_dir = os.path.join(images_dir, 'pass1-metaphors')
-os.makedirs(pass1_dir, exist_ok=True)
+images_dir = '3-Marketing/1-SMM/Linkedin-posts/images/{date}-{slug}'
+metaphors_dir = os.path.join(images_dir, 'metaphors')
+os.makedirs(metaphors_dir, exist_ok=True)
 
 results = []
 for i in range(1, 11):
     resp_file = f'/tmp/openrouter_pass1_{i}.json'
-    out_file = os.path.join(pass1_dir, f'{i:02d}-metaphor.png')
+    out_file = os.path.join(metaphors_dir, f'{i:02d}-metaphor.png')
 
     try:
         with open(resp_file, 'r') as f:
@@ -689,16 +695,16 @@ for i in range(1, 11):
     except Exception as e:
         results.append(f'  [{i:02d}] ERROR — {e}')
 
-print('Pass 1 results (metaphor discovery):')
+print('Image generation results:')
 print('\n'.join(results))
 PYEOF
 ```
 
-**Step 1.5: Ask the author to choose a metaphor**
+**Step 5: Ask the author to choose a metaphor**
 
 Tell the author:
 ```
-10 metaphor variants saved to: images/{date}-{slug}/pass1-metaphors/
+10 metaphor variants saved to: images/{date}-{slug}/metaphors/
 Files: 01-metaphor.png through 10-metaphor.png
 
 Please look at the images and tell me which metaphor number you like best (1-10).
@@ -710,150 +716,29 @@ Use AskUserQuestion with a free-text question:
 
 ---
 
-#### PASS 2 — STYLE EXPLORATION
-
-**Step 2.1: Read styles library**
-
-Read the styles library from `3-SMM/LinkedIn-posts/image-styles-library.md`. Extract all 5 style prompts (everything between the `**ID:**` line and the next `---` separator).
-
-The 5 styles are:
-1. Warm Ink & Watercolor (`warm-ink-watercolor`)
-2. New Yorker Classic (`new-yorker-classic`)
-3. Soft Gradient (`soft-gradient`)
-4. Nordic Light (`nordic-light`)
-5. Golden Hour Vintage (`golden-hour`)
-
-**Step 2.2: Generate the chosen metaphor in all 5 styles**
-
-Take the scene description from the metaphor the author chose in Pass 1. Combine it with each of the 5 style prompts:
-
-```
-{style prompt text from the library}
-MOOD IS CRITICAL: The overall feeling must be deeply POSITIVE — hopeful, joyful, light, uplifting, high-frequency energy. Characters should look happy, confident, and energized — never tired, stressed, or overwhelmed. The scene should radiate warmth and possibility. Bright open spaces, clean air, sunshine or warm light. No dark skies, no smoke, no dystopian imagery, no industrial gloom.
-No text, no captions, no speech bubbles, no words.
-[SCENE: {chosen metaphor scene description}]
-```
-
-Display to the author:
-```
-## Pass 2: Chosen metaphor #{N} in 5 styles
-
-Metaphor: {the scene description}
-
-Generating in styles:
-1. Warm Ink & Watercolor  ⭐
-2. New Yorker Classic  ⭐
-3. Soft Gradient
-4. Nordic Light
-5. Golden Hour Vintage
-```
-
-**Step 2.3: Generate 5 style variants via OpenRouter API (parallel)**
-
-```bash
-# All 5 in parallel
-for i in 1 2 3 4 5; do
-  curl -s https://openrouter.ai/api/v1/chat/completions \
-    -H "Authorization: Bearer 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" \
-    -H "Content-Type: application/json" \
-    -d "{
-      \"model\": \"google/gemini-3-pro-image-preview\",
-      \"messages\": [{\"role\": \"user\", \"content\": \"Generate an image: {full_prompt_for_style_$i}\"}]
-    }" > /tmp/openrouter_pass2_${i}.json &
-done
-wait
-```
-
-**Step 2.4: Save Pass 2 images to subfolder**
-
-```bash
-python3 << 'PYEOF'
-import json, base64, os
-
-style_names = ["warm-ink-watercolor", "new-yorker-classic", "soft-gradient", "nordic-light", "golden-hour"]
-
-images_dir = '{images_dir}/{date}-{slug}'
-pass2_dir = os.path.join(images_dir, 'pass2-styles')
-os.makedirs(pass2_dir, exist_ok=True)
-
-results = []
-for i in range(1, 6):
-    resp_file = f'/tmp/openrouter_pass2_{i}.json'
-    out_file = os.path.join(pass2_dir, f'{i:02d}-{style_names[i-1]}.png')
-
-    try:
-        with open(resp_file, 'r') as f:
-            resp = json.load(f)
-        msg = resp['choices'][0]['message']
-        images = msg.get('images', [])
-        if images:
-            img_data_url = images[0]['image_url']['url']
-            b64_data = img_data_url.split(',', 1)[1]
-            raw = base64.b64decode(b64_data)
-            with open(out_file, 'wb') as f:
-                f.write(raw)
-            results.append(f'  [{i}] {style_names[i-1]} — OK — {len(raw)} bytes')
-        else:
-            results.append(f'  [{i}] {style_names[i-1]} — FAILED — no images in response')
-    except Exception as e:
-        results.append(f'  [{i}] {style_names[i-1]} — ERROR — {e}')
-
-print('Pass 2 results (style exploration):')
-print('\n'.join(results))
-PYEOF
-```
-
-**Step 2.5: Ask the author to choose the final image**
-
-Tell the author:
-```
-5 style variants saved to: images/{date}-{slug}/pass2-styles/
-Files:
-  01-warm-ink-watercolor.png  ⭐
-  02-new-yorker-classic.png  ⭐
-  03-soft-gradient.png
-  04-nordic-light.png
-  05-golden-hour.png
-
-Which style do you want for the final post?
-```
-
-Use AskUserQuestion:
-"Which style number (1-5) do you want for the final post?"
-Options:
-- Warm Ink & Watercolor
-- New Yorker Classic
-- Soft Gradient
-- Nordic Light
-- Golden Hour Vintage
-
----
-
 #### SAVE OUTPUTS (update post file with image metadata)
 
-The post file was already saved during the POST WRITING STAGE as `3-SMM/LinkedIn-posts/{YYYY-MM-DD}-{slug}.md`.
+The post file was already saved during the POST WRITING STAGE as `3-Marketing/1-SMM/LinkedIn-posts/{YYYY-MM-DD}-{slug}.md`.
 
 Now UPDATE the same file to add image metadata to the frontmatter and append the Metadata section.
 
 Directory structure for images:
 ```
-3-SMM/LinkedIn-posts/
+3-Marketing/1-SMM/LinkedIn-posts/
   {YYYY-MM-DD}-{slug}.md          ← post file (already saved, now updated)
   images/{YYYY-MM-DD}-{slug}/
-    pass1-metaphors/               ← 10 metaphor variants (New Yorker style)
+    metaphors/                     ← 10 metaphor variants (New Yorker Classic style)
       01-metaphor.png ... 10-metaphor.png
-    pass2-styles/                  ← 5 style variants (chosen metaphor)
-      01-warm-ink-watercolor.png ... 05-golden-hour.png
-    final.png                      ← copy of the chosen image
+    final.png                      ← copy of the chosen metaphor image
 ```
 
-Copy the author's chosen style image to `final.png` in the post's image folder.
+Copy the author's chosen metaphor image to `final.png` in the post's image folder.
 
 Update the post file frontmatter to add:
 ```yaml
 image_folder: images/{YYYY-MM-DD}-{slug}/
 chosen_metaphor: {metaphor number}
-chosen_style: {style-id}
+style: new-yorker-classic
 final_image: images/{YYYY-MM-DD}-{slug}/final.png
 ```
 
@@ -871,31 +756,21 @@ Append the Metadata section after the post text:
 **Chosen metaphor (#{N}):**
 {the full scene description}
 
-**Chosen style:** {style name} ({style-id})
+**Style:** New Yorker Classic
 
-**All 10 metaphor prompts (Pass 1):**
+**All 10 metaphor prompts:**
 
-| # | Metaphor Scene Description |
-|---|---------------------------|
-| 01 | {scene} |
-| ... | ... |
-| 10 | {scene} |
-
-**Style prompts (Pass 2):**
-
-| # | Style | Full Prompt |
-|---|-------|-------------|
-| 01 | Warm Ink & Watercolor | {full prompt} |
+| # | Metaphor Scene Description | Full Prompt |
+|---|---------------------------|-------------|
+| 01 | {scene} | {full prompt} |
 | ... | ... | ... |
-| 05 | Golden Hour Vintage | {full prompt} |
+| 10 | {scene} | {full prompt} |
 ```
 
 After saving, tell the author:
 - Final image copied to `images/{YYYY-MM-DD}-{slug}/final.png` — ready to upload to LinkedIn
-- All 10 metaphor variants are in `pass1-metaphors/` for future reference
-- All 5 style variants are in `pass2-styles/` for future reference
+- All 10 metaphor variants are in `metaphors/` for future reference
 - All prompts are logged in the post metadata
-- Update the **Favorite styles log** in `image-styles-library.md` with the chosen style and rating
 
 ---
 
@@ -918,14 +793,13 @@ Before delivering the final post, verify:
 - [ ] CTA is present at the end
 - [ ] Product integration matches the selected level
 - [ ] Content type matches (useful / positive / both)
-- [ ] Post length is 150-300 words (unless content demands more)
+- [ ] Post length is 200-350 words (up to 500 only if justified)
+- [ ] ONE cohesive post — no section headings, no --- separators splitting it into parts
 - [ ] No wall of text anywhere
 - [ ] Tone is conversational and confident (not academic)
-- [ ] Pass 1: 10 distinct visual metaphors generated (no generic business imagery)
-- [ ] Pass 1: All 10 metaphors generated in New Yorker Classic style
-- [ ] Pass 1: Author chose their preferred metaphor
-- [ ] Pass 2: Chosen metaphor generated in all 5 styles
-- [ ] Pass 2: Author chose their preferred style
+- [ ] 10 distinct visual metaphors generated (no generic business imagery)
+- [ ] All 10 metaphors in New Yorker Classic style
+- [ ] Author chose their preferred metaphor
 - [ ] All images have positive, high-frequency mood
 - [ ] All prompts saved in post metadata
 - [ ] Final image copied to final.png

@@ -83,3 +83,5 @@ Track which styles worked best for which posts:
 |------|------|----------|--------|
 | 2026-02-20 | PM Hypothesis Factory | warm-ink-watercolor | excellent |
 | 2026-02-25 | Agent Optimization Distribution | new-yorker-classic | excellent |
+| 2026-03-02 | PM Hypothesis Pipeline Operator | new-yorker-classic | — |
+| 2026-03-02 | PM Judgment AI Filter | new-yorker-classic | — |

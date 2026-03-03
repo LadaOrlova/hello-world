@@ -1,0 +1,4 @@
+interface:
+  display_name: "New Article Thesis"
+  short_description: "Глубокие тезисы: банк + shortlist"
+  default_prompt: "Используй $new-article-thesis, чтобы собрать глубокий пул тезисов из raw thoughts (включая файлы в 3-Marketing/2-PR-Articles/1-Thoughts), с first-principles, 2/3 порядком, комбинаторикой и источниками не раньше 2025-06-01."
