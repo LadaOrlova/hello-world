@@ -364,6 +364,10 @@
 - `linkedin-post-2026-02-20-pm-hypothesis-factory.md` — LinkedIn Post: PM as Hypothesis Factory Operator
 - `linkedin-post-2026-02-21-ceo-vibe-coding.md`
 
+*Drafts/*
+
+- `2026-03-03-vibe-coding-validation.md` — Vibe Coding Changes the Validation Playbook
+
 **Telegram-posts/**
 
 - `2026-02-22-vibe-coding-love-work.md` — Telegram-пост: У меня безумная гипотеза про вайбкодинг
