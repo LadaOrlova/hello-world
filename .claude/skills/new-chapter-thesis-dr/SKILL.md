@@ -1,16 +1,16 @@
 ---
 name: new-chapter-thesis-dr
-description: Создать тезисы для новой главы через Deep Research (gpt-5.2-pro). Использует first principles анализ + поиск экспертов + контраргументы в одном мощном вызове DR. Быстрее оригинального скилла (30-40 мин вместо часа).
+description: Создать тезисы для новой главы через веб-ресерч (Claude WebSearch). Использует first principles анализ + поиск экспертов + контраргументы через серию целевых WebSearch запросов.
 user-invocable: true
 ---
 
-# Скилл: Создание тезисов главы (Deep Research Edition)
+# Скилл: Создание тезисов главы (WebSearch Edition)
 
 Этот скилл превращает поток мыслей в РАСШИРЕННЫЕ тезисы через:
-- **Deep Research (gpt-5.2-pro, reasoning: xhigh)** — заменяет expert-hunter + contrarian. Один мощный вызов вместо 16-20 отдельных WebSearch. First principles анализ + эксперты + контраргументы.
+- **Веб-ресерчер (Claude Agent + WebSearch)** — находит экспертов, контраргументы, first principles анализ через серию целевых WebSearch запросов.
 - **Knowledge-researcher (Claude agent)** — углубляет тезисы данными из локальной базы AURA/AJTBD.
 
-Оба работают **ПАРАЛЛЕЛЬНО** → 30-40 минут вместо часа.
+Оба работают **ПАРАЛЛЕЛЬНО**.
 
 ## Входные данные
 
@@ -82,8 +82,7 @@ mkdir -p /Users/zamesinivan/Documents/Cursor/1-Zamesin/.claude/temp/thesis-{на
 
 ## Сохранённые файлы
 - `01-raw-theses.md` — извлечённые тезисы из потока мыслей
-- `dr-prompt.md` — промпт отправленный в Deep Research
-- `agent-deep-research.md` — результат Deep Research
+- `agent-web-researcher.md` — результат веб-ресерча (Claude Agent + WebSearch)
 - `agent-knowledge-researcher.md` — отчёт агента KB
 - `04-synthesis.md` — финальный синтез
 
@@ -96,8 +95,7 @@ mkdir -p /Users/zamesinivan/Documents/Cursor/1-Zamesin/.claude/temp/thesis-{на
 | После этапа | Файл | Содержимое |
 |-------------|------|------------|
 | ЭТАП 1 | `01-raw-theses.md` | ВСЕ извлечённые тезисы (полностью!) |
-| ЭТАП 2 | `dr-prompt.md` | Промпт отправленный в DR |
-| ЭТАП 2 | `agent-deep-research.md` | Результат DR (сохраняется скриптом) |
+| ЭТАП 2 | `agent-web-researcher.md` | Результат веб-ресерча (сохраняется агентом) |
 | ЭТАП 2 | `agent-knowledge-researcher.md` | Отчёт knowledge-researcher |
 | ЭТАП 4 | `04-synthesis.md` | Финальный синтез перед записью |
 
@@ -113,7 +111,7 @@ mkdir -p /Users/zamesinivan/Documents/Cursor/1-Zamesin/.claude/temp/thesis-{на
 
 | Тип источника | Что указывать |
 |---------------|---------------|
-| **Веб-статья / блог** | Реальный URL (https://...) — из результата Deep Research |
+| **Веб-статья / блог** | Реальный URL (https://...) — из результата веб-ресерча |
 | **Твит / тред в X** | URL на пост (https://x.com/...) |
 | **Книга** | Название, автор, год, ISBN если возможно |
 | **Knowledge Base (AURA/AJTBD)** | Полный путь к файлу (`Knowledge/AJTBD/fundamentals.md`) |
@@ -147,29 +145,26 @@ temp-папка/01-raw-theses.md
 
 ---
 
-## ЭТАП 2: Deep Research + Knowledge-Researcher (ПАРАЛЛЕЛЬНО)
+## ЭТАП 2: Веб-ресерч + Knowledge-Researcher (ПАРАЛЛЕЛЬНО)
 
 **ДВА ПОТОКА РАБОТАЮТ ОДНОВРЕМЕННО:**
-1. Deep Research (gpt-5.2-pro) — веб-ресерч, эксперты, контраргументы, first principles
+1. Веб-ресерчер (Claude Agent + WebSearch) — эксперты, контраргументы, first principles, свежие источники
 2. Knowledge-researcher (Claude agent) — локальная база AURA/AJTBD
 
-### Шаг 2.1: Генерация промпта для Deep Research
+### Шаг 2.1: Запуск веб-ресерчера (Agent tool, ПАРАЛЛЕЛЬНО с knowledge-researcher)
 
-Сгенерируй промпт для Deep Research на основе ШАБЛОНА ниже. Заполни ВСЕ `{placeholder}` конкретными данными из ЭТАПА 1.
+Запусти через **Agent tool** (subagent_type: general-purpose, run_in_background: true).
 
-Запиши готовый промпт в файл:
-```
-temp-папка/dr-prompt.md
-```
+Сгенерируй промпт для агента на основе ШАБЛОНА ниже. Заполни ВСЕ `{placeholder}` конкретными данными из ЭТАПА 1.
 
 ---
 
-### 🔬 ШАБЛОН ПРОМПТА ДЛЯ DEEP RESEARCH
+### 🔬 ШАБЛОН ПРОМПТА ДЛЯ ВЕБ-РЕСЕРЧЕРА
 
-⚠️ **ИНСТРУКЦИЯ ДЛЯ CLAUDE CODE:** Скопируй этот шаблон, замени все `{placeholder}` конкретными данными из потока мыслей автора и ЭТАПА 1, сохрани в `temp-папка/dr-prompt.md`.
+⚠️ **ИНСТРУКЦИЯ ДЛЯ CLAUDE CODE:** Скопируй этот шаблон, замени все `{placeholder}` конкретными данными из потока мыслей автора и ЭТАПА 1, передай как prompt агенту.
 
 ```
-# Deep Research: Тезисный ресерч для главы "{НАЗВАНИЕ ГЛАВЫ}"
+Ты — веб-ресерчер для главы "{НАЗВАНИЕ ГЛАВЫ}".
 
 ## РОЛЬ
 
@@ -179,8 +174,8 @@ temp-папка/dr-prompt.md
 
 ## КОНТЕКСТ
 
-Февраль 2026. Мир пережил качественный скачок:
-- AI-модели (Claude Opus, GPT-5, Gemini Ultra) достигли уровня, где они пишут код, анализируют рынки, создают стратегии лучше среднего специалиста
+Март 2026. Мир пережил качественный скачок:
+- AI-модели (Claude, Gemini и другие) достигли уровня, где они пишут код, анализируют рынки, создают стратегии лучше среднего специалиста
 - Стоимость написания кода упала до ~$0 (inference cost → 0, вайбкодинг, AI-агенты)
 - Стоимость исследований упала до ~$0 (AI читает, синтезирует, анализирует)
 - Появились AI-агенты с автономностью: могут сами действовать, не только думать
@@ -202,7 +197,14 @@ temp-папка/dr-prompt.md
 
 ## ЗАДАНИЕ
 
-Проведи ГЛУБОКИЙ исследовательский ресерч по теме главы. У тебя 4 основные задачи:
+Проведи ГЛУБОКИЙ веб-ресерч по теме главы, используя инструмент WebSearch. У тебя 4 основные задачи.
+
+**СТРАТЕГИЯ ПОИСКА:**
+- Делай 15-25 целевых WebSearch запросов
+- Для каждого эксперта: "{имя} {тема} 2025 2026"
+- Для контраргументов: "{тема} criticism challenges problems 2025"
+- Для трендов: "{тема} trends predictions 2026"
+- Читай найденные страницы через WebFetch для извлечения деталей
 
 ### ЗАДАЧА 1: Экспертный ресерч
 
@@ -381,25 +383,17 @@ temp-папка/dr-prompt.md
 2. Напиши контраргумент к каждому из 3 спорных
 3. Предложи, какие тезисы (авторские + новые) можно объединить
 4. Предложи оптимальный порядок тезисов для логичного нарратива главы
+
+## СОХРАНЕНИЕ РЕЗУЛЬТАТА (ОБЯЗАТЕЛЬНО!)
+
+Сохрани ПОЛНЫЙ отчёт в файл через Write:
+{temp-папка}/agent-web-researcher.md
+
 ```
 
 ### Конец шаблона промпта
 
----
-
-### Шаг 2.2: Запуск Deep Research (в фоне)
-
-Запусти скрипт через Bash с `run_in_background=true`:
-
-```bash
-python3 /Users/zamesinivan/Documents/Cursor/1-Zamesin/6-Prompts-and-Scripts/Scripts/deep-research-call.py \
-  "{temp-папка}/dr-prompt.md" \
-  "{temp-папка}/agent-deep-research.md" \
-  --model gpt-5.2-pro \
-  --effort xhigh
-```
-
-⚠️ **Deep Research может работать 5-15 минут.** Пока он работает — запусти knowledge-researcher.
+⚠️ **Веб-ресерчер может работать 5-15 минут.** Пока он работает — запусти knowledge-researcher.
 
 ### Шаг 2.3: Запуск knowledge-researcher (ПАРАЛЛЕЛЬНО с DR)
 
@@ -475,10 +469,8 @@ python3 /Users/zamesinivan/Documents/Cursor/1-Zamesin/6-Prompts-and-Scripts/Scri
 
 ### Шаг 2.4: Дождись результатов обоих
 
-1. Knowledge-researcher завершится первым (~10-15 мин)
-2. Проверь, завершился ли Deep Research (прочитай `temp-папка/agent-deep-research.md`)
-3. Если DR ещё работает — подожди, проверяй каждые 30 секунд
-4. Когда оба готовы — прочитай оба файла
+1. Дождись завершения обоих агентов (Agent tool вернёт результат автоматически)
+2. Прочитай оба файла: `temp-папка/agent-web-researcher.md` и `temp-папка/agent-knowledge-researcher.md`
 
 ### Шаг 2.5: Compatibility aliases (для downstream skills)
 
@@ -487,8 +479,9 @@ python3 /Users/zamesinivan/Documents/Cursor/1-Zamesin/6-Prompts-and-Scripts/Scri
 Downstream skills (`new-chapter-draft`, `new-chapter-edit`) ожидают файлы с именами из оригинального скилла. Создай алиасы:
 
 ```bash
-cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-expert-hunter.md"
-cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contrarian.md"
+cp "{temp-папка}/agent-web-researcher.md" "{temp-папка}/agent-deep-research.md"
+cp "{temp-папка}/agent-web-researcher.md" "{temp-папка}/agent-expert-hunter.md"
+cp "{temp-папка}/agent-web-researcher.md" "{temp-папка}/agent-contrarian.md"
 ```
 
 Это гарантирует совместимость с другими скиллами пайплайна.
@@ -503,7 +496,7 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 
 **Перечитай:**
 1. `01-raw-theses.md` — оригинальные тезисы
-2. `agent-deep-research.md` — результат DR
+2. `agent-web-researcher.md` — результат веб-ресерча
 3. `agent-knowledge-researcher.md` — результат KB
 
 ### Проверка Coverage Score (один раз, без итераций)
@@ -530,7 +523,7 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 **Если Coverage Score < 80%:** Определи самые слабые критерии и ТОЧЕЧНО дополни:
 - Если слабый KB — отправь knowledge-researcher на доработку (только конкретный вопрос)
 - Если слабые контраргументы или свежесть — сделай 2-3 WebSearch самостоятельно
-- НЕ перезапускай Deep Research — это дорого и долго
+- НЕ перезапускай полный веб-ресерч — это долго
 
 ⚠️ **Максимум 1 раунд доработки. Не затягивай.**
 
@@ -543,7 +536,7 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 Перечитай ВСЕ файлы из temp-папки:
 1. `_spring-context.md`
 2. `01-raw-theses.md`
-3. `agent-deep-research.md`
+3. `agent-web-researcher.md`
 4. `agent-knowledge-researcher.md`
 
 ### Раздел A: Тезисы автора (обогащённые)
@@ -562,7 +555,7 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 3. "Он уточняет, расширяет или переворачивает авторский тезис?" → Если нет — НЕ включай
 
 Источники новых тезисов:
-- `🆕 НОВЫЙ (от Deep Research)` — тезисы из веб-ресерча и first principles
+- `🆕 НОВЫЙ (от веб-ресерча)` — тезисы из веб-ресерча и first principles
 - `🆕 НОВЫЙ (из KB)` — ТОЛЬКО если инсайт трансформирует понимание темы
 
 **МАКСИМУМ: 10-15 новых тезисов.** Качество > количество.
@@ -612,14 +605,14 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 
 > **Статус:** Расширенные тезисы (фаза расхождения)
 > **Версия:** 1
-> **Модель ресерча:** gpt-5.2-pro (Deep Research, reasoning: xhigh)
+> **Модель ресерча:** claude-opus-4-6 (WebSearch)
 > **Модель синтеза:** claude-opus-4-6
 > **Дата:** {YYYY-MM-DD HH:MM}
 > **Тезисов автора:** {N}
-> **Новых тезисов от Deep Research + KB:** {M}
+> **Новых тезисов от WebSearch + KB:** {M}
 > **Всего тезисов:** {N+M}
 > **Коэффициент расширения:** {M/N}x
-> **Режим:** Deep Research + Knowledge-Researcher
+> **Режим:** Claude WebSearch + Knowledge-Researcher
 > **Coverage Score:** {X}%
 
 ---
@@ -685,7 +678,7 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 > [цитата]
 > — Источник: [файл из Knowledge/]
 
-**Экспертные мнения (от Deep Research):**
+**Экспертные мнения (от веб-ресерча):**
 - [Эксперт] (⭐⭐⭐ Tier 1, 📅 2025): "[цитата/тезис]" — [URL]
 - [Эксперт] (⭐⭐ Tier 2, 📅 2024): "[цитата/тезис]" — [URL]
 
@@ -707,9 +700,9 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 
 ---
 
-## 🆕 Новые тезисы от Deep Research + KB (фаза расхождения)
+## 🆕 Новые тезисы от WebSearch + KB (фаза расхождения)
 
-> Эти тезисы НЕ были в потоке мыслей автора. Найдены через Deep Research и Knowledge Base.
+> Эти тезисы НЕ были в потоке мыслей автора. Найдены через веб-ресерч и Knowledge Base.
 > Автор выбирает, какие из них включить в главу.
 
 ### 🆕 Тезис Н1: [Название]
@@ -722,7 +715,7 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 - Цепочка: если X → то Y → то Z → НЕОЧЕВИДНЫЙ ВЫВОД
 - Почему важно: [конкретный вывод для PM/фаундеров]
 
-**Происхождение:** 🆕 Deep Research / KB
+**Происхождение:** 🆕 Веб-ресерч / KB
 **Откуда взялся:** [Эксперт/источник] — [URL]
 **Почему автор мог не упомянуть:** [объяснение]
 **Связь с авторскими тезисами:** Спорит с А{N} / Дополняет А{N} / Независимый
@@ -829,17 +822,18 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 
 | Задача | Инструмент | Что делает |
 |--------|-----------|------------|
-| "Углуби тезис X" | Deep Research (DR) | Ресерч ТОЛЬКО по теме тезиса X |
-| "Добавь тезис про Y" | Deep Research (DR) | Ресерч ТОЛЬКО по теме Y |
-| "Проверь актуальность X" | Deep Research (DR) или WebSearch | Ищет свежие 2025-2026 |
+| "Углуби тезис X" | Claude WebSearch | Ресерч ТОЛЬКО по теме тезиса X |
+| "Добавь тезис про Y" | Claude WebSearch | Ресерч ТОЛЬКО по теме Y |
+| "Проверь актуальность X" | Claude WebSearch | Ищет свежие 2025-2026 |
 | "Нужна связь с KB" | knowledge-researcher | Ресерч ТОЛЬКО в Knowledge Base |
 
-⚠️ **Для Targeted-Deep:** используй тот же скрипт `deep-research-call.py` но с УЗКИМ промптом:
+⚠️ **Для Targeted-Deep:** используй Agent tool (subagent_type: general-purpose) с УЗКИМ промптом:
 ```
-Найди 5-7 свежих экспертных источников 2025-2026 ТОЛЬКО по теме: "{конкретная тема тезиса}".
+Используй WebSearch чтобы найти 5-7 свежих экспертных источников 2025-2026 ТОЛЬКО по теме: "{конкретная тема тезиса}".
 Для каждого: автор, тезис, URL, year, tier.
 Также: 2 контраргумента с URL, first principles углубление.
 Язык: русский.
+Сохрани результат в файл: {temp-папка}/targeted-research.md
 ```
 
 ---
@@ -850,7 +844,7 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 
 #### Targeted-Deep:
 1. Создай temp-папку (если нет)
-2. Запусти DR или агента с УЗКОЙ задачей
+2. Запусти WebSearch-агента с УЗКОЙ задачей
 3. Дождись результатов
 4. Прочитай отчёты
 
@@ -876,13 +870,13 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 
 ### CREATION mode
 - [ ] Извлечены ВСЕ тезисы из потока мыслей автора
-- [ ] Deep Research запущен с правильным промптом (gpt-5.2-pro, xhigh)
+- [ ] Веб-ресерчер запущен с правильным промптом (Claude Agent + WebSearch)
 - [ ] Knowledge-researcher прочитал _index.md и релевантные файлы
 - [ ] Knowledge-researcher прочитал bookconcept.md
-- [ ] DR нашёл минимум 3 tier-1 эксперта
-- [ ] DR нашёл свежие источники 2025-2026
-- [ ] DR провёл first principles анализ
-- [ ] DR нашёл контраргументы к ключевым тезисам
+- [ ] Веб-ресерчер нашёл минимум 3 tier-1 эксперта
+- [ ] Веб-ресерчер нашёл свежие источники 2025-2026
+- [ ] Веб-ресерчер провёл first principles анализ
+- [ ] Веб-ресерчер нашёл контраргументы к ключевым тезисам
 - [ ] Coverage Score оценён
 - [ ] Новые тезисы прошли тест релевантности (max 10-15)
 - [ ] У каждого источника есть URL/путь
@@ -897,7 +891,7 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 ### ITERATION mode
 - [ ] Фидбэк разобран и классифицирован
 - [ ] Стратегия выбрана: Light или Targeted-Deep
-- [ ] DR/агент получил УЗКУЮ задачу
+- [ ] WebSearch-агент получил УЗКУЮ задачу
 - [ ] Файл обновлён in-place
 - [ ] Версия инкрементирована
 - [ ] Поле фидбэка очищено
@@ -906,11 +900,10 @@ cp "{temp-папка}/agent-deep-research.md" "{temp-папка}/agent-contraria
 
 ## Принцип работы
 
-**Deep Research Edition:**
-- gpt-5.2-pro (xhigh) делает ВЕСЬ веб-ресерч в одном вызове: эксперты, контраргументы, first principles, свежие источники
-- Knowledge-researcher работает ПАРАЛЛЕЛЬНО с DR — углубляет тезисы из локальной KB
-- Нет итеративных QC-циклов — DR уже делает глубокий ресерч
-- 30-40 минут вместо часа
+**WebSearch Edition:**
+- Claude Agent делает веб-ресерч через серию целевых WebSearch запросов: эксперты, контраргументы, first principles, свежие источники
+- Knowledge-researcher работает ПАРАЛЛЕЛЬНО — углубляет тезисы из локальной KB
+- Нет внешних API-зависимостей — всё работает на Claude
 - **Качество > количество** — каждый тезис проходит тест релевантности
 - First principles подход даёт НЕОЧЕВИДНЫЕ тезисы
 - Приоритет СВЕЖЕСТИ: 2025-2026 > 2024 > старые

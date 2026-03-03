@@ -240,9 +240,9 @@ After Part B, Claude has ALL the input needed. Proceed directly to thesis extrac
 
 ---
 
-### THESIS STAGE — Extract, Enrich, and Challenge Ideas (Deep Research)
+### THESIS STAGE — Extract, Enrich, and Challenge Ideas (WebSearch)
 
-This stage uses **gpt-5.2-pro (Deep Research)** to enrich theses with expert opinions, counterarguments, first principles analysis, and similar theses from the web. Two parallel tracks: DR web research + Claude analysis.
+This stage uses **Claude Agent + WebSearch** to enrich theses with expert opinions, counterarguments, first principles analysis, and similar theses from the web. Two parallel tracks: WebSearch research + Claude analysis.
 
 #### Step 1: Extract raw theses (Claude)
 
@@ -262,27 +262,20 @@ mkdir -p .claude/temp/linkedin-{slug}/
 
 Save extracted theses to: `temp-dir/01-raw-theses.md`
 
-#### Step 3: Generate DR prompt and launch Deep Research (BACKGROUND)
+#### Step 3: Launch WebSearch research agent (BACKGROUND)
 
-Build a prompt for Deep Research based on the template below. Save to `temp-dir/dr-prompt.md`.
+Build a prompt for the web-researcher agent based on the template below.
 
-Launch via Bash with `run_in_background=true`:
-```bash
-python3 8-Prompts-and-Scripts/scripts/deep-research-call.py \
-  "{temp-dir}/dr-prompt.md" \
-  "{temp-dir}/agent-deep-research.md" \
-  --model gpt-5.2-pro \
-  --effort high
-```
+Launch via **Agent tool** (subagent_type: general-purpose, run_in_background: true).
 
-⚠️ Deep Research may take 3-10 minutes. While it runs, proceed to Step 4.
+⚠️ WebSearch agent may take 5-10 minutes. While it runs, proceed to Step 4.
 
 ---
 
-##### DR PROMPT TEMPLATE FOR LINKEDIN POST
+##### WEB-RESEARCHER PROMPT TEMPLATE FOR LINKEDIN POST
 
 ```
-# Deep Research: Thesis enrichment for LinkedIn post
+# Web Research: Thesis enrichment for LinkedIn post
 
 ## ROLE
 
@@ -301,6 +294,8 @@ The author is writing a LinkedIn post for product managers, product leaders, fou
 {ALL extracted theses from Step 1, numbered, each 2-5 sentences}
 
 ## YOUR TASKS
+
+Use the **WebSearch** tool to find expert opinions, counterarguments, and similar theses. Make 10-15 targeted search queries.
 
 ### TASK 1: Expert opinions and similar theses
 
@@ -378,19 +373,21 @@ Where experts DISAGREE on the topic — useful for making the post more nuanced.
 - Priority: 2025-2026 sources > 2024 > older
 - Language: ENGLISH (the post is for the US market)
 - Focus: depth > breadth. Better 3 deep insights than 10 shallow ones.
+
+Save your FULL report to file: {temp-dir}/agent-web-researcher.md
 ```
 
-#### Step 4: Claude's own analysis (PARALLEL with DR)
+#### Step 4: Claude's own analysis (PARALLEL with WebSearch agent)
 
-While DR is running, Claude analyzes the theses:
+While the WebSearch agent is running, Claude analyzes the theses:
 1. Generate counterarguments for each thesis (sharp, 1-2 sentences)
 2. Identify which theses are strongest/weakest for LinkedIn engagement
 3. Suggest thesis ordering for maximum impact
 
-#### Step 5: Wait for DR results and synthesize
+#### Step 5: Wait for WebSearch agent results and synthesize
 
-1. Read `temp-dir/agent-deep-research.md` when DR completes
-2. Merge DR insights with Claude's analysis
+1. Read `temp-dir/agent-web-researcher.md` when the agent completes
+2. Merge WebSearch insights with Claude's analysis
 3. For each thesis, compile: thesis + expert opinions + counterarguments + first principles deepening
 
 #### Step 6: Display enriched theses to author
@@ -412,8 +409,8 @@ Format:
 ...
 
 ### 🆕 New thesis suggestions from research:
-N1: [new thesis from DR]
-N2: [new thesis from DR]
+N1: [new thesis from web research]
+N2: [new thesis from web research]
 ...
 ```
 
@@ -441,30 +438,22 @@ Options: The 5 hooks (truncated to fit).
 
 ---
 
-### POST WRITING STAGE (gpt-5.2-pro)
+### POST WRITING STAGE (Claude)
 
-The post is written by **gpt-5.2-pro** via OpenAI API for maximum quality. Claude builds the prompt, GPT writes the post.
+Claude writes the post directly, using all collected context.
 
-#### Step 1: Build post-writing prompt
+#### Step 1: Write the post
 
-Save the prompt to `temp-dir/post-prompt.md`:
+Using the selected hook, theses, enrichments, and all context from previous stages, write the LinkedIn post following these rules:
 
-```
-# Write a LinkedIn Post
-
-You are a world-class LinkedIn content writer. Your posts consistently get 1000+ reactions because they combine sharp insights with perfect formatting.
-
-## POST PARAMETERS
+**POST PARAMETERS:**
 - Hook (MUST be first 2 lines, exactly as given): {selected hook}
 - Target audience: {audience}
 - Content type: {useful / positive / both}
 - Product integration: {level}
 - Topic angle: {angle}
 
-## THESES TO WEAVE INTO THE POST
-{Selected theses with their enrichments — expert opinions, counterarguments, first principles}
-
-## CRITICAL: ONE COHESIVE POST
+**CRITICAL: ONE COHESIVE POST**
 You are writing ONE single LinkedIn post — NOT a blog article with sections.
 - Do NOT create separate sections with headings (## or ###) for each thesis
 - Do NOT use --- separators to split the post into parts
@@ -473,7 +462,7 @@ You are writing ONE single LinkedIn post — NOT a blog article with sections.
 - The post should read like ONE person sharing ONE insight that has multiple facets — not like a listicle or a multi-chapter article
 - Think of it as a single conversation, not a structured report
 
-## LINKEDIN FORMATTING RULES (MANDATORY)
+**LINKEDIN FORMATTING RULES (MANDATORY):**
 1. Hook = first 2 lines (before "See more"). Use the hook provided above EXACTLY.
 2. Short paragraphs: 1-3 sentences MAX per paragraph.
 3. **Information-dense sentences** — each sentence carries a complete, specific thought with enough context to stand on its own. Avoid ultra-short choppy fragments. A sentence like "Agents search for structured specifications: API docs, MCP integration schemas, machine-readable contracts and policies" is better than splitting into 4 separate lines.
@@ -484,76 +473,15 @@ You are writing ONE single LinkedIn post — NOT a blog article with sections.
 8. Conversational, confident tone — NOT academic.
 9. NO section headings inside the post — it's a LinkedIn post, not a blog article.
 
-## COUNTERARGUMENTS TO ADDRESS
-Where useful, acknowledge counterarguments to strengthen credibility. Don't strawman — show you understand the nuance.
+**COUNTERARGUMENTS:** Where useful, acknowledge counterarguments to strengthen credibility. Don't strawman — show you understand the nuance.
 
-## REFERENCE STYLE
-{If author provided reference post, include it here}
+**REFERENCE STYLE:** {If author provided reference post, follow it}
 
-## LENGTH
-Target: 200-350 words. This is a LinkedIn post, not a blog article. Every sentence must earn its place. If a thesis doesn't fit naturally into the flow, it's better to drop it than to bloat the post. Longer posts (up to 500 words) are acceptable ONLY if every extra word adds value and the post remains scannable.
+**LENGTH:** Target: 200-350 words. Every sentence must earn its place. If a thesis doesn't fit naturally into the flow, it's better to drop it than to bloat the post. Longer posts (up to 500 words) are acceptable ONLY if every extra word adds value and the post remains scannable.
 
-## WRITE THE POST
-Output ONLY the post text, ready to copy-paste into LinkedIn. No commentary, no meta-text, no "Here's your post:" prefix.
-```
+Output ONLY the post text, ready to copy-paste into LinkedIn. Save to `temp-dir/post-text.md`.
 
-#### Step 2: Call gpt-5.2-pro via OpenAI API
-
-```bash
-python3 << 'PYEOF'
-import json, os, sys
-
-# Read prompt
-with open("{temp-dir}/post-prompt.md", "r") as f:
-    prompt = f.read()
-
-# Read API key from .env
-api_key = None
-for env_path in [".env", os.path.expanduser("~/.env")]:
-    if os.path.exists(env_path):
-        break
-with open(env_path, "r") as f:
-    for line in f:
-        if line.startswith("OPENAI_API_KEY="):
-            api_key = line.strip().split("=", 1)[1].strip('"').strip("'")
-
-if not api_key:
-    print("ERROR: No OPENAI_API_KEY in .env")
-    sys.exit(1)
-
-import subprocess
-result = subprocess.run(
-    ["curl", "-s", "https://api.openai.com/v1/responses",
-     "-H", f"Authorization: Bearer {api_key}",
-     "-H", "Content-Type: application/json",
-     "-d", json.dumps({
-         "model": "gpt-5.2-pro",
-         "input": [{"role": "user", "content": [{"type": "input_text", "text": prompt}]}],
-         "reasoning": {"effort": "high"}
-     })],
-    capture_output=True, text=True, timeout=300
-)
-
-resp = json.loads(result.stdout)
-
-# Extract text
-text_parts = []
-for item in resp.get("output", []):
-    if item.get("type") == "message":
-        for c in item.get("content", []):
-            if c.get("type") == "output_text":
-                text_parts.append(c.get("text", ""))
-
-post_text = "\n".join(text_parts)
-
-with open("{temp-dir}/post-text.md", "w") as f:
-    f.write(post_text)
-
-print(post_text)
-PYEOF
-```
-
-#### Step 3: Display and save
+#### Step 2: Display and save
 
 Display the generated post in a markdown code block so the author can copy-paste. Then immediately save the post file (see SAVE POST TEXT stage below).
 

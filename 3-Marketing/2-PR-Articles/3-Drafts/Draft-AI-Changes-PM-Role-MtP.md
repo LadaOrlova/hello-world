@@ -1,74 +1,118 @@
----
+—-
 ## Инструкция от Вани Замесина
 
 > *[Это поле заполняет автор после прочтения черновика]*
 > *[Напишите здесь, что нужно изменить на этапе редактуры]*
 
----
+—-
 
-# Judgment, Not Features: A PM's Guide to the Builder Era
+# {ВЫБРАТЬ ЗАГОЛОВОК ИЗ 20 ВАРИАНТОВ НИЖЕ}
 
-> **Статус:** Черновик
+> **Статус:** Черновик v2
 > **Модель:** claude-opus-4-6
-> **Дата:** 2026-03-02 20:30
-> **Целевое издание:** Mind the Product (https://www.mindtheproduct.com)
+> **Дата:** 2026-03-03
+> **Целевое издание:** Mind the Product — https://www.mindtheproduct.com
 > **Язык:** English
-> **Слов:** ~1,100
-> **Тезисов:** 5 (A1, A2, A3, A4, N5)
-> **Must-include покрытие:** 24/25 основных элементов (96%)
+> **Слов:** ~1300
+> **Тезисов:** 5 (A1, A2, A3, A4, A6)
 > **Режим:** Agent Team (style-researcher, case-hunter, narrative-architect, writer)
-> **Дифференциация от старой статьи:** Полная (другой hook, порядок, финал, лексика)
 
-Last November, I opened Cursor for the first time and built a working prototype in four hours -- something that would have taken my engineering team two sprints. I sat there staring at the screen, feeling two things at once: exhilaration that I could move this fast, and a quiet dread that I had just made my own job description obsolete. If I can build this without engineers, what exactly is the PM supposed to do now?
+## 20 вариантов заголовков
 
-I spent the next three months finding out. This is what I learned.
+1. I built 20 products in 3 months. Here's what AI can't do.
+2. Vibe coding won't save you. Business judgment will.
+3. Your PRD is dead. Your judgment isn't.
+4. Speed kills products. Judgment saves them.
+5. AI made building free. Knowing what to build costs everything.
+6. The PM who only coordinates is already gone
+7. Stop writing PRDs. Start buying knowledge.
+8. Building is solved. Deciding what to build is not.
+9. The feature mill runs at AI speed now. That's the problem.
+10. 20 products, $100K, and one lesson: judgment beats velocity
+11. AI gave PMs superpowers. Most will use them wrong.
+12. Your team of 4 is the new team of 40. Now what?
+13. The fastest PM in the room is still wrong 90% of the time
+14. Judgment, not features: what 20 vibe-coded products taught me
+15. The builder era doesn't need more features. It needs better bets.
+16. AI won't take your PM job. Another PM with AI will.
+17. Vibe coding is the easy part. Here's the hard part.
+18. The $100K question: what separates builder PMs from the rest
+19. The PM market is splitting. Which side are you on?
+20. I shipped 20 AI products. The bottleneck was never the code.
 
-## The Builder Era Is Here
+—-
 
-I'm not alone in this. The shift from PM to builder is not a metaphor anymore -- it's happening across the industry, and it's happening fast.
+Over the past three months, I built 20 products with vibe coding. They've already generated $100K in revenue. After 20 products, real traction, and integrating vibe coding and AI agents into my team's workflow — here's what I've learned about what the PM role is actually becoming.
 
-[Boris Cherny](https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens), Head of Claude Code at Anthropic, hasn't edited a single line of code by hand since November 2025. One hundred percent of his code is AI-generated. Anthropic reports a 200% productivity increase per engineer. At Y Combinator, [25% of the latest batch](https://techcrunch.com/2025/03/06/a-quarter-of-startups-in-ycs-current-cohort-have-codebases-that-are-almost-entirely-ai-generated/) shipped products with 95% AI-generated codebases -- and every one of those founders was fully capable of writing the code themselves.
+The shift from PM to builder isn't a metaphor anymore — it's happening across the industry, and it's happening fast.
 
-Marc Andreessen calls it a "[Mexican standoff](https://a16z.com/)": PMs believe they can do engineering work with AI, engineers believe they can do product work, designers believe the same -- and they're all right. The old T-shaped skillset is giving way to E-shaped and F-shaped profiles where you go deep in multiple domains. LinkedIn made it official, [killing its Associate PM program](https://www.lennysnewsletter.com/p/why-linkedin-is-replacing-pms) and replacing it with an Associate Product Builder track. [Teresa Torres documented](https://www.producttalk.org/ai-prototyping-lovable/) eleven PMs building functional prototypes with Lovable -- one created a mental health risk identification system in six hours.
+## The builder era is here
 
-But let me be precise about what "full-stack builder" means. It does not mean a PM learned to code. It means a PM learned to maintain production quality through tests, reviews, constraints, and unit economics. That distinction matters. And honesty demands a caveat: a [METR study](https://techcrunch.com/2025/07/11/ai-coding-tools-may-not-speed-up-every-developer-study-shows/) found experienced developers were actually 19% slower with AI tools on familiar codebases. The tools are powerful, not magic.
+Boris Cherny, Head of Claude Code at Anthropic, hasn't edited a single line by hand since November 2025 — [100% of his code is AI-written](https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens), with +200% productivity per engineer. A quarter of Y Combinator's W25 batch ships with [95% AI-generated codebases](https://techcrunch.com/2025/03/06/a-quarter-of-startups-in-ycs-current-cohort-have-codebases-that-are-almost-entirely-ai-generated/). Collins Dictionary named "vibe coding" [Word of the Year 2025](https://www.theguardian.com/technology/2025/nov/06/vibe-coding-collins-dictionary-word-of-the-year-2025).
+
+Marc Andreessen calls it a ["Mexican standoff" between PM, engineering, and design](https://www.lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom) — each believes they can do the other two roles with AI, and "they're actually all kind of correct." LinkedIn formalized this in December 2025, scrapping its APM program and launching ["Associate Product Builder"](https://www.lennysnewsletter.com/p/why-linkedin-is-replacing-pms) — new hires learn coding, design, and PM together in cross-trained pods.
+
+The reframe that matters: a full-stack builder isn't a PM who just learned to code. It's a PM who learned to maintain production quality through tests, reviews, and economics. The old jobs — writing PRDs, creating mockups, coding prototypes — disappear as a class. You level up from pushing tasks to owning the entire value chain.
 
 But here's what nobody tells you about the builder era: building faster is the easy part. The hard part is knowing what's worth building.
 
-## Speed Without Judgment Is the Feature Mill on Steroids
+## Speed without judgment is the feature mill on steroids
 
-The absolutely critical skill in the AI era is business judgment -- the ability to make the right decision under uncertainty. When AI automates execution, the differentiator is not speed of doing but quality of deciding.
+When AI crushes execution cost to near zero, the bottleneck moves upstream — to business judgment. It means diagnosing where in the causal chain the growth sits:
 
-I think about this through a simple formula I call the Risk Assumption Test: Priority equals Probability times Consequence divided by Cost of Verification. AI is crushing the denominator. When it costs almost nothing to test an idea, the numerator dominates -- your ability to identify which risks matter and assess what happens if you're wrong. That is judgment.
+- Market segment
+- Jobs to be done
+- Strategy
+- Value proposition
+- Unit Economics
+- Aquisition Channels
 
-The data backs this up. A [General Assembly survey](https://generalassemb.ly/blog/ai-and-product-management-survey/) found that 98% of PMs already use AI at work, averaging eleven tool interactions per day. Yet only 39% have received job-specific AI training. Almost everyone adopted the execution layer. Almost nobody upgraded their judgment layer.
+You're not just optimizing features. You're bringing growth to business. I think about priority through a simple formula: assumption risk times consequence, divided by cost of testing. AI collapses the denominator. What dominates is the numerator — your ability to identify which assumptions have major risks and what consequences they carry.
 
-Without that upgrade, you get the feature mill on steroids. We already know that roughly 90% of resources go into features that fail to move the needle. Give a team with no strategic direction an AI that builds ten times faster, and you get ten times more waste.
+As Marty Cagan [puts it](https://www.svpg.com/product-coaching-and-ai/): AI makes "PM theater" — PRDs, roadmaps, user stories — cheap and replaceable by agents. The PM who moves tickets is exactly who gets replaced. Ravi Mehta frames it as a [shift from craft to judgment](https://www.atlassian.com/blog/artificial-intelligence/shift-from-craft-to-judgement-ai): when anyone can produce something polished, knowing what to create and why is the scarce asset.
 
-[Marty Cagan](https://www.svpg.com/product-coaching-and-ai/) put it bluntly: AI makes "PM theater" -- writing PRDs, maintaining roadmaps, running ceremonies -- cheap and replaceable. The PM who moves tasks in a tracker will be replaced. The PM who owns outcomes will not. [Ravi Mehta](https://www.atlassian.com/blog/artificial-intelligence/shift-from-craft-to-judgement-ai), former CPO of Tinder, frames the same shift: historically, product work demanded both taste (knowing what to make) and craft (skill to make it). AI democratizes craft. What's scarce now is knowing what to create and why it matters.
+Without judgment, vibe coding is the feature mill on steroids. Ninety percent of resources already go to features that never find a market. AI makes that 10x faster. The [General Assembly survey](https://generalassemb.ly/blog/ai-and-product-management-survey/) captures the gap: 98% of PMs use AI at work (11 interactions/day), but only 39% received job-specific training. Execution adopted, strategic framework missing.
 
-Business judgment means diagnosing where in the causal chain the real problem sits -- not just whether to build, but which lever actually moves the outcome.
+So if judgment is the asset and building is the tool — what does the day-to-day actually look like?
 
-So if judgment is the asset and building is the tool -- what does the day-to-day actually look like?
+## From PRDs to hypothesis pipelines
 
-## Your New Operating System
+The paradigm flips: you're not launching products — you're buying knowledge. Every prototype is a bet, and AI lets you run an order of magnitude more bets per sprint. This turns the PM into an operator of an industrial hypothesis pipeline: business goal, causal graph of growth mechanics, research, risk assumption test, build. Each step can be delegated to an AI agent — and increasingly is.
 
-Three shifts are replacing the PRD-sprint-ship cycle.
+Boris Cherny describes the frontier: "Claude is starting to come up with ideas. Looking through feedback, bug reports, telemetry." The agent doesn't just execute — it proposes. Shreyas Doshi frames the scale: 3-4 person startups now match the impact of 30-50 person teams. But this leverage only works if delegation follows risk. AI agents are less competent employees — hand them low-risk tasks (A/B tests, data analysis, draft copy) and keep the high-risk decisions for yourself: which segment to enter, what to price, where the ethical lines sit.
 
-**From PRDs to prompt sets.** [Aparna Chennapragada](https://aparnacd.substack.com/p/prompt-sets-are-the-new-prds), CPO at Microsoft, says prompt sets are the new PRDs. When her teams start a project, they deliver an interactive prototype and a collection of prompts, not a spec document. For you, that means delegating by risk level: let AI agents handle low-risk verification while you focus judgment on high-stakes decisions. [Shreyas Doshi](https://x.com/shreyas/status/1943689228313067545) projects that three-to-four-person startups will soon match the impact of teams of thirty to fifty. You don't need more people. You need better decisions.
+Here's the part that changes your day-to-day most: AI products are probabilistic. One prompt, many possible outputs. The classical PM loop of "write spec, build, ship" breaks. Reforge calls it the evals-first model — you manage quality distributions, not feature checklists. Your job shifts from writing documents to designing evaluation systems that catch degradation before users do.
 
-**From launches to a hypothesis pipeline.** We are not launching products -- we are buying knowledge. Each experiment purchases information about what works. Today, AI delivers prototype-speed gains. But the full cycle -- security, compliance, deployment -- still lags twelve to twenty-four months behind. Your job: define kill criteria before you start building, design for reversibility, and install circuit breakers that stop a losing bet before it compounds.
+Yet ninety percent of human decisions are unconscious — reading someone's face as they struggle with your product, sensing the unspoken need. No agent replicates that. The irreducible human core of the PM role is the empathic interview, not the PRD.
 
-**From inbound to full-funnel.** When production is cheap, differentiation moves to story, positioning, and distribution. [Brian Chesky restructured Airbnb](https://fortune.com/2026/02/17/airbnb-ceo-brian-chesky-says-ai-best-thing-ever-happened-company-warns-other-founders-get-onboard-or-else/) around this insight -- fewer PMs, more product marketing, merging inbound and outbound into a single function. [Des Traynor](https://websummit.com/summaries/lis25/the-death-of-saas-the-dawn-of-agents/) at Intercom rebuilt the entire product for an agent-first world and changed pricing from seats to outcomes. The PM who only builds features and hands them to marketing is leaving value on the table. Own the story from hypothesis to customer.
+But let's be honest about what's not ready yet.
 
-## Your Move
+## The full cycle isn't here yet
 
-None of this requires a restructuring or a leadership mandate. You can start this week.
+You can prototype in an afternoon. You cannot ship to production in an afternoon. The critical chain breaks at security, DevOps, and compliance — the slowest link determines your actual speed. Brian Chesky calls AI ["the best thing that ever happened to Airbnb"](https://fortune.com/2026/02/17/airbnb-ceo-brian-chesky-says-ai-best-thing-ever-happened-company-warns-other-founders-get-onboard-or-else/) — it handles a third of customer service — but [also admitted](https://www.latimes.com/business/story/2025-10-21/chesky-says-openai-tools-not-ready-for-chatgpt-tie-up-with-airbnb-app) the tools are "not ready" for deep integration. As April Dunford [warns](https://businessofsoftware.org/2025/06/positioning-in-the-age-of-ai-what-founders-need-to-know/), PoC revenue is routinely mistaken for traction.
 
-1. **Pick one hypothesis.** Build a working prototype -- not to ship, but to learn what your judgment tells you when testing costs nothing.
-2. **Replace one PRD with a prompt set.** Write the intent, the examples, and the constraints. Hand it to an AI agent.
+AI makes creation cheap, but each component you add multiplies the probability of failure. The full cycle is 12-24 months away. Until then: kill criteria, reversibility, and circuit breakers.
+
+These gaps will close. The question is who will be ready when they do — and who will be left behind.
+
+## The split is already happening
+
+The PM market is fracturing K-shaped: surging demand at both poles — AI specialists earning 35% premiums and AI-augmented senior generalists — while mid-level coordination roles hollow out. Performance inversion is real: AI-savvy juniors outperform traditional seniors, upending career ladders built over decades.
+
+The forces are structural. Builder PMs feel strong pull forward — the value is enormous, the pain of the old model obvious, barriers low. Traditional PMs feel equally strong pushback — habit is deeply embedded, fear of coding real. People overestimate their readiness to change by a factor of three. And AI diffusion itself is [uneven across countries and cohorts](https://arxiv.org/abs/2506.08945), compounding the gap.
+
+Spotify's developers [haven't written code since December](https://techcrunch.com/2026/02/12/spotify-says-its-best-developers-havent-written-a-line-of-code-since-december-thanks-to-ai/), shipping 50+ features through their "Honk" system on Claude Code. METR found experienced developers [19% slower](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) with the same tools. Same technology, opposite results. The difference is organizational architecture, not talent.
+
+This is the innovator's dilemma in real time. Companies get disrupted not because they work badly, but because they work well enough to resist change. AI excels at local optimization — A/B tests, UX tweaks. The PM who operates only there gets replaced. The PM who works at the global level — which market, which segment, when to pivot — becomes irreplaceable. The reframe is not "adapt or die." It is: build the environment — training, access, psychological safety — that lets people adapt. Bifurcation is not about talent. It's about architecture.
+
+This isn't a three-year transformation plan. It starts Monday.
+
+## Your Monday morning
+
+1. **Build one prototype this week** — not to ship, but to learn what your judgment tells you when testing costs nothing.
+2. **Replace one PRD with a prompt set.** Write the intent, the examples, and the constraints — and hand it to an AI agent.
 3. **Ask the RAT question for every backlog item:** "If this assumption is wrong, what do we lose?" Rank by consequence, not by effort.
-4. **Talk to one customer this week.** No AI replaces watching someone struggle with your product in real time.
-5. **Kill one feature.** Find the zombie burning compute and margin, and delete it.
+4. **Talk to one customer this week.** No AI can replicate what you learn from watching someone struggle with your product in real time.
+5. **Kill one feature.** Find the zombie that's burning compute and margin and delete it.
 
-The PM role is not disappearing. But the PM who only coordinates is. The builder who judges -- who knows what to build, for whom, and when to stop -- that PM has never been more essential.
+The PM role isn't disappearing. But the PM who only coordinates is. The builder who judges — who knows what to build, for whom, and when to stop — that PM has never been more essential.

@@ -1,43 +1,44 @@
 # Spring Context — Draft: AI Changes PM Role (MtP)
 
-## Текущий этап: 2 — Запуск команды агентов
-## Статус: в процессе
+## Текущий этап: 6 — Финальный файл создан
+## Статус: ЗАВЕРШЁН
 
 ## Тема статьи
-Практический гайд для PM: что делать с vibe coding и AI-трансформацией роли. Акцент на actionable steps, не на описание тренда.
+Как AI, vibe coding и AI-агенты трансформируют роль PM: от заказчика фич к стратегу, оператору конвейера гипотез и full-stack builder-у. Практический гайд для practicing PM.
 
 ## Целевое издание
 Mind the Product — https://www.mindtheproduct.com
 
 ## Язык: English
-## Лимит слов: 1000-1800, идеально ~1200
+## Слов: ~1538
 
-## Количество тезисов в файле: 5 (из 16)
-## Тезисы (ID и названия):
-- А1: Business Judgment и стратегическое влияние — через psychological safety
-- А2: PM-ы становятся full-stack builders
-- А3: PM как оператор конвейера гипотез, оркестратор агентов
-- А4: Полный цикл до продакшена — через 12-24 месяца
-- Н5: PM <-> Product Marketing fusion
+## Финальный файл
+`3-Marketing/2-PR-Articles/Drafts/Draft-AI-Changes-PM-Role-MtP.md`
 
-## Общее число must-include элементов: 77
+## Заголовок
+"Judgment, not features: a PM's guide to the builder era"
 
-## СТРАТЕГИЯ ДИФФЕРЕНЦИАЦИИ ОТ СТАРОЙ СТАТЬИ
-Старая = "The PM role isn't dying — it's splitting in two" (ОПИСАТЕЛЬНАЯ, K-shape)
-Новая = **ПРАКТИЧЕСКИЙ ГАЙД для PM** (PRESCRIPTIVE, what to do Monday morning)
-Ключевое: другая структура, другой hook, другие акценты. Без слова "bifurcation".
+## Структура (8 блоков)
+1. Hook (personal Cursor story)
+2. The builder era is here (A2)
+3. Speed without judgment is the feature mill on steroids (A1)
+4. From PRDs to hypothesis pipelines (A3)
+5. The market wants builders -- not coordinators (A5)
+6. The full cycle isn't here yet (A4)
+7. The split is already happening (A6)
+8. Your Monday morning (Close — 5 actions checklist)
 
-## Ключевые решения
-- Hook: TBD (ждём narrative-architect)
-- Количество секций: 4-5 (5 тезисов → 4-5 секций + hook + close)
-- Word budget: ~1200 слов
+## Покрытие
+- СУТЬ сохранение: 86% (все тезисы > 70%)
+- Элементы от briefs: 84%
+- Элементы от оригинала: 75%
 
-## Сохранённые файлы
-- `00-must-include.md` — MUST-INCLUDE элементы из 5 тезисов
-- `01-bookconcept-notes.md` — TBD
-- `agent-style-researcher.md` — TBD
-- `agent-case-hunter.md` — TBD
-- `agent-narrative-architect.md` — TBD
-
-## Следующий шаг
-Запустить 3 агентов параллельно: style-researcher, case-hunter, narrative-architect
+## Temp-файлы (НЕ УДАЛЯТЬ — нужны для edit-скилла)
+- `00-must-include.md`
+- `01-bookconcept-notes.md`
+- `agent-style-researcher.md`
+- `agent-case-hunter.md`
+- `agent-narrative-architect.md`
+- `02-section-briefs.md`
+- `03-draft-progress.md`
+- `_decision-log.md`
