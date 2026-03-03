@@ -189,6 +189,7 @@
 **Linkedin-posts/**
 
 - `2026-02-25-agent-optimization-distribution.md` — Agent Optimization — The Next Distribution Layer
+- `2026-03-03-pm-judgment-ai-filter.md`
 - `image-styles-library.md` — Image Styles Library for LinkedIn Posts
 - `linkedin-post-2026-02-20-pm-hypothesis-factory.md` — LinkedIn Post: PM as Hypothesis Factory Operator
 - `linkedin-post-2026-02-21-ceo-vibe-coding.md`
