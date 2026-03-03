@@ -396,6 +396,10 @@ Learning Management System.
 
 - `ideas.md` — Идея: экран "что тебе нужно сделать дальше" для LMS
 
+### 5-ZIS/Requirements/
+
+- `2026-03-03-summary-for-evgeny.md` — Саммари по проекту ЗИС для Евгения Васева
+
 ---
 
 ## 8-Prompts-and-Scripts/
