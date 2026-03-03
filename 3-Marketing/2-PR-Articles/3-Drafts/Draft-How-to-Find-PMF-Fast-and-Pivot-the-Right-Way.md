@@ -6,7 +6,7 @@
 
 ---
 
-# How to Find Product-Market Fit Fast — and Pivot the Right Way
+# How AI Rewrites the PMF Playbook
 
 > **Статус:** Черновик
 > **Модель:** claude-opus-4-6
