@@ -1,0 +1,2137 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZIS — Бизнес-кейсы</title>
+    <style>
+      :root {
+        --green: #16a34a;
+        --green-bg: #f0fdf4;
+        --green-border: #bbf7d0;
+        --yellow: #ca8a04;
+        --yellow-bg: #fefce8;
+        --yellow-border: #fef08a;
+        --red: #dc2626;
+        --red-bg: #fef2f2;
+        --red-border: #fecaca;
+        --depri: #6b7280;
+        --depri-bg: #f3f4f6;
+        --depri-border: #d1d5db;
+        --priority-bg: #eef2ff;
+        --priority-border: #818cf8;
+        --priority-color: #3730a3;
+        --gray-50: #f9fafb;
+        --gray-100: #f3f4f6;
+        --gray-200: #e5e7eb;
+        --gray-300: #d1d5db;
+        --gray-500: #6b7280;
+        --gray-700: #374151;
+        --gray-900: #111827;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--gray-900);
+        background: var(--gray-50);
+        padding: 2rem 1rem;
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .subtitle {
+        color: var(--gray-500);
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+        line-height: 1.5;
+      }
+
+      /* Legend */
+      .legend {
+        display: block;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        padding: 1rem 1.25rem;
+        background: #fff;
+        border: 1px solid var(--gray-200);
+        border-radius: 8px;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+      }
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      .dot--green {
+        background: var(--green);
+      }
+      .dot--yellow {
+        background: var(--yellow);
+      }
+      .dot--red {
+        background: var(--red);
+      }
+      .dot--depri {
+        background: var(--depri);
+      }
+
+      /* Summary chart */
+      .summary {
+        background: #fff;
+        border: 1px solid var(--gray-200);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .summary h2 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
+
+      .summary-bar {
+        display: flex;
+        height: 32px;
+        border-radius: 6px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+      }
+
+      .summary-bar__segment {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: 600;
+        transition: flex 0.3s;
+      }
+
+      .summary-bar__segment--green {
+        background: var(--green);
+        flex: 14;
+      }
+      .summary-bar__segment--yellow {
+        background: var(--yellow);
+        flex: 26;
+      }
+      .summary-bar__segment--red {
+        background: var(--red);
+        flex: 20;
+      }
+      .summary-bar__segment--depri {
+        background: var(--depri);
+        flex: 2;
+      }
+
+      .summary-numbers {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .summary-stat {
+        text-align: center;
+      }
+
+      .summary-stat__value {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .summary-stat__value--green {
+        color: var(--green);
+      }
+      .summary-stat__value--yellow {
+        color: var(--yellow);
+      }
+      .summary-stat__value--red {
+        color: var(--red);
+      }
+      .summary-stat__value--depri {
+        color: var(--depri);
+      }
+      .summary-stat__value--total {
+        color: var(--gray-700);
+      }
+
+      .summary-stat__label {
+        font-size: 0.8rem;
+        color: var(--gray-500);
+      }
+
+      /* Summary table */
+      .summary-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1.25rem;
+        font-size: 0.875rem;
+      }
+
+      .summary-table th,
+      .summary-table td {
+        padding: 0.5rem 0.75rem;
+        text-align: center;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .summary-table th {
+        background: var(--gray-100);
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: var(--gray-700);
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+
+      .summary-table td:first-child {
+        text-align: left;
+        font-weight: 500;
+      }
+
+      .summary-table tr:last-child td {
+        font-weight: 700;
+        border-top: 2px solid var(--gray-300);
+      }
+
+      /* Sections */
+      .section {
+        background: #fff;
+        border: 1px solid var(--gray-200);
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+      }
+
+      .section__header {
+        padding: 1.25rem 1.5rem 1rem;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .section__title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .section__tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        font-weight: 600;
+        background: var(--gray-100);
+        color: var(--gray-500);
+        padding: 0.15rem 0.5rem;
+        border-radius: 4px;
+        margin-left: 0.5rem;
+        vertical-align: middle;
+        letter-spacing: 0.04em;
+      }
+
+      .section__pain {
+        font-size: 0.875rem;
+        color: var(--gray-500);
+        margin-top: 0.5rem;
+        line-height: 1.5;
+      }
+
+      .section__subtitle {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--gray-500);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 0.75rem 1.5rem 0.25rem;
+      }
+
+      .section__ivan-note {
+        margin: 0.75rem 1.5rem;
+        padding: 0.75rem 1rem;
+        background: var(--priority-bg);
+        border: 1px solid var(--priority-border);
+        border-radius: 6px;
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: var(--priority-color);
+      }
+
+      /* Case cards */
+      .case {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--gray-100);
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .case:last-child {
+        border-bottom: none;
+      }
+
+      .case__status {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #fff;
+        margin-top: 0.1rem;
+      }
+
+      .case__status--green {
+        background: var(--green);
+      }
+      .case__status--yellow {
+        background: var(--yellow);
+      }
+      .case__status--red {
+        background: var(--red);
+      }
+      .case__status--depri {
+        background: var(--depri);
+      }
+
+      .case__body {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .case__id {
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--gray-700);
+        white-space: nowrap;
+      }
+
+      .case__text {
+        font-size: 0.925rem;
+        line-height: 1.5;
+      }
+
+      .case__text--strikethrough {
+        text-decoration: line-through;
+        color: var(--gray-500);
+      }
+
+      .case__note {
+        margin-top: 0.5rem;
+        font-size: 0.825rem;
+        line-height: 1.5;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        border-left: 3px solid;
+      }
+
+      .case__note--green {
+        background: var(--green-bg);
+        border-color: var(--green);
+        color: #166534;
+      }
+      .case__note--yellow {
+        background: var(--yellow-bg);
+        border-color: var(--yellow);
+        color: #854d0e;
+      }
+      .case__note--red {
+        background: var(--red-bg);
+        border-color: var(--red);
+        color: #991b1b;
+      }
+      .case__note--depri {
+        background: var(--depri-bg);
+        border-color: var(--depri);
+        color: #4b5563;
+      }
+
+      /* Priority callout */
+      .case__priority {
+        margin-top: 0.5rem;
+        font-size: 0.825rem;
+        line-height: 1.5;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        border-left: 3px solid var(--priority-border);
+        background: var(--priority-bg);
+        color: var(--priority-color);
+      }
+
+      /* Uncovered list */
+      .uncovered {
+        background: var(--green-bg);
+        border: 1px solid var(--green-border);
+        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .uncovered h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--green);
+        margin-bottom: 0.75rem;
+      }
+
+      .uncovered ol {
+        padding-left: 1.25rem;
+        font-size: 0.9rem;
+      }
+
+      .uncovered li {
+        margin-bottom: 0.35rem;
+      }
+
+      .uncovered li strong {
+        color: var(--gray-900);
+      }
+
+      /* Open questions */
+      .questions {
+        background: #fff;
+        border: 1px solid var(--gray-200);
+        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .questions h2 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+      }
+
+      .questions ol {
+        padding-left: 1.25rem;
+        font-size: 0.9rem;
+      }
+
+      .questions li {
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--gray-500);
+        margin-top: 2rem;
+        line-height: 1.5;
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 1rem 0.5rem;
+        }
+        .legend {
+          gap: 0.75rem;
+        }
+        .summary-numbers {
+          gap: 1rem;
+        }
+        .case {
+          padding: 0.75rem 1rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>ZIS &mdash; Бизнес-кейсы</h1>
+      <p class="subtitle">
+        Документ фиксирует бизнес-сценарии, которые должна поддерживать система
+        ZIS. Технические детали реализации намеренно вынесены за рамки этого
+        документа. Задача &mdash; дать полную картину того, <em>что</em> должно
+        работать, чтобы затем расставить приоритеты по версиям релиза.
+      </p>
+
+      <div class="legend">
+        <div>
+          <div class="legend-item">
+            <span class="dot dot--green"></span
+            ><strong>Реализовано</strong> &mdash; функционал полностью работает
+          </div>
+        </div>
+        <div>
+          <div class="legend-item">
+            <span class="dot dot--yellow"></span
+            ><strong>В плане</strong> &mdash; частично реализовано (требует
+            доработки) или заложено в плане
+          </div>
+        </div>
+        <div>
+          <div class="legend-item">
+            <span class="dot dot--red"></span
+            ><strong>Не покрыто</strong> &mdash; нет ни кода, ни задачи
+          </div>
+        </div>
+        <div>
+          <div class="legend-item">
+            <span class="dot dot--depri"></span
+            ><strong>Деприоритизировано</strong> &mdash; отложено решением Ивана
+            (не делаем сейчас)
+          </div>
+        </div>
+      </div>
+
+      <div class="summary">
+        <h2>Сводка покрытия</h2>
+        <div class="summary-bar">
+          <div
+            class="summary-bar__segment summary-bar__segment--green"
+            style="flex: 17"
+          >
+            17
+          </div>
+          <div
+            class="summary-bar__segment summary-bar__segment--yellow"
+            style="flex: 27"
+          >
+            27
+          </div>
+          <div
+            class="summary-bar__segment summary-bar__segment--red"
+            style="flex: 16"
+          >
+            16
+          </div>
+          <div
+            class="summary-bar__segment summary-bar__segment--depri"
+            style="flex: 2"
+          >
+            2
+          </div>
+        </div>
+        <div class="summary-numbers">
+          <div class="summary-stat">
+            <div class="summary-stat__value summary-stat__value--green">17</div>
+            <div class="summary-stat__label">Реализовано (27.4%)</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat__value summary-stat__value--yellow">
+              27
+            </div>
+            <div class="summary-stat__label">В плане (43.5%)</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat__value summary-stat__value--red">16</div>
+            <div class="summary-stat__label">Не покрыто (25.8%)</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat__value summary-stat__value--depri">2</div>
+            <div class="summary-stat__label">Деприоритизировано (3.2%)</div>
+          </div>
+          <div class="summary-stat">
+            <div class="summary-stat__value summary-stat__value--total">62</div>
+            <div class="summary-stat__label">Всего кейсов</div>
+          </div>
+        </div>
+
+        <table class="summary-table">
+          <thead>
+            <tr>
+              <th>Секция</th>
+              <th>&#x1F7E2;</th>
+              <th>&#x1F7E1;</th>
+              <th>&#x1F534;</th>
+              <th>&#x26D4;</th>
+              <th>Всего</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>AUTH</td>
+              <td>2</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>LK</td>
+              <td>0</td>
+              <td>2</td>
+              <td>0</td>
+              <td>1</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>COURSE</td>
+              <td>1</td>
+              <td>3</td>
+              <td>0</td>
+              <td>1</td>
+              <td>5</td>
+            </tr>
+            <tr>
+              <td>PAY</td>
+              <td>2</td>
+              <td>2</td>
+              <td>4</td>
+              <td>0</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>LEAD</td>
+              <td>1</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>LMS</td>
+              <td>4</td>
+              <td>3</td>
+              <td>0</td>
+              <td>0</td>
+              <td>7</td>
+            </tr>
+            <tr>
+              <td>ADMIN</td>
+              <td>0</td>
+              <td>4</td>
+              <td>0</td>
+              <td>0</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>BOT</td>
+              <td>1</td>
+              <td>3</td>
+              <td>5</td>
+              <td>0</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>NOTIF</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>0</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>AUDIT</td>
+              <td>2</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>OPS</td>
+              <td>1</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>INV</td>
+              <td>3</td>
+              <td>2</td>
+              <td>3</td>
+              <td>0</td>
+              <td>8</td>
+            </tr>
+            <tr>
+              <td>DEDUP</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Итого</td>
+              <td>17</td>
+              <td>27</td>
+              <td>16</td>
+              <td>2</td>
+              <td>62</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 1. AUTH -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            1. Единые пользователи и авторизация
+            <span class="section__tag">AUTH</span>
+          </div>
+          <div class="section__pain">
+            Что болит: у каждого продукта (Boost, &laquo;Как делать
+            продукт&raquo;, Makers, Aura) отдельная база пользователей и
+            отдельный вход. Один и тот же человек &mdash; разные сущности в
+            разных системах.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">AUTH-01.</span> Пользователь регистрируется
+              один раз и получает единый аккаунт, действующий во всех продуктах
+              экосистемы.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS-007 (WP-007): better-auth + Email OTP, единая
+              таблица User, 4 роли.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">AUTH-02.</span> Пользователь входит в любой
+              продукт через единую точку авторизации &mdash; отдельная
+              регистрация для каждого продукта не нужна.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS-007: единый auth endpoint
+              <code>/api/auth/_</code>, OTP-вход по email.\*
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">AUTH-03.</span> Команда видит полную
+              историю пользователя в одном месте: какие продукты покупал, в
+              каких потоках учился, когда и по какой цене.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: единая БД с Order/Enrollment/Payment связями
+              через User. Admin UI для users, billing, enrollments работает
+              (ZIS-008..ZIS-011). Единой &laquo;карточки пользователя&raquo; с
+              агрегированной историей пока нет &mdash; данные доступны через
+              отдельные разделы админки. &rarr;
+              <a
+                href="../backlog/drafts/draft-034%20-%20Карточка-пользователя-User-Profile-360.md"
+                >DRAFT-034</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">AUTH-04.</span> Если пользователь ранее был
+              зарегистрирован в одном продукте и приобретает доступ к другому
+              &mdash; его аккаунт автоматически объединяется, а не создаётся
+              заново.
+            </div>
+            <div class="case__note case__note--yellow">
+              Архитектурно заложено (email = единый идентификатор, дедупликация
+              лидов в CRM &mdash; ZIS-013), но сценарий merge аккаунтов при
+              миграции из старых систем требует реализации скрипта импорта
+              (DRAFT-008: AirTable Import).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. LK -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            2. Единый личный кабинет пользователя
+            <span class="section__tag">LK</span>
+          </div>
+          <div class="section__pain">
+            Что болит: студенты пишут, что неудобно отдельно авторизоваться в
+            каждом продукте; они не видят полный список своих покупок.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LK-01.</span> Студент заходит в один личный
+              кабинет и видит все свои активные доступы (курсы, подписки,
+              сообщества).
+            </div>
+            <div class="case__note case__note--yellow">
+              Архитектура поддерживает (единая БД Enrollment/Subscription), но
+              отдельного &laquo;личного кабинета студента&raquo; с
+              агрегированным списком доступов нет. Сейчас студент видит
+              конкретный курс через
+              <code>/student/lms/[enrollmentId]</code> (ZIS-012). &rarr;
+              <a
+                href="../backlog/drafts/draft-033%20-%20Личный-кабинет-студента-Student-Dashboard.md"
+                >DRAFT-033</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LK-02.</span> В личном кабинете
+              отображаются продукты, которые студент ещё не купил, с
+              возможностью сразу перейти к покупке.
+            </div>
+            <div class="case__note case__note--yellow">
+              Не реализовано. Витрина продуктов входит в scope ЛК студента.
+              &rarr;
+              <a
+                href="../backlog/drafts/draft-033%20-%20Личный-кабинет-студента-Student-Dashboard.md"
+                >DRAFT-033</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--depri">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text case__text--strikethrough">
+              <span class="case__id">LK-03.</span> Покупка нового продукта не
+              требует повторной регистрации или ввода платёжных данных, если они
+              уже сохранены.
+            </div>
+            <div class="case__note case__note--depri">
+              <strong>Деприоритизировано Иваном (25.02.2026):</strong>
+              &laquo;Давайте не будем это делать.&raquo; Повторная регистрация
+              не нужна (AUTH-01/02 реализованы). Сохранение платёжных данных
+              &mdash; избыточная сложность на текущем этапе.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. COURSE -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            3. Управление продуктами и курсами
+            <span class="section__tag">COURSE</span>
+          </div>
+          <div class="section__pain">
+            Что болит: запуск каждого нового курса &mdash; отдельная кодовая
+            база, отдельная база данных, отдельная админка. Разворачивание
+            нового продукта занимает двое суток вместо нескольких часов.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">COURSE-01.</span> Любой член команды может
+              запустить новый курс (лендинг + оплата + онбординг) в рамках
+              единой системы, не создавая отдельной инфраструктуры.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: Products/Tiers/Cohorts CRUD (ZIS-009),
+              Billing (ZIS-010), Enrollments + Onboarding (ZIS-011). Лендинги
+              пока не реализованы &mdash; курс создаётся через админку, но
+              публичного лендинга для каждого продукта нет. &rarr;
+              <a
+                href="../backlog/drafts/draft-035%20-%20Лендинги-продуктов-Product-Landing-Pages.md"
+                >DRAFT-035</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">COURSE-02.</span> Новый курс автоматически
+              появляется в единой админке и в личных кабинетах пользователей.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: в админке &mdash; да (ZIS-009:
+              <code>/admin/products</code>). В &laquo;личном кабинете&raquo;
+              студента &mdash; нет (см. LK-01). &rarr;
+              <a
+                href="../backlog/drafts/draft-033%20-%20Личный-кабинет-студента-Student-Dashboard.md"
+                >DRAFT-033</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">COURSE-03.</span> Команда может управлять
+              структурой курса из админки: добавлять, удалять, редактировать
+              материалы; публиковать и снимать с публикации блоки лендинга.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: управление структурой курса работает &mdash;
+              модули/уроки CRUD, reorder, deactivate/reactivate (ZIS-012:
+              <code>/admin/lms</code>). Управление лендингом не реализовано.
+              &rarr;
+              <a
+                href="../backlog/drafts/draft-035%20-%20Лендинги-продуктов-Product-Landing-Pages.md"
+                >DRAFT-035</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--depri">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text case__text--strikethrough">
+              <span class="case__id">COURSE-04.</span> Курс может иметь разные
+              модели монетизации: разовая покупка, поток с тарифами, подписка
+              &mdash; без необходимости переписывать инфраструктуру под каждую
+              модель.
+            </div>
+            <div class="case__note case__note--depri">
+              <strong>Деприоритизировано Иваном (25.02.2026):</strong>
+              &laquo;Давайте не будем это делать, это довольно сложная
+              штука.&raquo; Базовое:
+              <code>Product.type = course | subscription</code>, тарифы и потоки
+              работают (ZIS-009). Подписочная модель отложена на неопределённый
+              срок.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">COURSE-05.</span> Команда может добавить к
+              существующему курсу новый тариф или новый поток, не затрагивая
+              доступы уже зачисленных студентов.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS-009: добавление Tier/Cohort через админку.
+              Существующие Enrollment не затрагиваются.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. PAY -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            4. Оплата и биллинг <span class="section__tag">PAY</span>
+          </div>
+          <div class="section__pain">
+            Что болит: способы оплаты (Stripe, Яндекс.Сплит) живут как отдельные
+            интеграции в каждом продукте; апгрейды доступа при связанных
+            покупках выполняются вручную.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">PAY-01.</span> При оплате система фиксирует
+              снапшот: цену, валюту и полное описание тарифа на момент покупки.
+              Изменение актуальных цен не влияет на исторические записи.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS-010/ZIS-011:
+              <code>Enrollment.priceSnapshot</code> фиксирует цену, валюту и
+              тариф на момент покупки. <code>Order</code> хранит
+              <code>amount/currency</code>.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">PAY-02.</span> Если покупка одного продукта
+              даёт право на доступ к другому (например, курс включает в себя
+              членство в сообществе), система выдаёт эти доступы автоматически
+              без ручных действий команды.
+            </div>
+            <div class="case__note case__note--yellow">
+              Заложено в плане: DRAFT-029 (Cross-product Bonuses, Фаза 3)
+              &mdash; автоматическая подписка Maker при покупке КДП/BOOST.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">PAY-03.</span> Менеджер видит в единой
+              админке все транзакции пользователя вне зависимости от того, через
+              какой продукт была совершена оплата.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS-010: <code>/admin/billing</code> &mdash; список
+              заказов с платежами по всем продуктам.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">PAY-04.</span> Настройка нового способа
+              оплаты для нового продукта производится через интерфейс без
+              необходимости привлекать разработчика для ручного изменения
+              конфигурации.
+            </div>
+            <div class="case__note case__note--yellow">
+              Не реализовано. Сейчас ЮKassa &mdash; единственный провайдер,
+              настраивается через env-переменные. Stripe запланирован как
+              будущая фаза (п. 45 ROADMAP). &rarr;
+              <a
+                href="../backlog/drafts/draft-042%20-%20Billing-Мульти-провайдер-и-UI-конфигурации.md"
+                >DRAFT-042</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">PAY-05.</span> Кассовые чеки формируются и
+              отправляются автоматически по всем платёжным провайдерам, включая
+              ручные ссылки на оплату (T-Bank, Яндекс Сплит), а не только по
+              ЮKassa и Stripe.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас ЮKassa и Stripe автоматически отправляют
+              чеки. При ручном выставлении ссылок через T-Bank/Split чек
+              приходится выбивать вручную через кассу, что создаёт риск ошибок и
+              необходимость чеков коррекции.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">PAY-06.</span> Менеджер может инициировать
+              возврат средств из админки: система фиксирует возврат во
+              внутренних данных (заказ, зачисление, отчётность), независимо от
+              того, через какой канал фактически проводится возврат в платёжной
+              системе.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас возврат &mdash; полностью ручной процесс:
+              поиск карточки в CRM, поиск платежа в платёжной системе, возврат
+              через интерфейс провайдера (ЮKassa, Stripe, Split) или банковскую
+              платёжку (T-Bank). Данные вносятся вручную.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">PAY-07.</span> Студент может апгрейднуть
+              тариф (например, со &laquo;Стандарт&raquo; на
+              &laquo;Премиум&raquo;): система автоматически рассчитывает
+              разницу, формирует ссылку на доплату и после оплаты обновляет
+              доступы.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас апгрейд &mdash; ручной процесс: менеджер
+              формирует отдельную ссылку на оплату с суммой разницы, после
+              доплаты вручную меняет тариф в CRM.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">PAY-08.</span> Цены в иностранных валютах
+              (USD и др.) автоматически пересчитываются по актуальному курсу ЦБ
+              РФ, без необходимости ручного обновления.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас Настя каждую среду вручную обновляет
+              долларовые цены в админке. Базовая валюта &mdash; рубли. Нужен
+              cron-процесс синхронизации курсов.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. LEAD -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            5. Лендинги и формы сбора лидов
+            <span class="section__tag">LEAD</span>
+          </div>
+          <div class="section__pain">
+            Что болит: подключение лендинга к системе сбора данных (например,
+            отклики по вакансиям, заявки на курс) занимает много времени из-за
+            ручного маппинга полей.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LEAD-01.</span> Любой член команды может
+              создать новый лендинг (курс, вакансия, акция) и подключить его к
+              единой системе сбора данных без длительного технического
+              согласования. Лендинги должны создаваться
+              <strong>в промышленных масштабах</strong>, а изменения в них
+              &mdash; вноситься быстро и легко.
+            </div>
+            <div class="case__priority">
+              ⚡ <strong>Приоритет Ивана (25.02.2026):</strong> &laquo;Очень
+              важно, чтобы мы могли лендинги клепать в промышленных масштабах и
+              вносить изменения в промышленных масштабах.&raquo;
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: TypeForm webhook + внутренняя форма
+              <code>/lead</code> + публичный API
+              <code>/api/leads</code> (ZIS-013). Создание самих лендингов вне
+              ZIS, но подключение к системе &mdash; через стандартные webhook'и.
+              Самостоятельное подключение нового лендинга командой без
+              разработчика пока невозможно. &rarr;
+              <a
+                href="../backlog/drafts/draft-035%20-%20Лендинги-продуктов-Product-Landing-Pages.md"
+                >DRAFT-035</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LEAD-02.</span> Лид, пришедший с любого
+              лендинга, автоматически попадает в единую базу и отображается в
+              соответствующем разделе админки.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS-013: лиды из TypeForm/внутренней формы попадают
+              в единую БД, отображаются в <code>/admin/leads</code> с фильтрами
+              и статусами. Автоматический auto-assign менеджера.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LEAD-03.</span> Лендинг вакансий: отклик на
+              вакансию сохраняется в системе и отображается в разделе
+              &laquo;Вакансии&raquo; единой админки с возможностью управлять
+              статусами кандидатов.
+            </div>
+            <div class="case__priority">
+              ⚡ <strong>Уточнение Ивана (25.02.2026):</strong> &laquo;Нужно,
+              чтобы админка вакансий, которую сделала Алёна, интегрировалась в
+              единую админку.&raquo; Алёна Тушминцева уже создала страницу
+              вакансий с отдельной админкой &mdash; её нужно встроить в ZIS
+              Admin UI. &rarr;
+              <a
+                href="../backlog/drafts/draft-043%20-%20HR-Вакансии-модуль-управления-откликами.md"
+                >DRAFT-043</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. LMS -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            6. LMS (Learning Management System)
+            <span class="section__tag">LMS</span>
+          </div>
+          <div class="section__pain">
+            Что болит: текущая LMS неудобна и для студентов, и для команды;
+            запуск нового потока требует значительных усилий; администрирование
+            контента завязано на разработчика.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LMS-01.</span> После покупки курса студент
+              автоматически получает доступ в LMS &mdash; отдельная регистрация
+              не нужна.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS-011 + ZIS-012: после оплаты запускается
+              onboarding process, шаг <code>grant_lms</code> выдаёт доступ
+              автоматически. Студент заходит через
+              <code>/student/lms/[enrollmentId]</code>.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LMS-02.</span> Студент видит свой прогресс
+              по курсу и может добавлять материалы в избранное и делать личные
+              заметки.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: прогресс по урокам (отметка
+              &laquo;Изучено&raquo;) работает (ZIS-012). Избранное и личные
+              заметки не реализованы. &rarr;
+              <a
+                href="../backlog/drafts/draft-036%20-%20LMS-Избранное-и-личные-заметки-студента.md"
+                >DRAFT-036</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LMS-03.</span> Студент видит групповой
+              прогресс (например, статистику своей учебной группы) для элементов
+              соревновательной механики.
+            </div>
+            <div class="case__note case__note--yellow">
+              Заложено частично: куратор видит матрицу прогресса группы
+              (ZIS-012). Для студента аналогичного представления нет. &rarr;
+              <a
+                href="../backlog/drafts/draft-037%20-%20LMS-Групповой-прогресс-для-студента.md"
+                >DRAFT-037</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LMS-04.</span> Куратор видит матрицу
+              прогресса своих студентов: кто что просмотрел, что ещё не начал.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS-012:
+              <code>/curator/lms/[cohortId]</code> &mdash; таблица
+              &laquo;студент × урок&raquo;.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LMS-05.</span> Команда может добавлять,
+              редактировать, удалять материалы курса из административного
+              интерфейса без привлечения разработчика.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS-012: <code>/admin/lms</code> &mdash; CRUD
+              модулей/уроков, reorder, revision history, deactivate/reactivate.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LMS-06.</span> Команда может добавить в LMS
+              новую функциональную страницу (например, страницу группы со
+              статистикой) и опубликовать её самостоятельно &mdash; через
+              вайб-кодинг, без необходимости ждать разработчика.
+            </div>
+            <div class="case__priority">
+              ⚡ <strong>Уточнение Ивана (25.02.2026):</strong> &laquo;Нужно,
+              чтобы можно было вайб-кодить условно что угодно, что не
+              противоречит данным и расширяет функциональность. Нужно, чтобы
+              здесь позволялось такое расширение.&raquo; Не конструктор страниц,
+              а расширяемая архитектура для быстрой разработки новых страниц.
+              &rarr;
+              <a
+                href="../backlog/drafts/draft-044%20-%20LMS-Конструктор-страниц.md"
+                >DRAFT-044</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">LMS-07.</span> Онбординг студента в новый
+              поток (добавление в чаты, предоставление доступов) происходит
+              автоматически после подтверждения оплаты.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS-011 + ZIS-014: полный onboarding process из 5
+              шагов (grant_lms, create_onboarding_page, subscribe_calendar,
+              assign_curator, send_welcome), запускается автоматически после
+              payment.success webhook.
+            </div>
+          </div>
+        </div>
+        <div class="section__ivan-note">
+          <strong>📌 Замечание Ивана (25.02.2026):</strong> &laquo;LMS мы
+          сделаем вообще отдельным большим проектом. Будет много сценариев
+          приёмки конкретно по новой LMS.&raquo; Текущая LMS в ZIS &mdash;
+          базовая версия; полноценная LMS может стать отдельным проектом с
+          собственным циклом разработки.
+        </div>
+      </div>
+
+      <!-- 7. ADMIN -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            7. Единая административная панель
+            <span class="section__tag">ADMIN</span>
+          </div>
+          <div class="section__pain">
+            Что болит: каждый продукт &mdash; своя админка; разным ролям нужны
+            разные срезы данных, но сейчас это невозможно настроить без лишней
+            сложности.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">ADMIN-01.</span> Команда работает в одной
+              AdminUI, внутри которой видны все модули: пользователи, курсы,
+              оплата, вакансии, LMS, маркетинг. Все существующие отдельные
+              админки (Boost, вакансии Алёны, лендинг КДП) интегрируются в
+              единую систему.
+            </div>
+            <div class="case__priority">
+              ⚡ <strong>Топ-приоритет Ивана (25.02.2026):</strong> &laquo;Нам
+              нужна единая админка на все наши продукты и на все наши внутренние
+              штуки. Админку Boost тоже нужно интегрировать. Админку вакансий
+              Алёны тоже нужно интегрировать.&raquo;
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: единая админка <code>/admin/*</code> с
+              sidebar-навигацией: users, companies, products, billing,
+              enrollments, lms, leads, events, dashboard (ZIS-008..ZIS-015).
+              Модули вакансий, маркетинга, Boost-админки не интегрированы.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">ADMIN-02.</span> Каждая роль (продажи,
+              контент, финансы, кураторы) видит только релевантный для неё срез
+              данных и инструменты.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: RBAC middleware
+              <code>requireRole()</code> ограничивает доступ по ролям (ZIS-003).
+              Куратор видит только свои данные. Однако гранулярного разделения
+              UI по ролям (разные sidebar-секции для разных ролей) пока нет
+              &mdash; все admin/manager видят одинаковый интерфейс. &rarr;
+              <a
+                href="../backlog/drafts/draft-038%20-%20Admin-Ролевой-UI-sidebar-доступ-по-ролям.md"
+                >DRAFT-038</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">ADMIN-03.</span> Сотрудник без технической
+              экспертизы может выполнить типовую операцию (добавить запись,
+              изменить статус, выгрузить данные) без помощи разработчика.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: через Admin UI можно создавать
+              пользователей, лидов, продукты, заказы, зачисления, управлять
+              контентом LMS. Выгрузка данных (export) не реализована. &rarr;
+              <a
+                href="../backlog/drafts/draft-039%20-%20Admin-Экспорт-данных-CSV-Excel.md"
+                >DRAFT-039</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">ADMIN-04.</span> Члены команды могут
+              самостоятельно &laquo;вайб-кодить&raquo; новые разделы и
+              инструменты внутри админки &mdash; добавлять новые сущности,
+              лендинги, логику &mdash; и всё это быстро и легко интегрируется в
+              единую систему.
+            </div>
+            <div class="case__priority">
+              ⚡ <strong>Приоритет Ивана (25.02.2026):</strong> &laquo;Не
+              no-code. Ребята могут вайб-кодить в этой админке всё, что им душе
+              угодно. Это очень важная штука автоматизации. Нужно, чтобы всё
+              нормально, быстро, легко подключалось.&raquo;
+            </div>
+            <div class="case__note case__note--yellow">
+              Не реализовано. Требуется расширяемая plugin-архитектура или
+              модульная система, позволяющая командным разработчикам быстро
+              добавлять новые разделы в единую админку. &rarr;
+              <a
+                href="../backlog/drafts/draft-045%20-%20Admin-No-code-инструменты.md"
+                >DRAFT-045</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. BOT -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            8. Автоматизация и боты <span class="section__tag">BOT</span>
+          </div>
+          <div class="section__pain">
+            Что болит: кураторы вручную отвечают на типовые вопросы студентов в
+            чатах потоков; уведомления о новых лидах и оплатах не
+            централизованы.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">BOT-01.</span> Команда получает
+              автоматическое уведомление о новом лиде или совершённой оплате
+              независимо от того, с какого продукта пришёл пользователь.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: при onboarding процессе ставится
+              TG-уведомление в служебный чат (<code>send_team_message</code>
+              &mdash; ZIS-014). Уведомления о новых лидах в реальном времени
+              пока нет &mdash; требует доработки CRM-модуля. &rarr;
+              <a
+                href="../backlog/drafts/draft-021%20-%20WP-041-Notifications-TG-email-unified-service.md"
+                >DRAFT-021</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">BOT-02.</span> Студент может узнать
+              информацию о своих доступах, статусе оплаты и прогрессе через
+              единый бот, не обращаясь к куратору.
+            </div>
+            <div class="case__note case__note--yellow">
+              Заложено в плане: DRAFT-020 (TG: Student Bot, Фаза 2). Сейчас бот
+              поддерживает только <code>/start</code> для привязки аккаунта
+              (ZIS-014).
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">BOT-03.</span> Боты потоков и продуктов не
+              множатся пропорционально числу потоков: один бот обслуживает все
+              потоки продукта, адаптируя ответы к контексту.
+            </div>
+            <div class="case__note case__note--green">
+              Архитектурно реализовано в ZIS-014: один бот (grammY) обслуживает
+              все потоки. <code>TelegramChat</code> привязан к Cohort/Product,
+              <code>ChatMembership</code> отслеживается централизованно.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">BOT-04.</span> Команда может расширить
+              сценарии бота (добавить новые команды, ответы) без переработки
+              всей бот-инфраструктуры.
+            </div>
+            <div class="case__note case__note--yellow">
+              Архитектурно заложено: бот на grammY с handler-паттерном
+              (ZIS-014), расширяемость через добавление новых handlers. Но UI
+              для управления сценариями без разработчика не предусмотрен &mdash;
+              требуется код.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">BOT-05.</span> Бот проводит студента через
+              онбординг-чеклист: проверяет, состоит ли студент в нужных чатах,
+              заполнил ли вступительную форму, получил ли доступ к ЛК,
+              подтвердил ли email &mdash; и показывает только невыполненные
+              шаги.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас кураторы вручную проверяют и направляют
+              студентов. В ZIS реализован серверный onboarding process
+              (ZIS-011), но интерактивного бот-сценария с пошаговым ведением
+              студента нет.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">BOT-06.</span> Бот предоставляет кнопочный
+              troubleshooting для типовых проблем студентов: не открывается ЛК,
+              не могу найти сертификат, нужно сбросить пароль, не получил доступ
+              к чату &mdash; без обращения к куратору.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас все подобные запросы обрабатываются
+              кураторами вручную через чаты потоков и личные сообщения.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">BOT-07.</span> Бот отправляет студенту
+              курсовые напоминания, адаптированные к формату прохождения:
+              синхронный (ссылки на воркшопы, подготовка к занятиям, записи) или
+              асинхронный (только записи и материалы). Студент выбирает формат
+              при онбординге и может изменить позже.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас напоминания отправляются в общий канал
+              потока для всех студентов без разделения по формату прохождения.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">BOT-08.</span> В конце курса (тарифа) бот
+              инициирует завершающий флоу: отправляет финальную форму обратной
+              связи, ссылку на тест/экзамен, сертификат и предложение по
+              следующему продукту (upsell).
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас все завершающие действия выполняются
+              кураторами вручную.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">BOT-09.</span> Внешние кастомные боты и
+              сервисы могут взаимодействовать с ZIS через API (по токену):
+              получать данные о пользователях, их зачислениях и доступах,
+              инициировать отправку уведомлений &mdash; без доступа к исходному
+              коду системы.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Архитектурно предусмотрено: tRPC API с
+              bearer-авторизацией (better-auth Bearer plugin). Публичная
+              документация по API и токены для внешних интеграций не созданы.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. NOTIF -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            9. Уведомления и коммуникация
+            <span class="section__tag">NOTIF</span>
+          </div>
+          <div class="section__pain">
+            Что болит: все уведомления студентам идут в общие каналы потоков;
+            нет возможности персонализировать коммуникацию; студенты получают
+            нерелевантные сообщения или, наоборот, пропускают важные. Нет выбора
+            канала доставки.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">NOTIF-01.</span> Студент выбирает
+              предпочтительный транспорт для уведомлений: Telegram, email или
+              другой мессенджер. Система доставляет уведомления через выбранный
+              канал.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас уведомления идут только в Telegram (через
+              бота и каналы потоков). Email-уведомления не реализованы.
+              Архитектурно предусмотрена концепция &laquo;транспорт +
+              нотификация&raquo; &mdash; DRAFT-021.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">NOTIF-02.</span> Студент управляет
+              подписками на типы уведомлений (топики): критичные (оплата,
+              доступы), информационные (воркшопы, записи), маркетинговые (новые
+              продукты, акции). Настройки можно изменить в любой момент.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас все сообщения идут в общий канал без
+              категоризации. Концепция топиков озвучена на созвоне 25.02.2026.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">NOTIF-03.</span> Система контролирует объём
+              коммуникации: студент получает только релевантные уведомления для
+              своего сценария (продукт, поток, формат прохождения), без спама и
+              дублирования.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас все студенты потока получают одинаковые
+              сообщения в канале, независимо от формата прохождения (синхронный
+              / асинхронный).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. AUDIT -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            10. История изменений и аудит
+            <span class="section__tag">AUDIT</span>
+          </div>
+          <div class="section__pain">
+            Что болит: новый сотрудник не может проверить, по каким условиям
+            студент покупал продукт год назад; тарифы переименовывались и
+            менялись без фиксации.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">AUDIT-01.</span> В системе хранится полная
+              история каждой транзакции: цена, тариф, его условия на момент
+              покупки &mdash; вне зависимости от последующих изменений.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано: <code>Enrollment.priceSnapshot</code> (ZIS-011),
+              <code>Order.amount/currency</code> (ZIS-010),
+              <code>LessonRevision</code> для контента (ZIS-012),
+              <code>AuditLog</code> для всех изменений (ZIS-003),
+              <code>Event</code> для бизнес-событий (ZIS-004).
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">AUDIT-02.</span> Сотрудник может в любой
+              момент открыть карточку пользователя и увидеть все его покупки,
+              переписки с командой и ботами, историю доступов.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: данные о покупках (billing), зачислениях
+              (enrollments), событиях (events) доступны в отдельных разделах
+              админки. Единой агрегированной &laquo;карточки пользователя&raquo;
+              нет. Переписки с ботами не хранятся. &rarr;
+              <a
+                href="../backlog/drafts/draft-034%20-%20Карточка-пользователя-User-Profile-360.md"
+                >DRAFT-034</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">AUDIT-03.</span> Внутренние изменения
+              системы (новые модули, изменения логики) фиксируются в changelog с
+              описанием &laquo;как было / как стало / зачем&raquo;.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано: <code>CHANGELOG.md</code> (приложение) и
+              <code>docs/CHANGELOG.md</code> (документация/архитектура) ведутся
+              с формата CHG-NNN: Было/Стало/Почему/Затронуто.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. OPS -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            11. Надёжность и операционная готовность
+            <span class="section__tag">OPS</span>
+          </div>
+          <div class="section__pain">
+            Что болит: при сбое LMS или других сервисов команда не имеет чёткого
+            плана действий; персональные данные студентов не защищены должным
+            образом.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">OPS-01.</span> При сбое в системе во время
+              активного воркшопа или потока команда знает чёткий порядок
+              действий для восстановления работы.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично заложено: health check endpoint
+              (<code>/api/health</code>), dashboard с dead jobs (ZIS-015),
+              Process Ops (retry/resolve шагов &mdash; ZIS-017/018).
+              Формализованный runbook для инцидентов не создан. docs/14-nfr.md
+              описывает подход, но операционная документация пока отсутствует.
+              &rarr;
+              <a
+                href="../backlog/drafts/draft-040%20-%20OPS-Incident-Runbook-и-операционная-документация.md"
+                >DRAFT-040</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">OPS-02.</span> Данные пользователей
+              регулярно бэкапируются; в случае блокировки внешнего сервиса
+              данные не теряются.
+            </div>
+            <div class="case__note case__note--yellow">
+              Архитектурно предусмотрено: все данные в PostgreSQL (единая точка
+              бэкапа). Настройка регулярного бэкапа &mdash; задача
+              инфраструктуры/DevOps. &rarr;
+              <a
+                href="../backlog/drafts/draft-040%20-%20OPS-Incident-Runbook-и-операционная-документация.md"
+                >DRAFT-040</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">OPS-03.</span> Параллельная работа
+              нескольких членов команды над разными модулями не приводит к
+              конфликтам и падению системы.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано архитектурно: модульный монолит с изолированными tRPC
+              роутерами, RBAC, транзакционные операции. Concurrent access
+              обеспечивается PostgreSQL.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. INV -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            12. B2B-документооборот и инвойсинг
+            <span class="section__tag">INV</span>
+          </div>
+          <div class="section__pain">
+            Что болит: счета и договора для юрлиц формируются через
+            Google-скрипт с ограничениями (только одна цена, только один продукт
+            одновременно). Для Boost и интенсивов счета выставляются вручную.
+            Реестр документов разрознен по таблицам и папкам. При
+            масштабировании продаж Настя становится узким горлышком.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">INV-01.</span> B2B-клиент может
+              самостоятельно сформировать счёт на оплату через публичную форму:
+              указать ИНН (реквизиты подтягиваются из ЕГРЮЛ), выбрать продукт,
+              поток и тариф &mdash; и получить PDF-счёт.
+            </div>
+            <div class="case__note case__note--yellow">
+              Реализовано в ZIS: <code>/b2b/start</code> &rarr;
+              <code>/company/register</code> &mdash; B2B-клиент заполняет форму
+              (ИНН/КПП, юр. адрес, контактное лицо), выбирает
+              продукт/поток/тариф. После одобрения менеджером создаётся Company
+              + Contract + Invoice. PDF-документы генерируются через pg-boss
+              jobs. Автоподтягивание из ЕГРЮЛ не реализовано &mdash; реквизиты
+              вводятся вручную.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">INV-02.</span> При формировании счёта для
+              B2B клиент может сразу указать данные студентов (ФИО, email),
+              чтобы после оплаты онбординг запускался автоматически, без
+              дополнительной переписки.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS: компания ведёт реестр сотрудников (<code
+                >/company</code
+              >
+              &rarr; CompanyEmployee), при создании enrollment request выбирает
+              конкретных сотрудников. После подтверждения оплаты менеджером
+              (<code>markCompanyRequestPaid</code>) система автоматически
+              создаёт User, Order, Enrollment для каждого сотрудника и запускает
+              онбординг.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">INV-03.</span> Все документы (счета,
+              договора, инвойсы) по всем продуктам и клиентам хранятся в едином
+              реестре с привязкой к компании, а не в разрозненных таблицах и
+              папках.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS: <code>/company/documents</code> &mdash; единый
+              реестр документов (invoices, contracts, acts) с привязкой к
+              компании. Менеджер видит документы через
+              <code>/admin/companies/[id]/invoices</code> и
+              <code>/admin/companies/[id]/contracts</code>. Все документы
+              хранятся в единой БД с привязкой к Company.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">INV-04.</span> Нумерация счетов и договоров
+              формируется автоматически с учётом продукта (префиксы), года и
+              порядкового номера &mdash; в настраиваемом формате.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано в ZIS: автонумерация работает по формату
+              <code>INV-YYYYMMDD-XXXXXX</code> (счета),
+              <code>CTR-YYYYMMDD-XXXXXX</code> (договоры),
+              <code>ACT-YYYYMMDD-XXXXXX</code> (акты). Формат фиксирован &mdash;
+              настраиваемых префиксов по продуктам пока нет.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">INV-05.</span> Система поддерживает два
+              типа договоров: шаблонный (типовая оферта, не требует
+              согласования) и кастомный (загружается вручную после согласования
+              с юристом). Оба типа отображаются в едином реестре с привязкой к
+              компании.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас типовой договор &mdash; ссылка на оферту на
+              сайте. Кастомные договоры согласуются через юриста Володю и
+              хранятся отдельно.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">INV-06.</span> Для иностранных компаний
+              формируются инвойсы на английском языке. Для отдельных стран
+              (Казахстан, Германия) поддерживаются специфические требования к
+              оформлению документов.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас Настя формирует международные инвойсы
+              вручную (PDF без подписи). Есть шаблоны на английском и двуязычный
+              для Казахстана. Германия требует дополнительные строки.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--green">&#10003;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">INV-07.</span> Сотрудник отдела продаж
+              может самостоятельно сформировать счёт или ссылку на оплату для
+              B2B-клиента, не привлекая финансового менеджера для каждого
+              запроса.
+            </div>
+            <div class="case__note case__note--green">
+              Реализовано в ZIS: менеджер формирует Invoice из
+              <code>/admin/companies/[id]/invoices</code> или при одобрении
+              B2B-заявки (<code>crm.approveB2BLead</code>). PDF генерируется
+              автоматически через pg-boss job. Подтверждение оплаты &mdash;
+              через <code>markCompanyRequestPaid</code>.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">INV-08.</span> Менеджер может вручную
+              запустить онбординг для B2B-студентов до поступления оплаты
+              &mdash; по гарантийному письму или согласованной постоплате.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично реализовано: в админке есть batch enrollment (ZIS-011),
+              менеджер может зачислить студентов вручную. Но формализованного
+              процесса &laquo;зачисление по гарантийному письму&raquo; с
+              фиксацией основания нет.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13. DEDUP -->
+      <div class="section">
+        <div class="section__header">
+          <div class="section__title">
+            13. Дедупликация и регистрация при оплате
+            <span class="section__tag">DEDUP</span>
+          </div>
+          <div class="section__pain">
+            Что болит: в CRM появляются дубли лидов: один и тот же человек
+            создаёт несколько карточек при повторных попытках оплаты (брошенные
+            корзины). Команда тратит время на разбор дублей.
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--red">&#10005;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">DEDUP-01.</span> При оформлении заказа
+              пользователь автоматически регистрируется в системе (или
+              привязывается к существующему аккаунту по email), чтобы все его
+              попытки оплаты, брошенные корзины и завершённые покупки были в
+              одной карточке.
+            </div>
+            <div class="case__note case__note--red">
+              Не реализовано. Сейчас каждая попытка оплаты создаёт отдельный лид
+              в CRM. Решение, озвученное на созвоне: регистрировать пользователя
+              в момент создания заказа (до перехода к оплате), а если аккаунт
+              уже существует &mdash; просить авторизоваться.
+            </div>
+          </div>
+        </div>
+        <div class="case">
+          <div class="case__status case__status--yellow">&#9679;</div>
+          <div class="case__body">
+            <div class="case__text">
+              <span class="case__id">DEDUP-02.</span> Повторный студент (ранее
+              проходивший обучение) при возврате на новый поток автоматически
+              распознаётся системой, и ему предлагается соответствующая скидка
+              без ручного вмешательства менеджера.
+            </div>
+            <div class="case__note case__note--yellow">
+              Частично заложено: единая БД пользователей и зачислений позволяет
+              определить повторного студента. Автоматическое применение скидки
+              при повторном прохождении не реализовано. Сейчас Настя формирует
+              ссылку с другой суммой вручную.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uncovered">
+        <h2>Ранее не покрытые кейсы (теперь заведены как drafts)</h2>
+        <ol>
+          <li>
+            <strong>LK-02</strong> &mdash; Витрина продуктов для студента &rarr;
+            <a
+              href="../backlog/drafts/draft-033%20-%20Личный-кабинет-студента-Student-Dashboard.md"
+              >DRAFT-033</a
+            >
+          </li>
+          <li>
+            <strong>LK-03</strong> &mdash; Сохранение платёжных данных &rarr;
+            <a
+              href="../backlog/drafts/draft-041%20-%20Billing-Сохранение-платёжных-данных-tokenized-payments.md"
+              >DRAFT-041</a
+            >
+          </li>
+          <li>
+            <strong>PAY-04</strong> &mdash; UI настройки платёжных провайдеров
+            &rarr;
+            <a
+              href="../backlog/drafts/draft-042%20-%20Billing-Мульти-провайдер-и-UI-конфигурации.md"
+              >DRAFT-042</a
+            >
+          </li>
+          <li>
+            <strong>LEAD-03</strong> &mdash; Модуль вакансий (HR/ATS) &rarr;
+            <a
+              href="../backlog/drafts/draft-043%20-%20HR-Вакансии-модуль-управления-откликами.md"
+              >DRAFT-043</a
+            >
+          </li>
+          <li>
+            <strong>LMS-06</strong> &mdash; Конструктор страниц в LMS &rarr;
+            <a
+              href="../backlog/drafts/draft-044%20-%20LMS-Конструктор-страниц.md"
+              >DRAFT-044</a
+            >
+          </li>
+          <li>
+            <strong>ADMIN-04</strong> &mdash; No-code инструменты &rarr;
+            <a
+              href="../backlog/drafts/draft-045%20-%20Admin-No-code-инструменты.md"
+              >DRAFT-045</a
+            >
+          </li>
+        </ol>
+      </div>
+
+      <div class="questions">
+        <h2>Открытые вопросы (требуют отдельного обсуждения)</h2>
+        <ol>
+          <li>
+            <strong>Флоу студента (B2C)</strong> &mdash; Алена готовит детальную
+            схему пути студента от первого касания до завершения курса. На её
+            основе появятся дополнительные бизнес-кейсы. _(По итогам созвона
+            24.02: Алёна начала работу, обещала прислать на следующий день.)_
+          </li>
+          <li>
+            <strong>Флоу ботов</strong> &mdash; Лера подготовила схему в Figma и
+            описание работ бота прямой коммуникации со студентом. Основные
+            сценарии зафиксированы в BOT-05..08. Остаётся вопрос: один бот на
+            всё (онбординг + саппорт + upsell + AI-ассистент) или несколько
+            специализированных ботов. _(Обсуждено на созвоне 25.02.)_
+          </li>
+          <li>
+            <strong>Подписочная модель (Aura)</strong> &mdash; финансовый учёт
+            подписок: Настя видит только суммы списаний, без детализации.
+            Подписочную систему делали Ваня и Илья. Нужен отдельный разбор, как
+            учитывать подписки в единой системе. _(Вынесено из созвона 24.02
+            &mdash; тема не раскрыта, требует отдельного звонка.)_
+          </li>
+          <li>
+            <strong>Интеграция с 1С и Диадок</strong> &mdash; 1С Фреш не
+            интегрируется с Диадоком напрямую. УПД выгружаются из 1С в XML и
+            загружаются в Диадок вручную. Автоматизация ЭДО &mdash; отложенная
+            задача.
+          </li>
+          <li>
+            <strong>Крипто-платежи</strong> &mdash; существуют, но нельзя
+            афишировать на российском рынке. Потребуется гео-фильтрация (geo-IP)
+            для показа этой опции.
+          </li>
+          <li>
+            <strong>Дизайн-система</strong> &mdash; вопрос пока открыт; команда
+            должна предоставить Жене референсы и гайдлайны.
+          </li>
+          <li>
+            <strong>Разграничение ZIS и Aura</strong> &mdash; Aura развивается
+            как отдельный продукт, возможно с выходом на западный рынок. Нужно
+            уточнить, какие бизнес-кейсы Auры входят в текущий скоп ZIS, а какие
+            &mdash; в отдельный контур.
+          </li>
+          <li>
+            <strong>Миграция данных из AirTable</strong> &mdash; импорт всех
+            исторических студентов и данных в единую БД. Мягкий переход:
+            тестирование на пилотных пользователях, затем полный перенос. До
+            потока 40 КДП &mdash; один архивный поток, с потока 40 &mdash;
+            поточные данные доступны.
+          </li>
+          <li>
+            <strong>LMS как отдельный проект</strong> &mdash; Иван считает, что
+            полноценная LMS станет отдельным большим проектом со своими
+            сценариями приёмки. Текущая LMS в ZIS &mdash; базовая версия.
+            _(Озвучено 25.02.2026.)_
+          </li>
+          <li>
+            <strong>Полнота списка сценариев</strong> &mdash; Иван отметил, что
+            текущий список точно не полный, и вся команда должна пройтись по
+            нему и дополнить недостающие сценарии. _(Озвучено 25.02.2026.)_
+          </li>
+        </ol>
+      </div>
+
+      <p class="footer">
+        Черновик составлен на основе созвона 20.02.2026.<br />
+        Аудит покрытия проведён 24.02.2026 &mdash; сопоставлено с реализованным
+        функционалом (ZIS-001..ZIS-020) и backlog (DRAFT-002..DRAFT-031).<br />
+        Досоздание недостающих drafts (DRAFT-033..DRAFT-045) проведено
+        24.02.2026 &mdash; все 40 бизнес-кейсов теперь имеют либо реализацию,
+        либо задачу в backlog.<br />
+        Дополнено 02.03.2026 по итогам созвона 24.02.2026 с Настей и Алёной
+        &mdash; добавлены секции PAY-05..08 (чеки, рефанды, апгрейд,
+        мультивалюта), INV (B2B-документооборот), DEDUP (дедупликация).<br />
+        Дополнено 02.03.2026 по итогам созвона 25.02.2026 с Лерой &mdash;
+        добавлены BOT-05..09 (онбординг-бот, troubleshooting, напоминания,
+        end-of-course, API для кастомных ботов), NOTIF (управление
+        уведомлениями).<br />
+        Дополнено 02.03.2026 по итогам ревью Ивана (25.02.2026) &mdash;
+        деприоритизированы LK-03 и COURSE-04; усилены приоритеты LEAD-01
+        (лендинги в масштабе), ADMIN-01 (единая админка), ADMIN-04
+        (вайб-кодинг); уточнены LEAD-03 (интеграция админки вакансий), LMS-06
+        (расширяемость через вайб-кодинг); LMS отмечена как потенциально
+        отдельный большой проект. Всего 62 бизнес-кейса (из них 2
+        деприоритизированы).<br />
+        Следующий шаг &mdash; приоритизация: какие бизнес-кейсы войдут в первую
+        версию.
+      </p>
+    </div>
+  </body>
+</html>
