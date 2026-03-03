@@ -252,23 +252,34 @@ For each idea in the author's stream of consciousness:
 - Keep the author's voice and energy
 - Note any examples, numbers, or references mentioned
 
-Display extracted theses to the author and save to temp file.
+Display extracted theses to the author.
 
-#### Step 2: Create temp directory and save raw theses
+#### Step 2: Ask the author which theses to keep
+
+**CRITICAL: Do NOT proceed to WebSearch until the author selects theses.**
+
+Display the extracted theses numbered (T1, T2, T3...) and ask the author:
+
+Use AskUserQuestion:
+"Which theses should we research and develop? Type the numbers to keep (e.g., 'T1, T3, T5'). Or 'all' to keep everything. You can also rephrase or add new ideas."
+
+Wait for the author's response. Only the SELECTED theses go forward to research.
+
+#### Step 3: Create temp directory and save selected theses
 
 ```bash
 mkdir -p .claude/temp/linkedin-{slug}/
 ```
 
-Save extracted theses to: `temp-dir/01-raw-theses.md`
+Save SELECTED theses to: `temp-dir/01-selected-theses.md`
 
-#### Step 3: Launch WebSearch research agent (BACKGROUND)
+#### Step 4: Launch WebSearch research agent (BACKGROUND)
 
-Build a prompt for the web-researcher agent based on the template below.
+Build a prompt for the web-researcher agent based on the template below. Use ONLY the selected theses from Step 2.
 
 Launch via **Agent tool** (subagent_type: general-purpose, run_in_background: true).
 
-⚠️ WebSearch agent may take 5-10 minutes. While it runs, proceed to Step 4.
+⚠️ WebSearch agent may take 5-10 minutes. While it runs, proceed to Step 5.
 
 ---
 
@@ -289,9 +300,9 @@ The author is writing a LinkedIn post for product managers, product leaders, fou
 **Topic angle:** {inferred viral topic angle}
 **Content type:** {useful / positive / both}
 
-## AUTHOR'S RAW THESES
+## AUTHOR'S SELECTED THESES
 
-{ALL extracted theses from Step 1, numbered, each 2-5 sentences}
+{SELECTED theses from Step 2, numbered, each 2-5 sentences}
 
 ## YOUR TASKS
 
@@ -377,20 +388,20 @@ Where experts DISAGREE on the topic — useful for making the post more nuanced.
 Save your FULL report to file: {temp-dir}/agent-web-researcher.md
 ```
 
-#### Step 4: Claude's own analysis (PARALLEL with WebSearch agent)
+#### Step 5: Claude's own analysis (PARALLEL with WebSearch agent)
 
-While the WebSearch agent is running, Claude analyzes the theses:
+While the WebSearch agent is running, Claude analyzes the selected theses:
 1. Generate counterarguments for each thesis (sharp, 1-2 sentences)
 2. Identify which theses are strongest/weakest for LinkedIn engagement
 3. Suggest thesis ordering for maximum impact
 
-#### Step 5: Wait for WebSearch agent results and synthesize
+#### Step 6: Wait for WebSearch agent results and synthesize
 
 1. Read `temp-dir/agent-web-researcher.md` when the agent completes
 2. Merge WebSearch insights with Claude's analysis
 3. For each thesis, compile: thesis + expert opinions + counterarguments + first principles deepening
 
-#### Step 6: Display enriched theses to author
+#### Step 7: Display enriched theses with counterarguments to author
 
 Format:
 ```
@@ -414,10 +425,15 @@ N2: [new thesis from web research]
 ...
 ```
 
-#### Step 7: Ask the author which theses to keep
+#### Step 8: Ask the author which counterarguments and new theses to include
 
 Use AskUserQuestion:
-"Which theses should make it into the post? Type the numbers to keep (e.g., 'T1, T3, N2'). Or 'all' to keep everything."
+"Review the enriched theses above. Tell me:
+1. Which counterarguments should we USE in the post to strengthen your position? (e.g., 'counter from T1, T3')
+2. Which new theses (N1, N2...) should we ADD to the post?
+3. Anything you want to change, rephrase, or drop?
+
+Type your decisions, or 'looks good' to proceed with all counterarguments and no new theses."
 
 ---
 
@@ -493,7 +509,7 @@ Display the generated post in a markdown code block so the author can copy-paste
 
 Generate a short title slug from the post content (3-4 words, kebab-case, English).
 
-Save the post file as: `3-Marketing/1-SMM/Linkedin-posts/{YYYY-MM-DD}-{slug}.md`
+Save the post file as: `3-Marketing/1-SMM/Linkedin-posts/Drafts/{YYYY-MM-DD}-{slug}/post.md`
 
 The file should contain the frontmatter, the post text, and a placeholder for image metadata (to be filled in after image generation).
 
@@ -525,17 +541,25 @@ Generate 10 different visual metaphors, ALL in New Yorker Classic style. Author 
 
 **Step 1: Read the post and brainstorm 10 visual metaphors**
 
-Read the finished post carefully. Think about what makes this post UNIQUE — not generic "person at laptop" scenes, but specific, inventive visual metaphors that capture the post's core insight.
+Read the finished post carefully. Identify:
+1. The CORE ACTION described in the post (what is the person DOING differently?)
+2. The KEY CONTRAST (what was the old way vs the new way?)
+3. The CONCRETE OBJECTS or scenarios mentioned (tools, products, situations)
 
 Generate 10 DIFFERENT visual metaphors. Each one is a concrete scene description (2-3 sentences).
 
+**CRITICAL: Metaphors must be LITERAL and RECOGNIZABLE, not abstract.**
+
+The reader should glance at the image and immediately understand what the post is about. The best LinkedIn images work like a movie poster — they show a SCENE that tells a story, not an abstract concept.
+
 Guidelines for metaphors:
-- Each metaphor must be a SPECIFIC visual idea tied to THIS post's message — not generic business imagery
-- Think in terms of: What is the TRANSFORMATION in this post? What is the TENSION? What is the AHA moment?
-- Use metaphor types: analogy (X is like Y), contrast (before/after in one frame), scale shift (tiny/huge), unexpected juxtaposition, role reversal, physical manifestation of an abstract concept
-- Vary the approaches: some literal, some abstract, some close-up, some wide, some with characters, some symbolic
+- **START from the post's literal content.** If the post is about building MVPs fast, show someone building something. If it's about interviews, show an interview scene. If it's about pivoting, show someone changing direction. Ground every metaphor in what the post actually describes.
+- **Make it a SCENE with characters doing something.** A person building, testing, talking, running, choosing — not floating abstract shapes or symbolic objects alone.
+- **The metaphor should be one step removed from reality, not five.** "A founder showing a working app on their phone to a skeptical investor" is good. "A butterfly emerging from a cocoon made of code" is too abstract.
+- **Each metaphor = 1 clear visual idea.** If you need more than 2 sentences to explain it, it's too complex.
 - EVERY scene must be framed as optimistic, empowering, joyful
 - NO generic business scenes: no "person at laptop", no "team in meeting room", no "handshake", no "graph going up"
+- NO abstract/philosophical imagery: no butterflies, no trees growing from books, no lightbulbs, no puzzle pieces, no bridges to nowhere
 
 **Step 2: Display metaphors and generate all 10 in New Yorker Classic style**
 
@@ -565,7 +589,7 @@ No text, no captions, no speech bubbles, no words.
 **Step 3: Generate 10 images via OpenRouter API (parallel)**
 
 ```bash
-# Generate images in parallel batches
+# Generate images in parallel batches (2K resolution)
 # Batch 1: images 1-5
 for i in 1 2 3 4 5; do
   curl -s https://openrouter.ai/api/v1/chat/completions \
@@ -573,6 +597,7 @@ for i in 1 2 3 4 5; do
     -H "Content-Type: application/json" \
     -d "{
       \"model\": \"google/gemini-3.1-flash-image-preview\",
+      \"image_config\": {\"image_size\": \"2K\"},
       \"messages\": [{\"role\": \"user\", \"content\": \"Generate an image: {full_prompt_for_metaphor_$i}\"}]
     }" > /tmp/openrouter_pass1_${i}.json &
 done
@@ -585,6 +610,7 @@ for i in 6 7 8 9 10; do
     -H "Content-Type: application/json" \
     -d "{
       \"model\": \"google/gemini-3.1-flash-image-preview\",
+      \"image_config\": {\"image_size\": \"2K\"},
       \"messages\": [{\"role\": \"user\", \"content\": \"Generate an image: {full_prompt_for_metaphor_$i}\"}]
     }" > /tmp/openrouter_pass1_${i}.json &
 done
@@ -597,14 +623,14 @@ wait
 python3 << 'PYEOF'
 import json, base64, os
 
-images_dir = '3-Marketing/1-SMM/Linkedin-posts/images/{date}-{slug}'
-metaphors_dir = os.path.join(images_dir, 'metaphors')
-os.makedirs(metaphors_dir, exist_ok=True)
+post_dir = '3-Marketing/1-SMM/Linkedin-posts/Drafts/{date}-{slug}'
+images_dir = os.path.join(post_dir, 'images')
+os.makedirs(images_dir, exist_ok=True)
 
 results = []
 for i in range(1, 11):
     resp_file = f'/tmp/openrouter_pass1_{i}.json'
-    out_file = os.path.join(metaphors_dir, f'{i:02d}-metaphor.png')
+    out_file = os.path.join(images_dir, f'{i:02d}-metaphor.png')
 
     try:
         with open(resp_file, 'r') as f:
@@ -628,46 +654,50 @@ print('\n'.join(results))
 PYEOF
 ```
 
-**Step 5: Ask the author to choose a metaphor**
+**Step 5: Ask the author to choose or generate more**
 
 Tell the author:
 ```
-10 metaphor variants saved to: images/{date}-{slug}/metaphors/
+10 metaphor variants saved to: 3-Marketing/1-SMM/Linkedin-posts/Drafts/{date}-{slug}/images/
 Files: 01-metaphor.png through 10-metaphor.png
 
-Please look at the images and tell me which metaphor number you like best (1-10).
-You can also describe what you like about it or suggest tweaks.
+Please look at the images and tell me which one you like best.
 ```
 
-Use AskUserQuestion with a free-text question:
-"Which metaphor number (1-10) do you want to use? You can also describe any tweaks."
+Use AskUserQuestion:
+"Which metaphor do you want to use?"
+Options:
+- "Generate 10 more" (description: "None of these work — generate 10 new metaphors with different ideas")
+- "Pick a number (1-10)" (description: "I'll type the number and any tweaks I want")
+
+**If the author asks for 10 more:** Go back to Step 1 and generate 10 NEW metaphors (all different from previous batch). Save as `11-metaphor.png` through `20-metaphor.png` (incrementing from where the last batch ended). Repeat this loop until the author picks one.
+
+**If the author picks a number:** Proceed to SAVE OUTPUTS.
 
 ---
 
 #### SAVE OUTPUTS (update post file with image metadata)
 
-The post file was already saved during the POST WRITING STAGE as `3-Marketing/1-SMM/LinkedIn-posts/{YYYY-MM-DD}-{slug}.md`.
+The post file was already saved during the POST WRITING STAGE as `3-Marketing/1-SMM/Linkedin-posts/Drafts/{YYYY-MM-DD}-{slug}/post.md`.
 
 Now UPDATE the same file to add image metadata to the frontmatter and append the Metadata section.
 
-Directory structure for images:
+Directory structure:
 ```
-3-Marketing/1-SMM/LinkedIn-posts/
-  {YYYY-MM-DD}-{slug}.md          ← post file (already saved, now updated)
-  images/{YYYY-MM-DD}-{slug}/
-    metaphors/                     ← 10 metaphor variants (New Yorker Classic style)
-      01-metaphor.png ... 10-metaphor.png
+3-Marketing/1-SMM/Linkedin-posts/Drafts/{YYYY-MM-DD}-{slug}/
+  post.md                         ← post file (already saved, now updated)
+  images/                         ← all images for this post
+    01-metaphor.png ... 10-metaphor.png   ← 10 metaphor variants
     final.png                      ← copy of the chosen metaphor image
 ```
 
-Copy the author's chosen metaphor image to `final.png` in the post's image folder.
+Copy the author's chosen metaphor image to `final.png` in the post's images folder.
 
 Update the post file frontmatter to add:
 ```yaml
-image_folder: images/{YYYY-MM-DD}-{slug}/
 chosen_metaphor: {metaphor number}
 style: new-yorker-classic
-final_image: images/{YYYY-MM-DD}-{slug}/final.png
+final_image: images/final.png
 ```
 
 Append the Metadata section after the post text:
@@ -696,9 +726,10 @@ Append the Metadata section after the post text:
 ```
 
 After saving, tell the author:
-- Final image copied to `images/{YYYY-MM-DD}-{slug}/final.png` — ready to upload to LinkedIn
-- All 10 metaphor variants are in `metaphors/` for future reference
-- All prompts are logged in the post metadata
+- Post and images saved to `3-Marketing/1-SMM/Linkedin-posts/Drafts/{YYYY-MM-DD}-{slug}/`
+- Final image: `images/final.png` — ready to upload to LinkedIn
+- All 10 metaphor variants are in `images/` for future reference
+- All prompts are logged in post.md metadata
 
 ---
 

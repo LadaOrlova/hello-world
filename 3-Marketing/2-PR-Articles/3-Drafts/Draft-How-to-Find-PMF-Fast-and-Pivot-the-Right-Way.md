@@ -27,61 +27,35 @@ So if PMF is a treadmill, the first step is admitting where you actually stand. 
 
 Ninety to ninety-five percent of new products fail. In my experience training 12,000+ product managers, the reason is almost always the same: the team was wrong about something fundamental — the segment, the job, the value prop, the channel, the economics — and they discovered it too late.
 
-The goal of early stage is not to ship a product. It is to buy knowledge about what will kill your idea. We don't launch products — we purchase validated learnings, one assumption at a time. And a pivot is not some dramatic reinvention. It is the surgical act of changing a specific assumption that turned out to be wrong.
+The goal of early stage is not to ship a product. It is to buy knowledge about what will kill your idea. We don't launch products — we purchase validated learnings. And a pivot is not some dramatic reinvention. It is the surgical act of changing a bunch of assumption that turned out to be wrong.
 
-Consider [Notion](https://www.figma.com/blog/design-on-a-deadline-how-notion-pulled-itself-back-from-the-brink-of-failure/). Their V1 was a programming tool "for non-coders." Nobody wanted it. Founder Ivan Zhao fired all four employees, moved to Kyoto, and rebuilt from scratch. His critical insight: people don't want to build software — they want to get stuff done. The wrong assumption was about the Job. Notion V2 launched as a modular workspace in 2018 and [now sits at a $10B valuation](https://whatastartup.substack.com/p/how-notion-went-from-near-failure-to-a-10-billion-dollars-unicorn).
+Consider [Notion](https://www.figma.com/blog/design-on-a-deadline-how-notion-pulled-itself-back-from-the-brink-of-failure/). Their V1 was a programming tool "for non-coders." Nobody wanted it. Founder Ivan Zhao fired all four employees, moved to Kyoto, and rebuilt from scratch. His critical insight: people don't want to build software — they want to get stuff done. The wrong assumption was about the Job To Be Done and the core Value Proposition. Notion V2 launched as a modular workspace in 2018 and [now sits at a $10B valuation](https://whatastartup.substack.com/p/how-notion-went-from-near-failure-to-a-10-billion-dollars-unicorn).
 
-But here is the nuance most "fail fast" advice misses: killing on averages is its own kind of mistake. A foundational cohort can suddenly stick even when average metrics look terrible. The question is always: who stayed, what exactly do they do, and why is it repeatable?
+If the goal of early stage is to buy knowledge about what kills your idea, the next question is obvious: where do you start digging?
 
-If the goal of early stage is to buy knowledge about what kills your idea, the next question is obvious: where do you start digging? The answer is more fundamental than most teams realize.
+## Start With the Job To Be Done 
 
-## Start With the Job, Not the Solution
+Jobs are the root cause of everything in your product. A product exists to perform a job for a customer, and profit appears only when you create real added value within a specific segment. 
 
-Jobs are the root cause of everything in your product. A product exists to perform a job for a customer, and profit appears only when you create real added value within a specific segment. This is not abstract theory — it is the single most consequential decision you make at launch.
+The most common mistake I see? Teams skip segment and job selection entirely and jump straight into building a solution. They fall in love with the technology, not the problem. The correct sequence is: pick a segment, identify the highest-value job within it, model unit-economics, validate whether you can deliver enough value, then figure out how to communicate that value.
 
-The most common mistake I see? Teams skip segment and job selection entirely and jump straight into building a solution. They fall in love with the technology, not the problem. The correct sequence is: pick a segment, identify the highest-value job within it, validate whether you can deliver enough value, then figure out how to communicate that value.
-
-[Wispr Flow](https://www.producthunt.com/p/wisprflow/how-wispr-flow-found-pmf-through-a-pivot) lived this. The founders spent years — sixteen years of a childhood dream — building a hardware voice device. After a brutally honest board meeting in mid-2024, they confronted the truth: the job was never "own a cool voice gadget." It was "type faster and more naturally." They killed the hardware, pivoted to a macOS dictation app, and hit #1 on Product Hunt. Free-to-paid conversion reached roughly 20% — against an industry average of 3-4%. They [raised $81M total](https://techcrunch.com/2025/06/24/wispr-flow-raises-30m-from-menlo-ventures-for-its-ai-powered-dictation-app/) because they finally matched the right segment with the right job.
-
-AI can accelerate hypothesis generation here — spinning up segment maps and assumption lists in minutes. But as [research from arXiv](https://arxiv.org/abs/2512.19644) warns, over-reliance on AI leads to less validation, not more. LLM-generated hypotheses still need human proof: interviews, presales, cohort data. There are no shortcuts past the knowing.
-
-Finding the right segment and job has always been the hard part. What changed in 2025 is that everything around it got radically cheaper — and that is both an accelerator and a trap.
+[Wispr Flow lived this](https://www.producthunt.com/p/wisprflow/how-wispr-flow-found-pmf-through-a-pivot). The founders spent years building a hardware voice device. After a brutally honest board meeting in mid-2024, they confronted the truth: the Job was never "own a cool voice gadget." It was "type faster and more naturally." They killed the hardware, pivoted to a macOS dictation app, and hit #1 on Product Hunt. Free-to-paid conversion reached roughly 20% — against an industry average of 3-4%. It became possible because they finally matched the right segment with the right Job.
 
 ## AI Made Building Free. It Did Not Make Learning Free.
 
-The old cycle was linear and expensive: research, build an MVP, test demand, then develop. AI collapsed the build step. You can prototype a working product in a weekend with vibe-coding tools. That is genuinely powerful — you can show people more realistic artifacts earlier and get to objections, fears, and value signals faster.
+The old cycle was linear and expensive: research, build an MVP, test demand, then develop. AI collapsed the build step. You can prototype a working product in a weekend with vibe-coding tools. That is genuinely powerful — you can show people real product earlier and get to objections, fears, and sell much faster.
 
-But speed of code generation is not the same as speed of learning. A [METR study from July 2025](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) found that AI coding tools can actually slow down experienced developers — even while those developers subjectively feel faster. The gap between perceived and actual productivity is real. And as [one arXiv paper](https://arxiv.org/abs/2512.22418) puts it, vibe-coding is essentially "rolling the dice" — stochastic output that may or may not be correct.
-
-The anti-pattern I call "more code, less validation" is everywhere now. Teams ship feature after feature, feeling productive, while core assumptions go untested. [EnrichLead](https://ruinunes.com/vibe-coding-trap-ai-built-mvp/), a sales SaaS built 100% with Cursor AI and zero hand-written code, collapsed in 72 hours after launch. Users found all security logic on the client side — anyone could bypass the paywall by changing one value in the browser console. The founder couldn't audit 15,000 lines of AI-generated code. Building was free. Validation was skipped. The company died.
+The anti-pattern I call "more code, less validation" is a danger now. Teams ship feature after feature, feeling productive, while core assumptions go untested.
 
 The right approach: use AI as an accelerator of artifacts, not as a substitute for learning. Measure your progress in the number of validated checks and the quality of signal — not in features shipped or lines of code pushed.
 
 If AI gives you speed but not direction, you need a compass. Here is the formula that tells you which assumption to test first.
 
-## The Killer Assumption Formula
+## The Hypothesis Factory
 
-PMF is not a binary switch — it is a continuum. At any given moment, your business has a single most dangerous assumption, and that assumption should be tested first. I call it the killer assumption.
+AI has turned the founder into a factory operator. The number of hypotheses you can test per unit of time has exploded. But throughput without validation is just noise — more experiments do not mean more knowledge. 
 
-Here is the prioritization formula: **(probability the assumption is wrong × consequences of being wrong) / cost of testing it.** The higher the score, the more urgent the test.
-
-As Elena Verna [told Lenny Rachitsky](https://www.lennysnewsletter.com/p/the-new-ai-growth-playbook-for-2026-elena-verna), the PMF treadmill demands a continuous testing loop — there is always a next killer assumption waiting. In AI-era products, a special danger lurks: early metrics can be inflated by "AI tourists" exploring novelty. You need to set a signal horizon — say, Month 3 retention — and define your pivot-or-iterate criteria before you see the data, not after.
-
-Popsa, a photo book app, was already #1 in their App Store category but installs were underwhelming. Their tagline: "Fast, Easy Photo Books." Growth advisor [Matt Lerner ran user tests](https://review.firstround.com/founder-led-growth-playbook/) and found the killer assumption hiding in a single word — one person thought "fast" meant two hours. Actual time: five minutes. They changed the tagline to "Photo Books in Five Minutes." Conversion quadrupled overnight. The cost of the test: one round of user interviews.
-
-One formula is not enough. When you are running dozens of assumptions through the pipeline, you need an operating system — not just a prioritization rule.
-
-## The Hypothesis Factory: Your Operating System
-
-AI has turned the founder into a factory operator. The number of hypotheses you can test per unit of time has exploded. But throughput without validation is just noise — more experiments do not mean more knowledge. [Research confirms the pattern](https://arxiv.org/abs/2601.10258): teams using AI coding tools write more code and delete more code, and productivity becomes multidimensional — raw output, ownership, quality, long-term maintainability all pulling in different directions.
-
-Your hypothesis factory needs an operating system with four components: an **assumption ledger** (every hypothesis visible in one place), a **decision log** (what you decided and why), **staged validation** (cheap tests first, expensive ones only after early signals pass), and **explicit stop criteria** (what would make you kill this bet).
-
-Spotify exemplifies this at scale. Their [Experiments with Learning framework](https://engineering.atspotify.com/2025/9/spotifys-experiments-with-learning-framework), published in 2025, tracked 520 experiments across 58 teams. Win rate? Only about 12%. But learning rate hit 64%. Most of the value came not from shipping winners but from discovering what not to ship. They shifted their success metric from experiment velocity to learning velocity — how many validated learnings per week, not how many experiments launched.
-
-You need to see all your assumptions and see the full set. That is what separates a hypothesis factory from guesswork.
-
-But even the best operating system is useless if you treat PMF as a one-time achievement. Here is the part most teams miss.
+Your hypothesis factory needs an operating system with clear explicit kill criteria: what would make you kill this bet.
 
 ## The PMF Treadmill: Fit Is a Perpetual Engine
 
