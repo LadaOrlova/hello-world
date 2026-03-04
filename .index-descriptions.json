@@ -278,6 +278,7 @@
 3-Marketing/2-Writing-Book/bookconcept.md	Концепт книги AURA Framework
 3-Marketing/2-Writing-Book/linkedin-sprint-detailed-theses.md	LinkedIn Growth Sprint -- Детальные тезисы для скилла
 3-Marketing/2-Writing-Book/zamesin_top50_full.md	Топ 50 постов @zamesin (полные тексты)
+3-Marketing/2-YouTube/New-Free-Lecture/Theses.md	Тезисы — Дофаминовая лекция (YouTube)
 3-Marketing/ideas.md	Маркетинговые идеи: публичный календарь вебинаров, страница офферов компании, ежемесячные лид-магниты, скилл для написания PRD
 4-Hiring/hiring-requirements.md	Каких людей мы нанимаем
 4-Personal-files/Ivan-Zamesin/New-Name-US/Letter to Liam.md	Letter to Liam
@@ -372,7 +373,6 @@
 5-ZIS/docs/bc/PAY-08.md	PAY-08: Цены в иностранных валютах (USD и др.) автоматически пересчитываются по актуальному курсу ЦБ РФ, без необходимости ручного обновления
 8-Prompts-and-Scripts/Prompts/generate-segment.md	Промт: Выбор 5 привлекательных сегментов по AJTBD
 8-Prompts-and-Scripts/Prompts/riskiest-assumption-test.md	Что делать первым сообщением
-8-Prompts-and-Scripts/codex-skills/new-article-thesis/SKILL.md	New Article Thesis
 _dir_:1-Context	Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт"
 _dir_:1-Context/AURA-Theses	Тезисы методологии AJTBD и мета-фреймворка AURA, структурированные по темам
 _dir_:1-Context/boost-knowledge-base	База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.

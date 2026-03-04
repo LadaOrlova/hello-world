@@ -637,7 +637,9 @@
 
 **New-Free-Lecture/**
 
-- `Theses.md`
+- `Theses.md` — Тезисы — Дофаминовая лекция (YouTube)
+- `landing-b2b-marketplace.html`
+- `landing-edtech-ege.html`
 
 ---
 
@@ -816,19 +818,9 @@ Learning Management System.
 ### 8-Prompts-and-Scripts/Prompts/
 
 - `generate-segment.md` — Промт: Выбор 5 привлекательных сегментов по AJTBD
+- `job-graph.md`
 - `landing-page-copy.md`
 - `riskiest-assumption-test.md` — Что делать первым сообщением
-
-### 8-Prompts-and-Scripts/codex-skills/
-
-
-**new-article-thesis/**
-
-- `SKILL.md` — New Article Thesis
-
-*agents/*
-
-- `openai.yaml`
 
 ---
 
