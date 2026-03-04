@@ -218,7 +218,7 @@
 1-Context/boost-knowledge-base/03-program.md	Программа: 7 воркшопов от установки до демо, стек Next.js/Tailwind/PostgreSQL, 10 ключевых навыков
 1-Context/boost-knowledge-base/04-competitors.md	Анализ 10 конкурентов (Product University, ZeroCoder, Eduson и др.) с ценами и позиционированием
 1-Context/boost-knowledge-base/05-landing-and-communication.md	Тексты лендинга, блоки "для кого", барьеры и возражения, 10 отзывов участников, слоганы
-1-Context/boost-knowledge-base/06-faq.md	FAQ: нужно ли программировать, тарифы, подготовка, подписка Claude Code Max ($100/мес), возврат денег
+1-Context/boost-knowledge-base/06-faq-boost.md	FAQ — Интенсив BOOST
 1-Context/boost-knowledge-base/README.md	База знаний: интенсив BOOST
 1-Context/producthowto-knowledge-base/01-course-overview.md	Обзор тренинга: формат, программа 8 модулей, тарифы, автор Ваня Замесин
 1-Context/producthowto-knowledge-base/02-target-audience-and-jobs.md	Целевая аудитория: продакт-менеджеры, фаундеры, маркетологи и их задачи
@@ -228,7 +228,7 @@
 1-Context/producthowto-knowledge-base/06-cases.md	19 кейсов выпускников с применением AJTBD
 1-Context/producthowto-knowledge-base/07-results-summary.md	Сводка результатов: переход от демографической сегментации к сегментации по работам
 1-Context/producthowto-knowledge-base/08-reviews.md	Отзывы: 12 000+ участников, средняя оценка 9.2/10
-1-Context/producthowto-knowledge-base/09-faq.md	FAQ по тренингу
+1-Context/producthowto-knowledge-base/09-faq-kdp.md	FAQ — Часто задаваемые вопросы
 1-Context/producthowto-knowledge-base/README.md	База знаний: тренинг "Как делать продукт" Вани Замесина
 2-Products/BoostUS-Course/01-prd.md	PRD: From Zero to First Product — Записанный онлайн-курс
 2-Products/BoostUS-Course/02-analytics-plan.md	Аналитический план: From Zero to First Product — PostHog
