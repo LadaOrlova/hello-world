@@ -604,6 +604,7 @@
 
 ### 3-Marketing/2-PR-Articles/
 
+- `pitch-topics-all-20.md` — Питч-темы: 19 изданий — уникальные углы
 - `web-theses.md` — Тезисы из вебинара: "Внедрение Jobs 3.0: кейс Дениса"
 - `web.md` — Расшифровка: Внедрение Jobs 3.0: кейс Дениса
 
@@ -619,6 +620,7 @@
 
 **3-Drafts/**
 
+- `Draft-AI-Changes-PM-Role-MtP-v3.md` — 📝 Notes before sending to editor
 - `Draft-AI-Changes-PM-Role-MtP.md` — Инструкция от Вани Замесина
 - `Draft-How-to-Find-PMF-Fast-and-Pivot-the-Right-Way.md` — 📝 Инструкция от Вани Замесина
 
