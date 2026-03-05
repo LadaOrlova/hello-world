@@ -42,7 +42,7 @@ When AI crushes execution cost to near zero, the bottleneck moves upstream — t
 - Strategy
 - Value proposition
 - Unit Economics
-- Aquisition Channels
+- Acquisition Channels
 
 You're not just optimizing features. You're bringing growth to business. 
 
@@ -56,7 +56,7 @@ So if judgment is the asset and building is the tool — what does the day-to-da
 
 When AI collapses the cost of building and routine operations, you can test 10–100x more hypotheses per sprint. The paradigm flips: you're not launching products — you're buying knowledge. Every prototype is a bet, and the bottleneck shifts from execution to the pipeline itself. The PM becomes an operator of a hypothesis factory — designing it, feeding it, and optimizing its throughput: business goal, causal graph of growth mechanics, research, riskiest assumption test, build, measure. Each step can be delegated to an AI agent — and increasingly is.
 
-Boris Cherny describes the frontier: "Claude is starting to come up with ideas. Looking through feedback, bug reports, telemetry." The agent doesn't just execute — it proposes. Shreyas Doshi frames the scale: 3-4 person startups now match the impact of 30-50 person teams. But this leverage only works if delegation follows risk. AI agents are less competent employees — hand them low-risk tasks (A/B tests, data analysis, draft copy) and keep the high-risk decisions for yourself: which segment to enter, what to price, where the ethical lines sit.
+Boris Cherny describes the frontier: "Claude is starting to come up with ideas. Looking through feedback, bug reports, telemetry." The agent doesn't just execute — it proposes. Shreyas Doshi frames the scale: 3-4 person startups now match the impact of 30-50 person teams. But this advantage only works if delegation follows risk. AI agents are less competent employees — hand them low-risk tasks (A/B tests, data analysis, draft copy) and keep the high-risk decisions for yourself: which segment to enter, what to price, where the ethical lines sit.
 
 
 
