@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экзамен — Как делать продукт</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Supabase SDK — раскомментировать когда будет настроен -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> -->
+    <style>
+        [x-cloak] { display: none !important; }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .chat-msg { animation: slideIn 0.2s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+        .timer-warning { animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- ============================================ -->
+    <!-- КОНФИГУРАЦИЯ — заполните перед использованием -->
+    <!-- ============================================ -->
+    <script>
+        const CONFIG = {
+            // Supabase (раскомментировать когда настроен)
+            SUPABASE_URL: 'YOUR_SUPABASE_URL',
+            SUPABASE_ANON_KEY: 'YOUR_SUPABASE_ANON_KEY',
+            // OpenRouter AI
+            OPENROUTER_API_KEY: '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',
+            OPENROUTER_MODEL: 'google/gemini-3.1-pro-preview',
+            // Настройки таймеров (в секундах)
+            THEORY_TIME: 40 * 60,    // 40 минут
+            PRACTICE_TIME: 120 * 60, // 2 часа
+            // Пароль дашборда
+            TEACHER_PASSWORD: 'exam2026'
+        };
+    </script>
+
+    <div id="app">
+
+        <!-- ================= -->
+        <!-- ЭКРАН ВХОДА       -->
+        <!-- ================= -->
+        <div id="screen-login" class="min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full">
+                <div class="text-center mb-8">
+                    <h1 class="text-2xl font-bold text-gray-900 mb-2">Экзамен</h1>
+                    <p class="text-lg text-gray-600">Как делать продукт</p>
+                    <p class="text-sm text-gray-400 mt-1">Advanced JTBD — тренинг Вани Замесина</p>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Ваше имя и фамилия</label>
+                        <input type="text" id="student-name" placeholder="Иван Иванов"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input type="email" id="student-email" placeholder="ivan@example.com"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none">
+                    </div>
+                    <button onclick="startExam()"
+                            class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors text-lg">
+                        Начать экзамен
+                    </button>
+                    <p class="text-xs text-gray-400 text-center mt-4">
+                        Часть 1: Теория (40 мин) → Часть 2: Практика (2 часа)
+                    </p>
+                </div>
+                <div class="mt-6 pt-6 border-t border-gray-100">
+                    <button onclick="showTeacherLogin()" class="text-xs text-gray-400 hover:text-gray-600 transition-colors">
+                        Вход для преподавателя →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================== -->
+        <!-- ЧАСТЬ 1: ТЕОРИЯ          -->
+        <!-- ======================== -->
+        <div id="screen-theory" class="hidden">
+            <!-- Шапка с таймером -->
+            <div class="sticky top-0 bg-white border-b border-gray-200 z-10 shadow-sm">
+                <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+                    <div>
+                        <span class="text-sm font-medium text-gray-500">Часть 1: Теория</span>
+                        <span class="text-xs text-gray-400 ml-2" id="theory-progress">0 / 25</span>
+                    </div>
+                    <div id="theory-timer" class="text-lg font-mono font-bold text-gray-900">40:00</div>
+                </div>
+                <div class="h-1 bg-gray-100">
+                    <div id="theory-progress-bar" class="h-full bg-blue-600 transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 py-8">
+                <div class="bg-white rounded-xl shadow-sm p-6 mb-6">
+                    <h2 class="text-xl font-bold text-gray-900 mb-2">Теоретическая часть</h2>
+                    <p class="text-gray-600 text-sm">25 вопросов, 40 минут. Разрешены конспекты и книга курса. Запрещена помощь других людей и AI.</p>
+                </div>
+
+                <form id="theory-form" class="space-y-8">
+                    <!-- Вопросы генерируются JavaScript -->
+                </form>
+
+                <div class="mt-8 mb-16">
+                    <button onclick="submitTheory()"
+                            class="w-full bg-blue-600 text-white py-4 px-6 rounded-xl font-medium hover:bg-blue-700 transition-colors text-lg">
+                        Завершить теоретическую часть →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================= -->
+        <!-- ПЕРЕХОД МЕЖДУ ЧАСТЯМИ     -->
+        <!-- ========================= -->
+        <div id="screen-transition" class="hidden min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-lg p-8 max-w-lg w-full text-center">
+                <div class="text-4xl mb-4">&#10003;</div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Теория завершена</h2>
+                <p class="text-gray-600 mb-6">Ваши ответы сохранены. Переходим к практической части.</p>
+                <div class="bg-blue-50 rounded-lg p-4 mb-6 text-left">
+                    <p class="text-sm text-blue-800 font-medium mb-2">Часть 2: AI-кейс (2 часа)</p>
+                    <ul class="text-sm text-blue-700 space-y-1">
+                        <li>- Бизнес-кейс: сервис доставки еды «ДомаВкусно»</li>
+                        <li>- Задача: вырастить средний чек</li>
+                        <li>- AI-бот знает все данные кейса — задавайте вопросы</li>
+                        <li>- Финальный ответ — структурированная форма из 5 блоков</li>
+                    </ul>
+                </div>
+                <button onclick="startPractice()"
+                        class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors text-lg">
+                    Начать практическую часть
+                </button>
+            </div>
+        </div>
+
+        <!-- ======================== -->
+        <!-- ЧАСТЬ 2: ПРАКТИКА        -->
+        <!-- ======================== -->
+        <div id="screen-practice" class="hidden">
+            <!-- Шапка с таймером -->
+            <div class="sticky top-0 bg-white border-b border-gray-200 z-10 shadow-sm">
+                <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+                    <span class="text-sm font-medium text-gray-500">Часть 2: Практика — ДомаВкусно</span>
+                    <div id="practice-timer" class="text-lg font-mono font-bold text-gray-900">2:00:00</div>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 py-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                    <!-- Левая колонка: Чат с ботом -->
+                    <div class="bg-white rounded-xl shadow-sm flex flex-col" style="height: calc(100vh - 140px)">
+                        <div class="p-4 border-b border-gray-100">
+                            <h3 class="font-medium text-gray-900">AI-ассистент кейса</h3>
+                            <p class="text-xs text-gray-500">Задавайте вопросы о данных кейса. Бот не даёт готовых решений.</p>
+                        </div>
+                        <div id="chat-messages" class="flex-1 overflow-y-auto p-4 space-y-3">
+                            <div class="chat-msg bg-blue-50 rounded-lg p-3 text-sm text-blue-800 max-w-[85%]">
+                                Привет! Я знаю все данные кейса «ДомаВкусно»: метрики, интервью с клиентами, сегментацию, конкурентов и юнит-экономику. Спрашивай, что нужно для решения задачи.
+                            </div>
+                        </div>
+                        <div class="p-4 border-t border-gray-100">
+                            <div class="flex gap-2">
+                                <input type="text" id="chat-input" placeholder="Задайте вопрос о кейсе..."
+                                       class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm"
+                                       onkeypress="if(event.key==='Enter')sendMessage()">
+                                <button onclick="sendMessage()"
+                                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium">
+                                    →
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Правая колонка: Форма ответа -->
+                    <div class="bg-white rounded-xl shadow-sm overflow-y-auto" style="height: calc(100vh - 140px)">
+                        <div class="p-4 border-b border-gray-100">
+                            <h3 class="font-medium text-gray-900">Ваш ответ</h3>
+                            <p class="text-xs text-gray-500">Заполните все 5 блоков. Сохраняется автоматически.</p>
+                        </div>
+                        <div class="p-4 space-y-6">
+
+                            <!-- Блок 1 -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-800 mb-1">Блок 1: Граф работ (12 баллов)</label>
+                                <p class="text-xs text-gray-500 mb-2">Core Job, Big Job, 3-5 Small Jobs, связи между уровнями</p>
+                                <textarea id="answer-1" rows="6" placeholder="Целевой сегмент: ...&#10;Core Job: ...&#10;Big Job: ...&#10;Small Jobs:&#10;1. ...&#10;2. ...&#10;3. ..."
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm resize-y"
+                                          oninput="autoSavePractice()"></textarea>
+                            </div>
+
+                            <!-- Блок 2 -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-800 mb-1">Блок 2: ABCDX-сегментация (10 баллов)</label>
+                                <p class="text-xs text-gray-500 mb-2">A/B сегменты, C/D сегменты, причинные критерии, связь с ростом чека</p>
+                                <textarea id="answer-2" rows="6" placeholder="A-сегмент: ... потому что ...&#10;B-сегмент: ...&#10;C-сегмент: ...&#10;D-сегмент: ...&#10;Причинные критерии: ...&#10;Связь с ростом чека: ..."
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm resize-y"
+                                          oninput="autoSavePractice()"></textarea>
+                            </div>
+
+                            <!-- Блок 3 -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-800 mb-1">Блок 3: Механики создания ценности (12 баллов)</label>
+                                <p class="text-xs text-gray-500 mb-2">3-5 механик из AJTBD, конкретное решение, почему вырастет чек</p>
+                                <textarea id="answer-3" rows="8" placeholder="Механика 1: [название]&#10;Решение: ...&#10;Почему вырастет чек: ...&#10;&#10;Механика 2: [название]&#10;Решение: ...&#10;Почему вырастет чек: ..."
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm resize-y"
+                                          oninput="autoSavePractice()"></textarea>
+                            </div>
+
+                            <!-- Блок 4 -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-800 mb-1">Блок 4: RAT-гипотеза (8 баллов)</label>
+                                <p class="text-xs text-gray-500 mb-2">3 предположения, выбор первого, обоснование, эксперимент</p>
+                                <textarea id="answer-4" rows="6" placeholder="Предположение 1: ...&#10;Предположение 2: ...&#10;Предположение 3: ...&#10;&#10;Проверяю первым: №... потому что ...&#10;Эксперимент: ...&#10;Критерий успеха: ..."
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm resize-y"
+                                          oninput="autoSavePractice()"></textarea>
+                            </div>
+
+                            <!-- Блок 5 -->
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-800 mb-1">Блок 5: Коммуникация (8 баллов)</label>
+                                <p class="text-xs text-gray-500 mb-2">One-liner, критика лендинга, 2-3 предложения по улучшению</p>
+                                <textarea id="answer-5" rows="6" placeholder="One-liner: [Что] + [Core Job] + [Ценность]&#10;&#10;Проблемы текущего лендинга:&#10;1. ...&#10;&#10;Предложения:&#10;1. ..."
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm resize-y"
+                                          oninput="autoSavePractice()"></textarea>
+                            </div>
+
+                            <button onclick="submitPractice()"
+                                    class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                                Завершить экзамен
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================== -->
+        <!-- ЭКРАН ЗАВЕРШЕНИЯ         -->
+        <!-- ======================== -->
+        <div id="screen-done" class="hidden min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full text-center">
+                <div class="text-5xl mb-4">&#127891;</div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Экзамен завершён!</h2>
+                <p class="text-gray-600 mb-4">Все ваши ответы сохранены. Результаты будут объявлены в течение 3 дней.</p>
+                <div class="bg-green-50 rounded-lg p-4 text-sm text-green-800">
+                    <p><strong>Студент:</strong> <span id="done-name"></span></p>
+                    <p><strong>Теория:</strong> <span id="done-theory-score"></span></p>
+                    <p><strong>Практика:</strong> отправлена на проверку</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================== -->
+        <!-- ДАШБОРД ПРЕПОДАВАТЕЛЯ    -->
+        <!-- ======================== -->
+        <div id="screen-teacher-login" class="hidden min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-lg p-8 max-w-md w-full">
+                <h2 class="text-xl font-bold text-gray-900 mb-4 text-center">Дашборд преподавателя</h2>
+                <div class="space-y-4">
+                    <input type="password" id="teacher-password" placeholder="Пароль"
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                           onkeypress="if(event.key==='Enter')teacherLogin()">
+                    <button onclick="teacherLogin()"
+                            class="w-full bg-gray-900 text-white py-3 px-6 rounded-lg font-medium hover:bg-gray-800 transition-colors">
+                        Войти
+                    </button>
+                    <button onclick="showScreen('screen-login')" class="w-full text-sm text-gray-500 hover:text-gray-700">
+                        ← Назад
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-teacher" class="hidden">
+            <div class="sticky top-0 bg-white border-b border-gray-200 z-10 shadow-sm">
+                <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+                    <h2 class="text-lg font-bold text-gray-900">Дашборд преподавателя</h2>
+                    <div class="flex gap-2">
+                        <button onclick="refreshDashboard()" class="text-sm bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-200 transition-colors">
+                            Обновить
+                        </button>
+                        <button onclick="exportCSV()" class="text-sm bg-gray-100 text-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-200 transition-colors">
+                            Экспорт CSV
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="max-w-6xl mx-auto px-4 py-6">
+                <div class="grid grid-cols-4 gap-4 mb-6">
+                    <div class="bg-white rounded-lg shadow-sm p-4">
+                        <p class="text-sm text-gray-500">Всего студентов</p>
+                        <p class="text-2xl font-bold text-gray-900" id="stat-total">0</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-4">
+                        <p class="text-sm text-gray-500">Сдают теорию</p>
+                        <p class="text-2xl font-bold text-blue-600" id="stat-theory">0</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-4">
+                        <p class="text-sm text-gray-500">Сдают практику</p>
+                        <p class="text-2xl font-bold text-yellow-600" id="stat-practice">0</p>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm p-4">
+                        <p class="text-sm text-gray-500">Завершили</p>
+                        <p class="text-2xl font-bold text-green-600" id="stat-done">0</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">Студент</th>
+                                <th class="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">Email</th>
+                                <th class="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">Статус</th>
+                                <th class="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">Теория</th>
+                                <th class="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">Практика</th>
+                                <th class="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">Итого</th>
+                                <th class="text-left px-4 py-3 text-xs font-medium text-gray-500 uppercase">Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacher-table" class="divide-y divide-gray-100">
+                            <tr><td colspan="7" class="px-4 py-8 text-center text-gray-400">Загрузка...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======================== -->
+        <!-- МОДАЛЬНОЕ ОКНО СТУДЕНТА  -->
+        <!-- ======================== -->
+        <div id="modal-student" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-bold text-gray-900" id="modal-student-name"></h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 text-2xl">&times;</button>
+                </div>
+                <div id="modal-student-content" class="space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================== -->
+    <!-- JAVASCRIPT               -->
+    <!-- ======================== -->
+    <script>
+    // ---- Состояние приложения ----
+    const state = {
+        studentName: '',
+        studentEmail: '',
+        sessionId: '',
+        theoryStartTime: null,
+        practiceStartTime: null,
+        theoryAnswers: {},
+        practiceAnswers: {},
+        chatLog: [],
+        theoryTimer: null,
+        practiceTimer: null,
+        theoryTimeLeft: CONFIG.THEORY_TIME,
+        practiceTimeLeft: CONFIG.PRACTICE_TIME,
+        autoSaveTimeout: null
+    };
+
+    // ---- Supabase ----
+    // Раскомментировать когда Supabase будет настроен:
+    // let supabase = window.supabase ? window.supabase.createClient(CONFIG.SUPABASE_URL, CONFIG.SUPABASE_ANON_KEY) : null;
+    let supabase = null;
+
+    // ---- Вопросы теории ----
+    const QUESTIONS = [
+        // Блок 1: AJTBD-основы, формула работы, принципы (4 вопроса)
+        {
+            id: 1, type: 'textarea', topic: 'AJTBD-основы',
+            text: 'Кейс: Продукт-менеджер сформулировал работу клиента фитнес-приложения так:\n\n«Мужчина 30 лет, средний доход, хочет быть здоровым и чувствовать себя хорошо»\n\nНайдите минимум 3 ошибки в этой формулировке. Перепишите работу правильно.',
+            points: 2.5
+        },
+        {
+            id: 2, type: 'radio', topic: 'AJTBD-основы',
+            text: 'Формула «всё в продукте вытекает из работ» описывает цепочку причинно-следственных связей. Какая последовательность правильная?',
+            options: [
+                'Продукт → Фичи → Сегменты → Ценность → Прибыль',
+                'Сегменты → Работы → Ценность → Коммуникация → Юнит-экономика → Прибыль',
+                'Рынок → Конкуренты → Фичи → Продажи → Рост',
+                'Идея → MVP → Product-Market Fit → Масштабирование'
+            ],
+            correct: 1, points: 1.5
+        },
+        {
+            id: 3, type: 'checkbox', topic: 'AJTBD-основы',
+            text: 'Четыре силы прогресса действуют в момент рассмотрения альтернатив. Какие из утверждений верны? (выберите все верные)',
+            options: [
+                'Привычка — это нейрологическая специализация мозга, физическое изменение нейронных связей',
+                'Люди точно оценивают, насколько им будет сложно сменить привычку',
+                'Выгодные для нас сегменты — те, где сильная добавленная ценность, слабая привычка и управляемые страхи',
+                'Если у сегмента слишком сильная привычка к текущему решению — нужно найти другой сегмент с лучшим балансом сил',
+                'Четыре силы действуют постоянно, на всех этапах использования продукта'
+            ],
+            correct: [0, 2, 3], points: 1.5
+        },
+        {
+            id: 4, type: 'textarea', topic: 'AJTBD-основы',
+            text: 'Что такое «активирующее знание» и какие три компонента оно включает? Приведите пример.',
+            points: 3
+        },
+        // Блок 2: Граф работ — Core/Big/Small Job, критическая цепочка (4 вопроса)
+        {
+            id: 5, type: 'radio', topic: 'Граф работ',
+            text: 'Что такое Core Job в графе работ?',
+            options: [
+                'Самая важная работа для клиента в жизни',
+                'Самая вокорневая работа, которую непосредственно выполняет ваш продукт',
+                'Big Job, на которую человек нанимает решение',
+                'Первая работа, с которой начинается путь клиента'
+            ],
+            correct: 1, points: 1.5
+        },
+        {
+            id: 6, type: 'textarea', topic: 'Граф работ',
+            text: 'Кейс: Сервис записи к стоматологу. Клиент говорит: «Я хочу записаться к стоматологу, чтобы вылечить зуб, чтобы нормально есть и не испытывать боль».\n\nОпределите Core Job, Big Job и одну Small Job в этой цепочке. Учтите, что Core Job зависит от того, что именно выполняет продукт.',
+            points: 2.5
+        },
+        {
+            id: 7, type: 'checkbox', topic: 'Граф работ',
+            text: 'Какие утверждения о графе работ верны? (выберите все верные)',
+            options: [
+                'Граф работ — это линейное дерево с одним корнем',
+                'Одна работа может иметь связи с несколькими работами выше уровнем',
+                'Одно решение может выполнять несколько работ — как внутри одного человека, так и для разных людей',
+                'Чем выше работа в графе, тем медленнее она меняется — Big Jobs могут не меняться десятилетиями и веками',
+                'Для создания продукта нужно знать весь граф работ целиком'
+            ],
+            correct: [1, 2, 3], points: 1.5
+        },
+        {
+            id: 8, type: 'textarea', topic: 'Граф работ',
+            text: 'Что такое критическая цепочка работ и как она применяется для принятия продуктовых решений? Что нужно искать?',
+            points: 3
+        },
+        // Блок 3: Ценность и механики создания ценности (3 вопроса)
+        {
+            id: 9, type: 'radio', topic: 'Ценность',
+            text: 'Что такое «ценность» в AJTBD?',
+            options: [
+                'Цена, которую клиент готов заплатить за продукт',
+                'Положительная ошибка предсказания мозга — более эффективное выполнение работы, чем ожидалось',
+                'Самые важные фичи продукта',
+                'Уровень удовлетворённости клиента по шкале NPS'
+            ],
+            correct: 1, points: 1.5
+        },
+        {
+            id: 10, type: 'textarea', topic: 'Ценность',
+            text: 'Кейс: Онлайн-школа английского. Данные:\n• Core Job: Научиться говорить по-английски для рабочих созвонов\n• Big Job: Получить повышение / перейти в международную компанию\n• Small Jobs: Записаться на урок → подготовиться → провести урок → повторить слова → практиковаться между уроками → проверить прогресс\n• Критерии успеха: Свободно вести 30-минутный созвон на английском без подготовки\n• Текущее решение: 50-минутные уроки с преподавателем 2 раза в неделю\n• Проблема: Между уроками не с кем практиковаться, прогресс медленный\n\nПредложите 3 механики создания ценности из AJTBD (название механики + конкретное решение).',
+            points: 2.5
+        },
+        {
+            id: 11, type: 'checkbox', topic: 'Ценность',
+            text: 'Какие из перечисленных — реальные механики создания ценности в AJTBD? (выберите все верные)',
+            options: [
+                'Сократить временные задержки в процессе выполнения работы',
+                'Снизить ожидания клиента от продукта',
+                'Убрать работу, чтобы Big Job выполнялась за меньшее количество работ ниже уровня',
+                'Выполнить следующую работу в цепочке',
+                'Реализовать самую запрашиваемую фичу',
+                'Убрать работу с человека (сделать за него)'
+            ],
+            correct: [0, 2, 3, 5], points: 1.5
+        },
+        // Блок 4: Сегментация по работам + ABCDX (3 вопроса)
+        {
+            id: 12, type: 'radio', topic: 'Сегментация',
+            text: 'Что является основой сегментации в AJTBD?',
+            options: [
+                'Демография (пол, возраст, доход)',
+                'Поведение (частота покупок, средний чек)',
+                'Похожий набор работ, который объединяет людей в группу',
+                'Индустрия и размер компании (для B2B)'
+            ],
+            correct: 2, points: 1.5
+        },
+        {
+            id: 13, type: 'textarea', topic: 'Сегментация',
+            text: 'Кейс: Онлайн-платформа обучения дизайну провела ABCDX-сегментацию:\n• A: Дизайнеры с 2+ годами опыта, хотят вырасти до Senior. Высокий чек, Premium. NPS 65.\n• B: Новички, хотят войти в профессию. Чек средний, Standard. NPS 45. Большой сегмент.\n• C: HR-менеджеры, покупают курсы для сотрудников. Низкий NPS (32), жалуются, что «курсы не подходят нашим задачам».\n• D: Школьники, «просто интересуются». Минимальный чек, быстро уходят, пишут в поддержку.\n\nМожете ли вы, основываясь на этой сегментации, принять решение о фокусе, создать ценность и построить коммуникацию? Что для этого достаточно, а чего не хватает?',
+            points: 2.5
+        },
+        {
+            id: 14, type: 'textarea', topic: 'Сегментация',
+            text: 'Оцените качество сегментации:\n\nКомпания по доставке цветов разделила клиентов на ABCD-сегменты по признакам:\n• A: сделали 5+ заказов, средний чек > 5000₽\n• B: 2-4 заказа, чек 3000-5000₽\n• C: 1 заказ, чек < 3000₽\n• D: оставили заявку, но не купили\n\nМожно ли на основе такой сегментации принять решение о том, для кого создавать ценность и как коммуницировать?',
+            points: 1.5
+        },
+        // Блок 5: RAT, валидация и запуск продукта (3 вопроса)
+        {
+            id: 15, type: 'radio', topic: 'RAT и запуск',
+            text: 'По какой формуле ранжируются рискованные предположения в RAT?',
+            options: [
+                'Приоритет = Вероятность наступления × Импакт (RICE)',
+                'Приоритет = (Вероятность наступления риска × Стоимость провала в деньгах) / Стоимость проверки',
+                'Приоритет = Важность для клиента / Срочность реализации',
+                'Приоритет = Confidence × Impact × Reach / Effort'
+            ],
+            correct: 1, points: 1.5
+        },
+        {
+            id: 16, type: 'textarea', topic: 'RAT и запуск',
+            text: 'Назовите 5 базовых рискованных предположений (из RAT) и для каждого — конкретный вопрос, на который оно отвечает.',
+            points: 3
+        },
+        {
+            id: 17, type: 'textarea', topic: 'RAT и запуск',
+            text: 'Кейс: Команда запускает новый продукт — онлайн-платформу для подготовки к ЕГЭ. У них есть прототип, 3 преподавателя, и они уверены, что «продукт отличный, просто нужно найти клиентов».\n\nКакие ошибки совершает команда с точки зрения алгоритма запуска продукта? Что они должны делать вместо этого?',
+            points: 2.5
+        },
+        // Блок 6: Алгоритмы бизнес-задач (4 вопроса)
+        {
+            id: 18, type: 'checkbox', topic: 'Алгоритмы',
+            text: 'Какие механики позволяют вырастить средний чек? (выберите все верные)',
+            options: [
+                'Сместиться в сегмент с более высоким бюджетом на работу (up-market)',
+                'Снизить стоимость привлечения клиента (CAC)',
+                'Cross-sell: продавать существующим клиентам решения для других их работ',
+                'Сфокусироваться на высокомаржинальных A/B сегментах, отбросив C/D',
+                'Увеличить частоту push-уведомлений'
+            ],
+            correct: [0, 2, 3], points: 1.5
+        },
+        {
+            id: 19, type: 'textarea', topic: 'Алгоритмы',
+            text: 'Кейс: SaaS для управления проектами. Конверсия из бесплатного триала в оплату — 3% (целевая: 8%). Пользователи регистрируются, создают один проект, но не приглашают команду и не возвращаются.\n\nПредложите 4 гипотезы для роста конверсии, используя механики из AJTBD. Для каждой назовите механику.',
+            points: 2.5
+        },
+        {
+            id: 20, type: 'checkbox', topic: 'Алгоритмы',
+            text: 'Какие механики повышения ретеншна описаны в AJTBD? (выберите все верные)',
+            options: [
+                'Выполнять следующие работы в критической цепочке (cross-sell)',
+                'Одно решение выполняет больше частотных работ одного человека',
+                'Агрессивные push-уведомления с акциями',
+                'Активация ценности: дать испытать ценность в первой сессии',
+                'Создавать ассоциации бренда с ценностью через рекламу'
+            ],
+            correct: [0, 1, 3], points: 1.5
+        },
+        {
+            id: 21, type: 'textarea', topic: 'Алгоритмы',
+            text: 'Что такое Product-Market Fit? Опишите 4 стадии PMF и ключевой фокус на каждой.',
+            points: 3
+        },
+        // Блок 7: Критическая цепочка и бизнес-применение (3 вопроса)
+        {
+            id: 22, type: 'textarea', topic: 'Крит. цепочка',
+            text: 'Кейс: Компания производит телевизоры и продаёт их через дистрибьюторов → розничные сети → конечные покупатели.\n\nС кого начинать исследование? Для кого создавать ценность? Среди кого искать сегменты? Обоснуйте через концепцию критической цепочки.',
+            points: 2.5
+        },
+        {
+            id: 23, type: 'radio', topic: 'Крит. цепочка',
+            text: 'Какой вопрос на AJTBD-интервью помогает подняться от Core Job к Big Job?',
+            options: [
+                '«Какие шаги вы выполняете для решения задачи?»',
+                '«Чтобы что? Зачем вам этот результат?»',
+                '«Как часто вы выполняете эту работу?»',
+                '«Что вы делали ДО того, как нашли текущее решение?»'
+            ],
+            correct: 1, points: 1.5
+        },
+        {
+            id: 24, type: 'textarea', topic: 'Крит. цепочка',
+            text: 'Как звучит формула ценностного предложения в AJTBD? Запишите формулу и приведите пример хорошего и плохого ценностного предложения.',
+            points: 3
+        },
+        // Блок 8: Коммуникация и позиционирование (1 вопрос)
+        {
+            id: 25, type: 'checkbox', topic: 'Коммуникация',
+            text: 'Какие из перечисленных блоков должны быть на лендинге продукта по AJTBD? (выберите все верные)',
+            options: [
+                'One-liner с работой и ценностью',
+                'Контекст и триггер — клиент узнаёт себя и свою ситуацию',
+                'Полный список функций и технологий продукта',
+                'Проблемы текущих решений / конкурентов',
+                'Отзывы от людей из целевого сегмента (не абстрактные, а из того же контекста)',
+                'Активирующее знание — почему новый способ лучше старого'
+            ],
+            correct: [0, 1, 3, 4, 5], points: 1.5
+        }
+    ];
+
+    // ---- Рендеринг вопросов ----
+    function renderQuestions() {
+        const form = document.getElementById('theory-form');
+        let html = '';
+        QUESTIONS.forEach((q, idx) => {
+            html += `<div class="bg-white rounded-xl shadow-sm p-6 fade-in" id="question-${q.id}">`;
+            html += `<div class="flex items-start gap-3 mb-3">`;
+            html += `<span class="bg-gray-100 text-gray-600 text-xs font-medium px-2.5 py-1 rounded-full">${idx + 1}</span>`;
+            html += `<div class="flex-1">`;
+            html += `<span class="text-xs text-gray-400">${q.topic} · ${q.points} ${q.points === 1.5 ? 'балла' : q.points === 3 ? 'балла' : 'баллов'}</span>`;
+            html += `<p class="text-gray-900 font-medium mt-1 whitespace-pre-line">${q.text}</p>`;
+            html += `</div></div>`;
+
+            if (q.type === 'radio') {
+                html += `<div class="ml-9 space-y-2 mt-3">`;
+                q.options.forEach((opt, oi) => {
+                    html += `<label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+                        <input type="radio" name="q${q.id}" value="${oi}" onchange="updateProgress()" class="w-4 h-4 text-blue-600">
+                        <span class="text-sm text-gray-700">${opt}</span>
+                    </label>`;
+                });
+                html += `</div>`;
+            } else if (q.type === 'checkbox') {
+                html += `<div class="ml-9 space-y-2 mt-3">`;
+                q.options.forEach((opt, oi) => {
+                    html += `<label class="flex items-center gap-3 p-2.5 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors">
+                        <input type="checkbox" name="q${q.id}" value="${oi}" onchange="updateProgress()" class="w-4 h-4 text-blue-600 rounded">
+                        <span class="text-sm text-gray-700">${opt}</span>
+                    </label>`;
+                });
+                html += `</div>`;
+            } else if (q.type === 'textarea') {
+                html += `<div class="ml-9 mt-3">
+                    <textarea name="q${q.id}" rows="4" placeholder="Ваш ответ..."
+                              class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm resize-y"
+                              oninput="updateProgress()"></textarea>
+                </div>`;
+            }
+            html += `</div>`;
+        });
+        form.innerHTML = html;
+    }
+
+    // ---- Навигация ----
+    function showScreen(id) {
+        document.querySelectorAll('[id^="screen-"]').forEach(s => s.classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
+    }
+
+    // ---- Вход студента ----
+    function startExam() {
+        const name = document.getElementById('student-name').value.trim();
+        const email = document.getElementById('student-email').value.trim();
+        if (!name || !email) {
+            const nameInput = document.getElementById('student-name');
+            const emailInput = document.getElementById('student-email');
+            if (!name) nameInput.style.borderColor = '#ef4444';
+            if (!email) emailInput.style.borderColor = '#ef4444';
+            return;
+        }
+
+        state.studentName = name;
+        state.studentEmail = email;
+        state.sessionId = Date.now().toString(36) + Math.random().toString(36).substr(2);
+
+        renderQuestions();
+        showScreen('screen-theory');
+        startTheoryTimer();
+        state.theoryStartTime = new Date().toISOString();
+
+        saveToSupabase('exam_sessions', {
+            session_id: state.sessionId,
+            student_name: name,
+            student_email: email,
+            status: 'theory',
+            started_at: state.theoryStartTime
+        });
+    }
+
+    // ---- Таймеры ----
+    function startTheoryTimer() {
+        state.theoryTimer = setInterval(() => {
+            state.theoryTimeLeft--;
+            updateTimerDisplay('theory-timer', state.theoryTimeLeft);
+            if (state.theoryTimeLeft <= 300) {
+                document.getElementById('theory-timer').classList.add('text-red-600', 'timer-warning');
+            }
+            if (state.theoryTimeLeft <= 0) {
+                clearInterval(state.theoryTimer);
+                submitTheory();
+            }
+        }, 1000);
+    }
+
+    function startPracticeTimer() {
+        state.practiceTimer = setInterval(() => {
+            state.practiceTimeLeft--;
+            updateTimerDisplay('practice-timer', state.practiceTimeLeft);
+            if (state.practiceTimeLeft <= 600) {
+                document.getElementById('practice-timer').classList.add('text-red-600', 'timer-warning');
+            }
+            if (state.practiceTimeLeft <= 0) {
+                clearInterval(state.practiceTimer);
+                submitPractice();
+            }
+        }, 1000);
+    }
+
+    function updateTimerDisplay(elementId, seconds) {
+        const h = Math.floor(seconds / 3600);
+        const m = Math.floor((seconds % 3600) / 60);
+        const s = seconds % 60;
+        const display = h > 0
+            ? `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`
+            : `${m}:${String(s).padStart(2,'0')}`;
+        document.getElementById(elementId).textContent = display;
+    }
+
+    // ---- Прогресс теории ----
+    function updateProgress() {
+        let answered = 0;
+        QUESTIONS.forEach(q => {
+            if (q.type === 'radio') {
+                if (document.querySelector(`input[name="q${q.id}"]:checked`)) answered++;
+            } else if (q.type === 'checkbox') {
+                if (document.querySelectorAll(`input[name="q${q.id}"]:checked`).length > 0) answered++;
+            } else if (q.type === 'textarea') {
+                if (document.querySelector(`textarea[name="q${q.id}"]`).value.trim()) answered++;
+            }
+        });
+        document.getElementById('theory-progress').textContent = `${answered} / ${QUESTIONS.length}`;
+        document.getElementById('theory-progress-bar').style.width = `${(answered / QUESTIONS.length) * 100}%`;
+    }
+
+    // ---- Отправка теории ----
+    function submitTheory() {
+        if (state.theoryTimer) clearInterval(state.theoryTimer);
+
+        const answers = {};
+        let autoScore = 0;
+
+        QUESTIONS.forEach(q => {
+            if (q.type === 'radio') {
+                const checked = document.querySelector(`input[name="q${q.id}"]:checked`);
+                const value = checked ? parseInt(checked.value) : null;
+                answers[q.id] = { value, type: 'radio' };
+                if (value === q.correct) autoScore += q.points;
+            } else if (q.type === 'checkbox') {
+                const checked = Array.from(document.querySelectorAll(`input[name="q${q.id}"]:checked`)).map(c => parseInt(c.value));
+                answers[q.id] = { value: checked, type: 'checkbox' };
+                // Auto-grade multiple select
+                const correct = q.correct;
+                const allCorrect = correct.every(c => checked.includes(c));
+                const noExtras = checked.every(c => correct.includes(c));
+                if (allCorrect && noExtras) {
+                    autoScore += q.points;
+                } else if (checked.filter(c => correct.includes(c)).length >= Math.ceil(correct.length * 0.6) && noExtras) {
+                    autoScore += q.points / 2;
+                }
+            } else if (q.type === 'textarea') {
+                const value = document.querySelector(`textarea[name="q${q.id}"]`).value.trim();
+                answers[q.id] = { value, type: 'textarea' };
+                // Textarea answers need manual grading
+            }
+        });
+
+        state.theoryAnswers = answers;
+
+        // Show auto score for closed questions
+        document.getElementById('done-theory-score').textContent = `${autoScore.toFixed(1)} / 18 (авто) + открытые на проверке`;
+
+        saveToSupabase('exam_theory', {
+            session_id: state.sessionId,
+            answers: JSON.stringify(answers),
+            auto_score: autoScore,
+            time_spent: CONFIG.THEORY_TIME - state.theoryTimeLeft,
+            submitted_at: new Date().toISOString()
+        });
+
+        updateSessionStatus('transition');
+        showScreen('screen-transition');
+    }
+
+    // ---- Практика ----
+    function startPractice() {
+        showScreen('screen-practice');
+        startPracticeTimer();
+        state.practiceStartTime = new Date().toISOString();
+        updateSessionStatus('practice');
+    }
+
+    // ---- Системный промпт для AI-бота ----
+    const SYSTEM_PROMPT = `Ты — AI-ассистент для экзамена по курсу "Как делать продукт" (Advanced JTBD). Студент решает бизнес-кейс: сервис доставки готовой еды «ДомаВкусно», задача — вырастить средний чек.
+
+## Твоя роль
+Ты — носитель информации о кейсе. У тебя есть все данные: метрики, интервью, сегментация, конкуренты, юнит-экономика. Твоя задача — отвечать на вопросы студента о данных кейса, помогать ему разобраться в ситуации.
+
+## Правила ответов
+### ЧТО МОЖНО:
+- Отвечать на вопросы о данных кейса (метрики, цитаты клиентов, конкуренты)
+- Уточнять детали ситуации
+- Пересказывать данные интервью
+- Показывать юнит-экономику и метрики
+- Подтверждать или опровергать фактические предположения о данных
+
+### ЧЕГО НЕЛЬЗЯ:
+- Давать готовые ответы (граф работ, сегментацию, механики, RAT, one-liner)
+- Подсказывать, какой сегмент выбрать
+- Предлагать механики создания ценности
+- Формулировать гипотезы за студента
+- Оценивать правильность решений студента
+- Говорить "правильно" или "неправильно"
+- Давать подсказки о методологии AJTBD
+
+### КАК ОТВЕЧАТЬ:
+- Кратко и по делу (3-5 предложений максимум)
+- Только факты из кейса, без интерпретаций
+- Если студент просит подсказку — мягко напоминай, что это экзамен
+- Если данных нет — честно говори: "Этих данных в кейсе нет"
+- На русском языке
+
+## Данные кейса
+
+### О компании
+ДомаВкусно — B2C-сервис доставки готовой еды в Москве. 2 года на рынке. Собственная кухня, доставка курьерами. Приложение + сайт.
+Позиционирование: «Домашняя еда с доставкой за 30 минут».
+Текущий лендинг: Заголовок «Вкусная еда — быстрая доставка», подзаголовок «Более 200 блюд на любой вкус. Доставим за 30 минут». Блоки: меню, акции, отзывы, «Скачай приложение». Нет упоминания работы клиента или контекста.
+
+### Метрики
+- MAU: 45 000
+- Конверсия регистрация → первый заказ: 32%
+- Средний чек: 1 200 ₽
+- Заказов/мес. на активного клиента: 3.2
+- Retention 30д: 40%, 90д: 22%
+- LTV (6 мес.): 14 400 ₽
+- CAC: 2 800 ₽
+- Маржинальность заказа: 28%
+- NPS: 42
+
+Бизнес-задача от CEO: Вырастить средний чек с 1 200 ₽ до 1 800 ₽ за 3 месяца без существенного падения количества заказов.
+
+### Интервью 1: Марина, 34, IT-менеджер
+Контекст: Живёт одна, работает удалённо 10-12 часов, не умеет готовить.
+Цитаты:
+- «Я заказываю, когда понимаю, что уже 8 вечера, а я ничего не ела. Открываю приложение и беру что-нибудь привычное — салат и суп. Хочу просто не думать об этом»
+- «Мне важно, чтобы это было не слишком тяжёлое. На ночь не хочу бургер»
+- «Иногда заказываю коллегам на созвоне — типа общий обед. Тогда чек выше, но это раз в месяц»
+- «Готовка — это потерянное время. Я лучше поработаю ещё час»
+Работы: Core — быстро поесть, не отвлекаясь от работы. Big — не тратить время на быт. Small — выбрать блюдо, оплатить, дождаться.
+Средний чек: 850 ₽
+
+### Интервью 2: Алексей, 41, владелец бизнеса
+Контекст: Женат, двое детей 7 и 12 лет, жена тоже работает.
+Цитаты:
+- «Мы заказываем 3-4 раза в неделю. Жена не хочет готовить после работы, я тоже. Дети привередливые — одному пиццу, другому пасту, нам что-то нормальное»
+- «Чек за семью выходит 3500-4000. Многовато, но альтернатива — час у плиты. Это дороже моего часа работы»
+- «Было бы круто, если бы можно было подписаться на неделю — пн-пт ужины. Со скидкой»
+- «Здоровое питание для детей — это головная боль. Они хотят пиццу, мы хотим, чтобы они ели нормально»
+Работы: Core — накормить семью без готовки. Big — сохранить качество семейной жизни при двух работающих родителях. Small — учесть предпочтения каждого, вписаться в бюджет.
+Средний чек: 3 700 ₽
+
+### Интервью 3: Ольга, 29, фитнес-тренер
+Контекст: Следит за КБЖУ, делает meal prep, устаёт от этого.
+Цитаты:
+- «Мне нужно, чтобы в карточке блюда было КБЖУ. Точное. Не "примерно 400 ккал". Я планирую рацион»
+- «Я пробовала заказывать, но у вас нет фильтра по белку. Я ем 150г белка в день»
+- «Meal prep — это 4 часа в воскресенье. Если бы я могла заказать 5 обедов на неделю с нужным КБЖУ — заплатила бы и 8000»
+- «Ваше меню — это "вкусно", но мне нужно "правильно". Это разные работы»
+Работы: Core — получить питание с точным КБЖУ без готовки. Big — достичь целевой формы тела. Small — рассчитать макронутриенты, спланировать рацион.
+Средний чек: 600 ₽
+
+### Интервью 4: Дмитрий, 52, топ-менеджер
+Контекст: Живёт один после развода, привык к ресторанам, заказывает 5-6 раз в неделю.
+Цитаты:
+- «Ваш сервис — это мой ежедневный ресторан. Мне нужно качество, не скорость. 30 минут или 50 — неважно, главное, чтобы стейк был medium rare»
+- «Я трачу на еду 100-120 тысяч в месяц. Из них у вас — тысяч 20. Остальное — рестораны и Яндекс Лавка»
+- «Мне не хватает у вас: вина к ужину, сета из нескольких блюд, красивой подачи. Я бы платил 3000+ за ужин»
+- «У конкурентов есть "ужин для двоих" — красивая коробка, свечи, вино. Я заказывал для свидания. У вас такого нет»
+Работы: Core — ресторанный ужин дома. Big — поддерживать привычный уровень жизни. Small — выбрать вино, создать атмосферу.
+Средний чек: 2 100 ₽ (потенциал 3 000-5 000 ₽)
+
+### Интервью 5: Катерина, 26, дизайнер
+Контекст: Живёт с подругой, заказывает 1-2 раза в месяц.
+Цитаты:
+- «У вас норм еда, но мы в основном готовим сами. Заказываем, только когда друзья приходят или когда совсем лень»
+- «Для друзей заказываем суши или пиццу — но не у вас»
+- «Средний чек у нас 900-1000. Для меня это дорого для будничной еды»
+- «Скидки и промокоды — вот что мне нужно»
+Работы: Core — сэкономить время, когда нет сил/настроения. Big — нет явной Big Job, ситуативно. Small — найти промокод, сравнить цены.
+Средний чек: 950 ₽ (нестабильный, price-sensitive)
+
+### Интервью 6: Сергей, 38, врач
+Контекст: 12-часовые смены, жена в декрете с младенцем.
+Цитаты:
+- «Жена не может нормально готовить с ребёнком на руках. Я прихожу в 9 вечера. Еда нужна каждый день, это не luxury — это survival»
+- «Нам нужно: еда подходящая для кормящей мамы, доставка вовремя, разогреть одной рукой»
+- «Тратим на доставку 50-60 тысяч в месяц. Если бы была подписка с 20% скидкой — подписались бы мгновенно»
+- «Мне нужна функция "повторить заказ". Мы каждый день едим примерно одно и то же»
+Работы: Core — обеспечить ежедневное питание семьи в кризисный период. Big — пережить первый год с ребёнком. Small — учесть ограничения, быстро повторить заказ.
+Средний чек: 2 400 ₽ (стабильный, ежедневный)
+
+### ABCDX-сегментация
+| Сегмент | Доля | Ср. чек | Заказов/мес. | Маржа | NPS | Retention 90д |
+|---------|------|---------|-------------|-------|-----|---------------|
+| Семьи 2+2 (Алексей, Сергей) | 20% | 2 800 ₽ | 8 | Высокая | 55 | 35% |
+| Одинокие карьеристы (Марина) | 30% | 900 ₽ | 6 | Средняя | 45 | 25% |
+| Премиум-одиночки (Дмитрий) | 8% | 2 200 ₽ | 12 | Высокая | 38 | 30% |
+| ЗОЖ-ники (Ольга) | 12% | 650 ₽ | 3 | Низкая | 25 | 10% |
+| Охотники за скидками (Катерина) | 30% | 800 ₽ | 1.5 | Отрицательная | 30 | 8% |
+
+### Конкуренты
+- Яндекс Еда: чек 1 100 ₽, агрегатор, огромный выбор, быстрая доставка
+- Delivery Club: чек 1 000 ₽, агрегатор, скидки, подписка Plus
+- Level Kitchen: 1 800 ₽/день, рационы на неделю, КБЖУ, подписка
+- Chef at Home: 3 500 ₽, ресторанные сеты, вино, подарочные наборы
+- Grow Food: 1 200 ₽/день, ЗОЖ-рационы, подписка
+
+### Юнит-экономика
+- Средний чек: 1 200 ₽
+- COGS: 420 ₽ (35%)
+- Доставка: 180 ₽ (15%)
+- Упаковка: 60 ₽ (5%)
+- Валовая маржа: 336 ₽ (28%)
+- CAC: 2 800 ₽
+- Заказов за 6 мес.: 19.2
+- LTV (6 мес.): 14 400 ₽
+- Маржинальный LTV: 6 451 ₽
+- LTV/CAC: 2.3x
+
+Целевые показатели при чеке 1 800 ₽: маржа 504 ₽ (28%), LTV 21 600 ₽, маржинальный LTV 9 677 ₽, LTV/CAC 3.5x`;
+
+    // ---- Чат ----
+    async function sendMessage() {
+        const input = document.getElementById('chat-input');
+        const text = input.value.trim();
+        if (!text) return;
+        input.value = '';
+        input.disabled = true;
+
+        // Добавить сообщение пользователя
+        addChatMessage(text, 'user');
+        state.chatLog.push({ role: 'user', content: text, time: new Date().toISOString() });
+
+        // Показать индикатор загрузки
+        const loadingId = 'loading-' + Date.now();
+        addChatMessage('Думаю...', 'bot', loadingId);
+
+        try {
+            // Формируем сообщения для OpenRouter API
+            const messages = [
+                { role: 'system', content: SYSTEM_PROMPT },
+                ...state.chatLog.filter(m => m.role !== 'time').map(m => ({ role: m.role, content: m.content }))
+            ];
+
+            const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${CONFIG.OPENROUTER_API_KEY}`,
+                    'HTTP-Referer': window.location.href,
+                    'X-Title': 'Exam KDP'
+                },
+                body: JSON.stringify({
+                    model: CONFIG.OPENROUTER_MODEL,
+                    messages: messages,
+                    max_tokens: 1000,
+                    temperature: 0.3
+                })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error?.message || `HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+            const reply = data.choices?.[0]?.message?.content || 'Пустой ответ от модели';
+
+            document.getElementById(loadingId)?.remove();
+            addChatMessage(reply, 'bot');
+            state.chatLog.push({ role: 'assistant', content: reply, time: new Date().toISOString() });
+        } catch (e) {
+            console.error('Chat error:', e);
+            document.getElementById(loadingId)?.remove();
+            addChatMessage(`Ошибка: ${e.message}. Попробуйте ещё раз.`, 'bot');
+        } finally {
+            input.disabled = false;
+            input.focus();
+        }
+    }
+
+    function addChatMessage(text, role, id) {
+        const container = document.getElementById('chat-messages');
+        const div = document.createElement('div');
+        if (id) div.id = id;
+        div.className = `chat-msg rounded-lg p-3 text-sm max-w-[85%] ${
+            role === 'user'
+                ? 'bg-gray-100 text-gray-800 ml-auto'
+                : 'bg-blue-50 text-blue-800'
+        }`;
+        div.textContent = text;
+        container.appendChild(div);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    // ---- Автосохранение практики ----
+    function autoSavePractice() {
+        if (state.autoSaveTimeout) clearTimeout(state.autoSaveTimeout);
+        state.autoSaveTimeout = setTimeout(() => {
+            state.practiceAnswers = {
+                block1: document.getElementById('answer-1').value,
+                block2: document.getElementById('answer-2').value,
+                block3: document.getElementById('answer-3').value,
+                block4: document.getElementById('answer-4').value,
+                block5: document.getElementById('answer-5').value
+            };
+            // Save to localStorage as backup
+            localStorage.setItem(`exam_${state.sessionId}_practice`, JSON.stringify(state.practiceAnswers));
+        }, 1000);
+    }
+
+    // ---- Отправка практики ----
+    function submitPractice() {
+        // Двойной клик для подтверждения
+        if (!state._confirmSubmit) {
+            state._confirmSubmit = true;
+            const btn = event.target;
+            btn.textContent = 'Нажмите ещё раз для подтверждения';
+            btn.classList.replace('bg-blue-600', 'bg-red-600');
+            btn.classList.replace('hover:bg-blue-700', 'hover:bg-red-700');
+            setTimeout(() => {
+                state._confirmSubmit = false;
+                btn.textContent = 'Завершить экзамен';
+                btn.classList.replace('bg-red-600', 'bg-blue-600');
+                btn.classList.replace('hover:bg-red-700', 'hover:bg-blue-700');
+            }, 5000);
+            return;
+        }
+        state._confirmSubmit = false;
+
+        if (state.practiceTimer) clearInterval(state.practiceTimer);
+
+        state.practiceAnswers = {
+            block1: document.getElementById('answer-1').value,
+            block2: document.getElementById('answer-2').value,
+            block3: document.getElementById('answer-3').value,
+            block4: document.getElementById('answer-4').value,
+            block5: document.getElementById('answer-5').value
+        };
+
+        saveToSupabase('exam_practice', {
+            session_id: state.sessionId,
+            answers: JSON.stringify(state.practiceAnswers),
+            chat_log: JSON.stringify(state.chatLog),
+            time_spent: CONFIG.PRACTICE_TIME - state.practiceTimeLeft,
+            submitted_at: new Date().toISOString()
+        });
+
+        updateSessionStatus('done');
+        document.getElementById('done-name').textContent = state.studentName;
+        showScreen('screen-done');
+    }
+
+    // ---- Supabase helpers ----
+    async function saveToSupabase(table, data) {
+        if (!supabase) {
+            console.log(`[Mock Save] ${table}:`, data);
+            // Fallback: save to localStorage
+            const existing = JSON.parse(localStorage.getItem(`exam_${table}`) || '[]');
+            existing.push(data);
+            localStorage.setItem(`exam_${table}`, JSON.stringify(existing));
+            return;
+        }
+        try {
+            await supabase.from(table).insert(data);
+        } catch (e) {
+            console.error('Supabase save error:', e);
+            // Fallback to localStorage
+            const existing = JSON.parse(localStorage.getItem(`exam_${table}`) || '[]');
+            existing.push(data);
+            localStorage.setItem(`exam_${table}`, JSON.stringify(existing));
+        }
+    }
+
+    async function updateSessionStatus(status) {
+        if (!supabase) {
+            console.log(`[Mock Update] session ${state.sessionId} → ${status}`);
+            return;
+        }
+        try {
+            await supabase.from('exam_sessions').update({ status }).eq('session_id', state.sessionId);
+        } catch (e) {
+            console.error('Status update error:', e);
+        }
+    }
+
+    // ---- Дашборд преподавателя ----
+    function showTeacherLogin() {
+        showScreen('screen-teacher-login');
+    }
+
+    function teacherLogin() {
+        const password = document.getElementById('teacher-password').value;
+        if (password === CONFIG.TEACHER_PASSWORD) {
+            showScreen('screen-teacher');
+            refreshDashboard();
+        } else {
+            alert('Неверный пароль');
+        }
+    }
+
+    async function refreshDashboard() {
+        let sessions = [];
+        let theories = [];
+        let practices = [];
+
+        if (supabase) {
+            try {
+                const [s, t, p] = await Promise.all([
+                    supabase.from('exam_sessions').select('*').order('started_at', { ascending: false }),
+                    supabase.from('exam_theory').select('*'),
+                    supabase.from('exam_practice').select('*')
+                ]);
+                sessions = s.data || [];
+                theories = t.data || [];
+                practices = p.data || [];
+            } catch (e) {
+                console.error('Dashboard load error:', e);
+            }
+        } else {
+            // Load from localStorage
+            sessions = JSON.parse(localStorage.getItem('exam_exam_sessions') || '[]');
+            theories = JSON.parse(localStorage.getItem('exam_exam_theory') || '[]');
+            practices = JSON.parse(localStorage.getItem('exam_exam_practice') || '[]');
+        }
+
+        // Stats
+        document.getElementById('stat-total').textContent = sessions.length;
+        document.getElementById('stat-theory').textContent = sessions.filter(s => s.status === 'theory').length;
+        document.getElementById('stat-practice').textContent = sessions.filter(s => s.status === 'practice').length;
+        document.getElementById('stat-done').textContent = sessions.filter(s => s.status === 'done').length;
+
+        // Table
+        const tbody = document.getElementById('teacher-table');
+        if (sessions.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" class="px-4 py-8 text-center text-gray-400">Пока никто не начал экзамен</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = sessions.map(s => {
+            const theory = theories.find(t => t.session_id === s.session_id);
+            const practice = practices.find(p => p.session_id === s.session_id);
+            const theoryScore = theory ? `${theory.auto_score?.toFixed(1) || '?'}/18` : '—';
+            const practiceStatus = practice ? 'Сдано' : '—';
+            const statusColors = {
+                theory: 'bg-blue-100 text-blue-700',
+                transition: 'bg-yellow-100 text-yellow-700',
+                practice: 'bg-yellow-100 text-yellow-700',
+                done: 'bg-green-100 text-green-700'
+            };
+            const statusLabels = {
+                theory: 'Теория',
+                transition: 'Переход',
+                practice: 'Практика',
+                done: 'Завершено'
+            };
+            return `<tr class="hover:bg-gray-50">
+                <td class="px-4 py-3 text-sm font-medium text-gray-900">${s.student_name}</td>
+                <td class="px-4 py-3 text-sm text-gray-500">${s.student_email}</td>
+                <td class="px-4 py-3"><span class="px-2 py-1 text-xs rounded-full ${statusColors[s.status] || 'bg-gray-100 text-gray-600'}">${statusLabels[s.status] || s.status}</span></td>
+                <td class="px-4 py-3 text-sm text-gray-700">${theoryScore}</td>
+                <td class="px-4 py-3 text-sm text-gray-700">${practiceStatus}</td>
+                <td class="px-4 py-3 text-sm font-medium text-gray-900">${theory ? theory.auto_score?.toFixed(1) || '?' : '—'}</td>
+                <td class="px-4 py-3">
+                    <button onclick="viewStudent('${s.session_id}')" class="text-blue-600 hover:text-blue-800 text-sm">Подробнее</button>
+                </td>
+            </tr>`;
+        }).join('');
+    }
+
+    async function viewStudent(sessionId) {
+        let theory, practice;
+        if (supabase) {
+            const [t, p] = await Promise.all([
+                supabase.from('exam_theory').select('*').eq('session_id', sessionId).single(),
+                supabase.from('exam_practice').select('*').eq('session_id', sessionId).single()
+            ]);
+            theory = t.data;
+            practice = p.data;
+        } else {
+            const theories = JSON.parse(localStorage.getItem('exam_exam_theory') || '[]');
+            const practices = JSON.parse(localStorage.getItem('exam_exam_practice') || '[]');
+            theory = theories.find(t => t.session_id === sessionId);
+            practice = practices.find(p => p.session_id === sessionId);
+        }
+
+        const sessions = supabase
+            ? (await supabase.from('exam_sessions').select('*').eq('session_id', sessionId).single()).data
+            : JSON.parse(localStorage.getItem('exam_exam_sessions') || '[]').find(s => s.session_id === sessionId);
+
+        document.getElementById('modal-student-name').textContent = sessions?.student_name || sessionId;
+
+        let content = '';
+
+        if (theory) {
+            const answers = JSON.parse(theory.answers || '{}');
+            content += '<h4 class="font-bold text-gray-900">Теория</h4>';
+            content += `<p class="text-sm text-gray-500 mb-2">Авто-оценка: ${theory.auto_score?.toFixed(1)}/18 · Время: ${Math.round(theory.time_spent / 60)} мин</p>`;
+            QUESTIONS.forEach(q => {
+                const a = answers[q.id];
+                let answerText = '—';
+                if (a) {
+                    if (a.type === 'radio') answerText = q.options?.[a.value] || '—';
+                    else if (a.type === 'checkbox') answerText = (a.value || []).map(v => q.options?.[v]).join(', ') || '—';
+                    else answerText = a.value || '—';
+                }
+                content += `<div class="border-l-2 border-gray-200 pl-3 py-1 mb-2">
+                    <p class="text-xs text-gray-400">В${q.id}: ${q.topic}</p>
+                    <p class="text-sm text-gray-700">${answerText}</p>
+                </div>`;
+            });
+        }
+
+        if (practice) {
+            const answers = JSON.parse(practice.answers || '{}');
+            content += '<h4 class="font-bold text-gray-900 mt-6">Практика</h4>';
+            content += `<p class="text-sm text-gray-500 mb-2">Время: ${Math.round(practice.time_spent / 60)} мин</p>`;
+            ['block1', 'block2', 'block3', 'block4', 'block5'].forEach((key, i) => {
+                const labels = ['Граф работ', 'ABCDX', 'Механики ценности', 'RAT', 'Коммуникация'];
+                content += `<div class="border-l-2 border-blue-200 pl-3 py-1 mb-2">
+                    <p class="text-xs text-blue-400">Блок ${i+1}: ${labels[i]}</p>
+                    <p class="text-sm text-gray-700 whitespace-pre-wrap">${answers[key] || '—'}</p>
+                </div>`;
+            });
+        }
+
+        document.getElementById('modal-student-content').innerHTML = content;
+        document.getElementById('modal-student').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('modal-student').classList.add('hidden');
+    }
+
+    // ---- Экспорт CSV ----
+    function exportCSV() {
+        const sessions = JSON.parse(localStorage.getItem('exam_exam_sessions') || '[]');
+        const theories = JSON.parse(localStorage.getItem('exam_exam_theory') || '[]');
+        let csv = 'Имя,Email,Статус,Теория (авто),Время теории (мин)\n';
+        sessions.forEach(s => {
+            const t = theories.find(t => t.session_id === s.session_id);
+            csv += `"${s.student_name}","${s.student_email}","${s.status}","${t?.auto_score?.toFixed(1) || ''}","${t ? Math.round(t.time_spent/60) : ''}"\n`;
+        });
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'exam-results.csv';
+        a.click();
+    }
+    </script>
+</body>
+</html>
