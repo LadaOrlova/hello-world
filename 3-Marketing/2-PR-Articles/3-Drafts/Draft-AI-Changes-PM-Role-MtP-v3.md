@@ -52,6 +52,8 @@ When building costs almost nothing, you can test 10 to 100 hypotheses per sprint
 
 The PM becomes an operator of a hypothesis factory: business goal, riskiest assumption, build, measure, kill or continue. [Shopify made this explicit](https://techcrunch.com/2025/04/07/shopify-ceo-tells-teams-to-consider-using-ai-before-growing-headcount/) — CEO Tobi Lutke's company-wide memo requires every team to prove AI can't do the work before requesting headcount. AI usage now factors into performance reviews. Resource allocation itself became a hypothesis to be tested.
 
+Boris Cherny describes the frontier: "Claude is starting to come up with ideas. Looking through feedback, bug reports, telemetry." The agent doesn't just execute — it proposes.
+
 The scale shift is real — 3-4 person AI-augmented startups now match the output of 30-50 person teams. But this advantage only works if delegation follows risk. Think of AI agents as less competent employees — hand them low-risk work (A/B test configs, data pulls, draft copy) and keep the high-risk decisions for yourself: which market to enter, what to price, where the ethical lines sit. Across the product teams I've worked with, the ones who get this wrong aren't the ones who use AI too little. They're the ones who delegate judgment along with execution.
 
 But let's be honest about what's not ready yet.

@@ -19,7 +19,7 @@
 | T2 Judgment | Нет кейса, только Cagan + Mehta цитаты | **+Klarna** (уволили 40% → AI обслуживание → CEO "we went too far" → наняли обратно) | Добавлен cautionary case — MtP любит cautionary tales |
 | T3 Hypothesis | Ссылка на Shreyas Doshi (3-4 чел = 30-50 команд) | **+Shopify** (Tobi Lutke: докажите что AI не может → потом нанимайте) | Заменён Doshi (URL оказался 404, реальный не нашёлся) |
 | T3 Hypothesis | Shreyas Doshi | **Убран Shreyas Doshi** | URL оказался фейковый (404). Утверждение "3-4 person startups" оставлено без ссылки |
-| T3 Hypothesis | Boris Cherny цитата "Claude coming up with ideas" | **Убрана** | Не влезло в word budget |
+| T3 Hypothesis | Boris Cherny цитата "Claude coming up with ideas" | **Восстановлена** | Была убрана из-за word budget, восстановлена по просьбе |
 | T4 Full cycle | Нет кейса | **+Replit** (AI agent удалил 1200 записей, соврал про recovery) | Добавлен как proof что production не готов |
 | T5 K-split | Нет кейса | **+HBR** (AI убивает apprenticeship tasks → junior PMs не набирают judgment) | Добавлен как structural mechanism для K-split |
 
@@ -27,25 +27,25 @@
 
 | URL | Кейс | Проверена? |
 |-----|------|------------|
-| techcrunch.com/2026/02/12/spotify-says-its-best-developers... | Spotify/Honk | Проверена case-hunter агентом |
-| figma.com/blog/2025-shifting-roles-report/ | Figma | Проверена case-hunter агентом |
-| tech.co/news/klarna-reverses-ai-overhaul | Klarna | Проверена case-hunter агентом |
-| techcrunch.com/2025/04/07/shopify-ceo-tells-teams... | Shopify | Проверена case-hunter агентом |
-| fortune.com/2025/07/23/ai-coding-tool-replit... | Replit | Проверена case-hunter агентом |
-| hbr.org/2026/02/how-do-workers-develop-good-judgment... | HBR | Проверена case-hunter агентом |
+| [techcrunch.com/2026/02/12/spotify-says-its-best-developers...](https://techcrunch.com/2026/02/12/spotify-says-its-best-developers-havent-written-a-line-of-code-since-december-thanks-to-ai/) | Spotify/Honk | Проверена case-hunter агентом |
+| [figma.com/blog/2025-shifting-roles-report/](https://www.figma.com/blog/2025-shifting-roles-report/) | Figma | Проверена case-hunter агентом |
+| [tech.co/news/klarna-reverses-ai-overhaul](https://tech.co/news/klarna-reverses-ai-overhaul) | Klarna | Проверена case-hunter агентом |
+| [techcrunch.com/2025/04/07/shopify-ceo-tells-teams...](https://techcrunch.com/2025/04/07/shopify-ceo-tells-teams-to-consider-using-ai-before-growing-headcount/) | Shopify | Проверена case-hunter агентом |
+| [fortune.com/2025/07/23/ai-coding-tool-replit...](https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/) | Replit | Проверена case-hunter агентом |
+| [hbr.org/2026/02/how-do-workers-develop-good-judgment...](https://hbr.org/2026/02/how-do-workers-develop-good-judgment-in-the-ai-era) | HBR | Проверена case-hunter агентом |
 
 ### Ссылки: сохранённые из Ваниного драфта (8)
 
 | URL | Кейс |
 |-----|------|
-| lennysnewsletter.com/p/head-of-claude-code-what-happens | Boris Cherny |
-| techcrunch.com/2025/03/06/...yc-codebases... | YC W25 |
-| theguardian.com/...vibe-coding... | Collins WotY |
-| lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom | Andreessen |
-| lennysnewsletter.com/p/why-linkedin-is-replacing-pms | LinkedIn |
-| svpg.com/product-coaching-and-ai/ | Cagan |
-| atlassian.com/blog/.../shift-from-craft-to-judgement-ai | Mehta |
-| weforum.org/stories/2025/10/... | WEF |
+| [lennysnewsletter.com/p/head-of-claude-code-what-happens](https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens) | Boris Cherny |
+| [techcrunch.com/2025/03/06/...yc-codebases...](https://techcrunch.com/2025/03/06/a-quarter-of-startups-in-ycs-current-cohort-have-codebases-that-are-almost-entirely-ai-generated/) | YC W25 |
+| [theguardian.com/...vibe-coding...](https://www.theguardian.com/technology/2025/nov/06/vibe-coding-collins-dictionary-word-of-the-year-2025) | Collins WotY |
+| [lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom](https://www.lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom) | Andreessen |
+| [lennysnewsletter.com/p/why-linkedin-is-replacing-pms](https://www.lennysnewsletter.com/p/why-linkedin-is-replacing-pms) | LinkedIn |
+| [svpg.com/product-coaching-and-ai/](https://www.svpg.com/product-coaching-and-ai/) | Cagan |
+| [atlassian.com/blog/.../shift-from-craft-to-judgement-ai](https://www.atlassian.com/blog/artificial-intelligence/shift-from-craft-to-judgement-ai) | Mehta |
+| [weforum.org/stories/2025/10/...](https://www.weforum.org/stories/2025/10/ai-s-new-dual-workforce-challenge-balancing-overcapacity-and-talent-shortages/) | WEF |
 
 ### Ссылки: убранные
 
@@ -81,37 +81,37 @@
 
 | URL | Кейс | Проверена? |
 |-----|------|------------|
-| wiz.io/blog/exposed-moltbook-database... | Moltbook | WebFetch — ОК, но Moltbook НЕ умер (исправлено в тексте) |
-| metr.org/blog/2025-07-10-... | METR study | Была у Вани в v1, он убрал, восстановлена. URL из его же Sources |
-| hbr.org/2020/03/building-a-culture-of-experimentation | Booking.com | Проверена case-hunter агентом |
-| review.firstround.com/founder-led-growth-playbook/ | Popsa | Была у Вани в v1, он убрал, восстановлена. URL из его же Sources |
-| cnbc.com/2025/10/27/chegg-slashes-45percent... | Chegg | Проверена через WebSearch (45% layoffs, 99% drop подтверждено) |
+| [wiz.io/blog/exposed-moltbook-database...](https://www.wiz.io/blog/exposed-moltbook-database-reveals-millions-of-api-keys) | Moltbook | WebFetch — ОК, но Moltbook НЕ умер (исправлено в тексте) |
+| [metr.org/blog/2025-07-10-...](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) | METR study | Была у Вани в v1, он убрал, восстановлена. URL из его же Sources |
+| [hbr.org/2020/03/building-a-culture-of-experimentation](https://hbr.org/2020/03/building-a-culture-of-experimentation) | Booking.com | Проверена case-hunter агентом |
+| [review.firstround.com/founder-led-growth-playbook/](https://review.firstround.com/founder-led-growth-playbook/) | Popsa | Была у Вани в v1, он убрал, восстановлена. URL из его же Sources |
+| [cnbc.com/2025/10/27/chegg-slashes-45percent...](https://www.cnbc.com/2025/10/27/chegg-slashes-45percent-of-workforce-blames-new-realities-of-ai.html) | Chegg | Проверена через WebSearch (45% layoffs, 99% drop подтверждено) |
 
 ### Ссылки: сохранённые из Ваниного драфта (5)
 
 | URL | Кейс |
 |-----|------|
-| figma.com/blog/...notion... | Notion |
-| whatastartup.substack.com/p/...notion... | Notion |
-| producthunt.com/p/wisprflow/... | Wispr Flow |
-| research.contrary.com/company/jasper | Jasper AI |
-| elenaverna.com/p/the-product-market-fit-treadmill | Elena Verna |
+| [figma.com/blog/...notion...](https://www.figma.com/blog/design-on-a-deadline-how-notion-pulled-itself-back-from-the-brink-of-failure/) | Notion |
+| [whatastartup.substack.com/p/...notion...](https://whatastartup.substack.com/p/how-notion-went-from-near-failure-to-a-10-billion-dollars-unicorn) | Notion |
+| [producthunt.com/p/wisprflow/...](https://www.producthunt.com/p/wisprflow/how-wispr-flow-found-pmf-through-a-pivot) | Wispr Flow |
+| [research.contrary.com/company/jasper](https://research.contrary.com/company/jasper) | Jasper AI |
+| [elenaverna.com/p/the-product-market-fit-treadmill](https://www.elenaverna.com/p/the-product-market-fit-treadmill) | Elena Verna |
 
 ### Ссылки: убранные (11)
 
 | URL | Почему |
 |-----|--------|
-| elenaverna.com/p/6-months-at-lovable... | Hook заменён, Lovable в alt hook B |
-| lennysnewsletter.com/p/the-new-ai-growth-playbook... | Word budget |
-| techcrunch.com/2025/06/24/wispr-flow-raises-30m... | Убраны детали про $81M |
-| ruinunes.com/vibe-coding-trap-ai-built-mvp/ | EnrichLead → заменён на Moltbook |
-| techstartups.com/2025/12/11/... | Вторая ссылка EnrichLead |
-| arxiv.org/abs/2512.19644 | arXiv (word budget) |
-| arxiv.org/abs/2512.22418 | arXiv (word budget) |
-| arxiv.org/abs/2601.10258 | arXiv (word budget) |
-| engineering.atspotify.com/2025/9/... | Spotify → заменён на Booking.com |
-| infoq.com/news/2025/12/... | Вторая ссылка Spotify |
-| sqmagazine.co.uk/jasper-ai-statistics/ | Вторая ссылка Jasper |
+| [elenaverna.com/p/6-months-at-lovable...](https://www.elenaverna.com/p/6-months-at-lovable) | Hook заменён, Lovable в alt hook B |
+| [lennysnewsletter.com/p/the-new-ai-growth-playbook...](https://www.lennysnewsletter.com/p/the-new-ai-growth-playbook) | Word budget |
+| [techcrunch.com/2025/06/24/wispr-flow-raises-30m...](https://techcrunch.com/2025/06/24/wispr-flow-raises-30m) | Убраны детали про $81M |
+| [ruinunes.com/vibe-coding-trap-ai-built-mvp/](https://ruinunes.com/vibe-coding-trap-ai-built-mvp/) | EnrichLead → заменён на Moltbook |
+| [techstartups.com/2025/12/11/...](https://techstartups.com/2025/12/11/) | Вторая ссылка EnrichLead |
+| [arxiv.org/abs/2512.19644](https://arxiv.org/abs/2512.19644) | arXiv (word budget) |
+| [arxiv.org/abs/2512.22418](https://arxiv.org/abs/2512.22418) | arXiv (word budget) |
+| [arxiv.org/abs/2601.10258](https://arxiv.org/abs/2601.10258) | arXiv (word budget) |
+| [engineering.atspotify.com/2025/9/...](https://engineering.atspotify.com/2025/9/) | Spotify → заменён на Booking.com |
+| [infoq.com/news/2025/12/...](https://www.infoq.com/news/2025/12/) | Вторая ссылка Spotify |
+| [sqmagazine.co.uk/jasper-ai-statistics/](https://sqmagazine.co.uk/jasper-ai-statistics/) | Вторая ссылка Jasper |
 
 ### Хук: заменён
 
