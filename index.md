@@ -646,6 +646,7 @@
 
 **3-Drafts/**
 
+- `Changelog-v2-v3-drafts.md` — Changelog: что изменилось в новых драфтах v2/v3
 - `Draft-AI-Changes-PM-Role-MtP-v3.md` — 📝 Notes before sending to editor
 - `Draft-AI-Changes-PM-Role-MtP.md` — Инструкция от Вани Замесина
 - `Draft-How-to-Find-PMF-Fast-and-Pivot-the-Right-Way.md` — 📝 Инструкция от Вани Замесина
