@@ -343,6 +343,24 @@
 - `саммари — Подготовка к воркшопу по вайб-кодингу (1).md` — [Воркшоп] Подготовка к воркшопу по вайб-кодингу
 - `саммари — Подготовка к воркшопу по вайб-кодингу.md` — [Воркшоп] Подготовка к воркшопу по вайб-кодингу
 
+*2026-03-07 — Веб-кодинг - настройка инструментов и выбор идеи/*
+
+- `расшифровка — Веб-кодинг - настройка инструментов и выбор идеи.md` — Расшифровка: Веб-кодинг: настройка инструментов и выбор идеи
+- `саммари — Веб-кодинг - настройка инструментов и выбор идеи.md` — [Воркшоп] Веб-кодинг: настройка инструментов и выбор идеи
+
+*2026-03-07 — Настройка инструментов и выбор идеи продукта/*
+
+- `расшифровка — Веб-кодинг - настройка инструментов и выбор идеи.md` — Расшифровка: Веб-кодинг: настройка инструментов и выбор идеи
+- `саммари — Веб-кодинг - настройка инструментов и выбор идеи.md` — [Воркшоп] Веб-кодинг: настройка инструментов и выбор идеи
+- `саммари — Настройка инструментов и выбор идеи продукта (1).md` — [Воркшоп] Настройка инструментов и выбор идеи продукта
+- `саммари — Настройка инструментов и выбор идеи продукта.md` — [Воркшоп] Настройка инструментов и выбор идеи продукта
+
+*2026-03-07 — Основы вайбкодинга и запуск первого MVP/*
+
+- `расшифровка — Основы вайбкодинга и запуск первого MVP.md` — Расшифровка: Основы вайбкодинга и запуск первого MVP
+- `саммари — Основы вайбкодинга и запуск первого MVP (1).md` — [Воркшоп] Основы вайбкодинга и запуск первого MVP
+- `саммари — Основы вайбкодинга и запуск первого MVP.md` — [Воркшоп] Основы вайбкодинга и запуск первого MVP
+
 **командный-созвон/**
 
 
@@ -553,36 +571,14 @@
 Продуктовые материалы и новые продукты
 
 
-### 2-Products/BoostUS-Course/
+### 2-Products/RU/
 
-- `01-prd.md` — PRD: From Zero to First Product — Записанный онлайн-курс
-- `02-analytics-plan.md` — Аналитический план: From Zero to First Product — PostHog
-- `03-landing-copy.md` — Лендинг-копи: From Zero to First Product
-- `04-marketing-hypotheses.md` — Маркетинговые гипотезы: From Zero to First Product
-- `05-unit-economics.md` — Юнит-экономика: From Zero to First Product
 
-### 2-Products/BoostUS-ai-platform/
+**Boost/**
 
-- `01-prd.md` — PRD: LaunchPilot -- AI-платформа "от идеи до работающего продукта"
-- `02-analytics-plan.md` — Аналитический план LaunchPilot — PostHog
-- `03-landing-copy.md` — LaunchPilot: Landing Page Copy
-- `04-marketing-hypotheses.md` — Маркетинговые гипотезы и стратегия воронки: LaunchPilot
-- `05-unit-economics.md` — Юнит-экономика: LaunchPilot
-- `market-report-анализ-идеи-boostus-go.md` — Анализ идеи: BoostUS — GO
+- `boost-pm-guide.md` — BOOST PM Guide — Полное руководство для Project Manager'а
 
-### 2-Products/BoostUS-main/
-
-- `01-prd.md` — PRD: AI-гайд по продуктовому мышлению и вайбкодингу
-- `02-analytics-plan.md` — Аналитический план LaunchPilot — PostHog
-- `03-landing-copy.md` — LaunchPilot: Landing Page Copy
-- `04-marketing-hypotheses.md` — Маркетинговые гипотезы и стратегия воронки: LaunchPilot
-- `05-unit-economics.md` — Юнит-экономика: LaunchPilot
-
-**landing/**
-
-- `index.html`
-
-### 2-Products/ExamRU/
+**Exam/**
 
 - `chatbot-prompt.md` — Системный промпт для AI-бота экзамена
 - `exam-design.md` — Дизайн экзамена: "Как делать продукт"
@@ -592,6 +588,38 @@
 - `sample-questions.md` — Примеры вопросов для подготовки к экзамену
 - `theory-questions-examples.md` — Примеры экзаменационных билетов: теоретическая часть
 - `theory-questions.md` — Теоретическая часть: 25 вопросов
+
+### 2-Products/US/
+
+
+**BoostUS-Course/**
+
+- `01-prd.md` — PRD: From Zero to First Product — Записанный онлайн-курс
+- `02-analytics-plan.md` — Аналитический план: From Zero to First Product — PostHog
+- `03-landing-copy.md` — Лендинг-копи: From Zero to First Product
+- `04-marketing-hypotheses.md` — Маркетинговые гипотезы: From Zero to First Product
+- `05-unit-economics.md` — Юнит-экономика: From Zero to First Product
+
+**BoostUS-ai-platform/**
+
+- `01-prd.md` — PRD: LaunchPilot -- AI-платформа "от идеи до работающего продукта"
+- `02-analytics-plan.md` — Аналитический план LaunchPilot — PostHog
+- `03-landing-copy.md` — LaunchPilot: Landing Page Copy
+- `04-marketing-hypotheses.md` — Маркетинговые гипотезы и стратегия воронки: LaunchPilot
+- `05-unit-economics.md` — Юнит-экономика: LaunchPilot
+- `market-report-анализ-идеи-boostus-go.md` — Анализ идеи: BoostUS — GO
+
+**BoostUS-main/**
+
+- `01-prd.md` — PRD: AI-гайд по продуктовому мышлению и вайбкодингу
+- `02-analytics-plan.md` — Аналитический план LaunchPilot — PostHog
+- `03-landing-copy.md` — LaunchPilot: Landing Page Copy
+- `04-marketing-hypotheses.md` — Маркетинговые гипотезы и стратегия воронки: LaunchPilot
+- `05-unit-economics.md` — Юнит-экономика: LaunchPilot
+
+*landing/*
+
+- `index.html`
 
 ---
 
