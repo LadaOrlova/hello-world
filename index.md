@@ -809,6 +809,16 @@
 
 ### 4-Personal-files/Vladlena-Orlova/
 
+- `2026-03-13-boost-ajtbd-presale.md` — Telegram-пост: Анонс Буст AJTBD + Вайбкодинг (предзапись)
+- `2026-03-13-crm-training-analytics.md` — Аналитика CRM тренинга «Как делать продукт»
+- `2026-03-13-webinar-followup-carousel.md` — Telegram-пост: Follow-up карусель после вебинара 12 марта
+- `bot-architecture.md` — Архитектура Telegram-бота: от хаоса к системе
+- `conference-bot-march2026.md` — Telegram-бот для конференции 25-27 марта 2026
+- `content-platform-aura-brief.md` — AURA Brief: Маркетинговая / Контентная платформа
+- `web-120326-followup-updated.md` — Обновленный follow-up план вебинара 12 марта 2026
+- `website-structure-hypotheses.md` — Гипотезы по структуре сайта Вани Замесина
+- `website-structure.md` — Структура сайта zamesin.ru
+- `youtube-shorts-scenarios.md` — YouTube Shorts с Ваней Замесиным — Сценарии
 
 ---
 
