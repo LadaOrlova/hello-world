@@ -795,6 +795,7 @@
 
 ### 4-Personal-files/Ivan-Zamesin/
 
+- `zis-goals-and-tasktracker-requirements.md` — Требования к ЗИС: Целеполагание (OKR) и Таск-трекер
 
 **New-Name-US/**
 
