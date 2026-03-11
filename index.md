@@ -55,6 +55,7 @@
 - `03-case-pack.md` — 03 — Case pack (URLs + boundaries)
 - `04-narrative-plan.md` — 04 — Narrative plan (Mind the Product)
 - `05-section-briefs.md` — 05 — Section briefs (blueprint for draft)
+- `06-supplementary-style-research.md` — 06 — Supplementary Style Research (Mind the Product)
 - `07-quality-report.md` — 07 — Quality report (v1)
 - `_spring-context.md` — Draft context: AI Changes the PM Role (Mind the Product)
 
@@ -723,10 +724,10 @@
 **3-Drafts/**
 
 - `Changelog-v2-v3-drafts.md` — Changelog: что изменилось в новых драфтах v2/v3
-- `Draft-AI-Changes-PM-Role-MtP-v3.md` — 📝 Notes before sending to editor
+- `Draft-AI-Changes-PM-Role-MtP-v4.md` — Инструкция от Вани Замесина
 - `Draft-AI-Changes-PM-Role-MtP.md` — Инструкция от Вани Замесина
 - `Draft-How-to-Find-PMF-Fast-and-Pivot-the-Right-Way.md` — 📝 Инструкция от Вани Замесина
-- `Draft-How-to-Find-PMF-Fast-v2.md` — 📝 Notes before sending to editor
+- `Draft-How-to-Find-PMF-Fast-v3.md` — Инструкция от Вани Замесина
 
 ### 3-Marketing/2-Writing-Book/
 
