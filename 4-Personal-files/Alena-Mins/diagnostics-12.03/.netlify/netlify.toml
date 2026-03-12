@@ -1,0 +1,26 @@
+plugins = []
+headers = []
+redirects = []
+
+[functions]
+
+[functions."*"]
+
+[build]
+publish = "/Users/alenamins/Desktop/cursor/Zamesin-Academy-Team/4-Personal-files/Alena-Mins/diagnostics-12.03"
+publishOrigin = "default"
+base = "/Users/alenamins/Desktop/cursor/Zamesin-Academy-Team/4-Personal-files/Alena-Mins/diagnostics-12.03"
+
+[build.environment]
+
+[build.processing]
+
+[build.processing.css]
+
+[build.processing.html]
+
+[build.processing.images]
+
+[build.processing.js]
+
+[build.services]
