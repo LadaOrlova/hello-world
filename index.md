@@ -798,10 +798,10 @@
 
 ### 4-Personal-files/Alena-Mins/
 
+
+**diagnostics-12.03/**
+
 - `index.html`
-
-**screenshots/**
-
 
 ### 4-Personal-files/Alina-Kovkova/
 
