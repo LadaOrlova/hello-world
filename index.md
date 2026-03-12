@@ -803,6 +803,10 @@
 
 - `index.html`
 
+*.netlify/*
+
+- `netlify.toml`
+
 ### 4-Personal-files/Alina-Kovkova/
 
 
