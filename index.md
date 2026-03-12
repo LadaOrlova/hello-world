@@ -10,6 +10,7 @@
 | `1-Context/` | Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт" |
 | `2-Products/` | Продуктовые материалы и новые продукты |
 | `3-Marketing/` | Маркетинг: вебинары, идеи продвижения |
+| `3-SMM/` | Контент: LinkedIn-посты, Telegram-посты, черновики статей |
 | `4-Hiring/` | — |
 | `4-Personal-files/` | Персональные рабочие папки участников команды |
 | `5-ZIS/` | Zamesin Innovation School: LMS и идеи |
@@ -772,6 +773,17 @@
 
 ---
 
+## 3-SMM/
+
+Контент: LinkedIn-посты, Telegram-посты, черновики статей
+
+
+### 3-SMM/Bot/
+
+- `2026-03-11-last-kdp-cohort.md` — Telegram-пост: Последний поток КДП в этом формате
+
+---
+
 ## 4-Hiring/
 
 - `hiring-requirements.md` — Каких людей мы нанимаем
@@ -829,6 +841,9 @@
 
 ### 4-Personal-files/Vladlena-Orlova/
 
+- `backlog.md` — Бэклог маркетинг — Владлена Орлова
+- `bot-analytics.md` — Аналитика бота — Ботхелп
+- `kdp-feedback-report.csv`
 
 ---
 
