@@ -795,13 +795,6 @@
 Персональные рабочие папки участников команды
 
 
-### 4-Personal-files/Alena-Mins/
-
-
-**diagnostics-showcase/**
-
-- `index.html`
-
 ### 4-Personal-files/Alina-Kovkova/
 
 
@@ -851,6 +844,13 @@
 - `backlog.md` — Бэклог маркетинг — Владлена Орлова
 - `bot-analytics.md` — Аналитика бота — Ботхелп
 - `kdp-feedback-report.csv`
+
+### 4-Personal-files/Алена-Минс/
+
+
+**Диагностика/**
+
+- `index.html`
 
 ---
 
