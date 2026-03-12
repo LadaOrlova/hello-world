@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Топ-16 продуктов — Разбор 12 марта 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .card { transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
+    .screenshot-img { aspect-ratio: 16/10; object-fit: cover; object-position: top; }
+    .badge { font-size: 11px; letter-spacing: 0.5px; }
+    .fade-in { animation: fadeIn 0.3s ease-in; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .detail-section { border-left: 3px solid #6366f1; }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#f0f0ff', 100: '#e0e0ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 900: '#1e1b4b' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+<div id="app"></div>
+
+<script>
+const products = [
+  {
+    id: 1,
+    name: 'EasyClaim',
+    subtitle: 'Цифровизация ЖКХ через Mini Apps',
+    person: 'Краев Никита',
+    contact: '@Rokusan',
+    site: 'https://easyclaim.delovkode.ru',
+    model: 'B2B SaaS',
+    stage: 'Масштабирование, 5 УК внедрено',
+    description: 'Платформа для цифровых каналов связи в ЖКХ + ИИ-диспетчер. Заменяет хаос в домовых чатах структурированной системой заявок.',
+    whyInteresting: [
+      '<strong>Регуляторный драйвер</strong> — с 2026 цифровые каналы = обязательное лицензионное требование',
+      '<strong>Сверхконсервативная ниша</strong> — инертные ЛПР, фиксированная доходность УК, длинный цикл сделки',
+      '<strong>Land-and-expand модель</strong> — лицензия от 5К руб → ИИ-агент за токены',
+      '<strong>User ≠ buyer</strong> — жители vs управляющие компании, разные jobs',
+    ],
+    pattern: 'Как входить в консервативные ниши через регуляторный рычаг + zero-effort onboarding',
+    color: 'indigo',
+  },
+  {
+    id: 2,
+    name: 'Глабикс',
+    subtitle: 'Российский Loom — асинхронные видеосообщения',
+    person: 'Ксения Аристова',
+    contact: '@AKseniaS',
+    site: 'https://glabix.com',
+    model: 'B2B SaaS',
+    stage: '4-й год, масштабирование',
+    description: 'Сервис асинхронных видеосообщений. Новый канал коммуникации — сокращение созвонов, замена неудобных инструментов.',
+    whyInteresting: [
+      '<strong>Формирование рынка, которого нет</strong> — финансовая выгода не аргумент, люди не меняют привычки',
+      '<strong>ЛПР ≠ пользователь</strong> — даже если ЛПР купит, сотрудники саботируют',
+      '<strong>Прямые вопросы для AJTBD</strong>: какая реальная работа у продукта? На каком сегменте фокусироваться?',
+      'SEO + нетворк + реферальная + холодные продажи — всё сразу, нет фокуса',
+    ],
+    pattern: 'Как анализировать job graph, когда альтернатива — "ничего не менять"',
+    color: 'violet',
+  },
+  {
+    id: 3,
+    name: 'ОкиДоки',
+    subtitle: 'Цифровой договор без бумаги и ЭЦП',
+    person: 'Сергей Гребеножко',
+    contact: '@superpupermegaman',
+    site: 'https://doki.online',
+    model: 'B2B SaaS',
+    stage: '6000 клиентов, 100К документов/мес',
+    description: 'Сервис цифрового договора между бизнесом и физлицом. Без бумаги, без ЭЦП.',
+    whyInteresting: [
+      '<strong>80% клиентов — один сегмент</strong> (посуточный бизнес). Сарафанка работает, платный трафик — нет',
+      '<strong>Классический ABCDX-кейс</strong>: как найти следующий сегмент, если текущий уперся в потолок?',
+      'Работающий продукт, сходимая экономика, но зависимость от одного сегмента = стратегический риск',
+      '<strong>Проверили кучу гипотез</strong> — зрелый кейс, где поверхностные советы не работают',
+    ],
+    pattern: 'Как расширяться в новые сегменты, когда один доминирует',
+    color: 'emerald',
+  },
+  {
+    id: 4,
+    name: 'Dashly.io',
+    subtitle: 'AI Inbound Revenue Agents',
+    person: 'Дмитрий Сергеев',
+    contact: '@dmitrii_ive',
+    site: 'https://dashly.io',
+    model: 'B2B SaaS',
+    stage: 'MVP, пилоты с результатами',
+    description: 'AI-агенты, удваивающие пайплайн входящей воронки в B2B IT-компаниях.',
+    whyInteresting: [
+      '<strong>CEO = продакт + проджект + CRO</strong> — классическое узкое горлышко solo-founder',
+      'Внедрение 2 месяца → нужно сократить до 2 недель. Продукт не тот или ICP не тот?',
+      '<strong>Кейсы есть, но масштаб — нет</strong>. RAT по масштабируемости + unit economics',
+      'Нетворк и ивенты как канал — ограниченная масштабируемость',
+    ],
+    pattern: 'Переход от "делаю руками для каждого клиента" к масштабируемому продукту',
+    color: 'blue',
+  },
+  {
+    id: 5,
+    name: 'НейроСова',
+    subtitle: 'AI для учебных работ',
+    person: 'Гаспарян Артём',
+    contact: '@artgas1',
+    site: 'https://neirosova.ru',
+    model: 'B2C',
+    stage: '150К посетителей/мес',
+    description: 'Быстрое создание учебных работ с помощью ИИ. Основной продукт — индивидуальные проекты школьников.',
+    whyInteresting: [
+      '<strong>PMF найден</strong> для одного сценария (индивидуальные проекты) — но нет повторных покупок',
+      'Сужать сегменты? Искать повторные покупки? Или "актив" исчерпан?',
+      '<strong>Зелёный рынок с конкурентами</strong> — как удержать позиции, когда конкуренты тоже используют AI',
+      '150К посетителей = огромный трафик, но нет retention. Job выполнен → уходят',
+    ],
+    pattern: 'Что делать после PMF в одном сценарии. Как превратить разовый трафик в LTV',
+    color: 'amber',
+  },
+  {
+    id: 6,
+    name: 'МойПовар',
+    subtitle: 'Маркетплейс еды от поваров',
+    person: 'Джурович Владислав',
+    contact: '@vladislavtmn',
+    site: 'https://mypovar.ru',
+    model: 'C2C маркетплейс',
+    stage: '2.5 года, Forbes 30u30',
+    description: 'Маркетплейс, где покупатели заказывают еду у проверенных частных поваров.',
+    whyInteresting: [
+      '<strong>Конверсия 1.5% → цель 5%</strong>. Retention 50% — половина не возвращается, хотя довольны',
+      '<strong>Тройной барьер</strong>: отсутствие привычки + недоверие + нерелевантность',
+      'Двусторонний маркетплейс — нужно балансировать повара и покупателей. Разные jobs',
+      '<strong>Forbes 30u30</strong> — но конверсия не растёт. Имидж ≠ бизнес-результат',
+    ],
+    pattern: 'Двусторонние маркетплейсы — как растить конверсию, когда "нравится, но не покупают"',
+    color: 'orange',
+  },
+  {
+    id: 7,
+    name: 'Phygital Plus',
+    subtitle: 'AI-платформа для дизайна',
+    person: 'Антузинский Юрий',
+    contact: '@yura_ant',
+    site: 'https://phygital.plus',
+    model: 'B2B + B2C',
+    stage: '4 года, ищут PMF',
+    description: 'Платформа с десятками нейросетей + пайплайны для создания графики и видео.',
+    whyInteresting: [
+      '<strong>4 года без чёткого PMF</strong> — C-level не может описать ICP, нет дерева метрик',
+      'Знают разные сценарии, но не знают какой приоритетный. Ловушка "продукт для всех"',
+      'B2B контракты + B2C подписки + AppSumo акции — полная расфокусировка',
+      '"Хреначим каждую неделю, но нет понимания что даёт ценность"',
+    ],
+    pattern: 'Как выбрать один сегмент и один job, когда продукт "подходит всем"',
+    color: 'purple',
+  },
+  {
+    id: 8,
+    name: 'VEC Cosmetic',
+    subtitle: 'Профессиональная косметика',
+    person: 'Евгений Зюзин',
+    contact: '@helloevgen',
+    site: 'https://veccosmetic.com',
+    model: 'B2B + B2C',
+    stage: '12 лет, новые рынки',
+    description: 'Производство профессиональной косметики. B2B — косметологи, B2C — конечные пользователи.',
+    whyInteresting: [
+      '<strong>12 лет компании</strong> — зрелый бизнес, выход на новые рынки',
+      'Нужно определить фокусные сегменты и коммуницировать с базой',
+      '<strong>Барьер верификации</strong> в B2B — сертификат для покупки создаёт трение',
+      'Запуск новых продуктов на маркетплейсы — как выходить с массовым продуктом',
+    ],
+    pattern: 'AURA для зрелого производственного бизнеса. Фокус при выходе на новые рынки',
+    color: 'pink',
+  },
+  {
+    id: 9,
+    name: 'Ivy',
+    subtitle: 'AI-приложение психологической самопомощи',
+    person: 'Наиль Мардамшин',
+    contact: '@nmardamshin',
+    site: 'https://t.me/HeartTalk_Therabot',
+    model: 'B2C',
+    stage: 'MVP, 3 недели',
+    description: 'Telegram-бот для работы с тревогой, злостью, руминацией, бессонницей. КПТ, дыхание, экспозиция.',
+    whyInteresting: [
+      '<strong>Критический момент</strong> — решение: продолжать, закрывать или пивотировать',
+      '180 → 47 активировались → 3 активных. 56% сессий не доходят до конца',
+      '<strong>Retention hole</strong>: продукт работает (тревога 6.2 → 4.6), но люди не возвращаются',
+      '<strong>RAT в чистом виде</strong>: какие допущения проверить?',
+    ],
+    pattern: 'Kill/pivot/continue на основе данных. Retention не всегда должен быть высоким',
+    color: 'teal',
+  },
+  {
+    id: 10,
+    name: 'iirest.ru',
+    subtitle: 'Сравнение цен для ресторанных закупок',
+    person: 'Денис Круглов',
+    contact: '@tabascoden',
+    site: 'https://iirest.ru',
+    model: 'B2B SaaS',
+    stage: 'Первые клиенты',
+    description: 'Сервис сравнения цен из разных прайс-листов для ресторанных закупок + формирование заказов.',
+    whyInteresting: [
+      '<strong>User ≠ buyer</strong> — шеф-повара используют, но платят владельцы',
+      'Узкий сегмент + маленький бюджет + непонятно как делать таргет',
+      '<strong>Job graph наглядно</strong> — два графа для двух ролей (пользователь и покупатель)',
+      'Классический B2B SaaS в нише с понятной экономикой',
+    ],
+    pattern: 'Когда пользователь и плательщик — разные люди. Job graph для каждой роли',
+    color: 'red',
+  },
+  {
+    id: 11,
+    name: 'Typhoon Coffee',
+    subtitle: 'Оборудование для обжарки кофе',
+    person: 'Крутин Николай',
+    contact: '@neistoviu',
+    site: 'https://typhoon.coffee',
+    model: 'B2B',
+    stage: '5 лет, €3M/год',
+    description: 'Производство и продажа инновационного оборудования для обжарки кофе.',
+    whyInteresting: [
+      '<strong>€3M выручки</strong>, застрявший на плато — зрелый бизнес с реальной проблемой',
+      'Длинный цикл сделки + сложности с производством — типичные для hardware',
+      'Знает AJTBD, но не применял к этому бизнесу',
+      'Входящий трафик + сарафанка + выставки — но рост остановился',
+    ],
+    pattern: 'Как пробить плато в hardware B2B. ABCDX для дорогого оборудования',
+    color: 'yellow',
+  },
+  {
+    id: 12,
+    name: 'Plurio AI',
+    subtitle: 'AI-агент для управления рекламой',
+    person: 'Сева Устинов',
+    contact: '@sevaustinov',
+    site: 'https://plurio.ai',
+    model: 'B2B SaaS',
+    stage: 'Пилоты → масштабирование',
+    description: 'AI-агент для управления большими рекламными аккаунтами.',
+    whyInteresting: [
+      '<strong>"Навайбкодю сам"</strong> — главное возражение 2026 года',
+      'Думал, что ценность в автоматизации, а хвалят чатик и workflows. <strong>Job оказался другим</strong>',
+      'Пользователям надо переучиваться, многие сопротивляются',
+      'Solo-founder: "Ничего не успеваю"',
+    ],
+    pattern: 'AI-продукт 2026: как бороться с "навайбкодю сам". Когда реальный job — не тот',
+    color: 'cyan',
+  },
+  {
+    id: 13,
+    name: 'Флоатинг камеры',
+    subtitle: 'От оборудования к сети студий',
+    person: 'Пупрев Алексей',
+    contact: '@puprev',
+    site: 'https://float-camera-med.ru',
+    model: 'B2B → B2C (pivot)',
+    stage: '7 лет, pivot',
+    description: 'Оборудование для флоатинга. Переход от продажи оборудования к упакованной услуге через сеть студий.',
+    whyInteresting: [
+      '<strong>Pivot B2B→B2C</strong> после 7 лет. Не может выбрать между 3 моделями',
+      'Маленький узкий рынок + отсутствие опыта в бизнесе',
+      '<strong>RAT идеально</strong>: какие допущения проверить перед выбором модели?',
+      'Низкая самооценка как барьер — но главное выбор модели через данные',
+    ],
+    pattern: 'Как не гадать при стратегическом выборе, а структурировать через RAT',
+    color: 'lime',
+  },
+  {
+    id: 14,
+    name: 'Чайная подписка',
+    subtitle: 'Подписка на чай от Унции',
+    person: 'Владимир Сафонов',
+    contact: '@vladimirsafonov84',
+    site: 'https://subscription.chay.info',
+    model: 'B2C подписка',
+    stage: 'Запущен, масштабирование',
+    description: 'Индивидуальный подбор чая + ежемесячные наборы. Бренд Унция.',
+    whyInteresting: [
+      '<strong>Прошёл курс Вани</strong>, проводит AJTBD-интервью, внедрил ручной онбординг',
+      'Подписка: приток < оттока. Retention = ключевая метрика',
+      'Через какие каналы привлекать людей на подписку на чай?',
+      'Розничные магазины + бот + рассылка — но не растёт',
+    ],
+    pattern: 'Подписочная модель — "удерживаем хорошо, но привлекаем плохо"',
+    color: 'green',
+  },
+  {
+    id: 15,
+    name: 'Консультации',
+    subtitle: 'Разбор семейных конфликтов',
+    person: 'Анастасия Кириенко',
+    contact: '@AVKirienko',
+    site: 'https://vk.com/conflictlife',
+    model: 'B2C',
+    stage: 'Запущен (сентябрь 2025)',
+    description: 'Разбор семейных конфликтов за 2-3 встречи. Не психолог — работает с ситуацией, а не с личностью.',
+    whyInteresting: [
+      '<strong>Уникальное позиционирование vs психологи</strong>, но не может донести ценность',
+      'Воронка: прогрев → бесплатная диагностика → покупка. Конверсии нет',
+      '<strong>AJTBD наглядно</strong>: альтернатива — психолог (долго, дорого, нужны двое)',
+      'Пример экспертного бизнеса с проблемой коммуникации ценности',
+    ],
+    pattern: 'Позиционирование через jobs, а не через категорию',
+    color: 'rose',
+  },
+  {
+    id: 16,
+    name: 'ИИ ОКК',
+    subtitle: 'AI отдел контроля качества + тренер по продажам',
+    person: 'Кирилл Сырцов',
+    contact: '@syrtsovk',
+    site: 'http://okk.s-lab.site',
+    model: 'B2B SaaS',
+    stage: '13 платящих клиентов',
+    description: 'AI-система контроля качества звонков + тренер по продажам.',
+    whyInteresting: [
+      '<strong>13 клиентов, но трафик не работает</strong>. Нужна узкая сегментация',
+      'Отстроились от конкурентов, но не могут донести это',
+      '<strong>Классический ABCDX</strong>: у 13 клиентов — кто A, кто B?',
+      'AI-продукт, где технология работает, но go-to-market — нет',
+    ],
+    pattern: '13 клиентов — достаточно для ABCDX. Стратегия масштабирования из малой базы',
+    color: 'slate',
+  },
+];
+
+const modelColors = {
+  'B2B SaaS': 'bg-blue-100 text-blue-800',
+  'B2B': 'bg-blue-100 text-blue-800',
+  'B2B + B2C': 'bg-purple-100 text-purple-800',
+  'B2C': 'bg-green-100 text-green-800',
+  'B2C подписка': 'bg-green-100 text-green-800',
+  'C2C маркетплейс': 'bg-orange-100 text-orange-800',
+  'B2B → B2C (pivot)': 'bg-amber-100 text-amber-800',
+};
+
+function getModelBadge(model) {
+  const cls = modelColors[model] || 'bg-gray-100 text-gray-800';
+  return `<span class="badge px-2 py-1 rounded-full font-semibold ${cls}">${model}</span>`;
+}
+
+function renderGrid() {
+  return `
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="text-center mb-10">
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Топ-16 продуктов для разбора</h1>
+        <p class="text-lg text-gray-500">Вебинар — 12 марта 2026 · Методология AURA / AJTBD</p>
+        <div class="mt-4 flex flex-wrap justify-center gap-2 text-sm text-gray-500">
+          <span class="bg-gray-100 px-3 py-1 rounded-full">B2B SaaS</span>
+          <span class="bg-gray-100 px-3 py-1 rounded-full">B2C</span>
+          <span class="bg-gray-100 px-3 py-1 rounded-full">Маркетплейс</span>
+          <span class="bg-gray-100 px-3 py-1 rounded-full">Hardware</span>
+          <span class="bg-gray-100 px-3 py-1 rounded-full">AI</span>
+          <span class="bg-gray-100 px-3 py-1 rounded-full">Подписка</span>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        ${products.map(p => `
+          <div class="card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden cursor-pointer" onclick="showDetail(${p.id})">
+            <div class="relative">
+              <img src="screenshots/${p.id}.png"
+                   alt="${p.name}"
+                   class="screenshot-img w-full bg-gray-100"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="hidden items-center justify-center bg-gradient-to-br from-${p.color}-100 to-${p.color}-200 aspect-[16/10]">
+                <span class="text-4xl font-bold text-${p.color}-400">${p.name.charAt(0)}</span>
+              </div>
+              <div class="absolute top-3 left-3">
+                <span class="bg-white/90 backdrop-blur text-xs font-bold px-2 py-1 rounded-lg text-gray-700 shadow-sm">#${p.id}</span>
+              </div>
+            </div>
+            <div class="p-4">
+              <div class="flex items-start justify-between mb-2">
+                <h3 class="font-bold text-gray-900 text-lg leading-tight">${p.name}</h3>
+              </div>
+              <p class="text-sm text-gray-500 mb-3 line-clamp-2">${p.subtitle}</p>
+              <div class="flex items-center gap-2 mb-2">
+                ${getModelBadge(p.model)}
+              </div>
+              <div class="flex items-center gap-2 text-xs text-gray-400">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <span>${p.person}</span>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderDetail(p) {
+  const siteDisplay = p.site.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  return `
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 fade-in">
+      <button onclick="showGrid()" class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 mb-6 transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        Все проекты
+      </button>
+
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="relative">
+          <img src="screenshots/${p.id}.png"
+               alt="${p.name}"
+               class="w-full max-h-[400px] object-cover object-top bg-gray-100"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="hidden items-center justify-center bg-gradient-to-br from-${p.color}-50 to-${p.color}-100 h-[200px]">
+            <span class="text-6xl font-bold text-${p.color}-300">${p.name}</span>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3 mb-1">
+            <span class="text-sm font-bold text-${p.color}-600 bg-${p.color}-50 px-2 py-0.5 rounded">#${p.id}</span>
+            ${getModelBadge(p.model)}
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mt-3 mb-1">${p.name}</h1>
+          <p class="text-lg text-gray-500 mb-6">${p.subtitle}</p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 bg-gray-50 rounded-xl p-4">
+            <div>
+              <div class="text-xs text-gray-400 uppercase tracking-wide mb-1">Основатель</div>
+              <div class="font-semibold text-gray-900">${p.person}</div>
+              <div class="text-sm text-gray-500">${p.contact}</div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-400 uppercase tracking-wide mb-1">Стадия</div>
+              <div class="font-semibold text-gray-900">${p.stage}</div>
+            </div>
+            <div>
+              <div class="text-xs text-gray-400 uppercase tracking-wide mb-1">Сайт</div>
+              <a href="${p.site}" target="_blank" rel="noopener" class="font-semibold text-brand-600 hover:underline break-all">${siteDisplay}</a>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <h2 class="text-lg font-bold text-gray-900 mb-3">О продукте</h2>
+            <p class="text-gray-700 leading-relaxed">${p.description}</p>
+          </div>
+
+          <div class="mb-8">
+            <h2 class="text-lg font-bold text-gray-900 mb-4">Почему интересен для разбора</h2>
+            <div class="space-y-3">
+              ${p.whyInteresting.map(item => `
+                <div class="detail-section pl-4 py-1">
+                  <p class="text-gray-700 text-sm leading-relaxed">${item}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="bg-brand-50 rounded-xl p-5 border border-brand-100">
+            <div class="flex items-start gap-3">
+              <div class="mt-0.5 bg-brand-500 text-white rounded-lg p-1.5 flex-shrink-0">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <div>
+                <div class="text-xs text-brand-600 uppercase tracking-wide font-semibold mb-1">Паттерн для слушателей</div>
+                <p class="text-brand-900 font-medium">${p.pattern}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-between mt-6">
+        ${p.id > 1 ? `<button onclick="showDetail(${p.id - 1})" class="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900 transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+          ${products[p.id - 2].name}
+        </button>` : '<div></div>'}
+        ${p.id < 16 ? `<button onclick="showDetail(${p.id + 1})" class="inline-flex items-center gap-1 text-sm text-gray-500 hover:text-gray-900 transition-colors">
+          ${products[p.id].name}
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>` : '<div></div>'}
+      </div>
+    </div>
+  `;
+}
+
+function showGrid() {
+  document.getElementById('app').innerHTML = renderGrid();
+  history.pushState(null, '', '#');
+  window.scrollTo(0, 0);
+}
+
+function showDetail(id) {
+  const p = products.find(p => p.id === id);
+  if (!p) return;
+  document.getElementById('app').innerHTML = renderDetail(p);
+  history.pushState(null, '', `#${id}`);
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener('popstate', () => {
+  const hash = location.hash.replace('#', '');
+  if (hash && !isNaN(hash)) {
+    showDetail(parseInt(hash));
+  } else {
+    showGrid();
+  }
+});
+
+// Initial render
+const hash = location.hash.replace('#', '');
+if (hash && !isNaN(hash)) {
+  showDetail(parseInt(hash));
+} else {
+  showGrid();
+}
+</script>
+
+</body>
+</html>
