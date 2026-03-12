@@ -17,6 +17,9 @@
     .detail-section { border-left: 3px solid #6366f1; }
     .info-table td { padding: 8px 0; vertical-align: top; }
     .info-table td:first-child { font-weight: 600; color: #6b7280; white-space: nowrap; padding-right: 16px; width: 160px; }
+    .copy-btn { transition: all 0.2s; }
+    .copy-btn:active { transform: scale(0.95); }
+    .copy-btn.copied { background-color: #10b981 !important; border-color: #10b981 !important; color: white !important; }
   </style>
   <script>
     tailwind.config = {
@@ -515,6 +518,12 @@ function renderDetail(p) {
             </div>
           </div>
 
+          <div class="mb-6">
+            <button id="copy-btn-${p.id}" onclick="copyProject(${p.id})" class="copy-btn w-full sm:w-auto px-5 py-2.5 bg-white border-2 border-brand-500 text-brand-600 font-semibold rounded-xl hover:bg-brand-50 text-sm">
+              <svg class="w-4 h-4 inline -mt-0.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>Скопировать в буфер
+            </button>
+          </div>
+
           <div class="mb-8">
             <h2 class="text-lg font-bold text-gray-900 mb-3">О продукте</h2>
             <p class="text-gray-700 leading-relaxed">${p.description}</p>
@@ -584,6 +593,40 @@ function renderDetail(p) {
       </div>
     </div>
   `;
+}
+
+function copyProject(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  const text = `Продукт: ${p.name}
+${p.subtitle}
+
+Основатель: ${p.person} (${p.contact})
+Сайт: ${p.site}
+Модель: ${p.model}
+Стадия: ${p.stage}
+
+Описание: ${p.description}
+
+Бизнес-задача: ${p.businessTask}
+
+Проблемы: ${p.problems}
+
+Кому продают: ${p.sellTo}
+
+Модель продаж: ${p.salesModel}${p.comments ? `
+
+Комментарии: ${p.comments}` : ''}`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn-' + id);
+    btn.classList.add('copied');
+    btn.innerHTML = `<svg class="w-4 h-4 inline -mt-0.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Скопировано!`;
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = `<svg class="w-4 h-4 inline -mt-0.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>Скопировать в буфер`;
+    }, 2000);
+  });
 }
 
 function showGrid() {
