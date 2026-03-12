@@ -795,6 +795,13 @@
 Персональные рабочие папки участников команды
 
 
+### 4-Personal-files/Alena-Mins/
+
+
+**diagnostics-showcase/**
+
+- `index.html`
+
 ### 4-Personal-files/Alina-Kovkova/
 
 
