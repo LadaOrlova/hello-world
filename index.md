@@ -6027,6 +6027,8 @@
 
 ### 4-Personal-files/Ivan-Zamesin/
 
+- `partnership-payment-services.md` — Партнёрство: оплата зарубежных сервисов для студентов BOOST
+- `partnership-payment-services.pdf`
 - `zis-goals-and-tasktracker-requirements.md` — Требования к ЗИС: Целеполагание (OKR) и Таск-трекер
 
 **New-Name-US/**
