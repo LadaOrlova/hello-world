@@ -1929,6 +1929,10 @@
 - `waitlist-quiz.md` — Quiz для списка ожидания КДП
 - `Обучение студентов на потоках-Ваня выгружает .csv`
 
+*qualifier-quiz/*
+
+- `index.html`
+
 **TeachEveryone/**
 
 - `ai-micro-courses-school.md` — AI-школа микрокурсов: переучить всех
