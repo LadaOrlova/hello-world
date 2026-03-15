@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Список ожидания — Как делать продукт</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
+  :root {
+    --white: #FFFFFF;
+    --cream: #F7F2E9;
+    --cream-dark: #EDE6D8;
+    --cream-hover: #E8E0D0;
+    --black: #1A1A1A;
+    --gray: #6B6B6B;
+    --gray-light: #B0B0B0;
+    --green: #C8E6C9;
+    --green-dark: #A5D6A7;
+    --green-border: #66BB6A;
+    --mint: #E8F5E9;
+    --border: #E0DAD0;
+    --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+    --sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--black);
+    background: var(--white);
+    min-height: 100vh;
+  }
+
+  /* ── Progress Bar ── */
+  .progress-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+  }
+  .progress-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 0;
+  }
+  .progress-logo {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    color: var(--black);
+    white-space: nowrap;
+    margin-right: 12px;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 3px;
+    background: var(--cream);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--black);
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .progress-step {
+    font-size: 13px;
+    color: var(--gray);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ── Container ── */
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 100px 40px 80px;
+    min-height: 100vh;
+  }
+
+  /* ── Header (intro screen) ── */
+  .quiz-header {
+    text-align: left;
+    margin-bottom: 48px;
+  }
+  .quiz-header .badge {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray);
+    background: var(--cream);
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    letter-spacing: 0.01em;
+  }
+  .quiz-header h1 {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .quiz-header h1 em {
+    font-style: italic;
+    font-weight: 600;
+  }
+  .quiz-header p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--gray);
+    max-width: 560px;
+  }
+  .quiz-header .gift {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: 28px;
+    padding: 20px 24px;
+    background: var(--cream);
+    border-radius: 12px;
+  }
+  .quiz-header .gift-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .quiz-header .gift p {
+    font-size: 15px;
+    color: var(--black);
+    margin: 0;
+  }
+  .quiz-header .gift strong {
+    font-weight: 600;
+  }
+
+  /* ── Steps ── */
+  .step {
+    display: none;
+    animation: fadeIn 0.35s ease;
+  }
+  .step.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .step-title {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .step-title em { font-style: italic; font-weight: 600; }
+
+  .step-subtitle {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.5;
+    margin-bottom: 32px;
+  }
+
+  /* ── Option Cards (radio) ── */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .options-grid.single-col {
+    grid-template-columns: 1fr;
+  }
+  .option-card {
+    position: relative;
+    padding: 18px 20px;
+    background: var(--cream);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+  .option-card:hover {
+    background: var(--cream-hover);
+  }
+  .option-card.selected {
+    background: var(--mint);
+    border-color: var(--green-border);
+  }
+  .option-card input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .option-card .card-title {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--black);
+  }
+  .option-card .card-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.4;
+    margin-top: 4px;
+  }
+
+  /* ── Large Situation Cards ── */
+  .situation-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+  .situation-card {
+    position: relative;
+    padding: 22px 20px;
+    background: var(--cream);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    min-height: 100px;
+    display: flex;
+    align-items: flex-start;
+  }
+  .situation-card:hover { background: var(--cream-hover); }
+  .situation-card.selected {
+    background: var(--mint);
+    border-color: var(--green-border);
+  }
+  .situation-card input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .situation-card .card-title {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.45;
+    color: var(--black);
+  }
+
+  /* ── Multi-select Cards ── */
+  .multi-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .multi-card {
+    position: relative;
+    padding: 16px 18px;
+    background: var(--cream);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+  .multi-card:hover { background: var(--cream-hover); }
+  .multi-card.selected {
+    background: var(--mint);
+    border-color: var(--green-border);
+  }
+  .multi-card.disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .multi-card input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .multi-card .card-title {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .multi-hint {
+    font-size: 13px;
+    color: var(--gray-light);
+    margin-bottom: 28px;
+  }
+
+  /* ── Form Elements ── */
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+  .form-group label .req { color: var(--green-border); }
+  .form-group select,
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"] {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--black);
+    background: var(--cream);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6B6B' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+  .form-group select:focus,
+  .form-group input:focus {
+    border-color: var(--green-border);
+    background: var(--white);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ── Inline radio group ── */
+  .inline-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .inline-option {
+    padding: 10px 18px;
+    background: var(--cream);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .inline-option:hover { background: var(--cream-hover); }
+  .inline-option.selected {
+    background: var(--mint);
+    border-color: var(--green-border);
+  }
+  .inline-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .sub-question {
+    margin-bottom: 28px;
+  }
+  .sub-question .sq-label {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  /* ── Conditional section ── */
+  .conditional { display: none; margin-top: 24px; }
+  .conditional.visible { display: block; animation: fadeIn 0.3s ease; }
+  .conditional-inner {
+    padding: 24px;
+    background: var(--cream);
+    border-radius: 12px;
+  }
+  .conditional-inner .form-group select,
+  .conditional-inner .form-group input {
+    background: var(--white);
+  }
+
+  /* ── Checkbox ── */
+  .checkbox-wrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: 32px;
+  }
+  .checkbox-wrap input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: var(--green-border);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .checkbox-wrap span {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--gray);
+  }
+  .checkbox-wrap a {
+    color: var(--black);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* ── Navigation ── */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary {
+    background: var(--black);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: #333; }
+  .btn-primary:disabled {
+    background: var(--gray-light);
+    cursor: not-allowed;
+  }
+  .btn-back {
+    background: none;
+    color: var(--gray);
+    padding: 14px 8px;
+  }
+  .btn-back:hover { color: var(--black); }
+  .btn-start {
+    width: 100%;
+    padding: 18px;
+    font-size: 16px;
+    margin-top: 32px;
+  }
+
+  /* ── Final Screen ── */
+  .final-screen {
+    text-align: center;
+    padding: 60px 0;
+  }
+  .final-screen .check-circle {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--mint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    font-size: 32px;
+  }
+  .final-screen h2 {
+    font-family: var(--serif);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .final-screen p {
+    font-size: 16px;
+    color: var(--gray);
+    line-height: 1.6;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .final-screen .highlight {
+    margin-top: 32px;
+    padding: 20px 28px;
+    background: var(--cream);
+    border-radius: 12px;
+    display: inline-block;
+  }
+  .final-screen .highlight p {
+    font-size: 15px;
+    color: var(--black);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .container { padding: 80px 20px 60px; }
+    .progress-inner { padding: 12px 0; gap: 8px; }
+    .progress-wrap { padding: 0 20px; }
+    .quiz-header h1 { font-size: 28px; }
+    .step-title { font-size: 24px; }
+    .options-grid,
+    .situation-cards,
+    .multi-cards { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-row { flex-direction: column-reverse; gap: 12px; }
+    .nav-row .btn-primary { width: 100%; }
+    .nav-row .btn-back { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Progress Bar -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-logo">zamesin</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+    <div class="progress-step" id="progressLabel"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ═══ INTRO ═══ -->
+  <div class="step active" id="step-intro">
+    <div class="quiz-header">
+      <div class="badge">Набор на новый поток закрыт</div>
+      <h1>Запишитесь в&nbsp;<em>список ожидания</em></h1>
+      <p>Мы сообщим первыми, когда откроется набор на&nbsp;новый поток курса «Как&nbsp;делать продукт»</p>
+      <div class="gift">
+        <div class="gift-icon">🎁</div>
+        <p>Ответьте на&nbsp;несколько вопросов — и&nbsp;получите <strong>эксклюзивную лекцию</strong>, которую не&nbsp;получит больше никто. Это поможет нам подготовить для&nbsp;вас лучшее предложение.</p>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-start" onclick="startQuiz()">Начать →</button>
+  </div>
+
+  <!-- ═══ STEP 1: Кто вы ═══ -->
+  <div class="step" id="step-1">
+    <h2 class="step-title">Какая у&nbsp;вас сейчас <em>роль?</em></h2>
+    <p class="step-subtitle">Выберите ближайшее описание</p>
+    <div class="options-grid" id="roleOptions">
+      <label class="option-card"><input type="radio" name="role" value="owner"><span class="card-title">Собственник бизнеса / предприниматель</span></label>
+      <label class="option-card"><input type="radio" name="role" value="pm-jr"><span class="card-title">Product Manager (Junior / Middle)</span></label>
+      <label class="option-card"><input type="radio" name="role" value="pm-sr"><span class="card-title">Product Manager (Senior / Head / CPO)</span></label>
+      <label class="option-card"><input type="radio" name="role" value="marketing"><span class="card-title">Маркетолог / Head of Marketing / CMO</span></label>
+      <label class="option-card"><input type="radio" name="role" value="sales"><span class="card-title">Руководитель продаж / коммерческий директор</span></label>
+      <label class="option-card"><input type="radio" name="role" value="analyst"><span class="card-title">Бизнес-аналитик</span></label>
+      <label class="option-card"><input type="radio" name="role" value="project"><span class="card-title">Проджект-менеджер</span></label>
+      <label class="option-card"><input type="radio" name="role" value="designer"><span class="card-title">Дизайнер</span></label>
+      <label class="option-card"><input type="radio" name="role" value="developer"><span class="card-title">Разработчик</span></label>
+      <label class="option-card"><input type="radio" name="role" value="other"><span class="card-title">Другое</span></label>
+    </div>
+
+    <div class="form-group">
+      <label>Сколько лет опыта в продукте?</label>
+      <select id="experience">
+        <option value="" disabled selected>Выберите</option>
+        <option value="none">Нет опыта</option>
+        <option value="<1">Менее 1 года</option>
+        <option value="1-2">1–2 года</option>
+        <option value="3-4">3–4 года</option>
+        <option value="5-7">5–7 лет</option>
+        <option value="8+">8+ лет</option>
+      </select>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goBack()">← Назад</button>
+      <button class="btn btn-primary" id="btn1" disabled onclick="goNext()">Далее →</button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 2: Ситуация ═══ -->
+  <div class="step" id="step-2">
+    <h2 class="step-title">Что сейчас <em>происходит</em> с&nbsp;вашим продуктом?</h2>
+    <p class="step-subtitle">Выберите описание, ближе всего к вашей ситуации</p>
+    <div class="situation-cards" id="situationOptions">
+      <label class="situation-card"><input type="radio" name="situation" value="launch"><span class="card-title">У&nbsp;меня есть идея продукта, но&nbsp;я&nbsp;ещё не&nbsp;запустил — хочу запустить правильно, а&nbsp;не&nbsp;на&nbsp;чуйке</span></label>
+      <label class="situation-card"><input type="radio" name="situation" value="system"><span class="card-title">Я&nbsp;работаю с&nbsp;продуктом, но&nbsp;принимаю решения по&nbsp;наитию — хочу систему вместо интуиции</span></label>
+      <label class="situation-card"><input type="radio" name="situation" value="fix"><span class="card-title">У&nbsp;меня есть продукт, но&nbsp;он&nbsp;не&nbsp;растёт или не&nbsp;продаётся — хочу понять, что не&nbsp;так</span></label>
+      <label class="situation-card"><input type="radio" name="situation" value="career"><span class="card-title">Я&nbsp;хочу перейти в&nbsp;продакт-менеджмент или вырасти в&nbsp;грейде</span></label>
+      <label class="situation-card"><input type="radio" name="situation" value="marketing"><span class="card-title">Я&nbsp;отвечаю за&nbsp;маркетинг или продажи и&nbsp;не&nbsp;понимаю, что писать в&nbsp;офферах</span></label>
+      <label class="situation-card"><input type="radio" name="situation" value="packaging"><span class="card-title">У&nbsp;меня есть хороший продукт, но&nbsp;я&nbsp;не&nbsp;могу донести его ценность и&nbsp;выстроить продажи</span></label>
+    </div>
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goBack()">← Назад</button>
+      <button class="btn btn-primary" id="btn2" disabled onclick="goNext()">Далее →</button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 3: Что хочешь ═══ -->
+  <div class="step" id="step-3">
+    <h2 class="step-title">Что вы хотите <em>получить</em> в&nbsp;первую очередь?</h2>
+    <p class="step-subtitle">Выберите до 3 вариантов</p>
+    <div class="multi-cards" id="needsOptions">
+      <label class="multi-card"><input type="checkbox" name="needs" value="algorithm"><span class="card-title">Пошаговый алгоритм запуска продукта</span></label>
+      <label class="multi-card"><input type="checkbox" name="needs" value="ajtbd"><span class="card-title">Методологию AJTBD / AURA</span></label>
+      <label class="multi-card"><input type="checkbox" name="needs" value="interviews"><span class="card-title">Научиться проводить интервью с клиентами</span></label>
+      <label class="multi-card"><input type="checkbox" name="needs" value="customer"><span class="card-title">Понять, кто мой клиент и почему покупает</span></label>
+      <label class="multi-card"><input type="checkbox" name="needs" value="graph"><span class="card-title">Построить граф работ и сегментировать</span></label>
+      <label class="multi-card"><input type="checkbox" name="needs" value="value"><span class="card-title">Формулировать ценность и офферы</span></label>
+      <label class="multi-card"><input type="checkbox" name="needs" value="growth"><span class="card-title">Стратегии роста: конверсия, retention, LTV</span></label>
+      <label class="multi-card"><input type="checkbox" name="needs" value="economics"><span class="card-title">Юнит-экономика</span></label>
+      <label class="multi-card"><input type="checkbox" name="needs" value="vibe"><span class="card-title">Навайбкодить лендинг и MVP</span></label>
+      <label class="multi-card"><input type="checkbox" name="needs" value="portfolio"><span class="card-title">Кейс для портфолио и собеседований</span></label>
+      <label class="multi-card"><input type="checkbox" name="needs" value="stakeholders"><span class="card-title">Аргументация перед руководством</span></label>
+    </div>
+    <div class="multi-hint" id="needsHint">Выбрано: 0 из 3</div>
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goBack()">← Назад</button>
+      <button class="btn btn-primary" id="btn3" disabled onclick="goNext()">Далее →</button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 4: Контекст ═══ -->
+  <div class="step" id="step-4">
+    <h2 class="step-title">Расскажите о&nbsp;<em>контексте</em></h2>
+    <p class="step-subtitle">Это поможет подготовить для вас лучшее предложение</p>
+
+    <div class="sub-question">
+      <div class="sq-label">В какой сфере ваш продукт?</div>
+      <div class="inline-options" id="sphereOptions">
+        <label class="inline-option"><input type="radio" name="sphere" value="b2b">B2B</label>
+        <label class="inline-option"><input type="radio" name="sphere" value="b2c">B2C</label>
+        <label class="inline-option"><input type="radio" name="sphere" value="other">Другое / пока нет продукта</label>
+      </div>
+    </div>
+
+    <div class="sub-question">
+      <div class="sq-label">Сколько человек в команде?</div>
+      <div class="inline-options" id="teamOptions">
+        <label class="inline-option"><input type="radio" name="team" value="1">Я один</label>
+        <label class="inline-option"><input type="radio" name="team" value="2-5">2–5</label>
+        <label class="inline-option"><input type="radio" name="team" value="6-20">6–20</label>
+        <label class="inline-option"><input type="radio" name="team" value="21-100">21–100</label>
+        <label class="inline-option"><input type="radio" name="team" value="100+">100+</label>
+      </div>
+    </div>
+
+    <div class="sub-question">
+      <div class="sq-label">Кто оплачивает обучение?</div>
+      <div class="inline-options" id="payerOptions">
+        <label class="inline-option"><input type="radio" name="payer" value="self">Я сам</label>
+        <label class="inline-option"><input type="radio" name="payer" value="company">Компания</label>
+        <label class="inline-option"><input type="radio" name="payer" value="undecided">Ещё не решил</label>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goBack()">← Назад</button>
+      <button class="btn btn-primary" onclick="goNext()">Далее →</button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 5: Опыт ═══ -->
+  <div class="step" id="step-5">
+    <h2 class="step-title">Опыт с&nbsp;обучением <em>Замесина</em></h2>
+    <p class="step-subtitle">Проходили ли вы раньше курсы Ивана Замесина?</p>
+
+    <div class="options-grid single-col" id="prevOptions">
+      <label class="option-card"><input type="radio" name="prev" value="no"><span class="card-title">Нет, это будет первый раз</span></label>
+      <label class="option-card"><input type="radio" name="prev" value="kdp"><span class="card-title">Да, проходил КДП («Как делать продукт»)</span></label>
+      <label class="option-card"><input type="radio" name="prev" value="boost"><span class="card-title">Да, проходил BOOST (вайб-кодинг интенсив)</span></label>
+      <label class="option-card"><input type="radio" name="prev" value="both"><span class="card-title">Да, проходил и КДП, и BOOST</span></label>
+      <label class="option-card"><input type="radio" name="prev" value="free"><span class="card-title">Смотрел бесплатные лекции / читаю канал</span></label>
+    </div>
+
+    <div class="conditional" id="prevDetails">
+      <div class="conditional-inner">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Какой поток?</label>
+            <select id="stream">
+              <option value="" disabled selected>Выберите</option>
+              <option value="50-">Поток 50 или раньше</option>
+              <option value="51">Поток 51</option>
+              <option value="52">Поток 52</option>
+              <option value="53">Поток 53</option>
+              <option value="54">Поток 54</option>
+              <option value="55">Поток 55</option>
+              <option value="56">Поток 56</option>
+              <option value="57">Поток 57</option>
+              <option value="58">Поток 58</option>
+              <option value="unknown">Не помню</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Какой тариф?</label>
+            <select id="tariff">
+              <option value="" disabled selected>Выберите</option>
+              <option value="base">База</option>
+              <option value="standard">Стандарт / Стандарт+</option>
+              <option value="practice">Практика</option>
+              <option value="max">Максимум</option>
+              <option value="max-fb">Максимум с фидбеком Вани</option>
+              <option value="unknown">Не помню</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goBack()">← Назад</button>
+      <button class="btn btn-primary" onclick="goNext()">Далее →</button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 6: Контакты ═══ -->
+  <div class="step" id="step-6">
+    <h2 class="step-title">Как с&nbsp;вами <em>связаться?</em></h2>
+    <p class="step-subtitle">Мы напишем в Telegram, когда откроется набор</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Имя <span class="req">*</span></label>
+        <input type="text" id="name" placeholder="Иван" required>
+      </div>
+      <div class="form-group">
+        <label>Email <span class="req">*</span></label>
+        <input type="email" id="email" placeholder="ivan@mail.ru" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Telegram <span class="req">*</span></label>
+        <input type="text" id="telegram" placeholder="@username" required>
+      </div>
+      <div class="form-group">
+        <label>Телефон</label>
+        <input type="tel" id="phone" placeholder="+7 900 000 00 00">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Компания</label>
+      <input type="text" id="company" placeholder="Название компании">
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goBack()">← Назад</button>
+      <button class="btn btn-primary" id="btn6" disabled onclick="goNext()">Далее →</button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 7: Согласие ═══ -->
+  <div class="step" id="step-7">
+    <h2 class="step-title">Почти <em>готово</em></h2>
+    <p class="step-subtitle">Осталось подтвердить согласие</p>
+
+    <label class="checkbox-wrap">
+      <input type="checkbox" id="consent">
+      <span>Я&nbsp;соглашаюсь с&nbsp;<a href="#" target="_blank">политикой конфиденциальности</a> и&nbsp;даю согласие на&nbsp;обработку персональных данных. Я&nbsp;согласен получать информацию о&nbsp;курсах на&nbsp;указанный email и&nbsp;Telegram.</span>
+    </label>
+
+    <div class="nav-row">
+      <button class="btn btn-back" onclick="goBack()">← Назад</button>
+      <button class="btn btn-primary" id="btnSubmit" disabled onclick="submitQuiz()">Записаться и получить лекцию →</button>
+    </div>
+  </div>
+
+  <!-- ═══ FINAL ═══ -->
+  <div class="step" id="step-final">
+    <div class="final-screen">
+      <div class="check-circle">✓</div>
+      <h2>Спасибо!</h2>
+      <p>Вы записаны в&nbsp;список ожидания. Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;Telegram, когда откроем набор на&nbsp;новый поток.</p>
+      <div class="highlight">
+        <p>🎁 Ссылка на&nbsp;<strong>эксклюзивную лекцию</strong> отправлена на&nbsp;ваш email</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let currentStep = 'intro';
+  const steps = ['intro','1','2','3','4','5','6','7','final'];
+
+  function updateProgress() {
+    const idx = steps.indexOf(currentStep);
+    const total = steps.length - 2; // exclude intro and final
+    const label = document.getElementById('progressLabel');
+    const fill = document.getElementById('progressFill');
+
+    if (currentStep === 'intro') {
+      fill.style.width = '0%';
+      label.textContent = '';
+    } else if (currentStep === 'final') {
+      fill.style.width = '100%';
+      label.textContent = '';
+    } else {
+      const stepNum = parseInt(currentStep);
+      fill.style.width = (stepNum / total * 100) + '%';
+      label.textContent = stepNum + ' / ' + total;
+    }
+  }
+
+  function showStep(id) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step-' + id).classList.add('active');
+    currentStep = id;
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function startQuiz() { showStep('1'); }
+
+  function goNext() {
+    const idx = steps.indexOf(currentStep);
+    if (idx < steps.length - 1) showStep(steps[idx + 1]);
+  }
+
+  function goBack() {
+    const idx = steps.indexOf(currentStep);
+    if (idx > 0) showStep(steps[idx - 1]);
+  }
+
+  /* ── Radio cards ── */
+  function setupRadioCards(containerId, btnId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    container.addEventListener('change', () => {
+      container.querySelectorAll('.option-card, .situation-card, .inline-option').forEach(c => c.classList.remove('selected'));
+      container.querySelectorAll('input:checked').forEach(inp => {
+        inp.closest('.option-card, .situation-card, .inline-option')?.classList.add('selected');
+      });
+      if (btnId) {
+        const btn = document.getElementById(btnId);
+        if (btn) btn.disabled = false;
+      }
+    });
+  }
+
+  setupRadioCards('roleOptions', 'btn1');
+  setupRadioCards('situationOptions', 'btn2');
+  setupRadioCards('sphereOptions');
+  setupRadioCards('teamOptions');
+  setupRadioCards('payerOptions');
+  setupRadioCards('prevOptions');
+
+  /* ── Step 1: enable button when both role AND experience selected ── */
+  document.getElementById('experience').addEventListener('change', () => {
+    const roleSelected = document.querySelector('input[name="role"]:checked');
+    document.getElementById('btn1').disabled = !roleSelected;
+  });
+  document.getElementById('roleOptions').addEventListener('change', () => {
+    const expSelected = document.getElementById('experience').value;
+    // btn1 already enabled by radio handler
+  });
+
+  /* ── Step 3: multi-select with max 3 ── */
+  const needsContainer = document.getElementById('needsOptions');
+  needsContainer.addEventListener('change', () => {
+    const checked = needsContainer.querySelectorAll('input:checked');
+    const count = checked.length;
+
+    needsContainer.querySelectorAll('.multi-card').forEach(c => {
+      c.classList.remove('selected', 'disabled');
+      const inp = c.querySelector('input');
+      if (inp.checked) c.classList.add('selected');
+      else if (count >= 3) c.classList.add('disabled');
+    });
+
+    // Disable unchecked if 3 selected
+    needsContainer.querySelectorAll('input:not(:checked)').forEach(inp => {
+      inp.disabled = count >= 3;
+    });
+
+    document.getElementById('needsHint').textContent = 'Выбрано: ' + count + ' из 3';
+    document.getElementById('btn3').disabled = count === 0;
+  });
+
+  /* ── Step 5: conditional show ── */
+  document.getElementById('prevOptions').addEventListener('change', () => {
+    const val = document.querySelector('input[name="prev"]:checked')?.value;
+    const details = document.getElementById('prevDetails');
+    if (val === 'kdp' || val === 'both') {
+      details.classList.add('visible');
+    } else {
+      details.classList.remove('visible');
+    }
+  });
+
+  /* ── Step 6: validate contacts ── */
+  ['name', 'email', 'telegram'].forEach(id => {
+    document.getElementById(id).addEventListener('input', validateContacts);
+  });
+  function validateContacts() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const tg = document.getElementById('telegram').value.trim();
+    document.getElementById('btn6').disabled = !(name && email && tg);
+  }
+
+  /* ── Step 7: consent ── */
+  document.getElementById('consent').addEventListener('change', (e) => {
+    document.getElementById('btnSubmit').disabled = !e.target.checked;
+  });
+
+  /* ── Submit ── */
+  function submitQuiz() {
+    const data = {
+      role: document.querySelector('input[name="role"]:checked')?.value,
+      experience: document.getElementById('experience').value,
+      situation: document.querySelector('input[name="situation"]:checked')?.value,
+      needs: Array.from(document.querySelectorAll('input[name="needs"]:checked')).map(i => i.value),
+      sphere: document.querySelector('input[name="sphere"]:checked')?.value,
+      team: document.querySelector('input[name="team"]:checked')?.value,
+      payer: document.querySelector('input[name="payer"]:checked')?.value,
+      previousExperience: document.querySelector('input[name="prev"]:checked')?.value,
+      stream: document.getElementById('stream').value,
+      tariff: document.getElementById('tariff').value,
+      name: document.getElementById('name').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      telegram: document.getElementById('telegram').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      company: document.getElementById('company').value.trim(),
+      timestamp: new Date().toISOString()
+    };
+
+    // Job classification
+    const jobMap = {
+      launch: 'Job 1: Запустить продукт',
+      system: 'Job 2: Получить систему',
+      fix: 'Job 3: Починить продукт',
+      career: 'Job 4: Карьера',
+      marketing: 'Job 5: Маркетинг',
+      packaging: 'Кластер: Упаковать ценность'
+    };
+    data.job = jobMap[data.situation] || 'Не определён';
+
+    console.log('Quiz submitted:', JSON.stringify(data, null, 2));
+    showStep('final');
+  }
+
+  updateProgress();
+</script>
+
+</body>
+</html>
