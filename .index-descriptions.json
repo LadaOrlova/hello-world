@@ -1510,7 +1510,9 @@
 2-Products/RU/Exam/theory-questions.md	Теоретическая часть: 25 вопросов
 2-Products/RU/NewKDP/course-split-analysis.md	Анализ разрезки курса КДП на несколько продуктов
 2-Products/RU/NewKDP/ideas.md	Идеи: КДП с 60-го потока — обучение через VS Code + Claude Code
-2-Products/RU/NewKDP/segmentation-by-jobs.md	Сегментация студентов КДП по Jobs-to-Be-Done
+2-Products/RU/NewKDP/jobs.md	Сегментация студентов КДП по Jobs
+2-Products/RU/NewKDP/new-courses.md	Jobs студентов и линейка продуктов
+2-Products/RU/NewKDP/old-segments.md	Сегменты курса «Так делать продукт» — AJTBD-карты
 2-Products/RU/NewKDP/todo.md	Для репозитория скиллов
 2-Products/US/BoostUS-Course/01-prd.md	PRD: From Zero to First Product — Записанный онлайн-курс
 2-Products/US/BoostUS-Course/02-analytics-plan.md	Аналитический план: From Zero to First Product — PostHog
