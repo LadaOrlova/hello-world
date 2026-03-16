@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кейсы выпускников — Zamesin Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* === RESET === */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        /* === DESIGN SYSTEM: Zamesin Academy === */
+        :root {
+            /* — Core — */
+            --black: #1E1E1E;
+            --white: #FFFFFF;
+            --cream: #F8F7F0;
+            /* — Бренд: деньги & ценность — */
+            --gold: #EA8B0E;
+            --gold-hover: var(--gold-hover);
+            --gold-dark: #92400E;
+            /* — Доверие & технология — */
+            --blue: #3E34FF;
+            --blue-hover: #332ABF;
+            /* — Рост & результат — */
+            --green: #047857;
+            --green-bg: #C9F4D2;
+            /* — Свежесть & масштаб — */
+            --cyan: #0E7490;
+            --cyan-bg: #D3F7FA;
+            /* — Тепло & вход — */
+            --yellow-bg: #FFFCCE;
+            --peach-bg: #FFF3D6;
+            /* — Премиум — */
+            --lavender-bg: #EDE9FE;
+            --purple: #5B21B6;
+            /* — Предупреждение — */
+            --red: #B91C1C;
+            --red-bg: #FEE2E2;
+            /* — Структура — */
+            --border: #E7E6E0;
+            /* — Текст — */
+            --text-primary: #1E1E1E;
+            --text-secondary: rgba(0,0,0,0.6);
+            --text-muted: rgba(0,0,0,0.5);
+            /* — Утилиты — */
+            --radius: 16px;
+            --radius-sm: 8px;
+            --shadow: 0 2px 16px rgba(0,0,0,0.06);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.1);
+            --max-w: 1136px;
+            --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'IBM Plex Serif', Georgia, serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-primary);
+            background: var(--cream);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* === TYPOGRAPHY === */
+        h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; }
+        h2 { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; }
+        h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 600; line-height: 1.3; }
+        p { font-size: 1.05rem; color: var(--text-secondary); }
+
+        /* === LAYOUT === */
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+        section { padding: 80px 0; }
+
+        /* === BUTTONS === */
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 14px 28px; border-radius: 4px; font-size: 1rem;
+            font-weight: 600; border: none; cursor: pointer;
+            transition: all 0.2s; font-family: var(--font-sans);
+        }
+        .btn-black { background: var(--black); color: var(--white); }
+        .btn-black:hover { background: var(--gold); }
+        .btn-orange { background: var(--gold); color: var(--white); }
+        .btn-orange:hover { background: var(--gold-hover); }
+        .btn-outline { background: transparent; color: var(--black); border: 2px solid var(--black); }
+        .btn-outline:hover { background: var(--black); color: var(--white); }
+        .btn-lg { padding: 16px 36px; font-size: 1.1rem; }
+
+        /* === HEADER === */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(248,247,240,0.95); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { font-weight: 800; font-size: 1.1rem; color: var(--black); letter-spacing: -0.02em; }
+        .nav-logo span { color: var(--gold); }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--black); }
+        .nav-cta { background: var(--black); color: var(--white) !important; padding: 8px 20px; border-radius: 4px; font-weight: 600; transition: background 0.2s; }
+        .nav-cta:hover { background: var(--gold); }
+        .burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .burger svg { width: 24px; height: 24px; stroke: var(--black); }
+
+        /* === PAGE HERO === */
+        .page-hero {
+            padding-top: 128px; padding-bottom: 56px;
+            background: linear-gradient(160deg, #FFFCCE 0%, #FFF3D6 25%, #D3F7FA 55%, #E0FFF4 80%, #F8F7F0 100%);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .page-hero::before {
+            content: ''; position: absolute; top: 20%; left: 50%; transform: translateX(-50%);
+            width: 900px; height: 900px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .page-hero .container { position: relative; z-index: 1; }
+        .page-hero h1 { color: var(--black); margin-bottom: 16px; }
+        .page-hero h1 .accent { color: var(--gold); }
+        .page-hero p { color: var(--text-secondary); font-size: 1.15rem; max-width: 560px; margin: 0 auto 36px; }
+        .hero-metrics {
+            display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+            padding-top: 32px; border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        .hero-metric { text-align: center; }
+        .hero-metric .num { font-size: 1.8rem; font-weight: 800; color: var(--black); line-height: 1; }
+        .hero-metric .label { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* === FILTERS === */
+        .filters {
+            padding: 24px 0; background: var(--white);
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 64px; z-index: 50;
+        }
+        .filters-inner { display: flex; gap: 8px; flex-wrap: wrap; }
+        .filter-btn {
+            padding: 8px 16px; border-radius: 99px; font-size: 0.85rem;
+            font-weight: 600; border: 1px solid var(--border); background: var(--white);
+            color: var(--text-secondary); cursor: pointer; transition: all 0.2s;
+            font-family: var(--font-sans);
+        }
+        .filter-btn:hover { border-color: var(--black); color: var(--black); }
+        .filter-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+        .filter-divider {
+            width: 1px; height: 32px; background: var(--border); align-self: center; margin: 0 8px;
+        }
+
+        /* === FEATURED CASE === */
+        .featured { padding: 64px 0 0; }
+        .featured-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden;
+            display: grid; grid-template-columns: 1fr 1fr;
+        }
+        .featured-content { padding: 48px; display: flex; flex-direction: column; justify-content: center; }
+        .featured-tag {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; padding: 4px 12px; border-radius: 4px;
+            margin-bottom: 20px; width: fit-content;
+        }
+        .featured-person { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .featured-avatar {
+            width: 48px; height: 48px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.9rem; color: var(--white); background: var(--gold);
+        }
+        .featured-name { font-weight: 700; font-size: 1rem; }
+        .featured-role { font-size: 0.85rem; color: var(--text-muted); }
+        .featured-quote {
+            font-family: var(--font-serif); font-style: italic;
+            font-size: 1.2rem; color: var(--text-primary); line-height: 1.5;
+            margin-bottom: 24px;
+        }
+        .featured-results {
+            display: flex; gap: 24px; flex-wrap: wrap;
+        }
+        .featured-result {
+            padding: 12px 16px; background: var(--green-bg); border-radius: var(--radius-sm);
+            font-size: 0.95rem; font-weight: 700; color: var(--green);
+        }
+        .featured-visual {
+            background: var(--cream); display: flex; flex-direction: column;
+            justify-content: center; padding: 48px;
+        }
+        .featured-before-after { display: flex; flex-direction: column; gap: 24px; }
+        .ba-block { }
+        .ba-label {
+            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; margin-bottom: 8px;
+        }
+        .ba-label-a { color: var(--red); }
+        .ba-label-b { color: var(--green); }
+        .ba-text { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5; }
+        .ba-divider { height: 1px; background: var(--border); }
+
+        /* === CASES GRID === */
+        .cases-section { padding: 48px 0 80px; }
+        .cases-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 16px;
+        }
+
+        /* === CASE CARD === */
+        .case-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 28px;
+            transition: all 0.25s; display: flex; flex-direction: column;
+        }
+        .case-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+        .case-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+        .case-person { display: flex; align-items: center; gap: 10px; }
+        .case-avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.82rem; color: var(--white); flex-shrink: 0;
+        }
+        .case-name { font-weight: 600; font-size: 0.92rem; line-height: 1.2; }
+        .case-role { font-size: 0.78rem; color: var(--text-muted); }
+        .case-tag {
+            font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.06em; padding: 3px 8px; border-radius: 4px;
+            flex-shrink: 0; margin-top: 2px;
+        }
+        .tag-launch { background: var(--cyan-bg); color: var(--cyan); }
+        .tag-system { background: var(--green-bg); color: var(--green); }
+        .tag-fix { background: var(--red-bg); color: var(--red); }
+        .tag-career { background: var(--yellow-bg); color: var(--gold-dark); }
+        .tag-marketing { background: var(--lavender-bg); color: var(--purple); }
+
+        .case-quote {
+            font-family: var(--font-serif); font-style: italic;
+            font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;
+            margin-bottom: 16px; flex: 1;
+        }
+
+        .case-results { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+        .case-result {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.85rem; font-weight: 600; color: var(--green);
+        }
+        .case-result-icon {
+            width: 20px; height: 20px; border-radius: 50%; background: var(--green-bg);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .case-result-icon svg { width: 12px; height: 12px; }
+
+        .case-company {
+            padding-top: 12px; border-top: 1px solid var(--border);
+            font-size: 0.8rem; color: var(--text-muted);
+        }
+        .case-company strong { color: var(--text-secondary); }
+
+        /* === CTA BANNER === */
+        .cta-banner {
+            background: var(--black); border-radius: var(--radius); padding: 48px;
+            text-align: center; margin-top: 48px;
+        }
+        .cta-banner h2 { color: var(--white); margin-bottom: 12px; font-size: 1.6rem; }
+        .cta-banner p { color: rgba(255,255,255,0.5); margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+        /* === STATS BAR === */
+        .stats-bar {
+            background: var(--white); border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border); padding: 40px 0;
+        }
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; text-align: center;
+        }
+        .stat-item { }
+        .stat-item .num { font-size: 1.6rem; font-weight: 800; color: var(--black); line-height: 1; }
+        .stat-item .label { font-size: 0.82rem; color: var(--text-muted); margin-top: 6px; }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--black); color: rgba(255,255,255,0.6); padding: 48px 0 32px;
+        }
+        .footer-inner {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 16px;
+        }
+        .footer-inner p { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+        .footer-links { display: flex; gap: 24px; }
+        .footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.5); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--gold); }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 900px) {
+            .featured-card { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            section { padding: 56px 0; }
+            .nav-links { display: none; }
+            .burger { display: block; }
+            .cases-grid { grid-template-columns: 1fr; }
+            .hero-metrics { gap: 24px; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .filters-inner { gap: 6px; }
+            .filter-btn { font-size: 0.78rem; padding: 6px 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <nav class="container nav">
+        <a href="/" class="nav-logo">ZAMESIN <span>ACADEMY</span></a>
+        <div class="nav-links">
+            <a href="/">Главная</a>
+            <a href="#cases">Кейсы</a>
+            <a href="#">Курсы</a>
+            <a href="#">Методология</a>
+            <a href="#">Знания</a>
+            <a href="#" class="nav-cta">Подобрать курс</a>
+        </div>
+        <button class="burger" aria-label="Меню">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </nav>
+</header>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+    <div class="container">
+        <h1>Запустили. Выросли.<br><span class="accent">Захватили рынок.</span></h1>
+        <p>Реальные кейсы: от первого MVP до x13 выручки. Стартапы, продукты, карьеры &mdash; и цифры, которые не нужно приукрашивать.</p>
+        <div class="hero-metrics">
+            <div class="hero-metric">
+                <div class="num">11 000+</div>
+                <div class="label">выпускников</div>
+            </div>
+            <div class="hero-metric">
+                <div class="num">x2&ndash;x13</div>
+                <div class="label">рост выручки</div>
+            </div>
+            <div class="hero-metric">
+                <div class="num">20+</div>
+                <div class="label">публичных кейсов</div>
+            </div>
+            <div class="hero-metric">
+                <div class="num">9.2/10</div>
+                <div class="label">оценка пользы</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FILTERS ===== -->
+<div class="filters">
+    <div class="container">
+        <div class="filters-inner">
+            <button class="filter-btn active" data-filter="all">Все кейсы</button>
+            <div class="filter-divider"></div>
+            <button class="filter-btn" data-filter="launch">Запуск продукта</button>
+            <button class="filter-btn" data-filter="system">Системный продакт</button>
+            <button class="filter-btn" data-filter="fix">Починка и рост</button>
+            <button class="filter-btn" data-filter="career">Карьера</button>
+            <button class="filter-btn" data-filter="marketing">Маркетинг</button>
+            <div class="filter-divider"></div>
+            <button class="filter-btn" data-filter="owner">Собственники</button>
+            <button class="filter-btn" data-filter="pm">Product Managers</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FEATURED CASE ===== -->
+<section class="featured">
+    <div class="container">
+        <div class="featured-card" data-tags="fix owner">
+            <div class="featured-content">
+                <div class="featured-tag tag-fix">Починка продукта</div>
+                <div class="featured-person">
+                    <div class="featured-avatar">ТА</div>
+                    <div>
+                        <div class="featured-name">Тимур Абдужалилов</div>
+                        <div class="featured-role">CPO, Legal Resources &middot; LegalTech</div>
+                    </div>
+                </div>
+                <div class="featured-quote">
+                    &laquo;Раньше мы попадали в цель 5% случаев. С Advanced AJTBD &mdash; 95%. Первая прибыль за 6 лет существования компании.&raquo;
+                </div>
+                <div class="featured-results">
+                    <div class="featured-result">Выручка x13</div>
+                    <div class="featured-result">600K &rarr; 8M/мес</div>
+                    <div class="featured-result">93% конверсия</div>
+                </div>
+            </div>
+            <div class="featured-visual">
+                <div class="featured-before-after">
+                    <div class="ba-block">
+                        <div class="ba-label ba-label-a">Точка А</div>
+                        <div class="ba-text">6 лет без прибыли. 600K/месяц выручки. Выполняли любые запросы клиентов без фокуса. Не понимали, кто целевой клиент.</div>
+                    </div>
+                    <div class="ba-divider"></div>
+                    <div class="ba-block">
+                        <div class="ba-label ba-label-b">Что сделал</div>
+                        <div class="ba-text">15-17 глубинных AJTBD-интервью. Сфокусировался на top-20 клиентах и стадии судебного процесса. Перестроил продукт вокруг конкретной работы.</div>
+                    </div>
+                    <div class="ba-divider"></div>
+                    <div class="ba-block">
+                        <div class="ba-label ba-label-b">Точка Б</div>
+                        <div class="ba-text">Выручка выросла в 13 раз: с 600K до 8M рублей в месяц. Конверсия из встречи в сделку &mdash; 93%. Первая прибыль за всю историю компании.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CASES GRID ===== -->
+<section class="cases-section" id="cases">
+    <div class="container">
+        <div class="cases-grid">
+
+            <!-- Денис Леушин -->
+            <div class="case-card" data-tags="fix owner">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--cyan);">ДЛ</div>
+                        <div>
+                            <div class="case-name">Денис Леушин</div>
+                            <div class="case-role">CEO, Pleada</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-fix">Починка</span>
+                </div>
+                <div class="case-quote">&laquo;Мы наконец пробили потолок 20 миллионов месячной выручки.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Конверсия +40%
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        ROMI: 800% &rarr; 1200%
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Выручка +20%
+                    </div>
+                </div>
+                <div class="case-company"><strong>Pleada</strong> &middot; Агентство недвижимости, СПб &middot; 1700 конкурентов</div>
+            </div>
+
+            <!-- Юрий Висневский -->
+            <div class="case-card" data-tags="launch owner">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--green);">ЮВ</div>
+                        <div>
+                            <div class="case-name">Юрий Висневский</div>
+                            <div class="case-role">Founder &amp; CPO, SKAI</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-launch">Запуск</span>
+                </div>
+                <div class="case-quote">&laquo;Новый продукт теперь даёт 50% всей выручки. Мы бы никогда не нашли этот сегмент без AJTBD.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Выручка +75% за год
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Продажи нового продукта +400%
+                    </div>
+                </div>
+                <div class="case-company"><strong>SKAI</strong> &middot; B2B SaaS, управление корпоративным автопарком</div>
+            </div>
+
+            <!-- Анастасия Капанина -->
+            <div class="case-card" data-tags="system pm">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--blue);">АК</div>
+                        <div>
+                            <div class="case-name">Анастасия Капанина</div>
+                            <div class="case-role">PM, JetBrains</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-system">Система</span>
+                </div>
+                <div class="case-quote">&laquo;Мы перестали делать продукт для всех. Понимание двух работ клиента изменило всё &mdash; от приоритетов до маркетинга.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Kotlin MP в Top-3 кроссплатформенных технологий
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Удовлетворённость пользователей +20%
+                    </div>
+                </div>
+                <div class="case-company"><strong>JetBrains</strong> &middot; Kotlin Multiplatform</div>
+            </div>
+
+            <!-- Татьяна Безугляк -->
+            <div class="case-card" data-tags="career">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--gold);">ТБ</div>
+                        <div>
+                            <div class="case-name">Татьяна Безугляк</div>
+                            <div class="case-role">Фотограф &rarr; Исследователь</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-career">Карьера</span>
+                </div>
+                <div class="case-quote">&laquo;AJTBD &mdash; это чит-код для продуктовых задач. Из фотографа с выгоранием я стала исследователем с доходом x6.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Доход: 40K &rarr; 250K/мес (x6)
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        140+ интервью, 12 проектов (VkusVill, МТС)
+                    </div>
+                </div>
+                <div class="case-company"><strong>Карьерный переход</strong> &middot; 10 лет фотограф &rarr; AJTBD-исследователь</div>
+            </div>
+
+            <!-- Павел Глизница -->
+            <div class="case-card" data-tags="fix owner">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--red);">ПГ</div>
+                        <div>
+                            <div class="case-name">Павел Глизница</div>
+                            <div class="case-role">CEO, ArtDent</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-fix">Починка</span>
+                </div>
+                <div class="case-quote">&laquo;С AJTBD процент успешных гипотез вырос кратно. Теперь мы просто не рассматриваем многие идеи &mdash; потому что знаем, кто наш клиент.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Выручка: 39M &rarr; 53M/мес (+37%)
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Конверсия +40%
+                    </div>
+                </div>
+                <div class="case-company"><strong>ArtDent</strong> &middot; Стоматология, Нижний Новгород &middot; Top-3 по имплантации</div>
+            </div>
+
+            <!-- Екатерина Розова -->
+            <div class="case-card" data-tags="marketing pm">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--purple);">ЕР</div>
+                        <div>
+                            <div class="case-name">Екатерина Розова</div>
+                            <div class="case-role">PMM, Webium</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-marketing">Маркетинг</span>
+                </div>
+                <div class="case-quote">&laquo;Продуктовый подход в маркетинге &mdash; реальность, внедряемая даже в стартапах. Нужно изучать работы людей и решать их.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Платящих клиентов x2
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Рост регистраций +140%
+                    </div>
+                </div>
+                <div class="case-company"><strong>Webium</strong> &middot; EdTech, подготовка к ЕГЭ/ОГЭ</div>
+            </div>
+
+            <!-- Анастасия Гусенцова -->
+            <div class="case-card" data-tags="fix owner">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--cyan);">АГ</div>
+                        <div>
+                            <div class="case-name">Анастасия Гусенцова</div>
+                            <div class="case-role">CEO, LiFT</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-fix">Починка</span>
+                </div>
+                <div class="case-quote">&laquo;Мы стали #1 в значительно более интересном сегменте. Теперь я понимаю, что делать &mdash; это даёт уверенность.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Средний чек x3 (150K &rarr; 450K)
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Выручка +65%, LTV: 1 мес &rarr; 1 год
+                    </div>
+                </div>
+                <div class="case-company"><strong>LiFT</strong> &middot; Медиа-агентство</div>
+            </div>
+
+            <!-- Юлия Черепова -->
+            <div class="case-card" data-tags="system career pm">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--green);">ЮЧ</div>
+                        <div>
+                            <div class="case-name">Юлия Черепова</div>
+                            <div class="case-role">PM &rarr; CPO, Rossko</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-system">Система</span>
+                </div>
+                <div class="case-quote">&laquo;Нашла целевой сегмент, создала IT-продукт для него. Меня повысили до CPO.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        +90M руб/мес (+5% на клиента)
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Повышение до CPO
+                    </div>
+                </div>
+                <div class="case-company"><strong>Rossko</strong> &middot; B2B-портал автозапчастей</div>
+            </div>
+
+            <!-- Алексей Шомахов -->
+            <div class="case-card" data-tags="marketing owner">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--gold);">АШ</div>
+                        <div>
+                            <div class="case-name">Алексей Шомахов</div>
+                            <div class="case-role">Head of Growth, Neginski</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-marketing">Маркетинг</span>
+                </div>
+                <div class="case-quote">&laquo;Самый успешный запуск рекламы в Meta за всю историю компании. $500K+ сделок на бюджете $5K.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        ROMI 2000%+
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Лендинг за неделю по AJTBD
+                    </div>
+                </div>
+                <div class="case-company"><strong>Neginski</strong> &middot; Международная недвижимость, ОАЭ &middot; $700M оборот</div>
+            </div>
+
+            <!-- Артём Родионов -->
+            <div class="case-card" data-tags="launch owner">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--blue);">АР</div>
+                        <div>
+                            <div class="case-name">Артём Родионов</div>
+                            <div class="case-role">Founder, Leadl</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-launch">Запуск</span>
+                </div>
+                <div class="case-quote">&laquo;AJTBD дала мне инструмент приоритизации &mdash; скоринг-формулу. Самоактивации выросли с 2% до 15%.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Активации x7.5 (2% &rarr; 15%)
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Выручка +30%
+                    </div>
+                </div>
+                <div class="case-company"><strong>Leadl</strong> &middot; B2B SaaS, AI-поиск лидов в Telegram</div>
+            </div>
+
+            <!-- Денис Максименко -->
+            <div class="case-card" data-tags="system pm">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--green);">ДМ</div>
+                        <div>
+                            <div class="case-name">Денис Максименко</div>
+                            <div class="case-role">Head of Product, M-Gas</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-system">Система</span>
+                </div>
+                <div class="case-quote">&laquo;Провёл 23 интервью на суахили. Нашёл ключевую работу. Уверенность как продакт-менеджера заметно выросла.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Продажи на клиента +15%
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Новый продукт: M-Gas Minutes
+                    </div>
+                </div>
+                <div class="case-company"><strong>M-Gas</strong> &middot; Чистое топливо для домохозяйств, Кения</div>
+            </div>
+
+            <!-- Артём Царёв -->
+            <div class="case-card" data-tags="launch owner">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--red);">АЦ</div>
+                        <div>
+                            <div class="case-name">Артём Царёв</div>
+                            <div class="case-role">Director of Product, Bidzaar</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-launch">Запуск</span>
+                </div>
+                <div class="case-quote">&laquo;AJTBD вросла в наш продукт с фундамента &mdash; именно это дало такие результаты. Одна из моих работ &mdash; убивать фичи.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        1.4 млрд руб. оборот за 5 лет
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        NPS поставщиков: 56%
+                    </div>
+                </div>
+                <div class="case-company"><strong>Bidzaar</strong> &middot; E-commerce, электронные торговые тендеры</div>
+            </div>
+
+            <!-- Анна — PM -->
+            <div class="case-card" data-tags="career">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--gold);">А</div>
+                        <div>
+                            <div class="case-name">Анна</div>
+                            <div class="case-role">Редактор МИФ &rarr; PM</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-career">Карьера</span>
+                </div>
+                <div class="case-quote">&laquo;AJTBD &mdash; это чит-код для поиска работы как PM. Я показала результаты исследований на собеседовании &mdash; и получила оффер.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Оффер от американского IT-стартапа
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Первый заказ через неделю после курса
+                    </div>
+                </div>
+                <div class="case-company"><strong>Карьерный переход</strong> &middot; Книжный редактор (Панама) &rarr; Product Manager</div>
+            </div>
+
+            <!-- Илья Измайлов -->
+            <div class="case-card" data-tags="fix owner">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--cyan);">ИИ</div>
+                        <div>
+                            <div class="case-name">Илья Измайлов</div>
+                            <div class="case-role">Founder, Forma+</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-fix">Починка</span>
+                </div>
+                <div class="case-quote">&laquo;Думал, что аудитория &mdash; 25+. Оказалось, 35+. Перестроил онбординг &mdash; конверсия выросла в 2.5 раза.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Конверсия x2.5
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Средний чек +33%
+                    </div>
+                </div>
+                <div class="case-company"><strong>Forma+</strong> &middot; AI-бот для питания</div>
+            </div>
+
+            <!-- Артём Гринёв -->
+            <div class="case-card" data-tags="system pm">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--purple);">АГ</div>
+                        <div>
+                            <div class="case-name">Артём Гринёв</div>
+                            <div class="case-role">PM, ECOPSYS Consulting</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-system">Система</span>
+                </div>
+                <div class="case-quote">&laquo;Я стал счастливее и увереннее, потому что знаю: то, что я создаю, нужно клиенту, а не только моему внутреннему эксперту.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Выручка x2 за год
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Вернул 30% потерянных клиентов
+                    </div>
+                </div>
+                <div class="case-company"><strong>ECOPSYS</strong> &middot; Оргисследования для крупного бизнеса</div>
+            </div>
+
+            <!-- Екатерина Бегман -->
+            <div class="case-card" data-tags="fix pm">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--gold);">ЕБ</div>
+                        <div>
+                            <div class="case-name">Екатерина Бегман</div>
+                            <div class="case-role">Product Owner, prodengi.kz</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-fix">Починка</span>
+                </div>
+                <div class="case-quote">&laquo;Новый подход вернул уверенность в профессионализме команды.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Конверсия регистрации: 46% &rarr; 85%
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Незавершённые заявки: 36% &rarr; 14%
+                    </div>
+                </div>
+                <div class="case-company"><strong>prodengi.kz</strong> &middot; Финтех, финансовый маркетплейс, Казахстан</div>
+            </div>
+
+            <!-- Александр Еремеев -->
+            <div class="case-card" data-tags="launch owner">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--blue);">АЕ</div>
+                        <div>
+                            <div class="case-name">Александр Еремеев</div>
+                            <div class="case-role">Founder, &laquo;Eat Window&raquo;</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-launch">Запуск</span>
+                </div>
+                <div class="case-quote">&laquo;Я был шокирован, как мало понимал свою аудиторию. Чуйка подводит, интервью &mdash; нет.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Конверсия в платящих x2
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Маркетинг за 50K привёл тысячи мастеров
+                    </div>
+                </div>
+                <div class="case-company"><strong>Eat Window</strong> &middot; CRM для частных бьюти-мастеров</div>
+            </div>
+
+            <!-- Андрей Бролин -->
+            <div class="case-card" data-tags="launch owner">
+                <div class="case-top">
+                    <div class="case-person">
+                        <div class="case-avatar" style="background:var(--red);">АБ</div>
+                        <div>
+                            <div class="case-name">Андрей Бролин</div>
+                            <div class="case-role">PM, дрон-шоу агентство</div>
+                        </div>
+                    </div>
+                    <span class="case-tag tag-launch">Запуск</span>
+                </div>
+                <div class="case-quote">&laquo;Без AJTBD мы бы потратили время на маркетплейс, который никому не нужен. Пивот спас компанию.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Осознанный пивот маркетплейс &rarr; агентство
+                    </div>
+                    <div class="case-result">
+                        <span class="case-result-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
+                        Прибыльный бизнес без инвестиций
+                    </div>
+                </div>
+                <div class="case-company"><strong>Drone show</strong> &middot; Агентство дрон-шоу, США</div>
+            </div>
+
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-banner">
+            <h2>Хотите такой же результат?</h2>
+            <p>Подберём курс под вашу задачу, роль и уровень опыта</p>
+            <a href="#" class="btn btn-orange btn-lg">Пройти квиз за 2 минуты &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== STATS BAR ===== -->
+<div class="stats-bar">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="num">x13</div>
+                <div class="label">макс. рост выручки</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">+40%</div>
+                <div class="label">рост конверсии (медиана)</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">x6</div>
+                <div class="label">рост дохода (карьера)</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">2000%</div>
+                <div class="label">макс. ROMI</div>
+            </div>
+            <div class="stat-item">
+                <div class="num">9.2/10</div>
+                <div class="label">оценка пользы</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    <div class="container footer-inner">
+        <p>&copy; 2026 Zamesin Academy. Все права защищены.</p>
+        <div class="footer-links">
+            <a href="/">Главная</a>
+            <a href="#">Курсы</a>
+            <a href="#">Методология</a>
+            <a href="#">Telegram</a>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== FILTER LOGIC ===== -->
+<script>
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.case-card, .featured-card');
+
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+            if (filter === 'all') {
+                card.style.display = '';
+            } else {
+                const tags = card.dataset.tags || '';
+                card.style.display = tags.includes(filter) ? '' : 'none';
+            }
+        });
+    });
+});
+</script>
+
+</body>
+</html>

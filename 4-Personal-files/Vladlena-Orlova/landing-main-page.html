@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Иван Замесин — Академия продуктового мышления</title>
+    <style>
+        /* === RESET & BASE === */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, sans-serif;
+            color: #1a1a2e;
+            background: #fff;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* === VARIABLES === */
+        :root {
+            --accent: #4F46E5;
+            --accent-light: #818CF8;
+            --accent-bg: #EEF2FF;
+            --dark: #1a1a2e;
+            --gray-700: #374151;
+            --gray-500: #6B7280;
+            --gray-300: #D1D5DB;
+            --gray-100: #F3F4F6;
+            --white: #FFFFFF;
+            --success: #059669;
+            --warning: #F59E0B;
+            --radius: 16px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 8px 40px rgba(0,0,0,0.12);
+            --max-w: 1200px;
+        }
+
+        /* === TYPOGRAPHY === */
+        h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; }
+        h2 { font-size: clamp(1.5rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+        h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 600; line-height: 1.3; }
+        p { font-size: 1.05rem; color: var(--gray-700); }
+
+        /* === LAYOUT === */
+        .container { max-width: var(--max-w); margin: 0 auto; padding: 0 24px; }
+        section { padding: 80px 0; }
+
+        /* === HEADER / NAV === */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--gray-300);
+        }
+        .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { font-weight: 800; font-size: 1.15rem; color: var(--dark); }
+        .nav-logo span { color: var(--accent); }
+        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--gray-700); transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-cta {
+            background: var(--accent); color: var(--white) !important;
+            padding: 8px 20px; border-radius: 8px; font-weight: 600;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: #4338CA; }
+        .nav-burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .nav-burger svg { width: 24px; height: 24px; stroke: var(--dark); }
+
+        /* === HERO === */
+        .hero {
+            padding-top: 140px; padding-bottom: 80px;
+            background: linear-gradient(135deg, #EEF2FF 0%, #F5F3FF 50%, #FDF2F8 100%);
+            position: relative; overflow: hidden;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+            background: linear-gradient(to bottom, transparent, white);
+        }
+        .hero-content { position: relative; z-index: 1; text-align: center; max-width: 800px; margin: 0 auto; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--white); padding: 6px 16px; border-radius: 99px;
+            font-size: 0.85rem; font-weight: 600; color: var(--accent);
+            box-shadow: var(--shadow); margin-bottom: 24px;
+        }
+        .hero-badge .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .hero h1 { margin-bottom: 20px; color: var(--dark); }
+        .hero h1 em { font-style: normal; color: var(--accent); }
+        .hero-sub { font-size: 1.2rem; color: var(--gray-500); margin-bottom: 36px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .hero-stats { display: flex; justify-content: center; gap: 48px; margin-bottom: 40px; flex-wrap: wrap; }
+        .hero-stat { text-align: center; }
+        .hero-stat .num { font-size: 2rem; font-weight: 800; color: var(--dark); }
+        .hero-stat .label { font-size: 0.85rem; color: var(--gray-500); }
+        .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent); color: var(--white); padding: 14px 32px;
+            border-radius: 12px; font-size: 1.05rem; font-weight: 600;
+            transition: all 0.2s; border: none; cursor: pointer;
+            box-shadow: 0 4px 16px rgba(79,70,229,0.3);
+        }
+        .btn-primary:hover { background: #4338CA; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(79,70,229,0.4); }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--white); color: var(--dark); padding: 14px 32px;
+            border-radius: 12px; font-size: 1.05rem; font-weight: 600;
+            border: 2px solid var(--gray-300); transition: all 0.2s; cursor: pointer;
+        }
+        .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* === JOBS / FIND YOUR COURSE === */
+        .jobs { background: var(--white); }
+        .section-header { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+        .section-header p { margin-top: 12px; }
+        .section-tag {
+            display: inline-block; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--accent); margin-bottom: 12px;
+        }
+        .jobs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 20px; }
+        .job-card {
+            background: var(--white); border: 1px solid var(--gray-300);
+            border-radius: var(--radius); padding: 28px;
+            transition: all 0.25s; cursor: pointer; position: relative; overflow: hidden;
+        }
+        .job-card:hover {
+            border-color: var(--accent); box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+        .job-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: var(--accent); opacity: 0; transition: opacity 0.25s;
+        }
+        .job-card:hover::before { opacity: 1; }
+        .job-emoji { font-size: 2rem; margin-bottom: 12px; }
+        .job-card h3 { margin-bottom: 8px; color: var(--dark); }
+        .job-card .job-who { font-size: 0.9rem; color: var(--gray-500); margin-bottom: 16px; }
+        .job-meta { display: flex; gap: 16px; flex-wrap: wrap; }
+        .job-meta-item {
+            display: flex; align-items: center; gap: 4px;
+            font-size: 0.85rem; color: var(--gray-700); font-weight: 500;
+        }
+        .job-meta-item svg { width: 16px; height: 16px; stroke: var(--accent); flex-shrink: 0; }
+        .job-result { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--gray-100); font-size: 0.9rem; color: var(--success); font-weight: 500; }
+        .quiz-banner {
+            margin-top: 32px; background: var(--accent-bg); border-radius: var(--radius);
+            padding: 32px; text-align: center;
+        }
+        .quiz-banner h3 { margin-bottom: 8px; }
+        .quiz-banner p { margin-bottom: 20px; font-size: 0.95rem; }
+
+        /* === METHODOLOGY === */
+        .method { background: var(--gray-100); }
+        .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-bottom: 40px; }
+        .method-card {
+            background: var(--white); border-radius: var(--radius);
+            padding: 28px; box-shadow: var(--shadow);
+        }
+        .method-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            background: var(--accent-bg); display: flex; align-items: center; justify-content: center;
+            margin-bottom: 16px; font-size: 1.4rem;
+        }
+        .method-card h3 { margin-bottom: 8px; }
+        .method-card p { font-size: 0.95rem; }
+        .method-author {
+            display: flex; align-items: center; gap: 24px;
+            background: var(--white); border-radius: var(--radius); padding: 32px;
+            box-shadow: var(--shadow);
+        }
+        .method-author-avatar {
+            width: 96px; height: 96px; border-radius: 50%;
+            background: var(--accent-bg); display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-size: 2.4rem; font-weight: 800; color: var(--accent);
+        }
+        .method-author-info h3 { margin-bottom: 4px; }
+        .method-author-info p { font-size: 0.95rem; }
+
+        /* === CASES / TESTIMONIALS === */
+        .cases { background: var(--white); }
+        .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
+        .case-card {
+            background: var(--white); border: 1px solid var(--gray-300);
+            border-radius: var(--radius); padding: 28px;
+            transition: box-shadow 0.25s;
+        }
+        .case-card:hover { box-shadow: var(--shadow); }
+        .case-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+        .case-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--accent-bg); display: flex; align-items: center; justify-content: center;
+            font-weight: 700; color: var(--accent); font-size: 1rem;
+        }
+        .case-name { font-weight: 600; font-size: 0.95rem; }
+        .case-role { font-size: 0.8rem; color: var(--gray-500); }
+        .case-quote {
+            font-size: 1rem; color: var(--gray-700); font-style: italic;
+            margin-bottom: 16px; position: relative; padding-left: 16px;
+            border-left: 3px solid var(--accent-light);
+        }
+        .case-result {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #ECFDF5; padding: 6px 12px; border-radius: 8px;
+            font-size: 0.85rem; font-weight: 600; color: var(--success);
+        }
+        .case-tag {
+            display: inline-block; margin-top: 12px;
+            font-size: 0.8rem; color: var(--accent); font-weight: 500;
+            background: var(--accent-bg); padding: 4px 10px; border-radius: 6px;
+        }
+
+        /* === FREE SECTION === */
+        .free-section {
+            background: linear-gradient(135deg, #4F46E5, #7C3AED);
+            color: var(--white);
+        }
+        .free-section h2, .free-section p { color: var(--white); }
+        .free-section .section-tag { color: rgba(255,255,255,0.7); }
+        .free-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 40px; }
+        .free-card {
+            background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius);
+            padding: 24px; transition: background 0.2s;
+        }
+        .free-card:hover { background: rgba(255,255,255,0.18); }
+        .free-card h3 { color: var(--white); margin-bottom: 8px; }
+        .free-card p { color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+        .free-card .free-cta {
+            display: inline-block; margin-top: 16px;
+            color: var(--white); font-weight: 600; font-size: 0.9rem;
+            border-bottom: 2px solid rgba(255,255,255,0.5);
+            padding-bottom: 2px; transition: border-color 0.2s;
+        }
+        .free-card .free-cta:hover { border-color: var(--white); }
+
+        /* === EVENTS === */
+        .events { background: var(--gray-100); }
+        .events-list { display: flex; flex-direction: column; gap: 16px; }
+        .event-card {
+            display: flex; align-items: center; gap: 24px;
+            background: var(--white); border-radius: var(--radius); padding: 24px;
+            box-shadow: var(--shadow); transition: transform 0.2s;
+        }
+        .event-card:hover { transform: translateY(-2px); }
+        .event-date {
+            flex-shrink: 0; width: 64px; height: 64px;
+            background: var(--accent-bg); border-radius: 12px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .event-date .day { font-size: 1.4rem; font-weight: 800; color: var(--accent); line-height: 1; }
+        .event-date .month { font-size: 0.7rem; font-weight: 600; color: var(--accent); text-transform: uppercase; }
+        .event-info { flex: 1; }
+        .event-info h3 { margin-bottom: 4px; }
+        .event-info p { font-size: 0.9rem; }
+        .event-tags { display: flex; gap: 8px; margin-top: 8px; }
+        .event-tag {
+            font-size: 0.75rem; font-weight: 600; padding: 3px 10px;
+            border-radius: 6px; background: var(--accent-bg); color: var(--accent);
+        }
+        .event-tag.free { background: #ECFDF5; color: var(--success); }
+
+        /* === CORPORATE === */
+        .corporate { background: var(--white); }
+        .corp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+        .corp-card {
+            background: var(--gray-100); border-radius: var(--radius); padding: 28px;
+            transition: box-shadow 0.2s;
+        }
+        .corp-card:hover { box-shadow: var(--shadow); }
+        .corp-card h3 { margin-bottom: 8px; }
+        .corp-card p { font-size: 0.95rem; }
+        .corp-logos {
+            display: flex; align-items: center; gap: 32px; margin-top: 40px;
+            justify-content: center; flex-wrap: wrap; opacity: 0.5;
+        }
+        .corp-logos span { font-size: 1rem; font-weight: 600; color: var(--gray-500); }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--dark); color: rgba(255,255,255,0.7);
+            padding: 60px 0 32px;
+        }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-brand h3 { color: var(--white); font-size: 1.15rem; margin-bottom: 12px; }
+        .footer-brand p { font-size: 0.9rem; max-width: 280px; }
+        .footer-col h4 { color: var(--white); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+        .footer-col a { display: block; font-size: 0.9rem; margin-bottom: 10px; color: rgba(255,255,255,0.6); transition: color 0.2s; }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer-bottom p { font-size: 0.85rem; }
+        .footer-social { display: flex; gap: 16px; }
+        .footer-social a {
+            width: 36px; height: 36px; border-radius: 8px;
+            background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .footer-social a:hover { background: var(--accent); }
+        .footer-social svg { width: 18px; height: 18px; fill: var(--white); }
+
+        /* === STICKY BANNER === */
+        .sticky-banner {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+            background: var(--white); border-top: 1px solid var(--gray-300);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+            padding: 12px 0;
+            transform: translateY(100%);
+            animation: slideUp 0.5s 3s forwards;
+        }
+        @keyframes slideUp { to { transform: translateY(0); } }
+        .sticky-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 16px; flex-wrap: wrap;
+        }
+        .sticky-text { font-weight: 600; font-size: 0.95rem; }
+        .sticky-text span { color: var(--accent); }
+
+        /* === MOBILE === */
+        @media (max-width: 768px) {
+            section { padding: 56px 0; }
+            .nav-links { display: none; }
+            .nav-burger { display: block; }
+            .hero { padding-top: 120px; padding-bottom: 56px; }
+            .hero-stats { gap: 24px; }
+            .jobs-grid { grid-template-columns: 1fr; }
+            .cases-grid { grid-template-columns: 1fr; }
+            .method-author { flex-direction: column; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .event-card { flex-direction: column; align-items: flex-start; }
+            .sticky-inner { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- === HEADER === -->
+<header>
+    <nav class="container nav">
+        <a href="/" class="nav-logo">ZAMESIN <span>ACADEMY</span></a>
+        <div class="nav-links">
+            <a href="#courses">Курсы</a>
+            <a href="#methodology">Методология</a>
+            <a href="#cases">Кейсы</a>
+            <a href="#knowledge">Знания</a>
+            <a href="#events">Календарь</a>
+            <a href="#corporate">Для компаний</a>
+            <a href="#quiz" class="nav-cta">Подобрать курс</a>
+        </div>
+        <button class="nav-burger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Меню">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </nav>
+</header>
+
+<!-- === HERO === -->
+<section class="hero">
+    <div class="container hero-content">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Ближайший поток стартует в июне 2026
+        </div>
+        <h1>Делайте продукты, которые <em>покупают</em></h1>
+        <p class="hero-sub">
+            Методология AURA от Ивана Замесина: система принятия продуктовых решений, проверенная 11 000+ выпускниками
+        </p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="num">11 000+</div>
+                <div class="label">выпускников</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num">8.6</div>
+                <div class="label">оценка из 10</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num">59</div>
+                <div class="label">потоков проведено</div>
+            </div>
+            <div class="hero-stat">
+                <div class="num">6+</div>
+                <div class="label">лет методологии</div>
+            </div>
+        </div>
+        <div class="hero-buttons">
+            <a href="#courses" class="btn-primary">
+                Выбрать курс
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#free" class="btn-secondary">Попробовать бесплатно</a>
+        </div>
+    </div>
+</section>
+
+<!-- === FIND YOUR COURSE (5 Jobs) === -->
+<section class="jobs" id="courses">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Найди свой курс</span>
+            <h2>Какая у вас задача?</h2>
+            <p>Мы решаем 5 ключевых задач продуктовых команд. Выберите свою — и получите подходящий формат обучения.</p>
+        </div>
+
+        <div class="jobs-grid">
+            <!-- Job 1 -->
+            <div class="job-card">
+                <div class="job-emoji">&#x1F680;</div>
+                <h3>Хочу запустить свой продукт</h3>
+                <p class="job-who">Предприниматели, фаундеры, PM с идеей</p>
+                <div class="job-meta">
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        3 недели
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                        от 60 000 &#8381;
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        8.6/10
+                    </span>
+                </div>
+                <div class="job-result">&#x2192; Работающий MVP с первыми клиентами</div>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="job-card">
+                <div class="job-emoji">&#x1F9E0;</div>
+                <h3>Хочу перестать работать на чуйке</h3>
+                <p class="job-who">Продакты Middle / Senior / Head of Product</p>
+                <div class="job-meta">
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        6 недель
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                        от 90 000 &#8381;
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        8.5/10
+                    </span>
+                </div>
+                <div class="job-result">&#x2192; Единая система продуктовых решений + AI-инструменты</div>
+            </div>
+
+            <!-- Job 3 -->
+            <div class="job-card">
+                <div class="job-emoji">&#x1F527;</div>
+                <h3>Продукт не растёт — надо починить</h3>
+                <p class="job-who">PM или собственник с продуктом в стагнации</p>
+                <div class="job-meta">
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        3 недели
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                        от 60 000 &#8381;
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        8.6/10
+                    </span>
+                </div>
+                <div class="job-result">&#x2192; Диагноз + план роста продукта</div>
+            </div>
+
+            <!-- Job 4 -->
+            <div class="job-card">
+                <div class="job-emoji">&#x1F4C8;</div>
+                <h3>Хочу войти в продакт-менеджмент</h3>
+                <p class="job-who">Аналитики, проджекты, маркетологи, дизайнеры</p>
+                <div class="job-meta">
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        2 недели
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                        от 35 000 &#8381;
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        8.6/10
+                    </span>
+                </div>
+                <div class="job-result">&#x2192; Кейс для портфолио + уверенность на собесах</div>
+            </div>
+
+            <!-- Job 5 -->
+            <div class="job-card">
+                <div class="job-emoji">&#x1F4E3;</div>
+                <h3>Хочу упаковать продукт, чтобы продавался</h3>
+                <p class="job-who">CMO, маркетологи, руководители продаж</p>
+                <div class="job-meta">
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        2 недели
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                        от 40 000 &#8381;
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        8.6/10
+                    </span>
+                </div>
+                <div class="job-result">&#x2192; Маркетинг от работ клиента + готовые лендинги</div>
+            </div>
+
+            <!-- BOOST Pro -->
+            <div class="job-card" style="border-color: var(--accent-light); background: var(--accent-bg);">
+                <div class="job-emoji">&#x26A1;</div>
+                <h3>BOOST: Вайб-кодинг на максималках</h3>
+                <p class="job-who">Для всех, кто хочет строить продукты руками с помощью AI</p>
+                <div class="job-meta">
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                        1 неделя
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                        от 29 900 &#8381;
+                    </span>
+                    <span class="job-meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        9/10
+                    </span>
+                </div>
+                <div class="job-result">&#x2192; От идеи до работающего MVP на своём сервере за неделю</div>
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="quiz-banner" id="quiz">
+            <h3>Не знаете, что выбрать?</h3>
+            <p>Ответьте на 5 вопросов — мы подберём формат под вашу задачу, опыт и бюджет</p>
+            <a href="#" class="btn-primary">Пройти квиз за 2 минуты</a>
+        </div>
+    </div>
+</section>
+
+<!-- === METHODOLOGY === -->
+<section class="method" id="methodology">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Методология</span>
+            <h2>Почему это работает</h2>
+            <p>AURA — интегральный мета-фреймворк, который синхронизирует продукт, маркетинг, продажи и разработку вокруг единой стратегии</p>
+        </div>
+
+        <div class="method-grid">
+            <div class="method-card">
+                <div class="method-icon">A</div>
+                <h3>AJTBD</h3>
+                <p>Advanced Jobs To Be Done — понимание, какую работу нанимает ваш клиент. Не демография, а реальные мотивы покупки.</p>
+            </div>
+            <div class="method-card">
+                <div class="method-icon">U</div>
+                <h3>Unit Economics</h3>
+                <p>Юнит-экономика как фильтр решений. Каждая гипотеза проверяется цифрами — прежде чем тратить ресурсы.</p>
+            </div>
+            <div class="method-card">
+                <div class="method-icon">R</div>
+                <h3>RAT</h3>
+                <p>Risk Assumption Test — приоритизация самых рискованных допущений. Тестируем то, что может убить продукт.</p>
+            </div>
+            <div class="method-card">
+                <div class="method-icon">A</div>
+                <h3>ABCDX</h3>
+                <p>Сегментация клиентов по маржинальности и удовлетворённости. Фокус на тех, кто приносит прибыль.</p>
+            </div>
+        </div>
+
+        <!-- Author block -->
+        <div class="method-author">
+            <div class="method-author-avatar">ИЗ</div>
+            <div class="method-author-info">
+                <h3>Иван Замесин</h3>
+                <p>
+                    Автор методологии AURA. 6+ лет исследований и практики в продуктовом менеджменте.
+                    Обучил 11 000+ специалистов — от стартапов до корпораций.
+                    Создатель курса «Как делать продукт» и интенсива BOOST.
+                    Практик: строит продукты вместе со студентами, а не только рассказывает теорию.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- === CASES === -->
+<section class="cases" id="cases">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Кейсы выпускников</span>
+            <h2>Результаты, которые говорят сами за себя</h2>
+            <p>Реальные истории от 785+ студентов последних потоков</p>
+        </div>
+
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-avatar">ДЛ</div>
+                    <div>
+                        <div class="case-name">Денис Л.</div>
+                        <div class="case-role">Собственник IT-компании</div>
+                    </div>
+                </div>
+                <div class="case-quote">
+                    Перестроил весь продукт и воронку продаж через AURA. Ничего не потерял в деталях, но всё стало расти.
+                </div>
+                <div class="case-result">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Рост ключевых метрик после реструктуризации
+                </div>
+                <span class="case-tag">Починка продукта</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-avatar">АМ</div>
+                    <div>
+                        <div class="case-name">Анна М.</div>
+                        <div class="case-role">Product Manager, Middle</div>
+                    </div>
+                </div>
+                <div class="case-quote">
+                    Провела 11 интервью, сегментировала клиентов, переписала лендинг по AJTBD. Наконец-то уверенность в решениях.
+                </div>
+                <div class="case-result">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Конверсия лендинга выросла
+                </div>
+                <span class="case-tag">Системный продакт</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-avatar">СК</div>
+                    <div>
+                        <div class="case-name">Сергей К.</div>
+                        <div class="case-role">Маркетолог, CMO</div>
+                    </div>
+                </div>
+                <div class="case-quote">
+                    Устал быть «руками» для продакт-менеджера. На курсе научился находить инсайты самостоятельно. Нашёл сегменты, которые раньше не видел.
+                </div>
+                <div class="case-result">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Новые сегменты для привлечения
+                </div>
+                <span class="case-tag">Упаковка и маркетинг</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-avatar">ОВ</div>
+                    <div>
+                        <div class="case-name">Ольга В.</div>
+                        <div class="case-role">Аналитик &#x2192; Product Manager</div>
+                    </div>
+                </div>
+                <div class="case-quote">
+                    Рекрутер сказал: «Курс Замесина — стандарт в индустрии». Сделала кейс для портфолио, прошла 3 собеседования.
+                </div>
+                <div class="case-result">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Оффер на позицию Junior PM
+                </div>
+                <span class="case-tag">Вход в продакт</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-avatar">МТ</div>
+                    <div>
+                        <div class="case-name">Михаил Т.</div>
+                        <div class="case-role">Фаундер, EdTech-стартап</div>
+                    </div>
+                </div>
+                <div class="case-quote">
+                    Уже сжёг деньги на первом запуске. На курсе получил систему: исследования, MVP, первые продажи. Не на чуйке — на данных.
+                </div>
+                <div class="case-result">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Первые платящие клиенты за 3 недели
+                </div>
+                <span class="case-tag">Запуск продукта</span>
+            </div>
+
+            <div class="case-card">
+                <div class="case-header">
+                    <div class="case-avatar">НП</div>
+                    <div>
+                        <div class="case-name">Надежда П.</div>
+                        <div class="case-role">Собственник, B2B SaaS</div>
+                    </div>
+                </div>
+                <div class="case-quote">
+                    Продукт стоял на месте полгода. Сделала диагностику по AURA — поняла, что продаём не тем. Осознанно сменили сегмент.
+                </div>
+                <div class="case-result">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    Выход из стагнации через смену сегмента
+                </div>
+                <span class="case-tag">Починка продукта</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="#" class="btn-secondary">Все кейсы выпускников</a>
+        </div>
+    </div>
+</section>
+
+<!-- === FREE / LEAD MAGNETS === -->
+<section class="free-section" id="free">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Попробуйте бесплатно</span>
+            <h2>Начните прямо сейчас</h2>
+            <p>Получите полезные материалы и инструменты — без оплаты</p>
+        </div>
+
+        <div class="free-grid">
+            <div class="free-card">
+                <h3>&#x1F3AC; Вводная лекция</h3>
+                <p>60 минут про AJTBD и почему продукты проваливаются. Бесплатно, за контакт.</p>
+                <a href="#" class="free-cta">Получить доступ &#x2192;</a>
+            </div>
+            <div class="free-card">
+                <h3>&#x1F9EA; Диагностика AURA</h3>
+                <p>7 вопросов — и вы узнаете уровень зрелости своего продукта. Персональный отчёт.</p>
+                <a href="#" class="free-cta">Пройти диагностику &#x2192;</a>
+            </div>
+            <div class="free-card">
+                <h3>&#x1F4CA; Калькулятор юнит-экономики</h3>
+                <p>Считайте LTV, CAC, маржинальность — и проверяйте гипотезы цифрами.</p>
+                <a href="#" class="free-cta">Открыть калькулятор &#x2192;</a>
+            </div>
+            <div class="free-card">
+                <h3>&#x1F4CB; Шаблон графа работ</h3>
+                <p>Карта работ вашего клиента: визуализируйте, что движет покупкой.</p>
+                <a href="#" class="free-cta">Скачать шаблон &#x2192;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- === EVENTS === -->
+<section class="events" id="events">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Календарь</span>
+            <h2>Ближайшие события</h2>
+            <p>Вебинары, воркшопы и запуски потоков</p>
+        </div>
+
+        <div class="events-list">
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">25</span>
+                    <span class="month">мар</span>
+                </div>
+                <div class="event-info">
+                    <h3>Конференция Vibe Product Management</h3>
+                    <p>3-дневная онлайн-конференция о продуктах в эпоху AI. Лучшие спикеры индустрии.</p>
+                    <div class="event-tags">
+                        <span class="event-tag">Конференция</span>
+                        <span class="event-tag free">Бесплатно</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-primary" style="flex-shrink:0; padding: 10px 24px; font-size: 0.9rem;">Зарегистрироваться</a>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">02</span>
+                    <span class="month">июн</span>
+                </div>
+                <div class="event-info">
+                    <h3>60-й поток «Как делать продукт»</h3>
+                    <p>Обновлённая программа: AURA + BOOST + AI-инструменты. Формат 2-3 недели интенсива.</p>
+                    <div class="event-tags">
+                        <span class="event-tag">Курс</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-secondary" style="flex-shrink:0; padding: 10px 24px; font-size: 0.9rem;">Записаться</a>
+            </div>
+
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">&mdash;</span>
+                    <span class="month">&nbsp;</span>
+                </div>
+                <div class="event-info">
+                    <h3>BOOST: AI Вайб-кодинг</h3>
+                    <p>Недельный интенсив: от идеи до работающего MVP с помощью нейросетей. Раз в 2 недели.</p>
+                    <div class="event-tags">
+                        <span class="event-tag">Интенсив</span>
+                        <span class="event-tag">1 неделя</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-secondary" style="flex-shrink:0; padding: 10px 24px; font-size: 0.9rem;">Подробнее</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- === CORPORATE === -->
+<section class="corporate" id="corporate">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Для компаний</span>
+            <h2>Обучение команд продуктовому мышлению</h2>
+            <p>Корпоративные форматы для product-команд, маркетинга и топ-менеджмента</p>
+        </div>
+
+        <div class="corp-grid">
+            <div class="corp-card">
+                <h3>&#x1F916; AI-воркшоп для команды</h3>
+                <p>3 часа. Преодолеть страх нейросетей и начать вайб-кодить. Онлайн или оффлайн, до 30 человек.</p>
+            </div>
+            <div class="corp-card">
+                <h3>&#x1F393; Корпоративные когорты</h3>
+                <p>КДП или BOOST для вашей команды. Кастомизация под задачи компании. С кураторами.</p>
+            </div>
+            <div class="corp-card">
+                <h3>&#x1F4F9; Лицензия на записи</h3>
+                <p>Записи курсов для внутренней корпоративной академии. КДП, BOOST и другие.</p>
+            </div>
+            <div class="corp-card">
+                <h3>&#x1F4AC; Индивидуальный консалтинг</h3>
+                <p>Персональная работа Ивана Замесина с вашим продуктом. High-ticket, по запросу.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="#" class="btn-primary">Оставить заявку для компании</a>
+        </div>
+    </div>
+</section>
+
+<!-- === FOOTER === -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>ZAMESIN ACADEMY</h3>
+                <p>Методология AURA. Продуктовое мышление, основанное на исследованиях, а не интуиции.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Курсы</h4>
+                <a href="#">Запуск продукта</a>
+                <a href="#">Системный продакт</a>
+                <a href="#">Починка продукта</a>
+                <a href="#">Вход в продакт</a>
+                <a href="#">Упаковка и маркетинг</a>
+                <a href="#">BOOST</a>
+            </div>
+            <div class="footer-col">
+                <h4>Знания</h4>
+                <a href="#">Методология AURA</a>
+                <a href="#">Статьи и гайды</a>
+                <a href="#">Алгоритмы</a>
+                <a href="#">Бесплатные инструменты</a>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <a href="#">Telegram-канал</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Для компаний</a>
+                <a href="#">Поддержка</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Zamesin Academy. Все права защищены.</p>
+            <div class="footer-social">
+                <a href="#" aria-label="Telegram">
+                    <svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- === STICKY BANNER === -->
+<div class="sticky-banner">
+    <div class="container sticky-inner">
+        <div class="sticky-text">
+            <span>Конференция Vibe Product Management</span> — 25-27 марта, бесплатно
+        </div>
+        <a href="#" class="btn-primary" style="padding: 10px 24px; font-size: 0.9rem;">Зарегистрироваться</a>
+    </div>
+</div>
+
+</body>
+</html>
