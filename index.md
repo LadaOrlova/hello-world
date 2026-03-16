@@ -2182,8 +2182,15 @@
 ### 4-Personal-files/Vladlena-Orlova/
 
 - `backlog.md` — Бэклог маркетинг — Владлена Орлова
+- `content-platform-aura-brief.md` — Маркетинговая платформа: умный контент-план
+- `referral-program-tz.md` — ТЗ: Реферальная программа в Telegram-боте
+
+**аналитика/**
+
 - `bot-analytics.md` — Аналитика бота — Ботхелп
-- `kdp-feedback-report.csv`
+- `kdp-feedback-report.md` — KDP Feedback Report
+- `контент-из-заявок-веб-120326.md` — Контент-материалы из заявок на разбор продуктов 12.03.2026
+- `разбор-продуктов-12-марта-2026.md` — Разбор продуктов 12 марта 2026 — Заявки участников
 
 ---
 
@@ -2202,6 +2209,7 @@ Learning Management System.
 ### 5-ZIS/Requirements/
 
 - `2026-03-03-summary-for-evgeny.md` — Саммари по проекту ЗИС для Евгения Васева
+- `lada-marketing-requirements.md` — Требования к ZIS: маркетинговый флоу платформы
 
 ### 5-ZIS/docs/
 
