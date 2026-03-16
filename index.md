@@ -2109,6 +2109,13 @@
 ## 4-Hiring/
 
 - `hiring-requirements.md` — Каких людей мы нанимаем
+- `screening-boost-coordinator.md` — Скоринговое интервью: Координатор интенсива BOOST
+- `screening-community-manager.md` — Скоринговое интервью: Коммьюнити-менеджер
+- `screening-content-manager.md` — Скоринговое интервью: Контент-менеджер
+- `screening-designer.md` — Скоринговое интервью: Дизайнер Figma-слайдов
+- `screening-fullstack-builder.md` — Скоринговое интервью: Вайбкодящий фулл-стек билдер
+- `screening-project-manager.md` — Скоринговое интервью: Проектный менеджер
+- `screening-support-manager.md` — Скоринговое интервью: Support-менеджер
 
 ---
 
@@ -2182,8 +2189,10 @@
 ### 4-Personal-files/Vladlena-Orlova/
 
 - `backlog.md` — Бэклог маркетинг — Владлена Орлова
+- `bot-analytics.md` — Аналитика бота — Ботхелп
 - `cases-page.html`
 - `content-platform-aura-brief.md` — Маркетинговая платформа: умный контент-план
+- `kdp-feedback-report.csv`
 - `landing-main-page-v2.html`
 - `landing-main-page-v3.html`
 - `landing-main-page.html`
