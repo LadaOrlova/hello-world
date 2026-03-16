@@ -2182,8 +2182,13 @@
 ### 4-Personal-files/Vladlena-Orlova/
 
 - `backlog.md` — Бэклог маркетинг — Владлена Орлова
+- `cases-page.html`
 - `content-platform-aura-brief.md` — Маркетинговая платформа: умный контент-план
+- `landing-main-page-v2.html`
+- `landing-main-page-v3.html`
+- `landing-main-page.html`
 - `referral-program-tz.md` — ТЗ: Реферальная программа в Telegram-боте
+- `гипотеза-сайта.md` — Гипотеза единого сайта Zamesin Academy
 
 **аналитика/**
 
