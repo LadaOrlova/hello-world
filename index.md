@@ -2126,6 +2126,7 @@ Telegram-посты.
 - `screening-fullstack-builder.md` — Скоринговое интервью: Вайбкодящий фулл-стек билдер
 - `screening-project-manager.md` — Скоринговое интервью: Проектный менеджер
 - `screening-support-manager.md` — Скоринговое интервью: Support-менеджер
+- `vacancy-fullstack-builder.md` — Full Stack Builder
 
 ---
 
