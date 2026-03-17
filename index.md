@@ -1866,6 +1866,11 @@
 - `расшифровка — Оптимизация программы и структуры воркшопов.md` — Расшифровка: Оптимизация программы и структуры воркшопов
 - `саммари — Оптимизация программы и структуры воркшопов.md` — [Продуктовый-созвон] Оптимизация программы и структуры воркшопов
 
+*2026-03-16 — Обсуждение сегментации и разделения курса/*
+
+- `расшифровка — Обсуждение сегментации и разделения курса.md` — Расшифровка: Обсуждение сегментации и разделения курса
+- `саммари — Обсуждение сегментации и разделения курса.md` — [Продуктовый-созвон] Обсуждение сегментации и разделения курса
+
 ### 1-Context/boost-knowledge-base/
 
 База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.
@@ -2006,6 +2011,7 @@
 - `2026-02-25-agent-optimization-distribution.md` — Agent Optimization — The Next Distribution Layer
 - `2026-03-03-pm-judgment-ai-filter.md`
 - `2026-03-03-vibe-coding-validation.md` — Vibe Coding Changes the Validation Playbook
+- `2026-03-16-plurio-webinar-product-agents.md`
 - `linkedin-post-2026-02-20-pm-hypothesis-factory.md` — LinkedIn Post: PM as Hypothesis Factory Operator
 - `linkedin-post-2026-02-21-ceo-vibe-coding.md`
 
