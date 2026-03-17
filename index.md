@@ -2157,6 +2157,7 @@ Telegram-посты.
 
 ### 4-Personal-files/Ilya-Izmaylov/
 
+- `idea-foreign-subscriptions-service.md` — Идея: сервис оплаты зарубежных подписок
 
 ### 4-Personal-files/Ilya-Mokhov/
 
