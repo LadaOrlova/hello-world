@@ -1991,6 +1991,7 @@
 - `future of Saas.md` — Будущее SaaS: почему спрос изменится
 - `future-of-saas-2.md` — TODO
 - `hackernoon-article-pmf-pivot-theses.md` — How to Find Product-Market Fit Fast — and Pivot the Right Way
+- `ideas-from-kira-kuzmenko-podcast.md` — Идеи постов из подкаста с Кирой Кузьменко
 - `love.md`
 - `openclaw-and-agents.md`
 - `techstory-saas-golden-age-ending-article-final.md` — Is the Golden Age of SaaS Ending?
@@ -2170,6 +2171,7 @@ Telegram-посты.
 
 ### 4-Personal-files/Ivan-Zamesin/
 
+- `2026-03-17-podcast-kira-kuzmenko-transcript.md`
 - `partnership-payment-services.md` — Партнёрство: оплата зарубежных сервисов для студентов BOOST
 - `partnership-payment-services.pdf`
 - `zis-goals-and-tasktracker-requirements.md` — Требования к ЗИС: Целеполагание (OKR) и Таск-трекер
