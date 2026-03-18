@@ -2174,6 +2174,7 @@ Telegram-посты.
 - `2026-03-17-podcast-kira-kuzmenko-transcript.md`
 - `partnership-payment-services.md` — Партнёрство: оплата зарубежных сервисов для студентов BOOST
 - `partnership-payment-services.pdf`
+- `zis-data-access-control-requirement.md` — Требование к ЗИС: Контроль доступа к персональным данным клиентов
 - `zis-goals-and-tasktracker-requirements.md` — Требования к ЗИС: Целеполагание (OKR) и Таск-трекер
 - `zis-users-export-requirement.md` — Требование к ЗИС: Выгрузка базы пользователей по всем потокам всех продуктов
 
