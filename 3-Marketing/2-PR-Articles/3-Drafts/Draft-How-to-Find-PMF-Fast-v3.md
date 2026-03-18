@@ -46,15 +46,21 @@ The correct sequence is: pick a segment, identify the highest-value job within i
 
 Jobs give you direction. But in 2025, the thing that used to force you to validate before building — expensive code — disappeared overnight.
 
-## AI Made Building Free. It Didn't Make Learning Free.
+## Free Code Flips Validation Upside Down
 
-The old cycle was linear and expensive: research, build an MVP, test demand, then develop. AI collapsed the build step. You can prototype a working product in a weekend with vibe-coding tools. That's genuinely powerful — you can show people real product earlier and get to objections, fears, and actual sell much faster.
+The old cycle was linear and expensive: research segments, identify jobs, model economics, and only then — when you had strong conviction — invest in building an MVP. Code was scarce, so you had to be right before you started building.
 
-A recurring pattern I've observed is what I call "more code, less validation." Teams ship feature after feature, feeling productive, while core assumptions go untested.
+AI collapsed that constraint. Writing code is becoming practically free. And that changes the entire validation sequence.
 
-The right approach: use AI as an accelerator of artifacts, not as a substitute for learning. Measure your progress in the number of validated checks and the quality of signal — not in features shipped or lines of code pushed.
+The old model said: do research first, find the promising segments and Jobs To Be Done, then build one MVP for the best bet. The new model says: build MVPs for each promising segment in parallel. Not polished products — lightweight probes designed to reach one moment: the actual sale.
 
-AI gives you speed. It doesn't give you direction. What you need next isn't another tool — it's an operating system for deciding what to test and when to stop.
+Why the sale? Because the most valuable feedback isn't an interview quote or a survey response. It's someone pulling out their wallet. At the point of sale, you validate the entire causal chain at once: does the segment exist? Is the job real? Does the value proposition land? Does your communication activate the buyer? Is there willingness to pay?
+
+This is a radical acceleration of hypothesis testing. Instead of running one careful experiment per quarter, you can run a dozen cheap ones per month — each designed to reach the point of transaction as fast as possible. You're not building products. You're purchasing validated learnings about what kills your idea.
+
+The danger is obvious: teams mistake building velocity for learning velocity. They ship feature after feature, feeling productive, while core assumptions go untested. More code, less validation.
+
+The right approach: use AI as an accelerator of artifacts — probes, MVPs, prototypes — not as a substitute for learning. Measure your progress in the number of validated assumptions and the quality of signal from real sales, not in features shipped or lines of code pushed.
 
 ## The Hypothesis Factory
 
@@ -79,7 +85,7 @@ The treadmill never stops. But now you have the operating manual. Six moves, sta
 ## The Operating Checklist
 
 1. **Start with jobs and segments** — this is the root cause of everything else.
-2. **List your riskiest assumptions.** Prioritize by: (probability of error × consequences) / cost of test.
+2. **Test your riskiest assumptions.** Prioritize by: (probability of error × consequences) / cost of test.
 3. **Use AI to build artifacts fast** — but measure progress in validated checks, not shipped features.
 4. **Run the factory with an OS:** assumption ledger, decision log, staged validation, explicit stop criteria.
 5. **When pivoting, name exactly which assumption changed** and why.
