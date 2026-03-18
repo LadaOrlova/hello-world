@@ -22,7 +22,7 @@ Over the past three months, I built 20 products with vibe coding. They've alread
 
 ## The builder era is here
 
-Boris Cherny, Head of Claude Code at Anthropic, hasn't edited a single line by hand since November 2025 — [95% of his code is AI-written](https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens), with +200% productivity per engineer. A quarter of Y Combinator's W25 batch ships with [95% AI-generated codebases](https://techcrunch.com/2025/03/06/a-quarter-of-startups-in-ycs-current-cohort-have-codebases-that-are-almost-entirely-ai-generated/). Collins Dictionary named "vibe coding" [Word of the Year 2025](https://www.theguardian.com/technology/2025/nov/06/vibe-coding-collins-dictionary-word-of-the-year-2025). That's three signals from three different worlds — engineering, startups, culture — all pointing the same direction.
+Boris Cherny, Head of Claude Code at Anthropic, says that [95% of his code is AI-written](https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens), with +200% productivity per engineer. A quarter of Y Combinator's W25 batch ships with [95% AI-generated codebases](https://techcrunch.com/2025/03/06/a-quarter-of-startups-in-ycs-current-cohort-have-codebases-that-are-almost-entirely-ai-generated/). Collins Dictionary named "vibe coding" [Word of the Year 2025](https://www.theguardian.com/technology/2025/nov/06/vibe-coding-collins-dictionary-word-of-the-year-2025). That's three signals from three different worlds — engineering, startups, culture — all pointing the same direction.
 
 Marc Andreessen calls it a ["Mexican standoff" between PM, engineering, and design](https://www.lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom) — each believes they can do the other two roles with AI, and "they're actually all kind of correct." LinkedIn formalized this in December 2025, scrapping its APM program and launching ["Associate Product Builder"](https://www.lennysnewsletter.com/p/why-linkedin-is-replacing-pms) — new hires learn coding, design, and PM together in cross-trained pods.
 
@@ -55,7 +55,7 @@ So if judgment is the asset and building is the tool — what does the day-to-da
 
 When AI collapses the cost of building and routine operations, you can test 10-100x more hypotheses per sprint. The paradigm flips: you're not launching products — you're buying knowledge.
 
-Every prototype is a bet. And the bottleneck shifts from execution to the pipeline itself: business goal, causal graph of growth mechanics, research, riskiest assumption test, build, measure. The PM becomes an operator of a hypothesis factory — designing it, feeding it, optimizing its throughput. Each step can be delegated to an AI agent. And increasingly, it is.
+Every prototype is a bet. And the bottleneck shifts from execution to the pipeline itself: business goal, causal graph of growth mechanics, research, jobs to be done, value hypotheses, riskiest assumption test, build, measure, repeat. The PM becomes an operator of a hypothesis factory — designing it, feeding it, optimizing its throughput. Each step can be delegated to an AI agent. And increasingly, it is.
 
 Boris Cherny describes the frontier: "Claude is starting to come up with ideas. Looking through feedback, bug reports, telemetry." The agent doesn't just execute — it proposes.
 
