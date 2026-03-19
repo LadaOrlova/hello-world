@@ -2116,6 +2116,7 @@
 Telegram-посты.
 
 - `2026-03-17-kdp-prodlenie.md` — Telegram-пост: Продление продаж курса "Как делать продукт"
+- `2026-03-19-pleada-case-carousel.md` — Кейс PLEADA: как агентство недвижимости растёт на падающем рынке через AJTBD + AI
 
 ### 3-SMM/Сценарии для рилзов/
 
@@ -2211,6 +2212,7 @@ Telegram-посты.
 
 - `backlog.md` — Бэклог маркетинг — Владлена Орлова
 - `bot-analytics.md` — Аналитика бота — Ботхелп
+- `case-post-rules.md` — Правила структуры кейс-поста
 - `cases-page.html`
 - `content-platform-aura-brief.md` — Маркетинговая платформа: умный контент-план
 - `kdp-feedback-report.csv`
