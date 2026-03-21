@@ -2165,6 +2165,7 @@ Telegram-посты.
 
 ### 4-Personal-files/Ilya-Izmaylov/
 
+- `aura-makers-separation-plan.md` — План разделения AURA и Мейкеров
 - `idea-foreign-subscriptions-service.md` — Идея: сервис оплаты зарубежных подписок
 
 ### 4-Personal-files/Ilya-Mokhov/
