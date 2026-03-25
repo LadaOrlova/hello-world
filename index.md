@@ -2388,19 +2388,12 @@
 
 **NewKDP/**
 
-- `course-split-analysis.md` — Анализ разрезки курса КДП на несколько продуктов
 - `course-zapusk.md` — Курс "Запуск продукта" — Программа
 - `ideas.md` — Идеи: КДП с 60-го потока — обучение через VS Code + Claude Code
 - `jobs.md` — Сегментация студентов КДП по Jobs
 - `new-courses.md` — Jobs студентов и линейка продуктов
-- `old-segments.md` — Сегменты курса «Так делать продукт» — AJTBD-карты
-- `todo.md` — Для репозитория скиллов
 - `waitlist-quiz.md` — Quiz для списка ожидания КДП
 - `Обучение студентов на потоках-Ваня выгружает .csv`
-
-*qualifier-quiz/*
-
-- `index.html`
 
 **TeachEveryone/**
 
