@@ -2665,6 +2665,7 @@ Telegram-посты.
 
 ### 4-Personal-files/Nastya-Dyachenko/
 
+- `tov_sales_chat_nastya.md` — TOV для ответов в чатах продаж — Настя, команда Вани Замесина
 
 ### 4-Personal-files/Ruslan-Zhuravskiy/
 
