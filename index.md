@@ -2100,6 +2100,10 @@
 - `landing-b2b-marketplace.html`
 - `landing-edtech-ege.html`
 
+### 3-Marketing/3-Partnerships/
+
+- `partnerships-pm-guide.md` — Партнёрства Замесин Академии: Операционный гайд
+
 ---
 
 ## 3-SMM/
