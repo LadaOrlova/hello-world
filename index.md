@@ -2667,6 +2667,11 @@ Telegram-посты.
 
 - `tov_sales_chat_nastya.md` — TOV для ответов в чатах продаж — Настя, команда Вани Замесина
 
+**бот тимзамесин/**
+
+- `bot.py`
+- `requirements.txt`
+
 ### 4-Personal-files/Ruslan-Zhuravskiy/
 
 
