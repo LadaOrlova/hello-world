@@ -165,86 +165,88 @@ CTA: "What lesson took you the longest to learn?"
 
 ## WORKFLOW: Step-by-Step Post Creation
 
-### INITIAL ROUND — All Questions At Once
+### INITIAL ROUND — Collect Input with UI
 
-Collect ALL input from the author in ONE round. No "are you ready?" or "shall I write?" — go straight to collecting information.
+Collect input step by step using AskUserQuestion for choice questions. This gives the author a proper UI with clickable options.
 
-This round has 2 parts that happen back-to-back with NO processing between them.
+#### Step 1: Ask for raw content (text)
 
-#### Part A: Structured Questions (AskUserQuestion, 4 questions)
+Display this prompt as plain text:
 
-Ask these 4 questions in a SINGLE AskUserQuestion call:
+**What is the post about?**
+Dump your raw stream of consciousness — a story, insight, observation, case study, numbers, lesson learned. The more detail, the better. This is the most important input.
 
-**Question 1 — Target Audience:**
-"Who is the primary audience for this post?"
+If the author gives a very short answer, ask ONE follow-up to get more substance. Otherwise, proceed to Step 2.
+
+#### Step 2: Target audience (AskUserQuestion)
+
+Use AskUserQuestion:
+"Who is this post for?"
 Options:
-- Founders & indie hackers
-- Product managers & product leaders
-- Marketers & growth people
-- Engineers & technical leaders
+- "Founders & indie hackers"
+- "Product managers & product leaders"
+- "Marketers & growth people"
+- "Engineers & technical leaders"
 
-**Question 2 — Content Type:**
-"What type of value should the post deliver?"
+#### Step 3: Content type (AskUserQuestion)
+
+Use AskUserQuestion:
+"What type of content?"
 Options:
-- Useful (reader learns something new) (Recommended)
-- Positive (energizes, inspires)
-- Both useful and positive
+- "Useful — reader learns something new" (description: "Recommended. Reader thinks 'wow, that's useful' — saves/reposts")
+- "Positive — energizes, inspires" (description: "Triggers positive emotions, energizes the reader")
+- "Both useful and positive"
 
-**Question 3 — Product Integration:**
-"How should the product/service be integrated?"
+#### Step 4: Product integration (AskUserQuestion)
+
+Use AskUserQuestion:
+"Product integration level?"
 Options:
-- Native story (product woven into narrative — best conversion)
-- Post-script at the bottom (add CTA if post goes viral)
-- Links in profile only (no mention in post)
-- No integration (pure brand/value post)
+- "Native story — product woven into narrative" (description: "Best conversion, 5-10x better than post-script")
+- "Post-script — add CTA if post goes viral"
+- "Links in profile only — no mention in post"
+- "No integration — pure brand/value post"
 
-**Question 4 — Content Format:**
-"What format should the post be?"
+#### Step 5: Content format (AskUserQuestion)
+
+Use AskUserQuestion:
+"Content format?"
 Options:
-- Text + photo (Recommended)
-- Carousel (PDF slides)
-- Pure text
-- Text + video reference
+- "Text + photo" (description: "Recommended. Most effective format")
+- "Carousel (PDF slides)" (description: "9 slides optimal")
+- "Pure text"
+- "Text + video reference"
 
-#### Part B: Raw Content + Reference (AskUserQuestion, 3 questions)
+#### Step 6: Business goals (AskUserQuestion)
 
-IMMEDIATELY after Part A (no processing), ask these 3 questions:
-
-**Question 1 — Raw Content:**
-"What is the post about? Dump your raw stream of consciousness — a story, insight, observation, case study, numbers, lesson learned. The more detail, the better."
+Use AskUserQuestion:
+"Primary business goal?"
 Options:
-- Story / personal journey
-- Framework / methodology / insight
-- Numbers / results / case study
-- Lesson learned / advice
+- "Maximum reach (likes, comments, reposts)"
+- "Warm up audience for future product"
+- "Give massive value to subscribers"
+- "Product/service sales or signups"
 
-NOTE: The author will likely select "Other" and type their full raw thoughts. The options are just conversation starters. If the author picks an option without detail, ask ONE follow-up to get more substance.
+#### Step 7: Reference post (text, optional)
 
-**Question 2 — Reference Post:**
-"Do you have a reference LinkedIn post that inspired you? Paste it or describe it."
-Options:
-- No reference, skip
-- I'll paste it (use text field)
+Ask as plain text:
+"**Reference post?** (optional) Paste a LinkedIn post that inspired you, or type 'skip'."
 
-**Question 3 — Business Goals (multiSelect: true):**
-"What business goals should this post achieve? (select all that apply)"
-Options:
-- Maximum reach (likes, comments, reposts)
-- Warm up audience for future product
-- Give massive value to subscribers
-- Product/service sales or signups
-
-After Part B, Claude has ALL the input needed. Proceed directly to thesis extraction.
-
-**Viral topic angle** is NOT asked — Claude infers the best angle (professional journey / money & numbers / advice to past self / before-after) from the raw content. If ambiguous, Claude picks the strongest match.
+If the author skips or doesn't respond, proceed without a reference.
 
 ---
 
-### THESIS STAGE — Extract, Enrich, and Challenge Ideas (WebSearch)
+**Viral topic angle** is NOT asked — Claude infers the best angle (professional journey / money & numbers / advice to past self / before-after) from the raw content. If ambiguous, Claude picks the strongest match.
 
-This stage uses **Claude Agent + WebSearch** to enrich theses with expert opinions, counterarguments, first principles analysis, and similar theses from the web. Two parallel tracks: WebSearch research + Claude analysis.
+**Defaults** (if the author skips a question): audience = Product managers & product leaders, content type = Useful, integration = No integration, format = Text + photo, goals = Maximum reach, reference = none.
 
-#### Step 1: Extract raw theses (Claude)
+---
+
+### THESIS STAGE — Extract Theses and Generate Counterarguments
+
+Claude extracts theses from the author's raw content and generates counterarguments. No WebSearch — just Claude's analysis.
+
+#### Step 1: Extract theses and generate counterarguments
 
 For each idea in the author's stream of consciousness:
 - Extract it as a 2-5 sentence thesis statement (DETAILED, not compressed)
@@ -252,188 +254,35 @@ For each idea in the author's stream of consciousness:
 - Keep the author's voice and energy
 - Note any examples, numbers, or references mentioned
 
-Display extracted theses to the author.
+For EACH extracted thesis, also generate:
+- 1-2 sharp counterarguments (1 sentence each) — what a smart reader might object
+- A strength rating for LinkedIn engagement (strong / medium / weak)
 
-#### Step 2: Ask the author which theses to keep
-
-**CRITICAL: Do NOT proceed to WebSearch until the author selects theses.**
-
-Display the extracted theses numbered (T1, T2, T3...) and ask the author:
-
-Use AskUserQuestion:
-"Which theses should we research and develop? Type the numbers to keep (e.g., 'T1, T3, T5'). Or 'all' to keep everything. You can also rephrase or add new ideas."
-
-Wait for the author's response. Only the SELECTED theses go forward to research.
-
-#### Step 3: Create temp directory and save selected theses
-
-```bash
-mkdir -p .claude/temp/linkedin-{slug}/
-```
-
-Save SELECTED theses to: `temp-dir/01-selected-theses.md`
-
-#### Step 4: Launch WebSearch research agent (BACKGROUND)
-
-Build a prompt for the web-researcher agent based on the template below. Use ONLY the selected theses from Step 2.
-
-Launch via **Agent tool** (subagent_type: general-purpose, run_in_background: true).
-
-⚠️ WebSearch agent may take 5-10 minutes. While it runs, proceed to Step 5.
-
----
-
-##### WEB-RESEARCHER PROMPT TEMPLATE FOR LINKEDIN POST
-
-```
-# Web Research: Thesis enrichment for LinkedIn post
-
-## ROLE
-
-You are a world-class content strategist at the intersection of technology, product management, and business strategy. Your level: Ben Thompson (Stratechery) + Lenny Rachitsky + Paul Graham + Shreyas Doshi.
-
-## CONTEXT
-
-The author is writing a LinkedIn post for product managers, product leaders, founders, and engineers. The post should deliver sharp, useful insights that make readers stop scrolling.
-
-**Target audience:** {selected audience}
-**Topic angle:** {inferred viral topic angle}
-**Content type:** {useful / positive / both}
-
-## AUTHOR'S SELECTED THESES
-
-{SELECTED theses from Step 2, numbered, each 2-5 sentences}
-
-## YOUR TASKS
-
-Use the **WebSearch** tool to find expert opinions, counterarguments, and similar theses. Make 10-15 targeted search queries.
-
-### TASK 1: Expert opinions and similar theses
-
-For EACH author thesis:
-1. Find 2-3 FRESH expert opinions (2024-2026) that SUPPORT or EXTEND the thesis — with real URLs
-2. Find similar theses from thought leaders — who said something similar and how?
-3. Note how the thesis connects to broader industry trends
-
-Priority experts: Lenny Rachitsky, Shreyas Doshi, Paul Graham, Marty Cagan, April Dunford, Brian Chesky, a16z, Reforge, First Round Review, Y Combinator, Ben Thompson.
-
-### TASK 2: Counterarguments
-
-For EACH author thesis:
-1. Find 1-2 STRONG counterarguments — who disagrees and why? With real URLs.
-2. These counterarguments should be useful: they help the author anticipate reader objections and strengthen the post.
-
-### TASK 3: First Principles Analysis
-
-Analyze the post's core topic from first principles:
-1. **Identify axioms** — what has become free or near-free that makes this thesis true?
-   (e.g., code writing ≈ $0, research ≈ $0, prototyping ≈ $0, distribution via agents ≈ $0)
-2. **Build logical chains:** If X is free → what follows? → what follows from that? → NON-OBVIOUS conclusion
-3. **Derive 2-3 NEW theses** that the author didn't mention but logically follow from the same axioms
-
-### TASK 4: New theses suggestions
-
-Based on Tasks 1-3, suggest 3-5 NEW theses that:
-- The author didn't mention but should consider for the post
-- Are NON-OBVIOUS (not the first thing you'd think of)
-- Pass the relevance test: "Would removing this weaken the post?"
-- Are specific enough for a LinkedIn post (not abstract philosophy)
-
-For each new thesis: name, 2-3 sentences, source expert/URL, why the author might have missed it.
-
-## OUTPUT FORMAT
-
-### Part A: Enriched Author Theses
-
-For EACH author thesis:
----
-### Author Thesis {N}: "{name}"
-
-**Expert support:**
-- [Expert] (Tier, Year): "[opinion]" — URL
-- [Expert] (Tier, Year): "[opinion]" — URL
-
-**Similar theses from thought leaders:**
-- [Who] said: "[what]" — URL
-
-**Counterarguments:**
-- [Source]: "[counterargument]" — URL
-
-**First Principles deepening:**
-Axiom: [what's free] → [chain] → [non-obvious conclusion]
-
----
-
-### Part B: New Thesis Suggestions
-
-For EACH new thesis:
----
-### 🆕 New Thesis: "{name}"
-**Idea:** [2-3 sentences]
-**Source:** [expert/research] — URL
-**Why author may have missed it:** [explanation]
-**Connects to author thesis:** [which one and how]
-
----
-
-### Part C: Key Debates
-Where experts DISAGREE on the topic — useful for making the post more nuanced.
-
-## QUALITY RULES
-- Every source MUST have a real URL (don't invent!)
-- Priority: 2025-2026 sources > 2024 > older
-- Language: ENGLISH (the post is for the US market)
-- Focus: depth > breadth. Better 3 deep insights than 10 shallow ones.
-
-Save your FULL report to file: {temp-dir}/agent-web-researcher.md
-```
-
-#### Step 5: Claude's own analysis (PARALLEL with WebSearch agent)
-
-While the WebSearch agent is running, Claude analyzes the selected theses:
-1. Generate counterarguments for each thesis (sharp, 1-2 sentences)
-2. Identify which theses are strongest/weakest for LinkedIn engagement
-3. Suggest thesis ordering for maximum impact
-
-#### Step 6: Wait for WebSearch agent results and synthesize
-
-1. Read `temp-dir/agent-web-researcher.md` when the agent completes
-2. Merge WebSearch insights with Claude's analysis
-3. For each thesis, compile: thesis + expert opinions + counterarguments + first principles deepening
-
-#### Step 7: Display enriched theses with counterarguments to author
+#### Step 2: Display theses with counterarguments
 
 Format:
 ```
-## Enriched Theses
+## Extracted Theses
 
 ### T1: [thesis statement]
-   👥 Experts: [who agrees, 1-line summary]
    ⚡ Counterargument: [strongest counter, 1 line]
-   🔬 First Principles: [axiom → chain → non-obvious conclusion]
+   📊 LinkedIn strength: [strong / medium / weak]
 
 ### T2: [thesis statement]
-   👥 Experts: [who agrees]
    ⚡ Counterargument: [strongest counter]
-   🔬 First Principles: [deepening]
+   📊 LinkedIn strength: [strong / medium / weak]
 
-...
-
-### 🆕 New thesis suggestions from research:
-N1: [new thesis from web research]
-N2: [new thesis from web research]
 ...
 ```
 
-#### Step 8: Ask the author which counterarguments and new theses to include
+Suggest optimal thesis ordering for maximum post impact.
+
+#### Step 3: Ask the author which theses to keep
 
 Use AskUserQuestion:
-"Review the enriched theses above. Tell me:
-1. Which counterarguments should we USE in the post to strengthen your position? (e.g., 'counter from T1, T3')
-2. Which new theses (N1, N2...) should we ADD to the post?
-3. Anything you want to change, rephrase, or drop?
+"Which theses should we keep? Type the numbers (e.g., 'T1, T3, T5'), 'all' to keep everything, or add/rephrase ideas."
 
-Type your decisions, or 'looks good' to proceed with all counterarguments and no new theses."
+Wait for the author's response. Only the SELECTED theses go forward to post writing.
 
 ---
 
@@ -495,7 +344,7 @@ You are writing ONE single LinkedIn post — NOT a blog article with sections.
 
 **LENGTH:** Target: 200-350 words. Every sentence must earn its place. If a thesis doesn't fit naturally into the flow, it's better to drop it than to bloat the post. Longer posts (up to 500 words) are acceptable ONLY if every extra word adds value and the post remains scannable.
 
-Output ONLY the post text, ready to copy-paste into LinkedIn. Save to `temp-dir/post-text.md`.
+Output ONLY the post text, ready to copy-paste into LinkedIn.
 
 #### Step 2: Display and save
 
