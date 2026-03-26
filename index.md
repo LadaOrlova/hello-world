@@ -2675,6 +2675,30 @@ Telegram-посты.
 - `Св-во о постановке на учет в ИФНС ФЛ_ИП-Замесин.pdf`
 - `Уведомление о переходе на УСН_ИП-Замесин.pdf`
 
+**ZAMESIN INC docs/**
+
+- `Privacy Policy.docx`
+- `Privacy Policy.pdf`
+- `Terms of Use.docx`
+- `Terms of Use.pdf` — ?Ýh6'G{0ۺ0f:"ؚk #>܇84"2|}Ulդo5X~C|#oR
+- `Zamesin INC_Business Card.docx` — |B9}.Q4%6"Gs:7Y 
+- `fw8ben.pdf`
+
+*1. Уставные Zamesin INC/*
+
+- `Zamesin Inc. - Post-Incorporation Setup - Action of Incorporator (947428v1).pdf`
+- `Zamesin Inc. - Post-Incorporation Setup - Board Consent (947429v1).pdf`
+- `Zamesin Inc. - Post-Incorporation Setup - Bylaws (947430v1).pdf`
+- `Zamesin Inc. - Post-Incorporation Setup - Confidential Information and Invention Assignment Agreement - Ivan Zamesin (947434v1).pdf`
+- `Zamesin Inc. - Post-Incorporation Setup - Notice of Stock Issuance - Ivan Zamesin (947433v1).pdf`
+- `Zamesin Inc. - Post-Incorporation Setup - Restricted Stock Purchase Agreement - Ivan Zamesin (947432v1).pdf` — /22._ׯ_zN+@
+- `Zamesin Inc. - Post-Incorporation Setup - Transaction Summary (947431v1).pdf`
+- `Уставные Zamesin INC.rar`
+
+*6. Tax Residency certificate/*
+
+- `Tax residency Cert 2025.pdf`
+
 **бот тимзамесин/**
 
 - `bot.py`
