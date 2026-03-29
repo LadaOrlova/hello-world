@@ -14,7 +14,7 @@
 
 **Что:** Прорабатывает медиаплан на ближайшие питчи, ~20 каналов. На каждый канал — глубокий ресёрч: кто редактор/журналист, что публикуют, какой формат и тон, какая аудитория (фаундеры? PM-ы? инженеры? инвесторы?). Под каждое издание — уникальная тема и угол, адаптированный под их читателя. Проверяет, чтобы углы не пересекались между изданиями (одну и ту же экспертизу Вани упаковывает по-разному: для HBR — академически, для HackerNoon — практически, для Forbes — провокационно). Сканирует репозиторий экспертизы Вани через `pr-topic-finder`: вытаскивает самые сильные тезисы, кейсы с цифрами, контринтуитивные утверждения — и сразу матчит их с конкретными изданиями. *Предложение: также всё-таки сразу пробовать делать с тезисами, пользуясь сразу репозиторием и инсайтами.*
 
-**Результат:** новый кусок медиаплана.
+**Результат:** свежая глава медиаплана добавляется в работу.
 
 **Срок:** еженедельно ко звонку в среду.
 
@@ -82,40 +82,40 @@
 
 ## Контент-план: все статьи и их стадии
 
-**Этапы:** 1 — Медиаплан | 2 — Согласование | 3 — Питчинг и переговоры | 4 — ТЗ | 5 — Написание | 6 — Передача в СМИ | 7 — Ревью/публикация
+**Этапы:** 1 — Медиаплан | 2 — Согласование тем | 3 — Питчинг и переговоры с журналистами | 4 — ТЗ на статью | 5 — Написание статьи | 6 — Передача в СМИ | 7 — Ревью, правки и публикация
 
 ### Статьи в работе
 
 | Издание | Тема | Этап | Ответственный | Дедлайн | Ссылка |
 |---------|------|------|---------------|---------|--------|
-| Mind the Product | PM Judgment in AI Era | 5 — Написание (v4) | Ваня | — | [Драфт v4](3-Drafts/Draft-AI-Changes-PM-Role-MtP-v4.md) |
-| HackerNoon | How to Find PMF Fast | 6 — Готов к отправке | Настя | — | [Драфт v3](3-Drafts/Draft-How-to-Find-PMF-Fast-v3.md) |
-| Fast Company | AI Made Leadership Harder | 4 — ТЗ готово | Ваня | — | — |
-| GritDaily | PMF Algorithm for Founders | 4 — ТЗ готово | Ваня | — | — |
-| Mashable | AI Threat to Product Teams | 4 — ТЗ готово | Ваня | — | — |
-| StartUp Growth Guide | PM Crisis of Business Judgment | 4 — ТЗ готово | Ваня | — | — |
-| Startup Nation | Product Strategy for SMBs | 4 — ТЗ готово | Ваня | — | — |
-| Techstory | Golden Age of SaaS Ending | 4 — ТЗ готово | Ваня | — | — |
+| Mind the Product | PM Judgment in AI Era | 7 — Ревью, правки и публикация | Настя | — | [Драфт v4](3-Drafts/Draft-AI-Changes-PM-Role-MtP-v4.md) |
+| HackerNoon | How to Find PMF Fast | 7 — Ревью, правки и публикация | Настя | — | [Драфт v3](3-Drafts/Draft-How-to-Find-PMF-Fast-v3.md) |
+| Fast Company | AI Made Leadership Harder | 5 — Написание статьи | Ваня | 01.04 | — |
+| GritDaily | PMF Algorithm for Founders | 5 — Написание статьи | Ваня | 08.04 | — |
+| Mashable | AI Threat to Product Teams | 5 — Написание статьи | Ваня | 08.04 | — |
+| StartUp Growth Guide | PM Crisis of Business Judgment | 5 — Написание статьи | Ваня | 15.04 | — |
+| Startup Nation | Product Strategy for SMBs | 5 — Написание статьи | Ваня | 15.04 | — |
 
 ### Бэклог
 
 | Издание | Тема | Этап | Ответственный | Дедлайн | Ссылка |
 |---------|------|------|---------------|---------|--------|
-| First Round Review | Switch Interview Technique | 1 — Медиаплан | Настя | — | — |
-| Every | AI Makes Customer Understanding the Only Moat | 1 — Медиаплан | Настя | — | — |
-| The Pragmatic Engineer | AJTBD for Engineers | 1 — Медиаплан | Настя | — | — |
-| Inc. Magazine | Hidden B2B Segment Worth $1M+/mo | 1 — Медиаплан | Настя | — | — |
-| Harvard Business Review | Updating Christensen's JTBD | 1 — Медиаплан | Настя | — | — |
-| MIT Sloan Management Review | Risk Assumption Testing Framework | 1 — Медиаплан | Настя | — | — |
-| Forbes | Psychological Glass Ceiling for Founders | 1 — Медиаплан | Настя | — | — |
-| Product Hunt Blog | Critical Chain for First 100 Users | 1 — Медиаплан | Настя | — | — |
-| UX Collective | Job-Based Segmentation vs Personas | 1 — Медиаплан | Настя | — | — |
-| Business Insider | 3 Patterns from 9000 Students | 1 — Медиаплан | Настя | — | — |
-| Towards Data Science | Qual → Quant Validation | 1 — Медиаплан | Настя | — | — |
-| Entrepreneur.com | 4 Forces for Marketing Conversion | 1 — Медиаплан | Настя | — | — |
+| First Round Review | Switch Interview Technique | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| Every | AI Makes Customer Understanding the Only Moat | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| The Pragmatic Engineer | AJTBD for Engineers | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| Inc. Magazine | Hidden B2B Segment Worth $1M+/mo | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| Harvard Business Review | Updating Christensen's JTBD | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| MIT Sloan Management Review | Risk Assumption Testing Framework | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| Forbes | Psychological Glass Ceiling for Founders | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| Product Hunt Blog | Critical Chain for First 100 Users | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| UX Collective | Job-Based Segmentation vs Personas | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| Business Insider | 3 Patterns from 9000 Students | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| Towards Data Science | Qual → Quant Validation | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
+| Entrepreneur.com | 4 Forces for Marketing Conversion | 2 — Согласование тем | Настя + Ваня | 15.04 | — |
 
 ### Опубликованные
 
-| Издание | Тема | Дата публикации | Ссылка |
-|---------|------|----------------|--------|
-| — | — | — | — |
+| Издание | Тема | Дата публикации | Ссылка | Комментарий |
+|---------|------|----------------|--------|-------------|
+| Techstory | Is the Golden Age of SaaS Ending? | 30.12.2025 | [ссылка](https://techstory.in/is-the-golden-age-of-saas-ending-how-vibe-coding-is-shifting-power-back-in-house/) | 194k посетителей, аудитория: Индия, США, UK |
+| 0xzx.com (цитирование Techstory) | Is the Golden Age of SaaS Ending? | 30.12.2025 | [ссылка](https://0xzx.com/2025123020036012102.html) | 200k охват, аудитория: Китай, Япония, Корея |
