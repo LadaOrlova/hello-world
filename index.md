@@ -1157,7 +1157,7 @@ Telegram-посты.
 - `4_Student_Records_Retention_Letter.docx` — 
 - `5_Ivan_Zamesin_CV.docx` — 
 
-*Private & Shared/*
+*Summary licenses/*
 
 - `Licenses_Summary.csv`
 - `Лицензии на обучение Америка (1) 31622971ef0880d199a2e2647b3fcdc3.md` — Лицензии на обучение Америка (1)
