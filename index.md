@@ -1013,6 +1013,11 @@
 
 Контент: LinkedIn-посты, Telegram-посты, черновики статей
 
+- `kdp-editor.skill`
+- `ref-bot-style.md`
+- `ref-vanya-channel-style.md` — vanya-channel-style
+- `tov-rules.md` — Правила TOV для рассылок курса «Как делать продукт»
+- `vanya-voice-guide-full.md` — Голос Вани Замесина: полный стилевой гайд
 
 ### 3-SMM/Bot/
 
