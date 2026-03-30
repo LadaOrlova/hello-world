@@ -1,0 +1,17 @@
+State,Тип действия,Агентство,Стоимость ($),Рабочих дней на подачу,Статус,Примечания
+Alabama,Полная авторизация,ACHE + ACCS,~300,2,Нужно уточнить стоимость,Две параллельные заявки в два агентства
+Alaska,Exemption (короткий курс),Commission on Postsecondary Education,250,1,Готово к подаче,"Форма exemption, действует до 2 лет"
+California,Verification of Exempt Status §94874(a),Bureau for Private Postsecondary Education,250,1-2,Готово к подаче,Только для non-profit/public институций
+Georgia,Exemption,Nonpublic Postsecondary Education Commission,300,1-2,Готово к подаче,Онлайн-форма на сайте
+Iowa,Exemption (письмо),Iowa Department of Education – Bureau of Iowa College Aid,0,1,Готово к подаче,Бесплатно; обновление каждые 2 года
+Missouri,Подтверждение exemption,Department of Higher Education,100,1,Готово к подаче,—
+Nevada,Exemption request (distance education),Commission on Postsecondary Education,0,1,Готово к подаче,Уточнить про experiential learning
+New Hampshire,Exemption (письмо/email),Department of Education,0,1,Готово к подаче,"Письмо по Hedc 304.05: описание программ, ссылка на пункт RSA 188-G:1(II)"
+New Mexico,Exemption,Higher Education Department,300,1-2,Готово к подаче,—
+North Dakota,Полная авторизация,University System + Career and Technical Education Office,1000,—,⚠️ ЗАБЛОКИРОВАНО,Требуется национальная аккредитация до подачи — получить её нужно заранее
+Oregon,Exemption,Office of Degree Authorization,~0,1,Готово к подаче,Запрос по email: Matthew.ALTMAN@hecc.oregon.gov
+Utah,Exemption,Division of Consumer Protection,0,1,Готово к подаче,—
+Wisconsin,Exemption (professional development),Education Approval Program,~0,1,Готово к подаче,—
+,,,,,,
+ИТОГО (без North Dakota),,,1200,13-20 рабочих дней (≈2.5–4 недели),,
+ИТОГО (с North Dakota),,,2200,—,North Dakota — отдельно после аккредитации,
