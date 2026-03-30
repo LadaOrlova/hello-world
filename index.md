@@ -1145,6 +1145,23 @@ Telegram-посты.
 
 - `Tax residency Cert 2025.pdf`
 
+**Лицензии америка/**
+
+- `КОНТЕКСТ_ПРОЕКТА.md` — Проект: ACPE Alaska Exemption для AJTBD
+
+*ACPE_Alaska_Exemption/*
+
+- `1_ACPE_Application_Filled.docx` — 
+- `2_Institution_Catalog.docx` — 
+- `3_Certificate_Template.docx` — 
+- `4_Student_Records_Retention_Letter.docx` — 
+- `5_Ivan_Zamesin_CV.docx` — 
+
+*Private & Shared/*
+
+- `Licenses_Summary.csv`
+- `Лицензии на обучение Америка (1) 31622971ef0880d199a2e2647b3fcdc3.md` — Лицензии на обучение Америка (1)
+
 **бот тимзамесин/**
 
 - `bot.py`
