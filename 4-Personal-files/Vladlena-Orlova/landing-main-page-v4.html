@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Академия Ивана Замесина — от замысла до работающего продукта</title>
+    <title>Академия Ивана Замесина — научись принимать продуктовые решения и проверять их вайб-кодингом</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -19,6 +19,7 @@
             --green-bg: #C9F4D2;
             --yellow-bg: #FFFCCE;
             --lavender-bg: #EDE9FE;
+            --red-bg: #FEE2E2;
             --border: #E3E3E2;
             --text-primary: #1E1E1E;
             --text-secondary: rgba(0,0,0,0.7);
@@ -79,9 +80,7 @@
         }
         .hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 80px 0 64px; }
         .hero-eyebrow { font-size: 0.8rem; font-weight: 500; color: var(--text-muted); margin-bottom: 24px; }
-        .hero h1 { color: var(--black); margin-bottom: 16px; max-width: 800px; }
-        .hero h1 em { font-style: italic; font-family: var(--font-serif); font-weight: 400; }
-        .hero-sub { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 36px; max-width: 600px; line-height: 1.6; }
+        .hero h1 { color: var(--black); margin-bottom: 16px; max-width: 820px; }
         .hero-topics {
             display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
             margin-bottom: 32px;
@@ -93,64 +92,109 @@
         .hero-topic:nth-child(1) { background: var(--cyan-bg); }
         .hero-topic:nth-child(2) { background: var(--green-bg); }
         .hero-topic:nth-child(3) { background: var(--yellow-bg); }
+        .hero-sub { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 36px; max-width: 600px; line-height: 1.6; }
         .hero-proof { display: flex; gap: 48px; flex-wrap: wrap; justify-content: center; padding-top: 40px; border-top: 1px solid var(--border); }
         .hero-proof-item { text-align: center; }
         .hero-proof-item .num { font-size: 1.8rem; font-weight: 800; color: var(--black); line-height: 1; }
         .hero-proof-item .label { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
 
-        /* === WAITLIST STORY === */
-        .waitlist { background: var(--white); }
-        .waitlist-story-block { max-width: 720px; margin: -24px auto 48px; text-align: center; }
-        .waitlist-story-text {
-            font-family: var(--font-serif); font-style: italic;
-            font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px;
+        /* === JOBS === */
+        .jobs { background: var(--white); }
+        .jobs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+        .job-card {
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 28px; transition: all 0.25s; display: flex; flex-direction: column;
         }
-        .waitlist-rebuild { font-size: 0.95rem; color: var(--text-primary); font-weight: 500; }
-        .waitlist-nums { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; margin-top: 24px; }
-        .waitlist-num .val { font-size: 1.3rem; font-weight: 800; color: var(--black); }
-        .waitlist-num .lbl { font-size: 0.75rem; color: var(--text-muted); }
+        .job-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+        .job-top { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+        .job-emoji { font-size: 1.6rem; }
+        .job-tag {
+            font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.06em; padding: 3px 9px; border-radius: 4px;
+        }
+        .job-tag-launch { background: var(--cyan-bg); color: #0E7490; }
+        .job-tag-system { background: var(--green-bg); color: #047857; }
+        .job-tag-fix { background: var(--red-bg); color: #B91C1C; }
+        .job-tag-career { background: var(--yellow-bg); color: #92400E; }
+        .job-tag-marketing { background: var(--lavender-bg); color: #5B21B6; }
+        .job-tag-boost { background: var(--black); color: var(--orange); }
+        .job-card h3 { font-size: 1.1rem; margin-bottom: 6px; }
+        .job-who { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; }
+        .job-magnet {
+            margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
+        }
+        .job-magnet-text { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); }
+        .job-magnet-btn {
+            flex-shrink: 0; padding: 8px 18px; border-radius: var(--radius-btn);
+            font-size: 0.82rem; font-weight: 600; transition: all 0.2s;
+        }
+        .job-magnet-btn.get { background: var(--cream); color: var(--black); border: 1px solid var(--border); }
+        .job-magnet-btn.get:hover { border-color: var(--black); }
+        .job-magnet-btn.signup { background: var(--orange); color: var(--white); border: none; }
+        .job-magnet-btn.signup:hover { background: var(--orange-hover); }
 
-        /* === QUIZ CTA === */
-        .quiz-card {
+        /* Boost card special */
+        .job-card.boost-card { background: var(--black); border-color: transparent; }
+        .job-card.boost-card h3 { color: var(--white); }
+        .job-card.boost-card .job-who { color: rgba(255,255,255,0.5); }
+        .job-card.boost-card .job-magnet { border-color: rgba(255,255,255,0.1); }
+        .job-card.boost-card .job-magnet-text { color: rgba(255,255,255,0.7); }
+        .job-result-preview {
+            font-size: 0.88rem; font-weight: 500; color: #047857;
+            padding: 10px 14px; background: var(--green-bg); border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+        }
+        .boost-stats { display: flex; gap: 16px; margin-bottom: 16px; }
+        .boost-stat .val { font-size: 1.1rem; font-weight: 800; color: var(--orange); }
+        .boost-stat .lbl { font-size: 0.68rem; color: rgba(255,255,255,0.4); }
+
+        /* === FREE LECTURE / QUIZ === */
+        .free-lecture { background: var(--cream); }
+        .fl-card {
             background: var(--black); border-radius: var(--radius); padding: 48px;
             display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
         }
-        .quiz-left h2 { color: var(--white); margin-bottom: 14px; font-size: clamp(1.4rem, 3vw, 2rem); }
-        .quiz-left p { color: rgba(255,255,255,0.5); margin-bottom: 24px; font-size: 0.95rem; }
-        .quiz-steps { display: flex; flex-direction: column; gap: 10px; }
-        .quiz-step {
+        .fl-left h2 { color: var(--white); margin-bottom: 14px; font-size: clamp(1.4rem, 3vw, 2rem); }
+        .fl-left p { color: rgba(255,255,255,0.5); margin-bottom: 24px; font-size: 0.95rem; }
+        .fl-steps { display: flex; flex-direction: column; gap: 10px; }
+        .fl-step {
             display: flex; align-items: center; gap: 12px;
             font-size: 0.88rem; color: rgba(255,255,255,0.65);
         }
-        .quiz-step-num {
+        .fl-step-num {
             width: 26px; height: 26px; border-radius: 50%;
             background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center;
             font-size: 0.75rem; font-weight: 700; color: var(--orange); flex-shrink: 0;
         }
-        .quiz-right {
+        .fl-right {
             background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
             border-radius: var(--radius); padding: 32px; text-align: center;
         }
-        .quiz-right h3 { color: var(--white); margin-bottom: 6px; font-size: 1.2rem; }
-        .quiz-right p { color: rgba(255,255,255,0.45); font-size: 0.88rem; margin-bottom: 20px; }
-        .wl-form { display: flex; flex-direction: column; gap: 10px; }
-        .wl-input {
+        .fl-right h3 { color: var(--white); margin-bottom: 6px; font-size: 1.2rem; }
+        .fl-right p { color: rgba(255,255,255,0.45); font-size: 0.88rem; margin-bottom: 20px; }
+        .fl-form { display: flex; flex-direction: column; gap: 10px; }
+        .fl-input {
             width: 100%; padding: 13px 16px; border-radius: var(--radius-sm);
             border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05);
             color: var(--white); font-size: 0.92rem; font-family: var(--font-sans);
             transition: border-color 0.2s;
         }
-        .wl-input::placeholder { color: rgba(255,255,255,0.25); }
-        .wl-input:focus { outline: none; border-color: var(--orange); }
-        .wl-or {
+        .fl-input::placeholder { color: rgba(255,255,255,0.25); }
+        .fl-input:focus { outline: none; border-color: var(--orange); }
+        .fl-or {
             text-align: center; color: rgba(255,255,255,0.25); font-size: 0.78rem;
             padding: 2px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
         }
+        .fl-note {
+            margin-top: 32px; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;
+        }
+        .fl-note p { color: var(--text-muted); font-size: 0.9rem; font-style: italic; }
 
         /* === AUTHOR === */
-        .author-section { background: var(--cream); }
+        .author-section { background: var(--white); }
         .author-block {
-            background: var(--white); border: 1px solid var(--border);
+            background: var(--cream); border: 1px solid var(--border);
             border-radius: var(--radius); padding: 48px;
             display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: start;
         }
@@ -172,10 +216,10 @@
         .author-rating-item .label { font-size: 0.78rem; color: var(--text-muted); }
 
         /* === CASES === */
-        .cases { background: var(--white); }
+        .cases { background: var(--cream); }
         .cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
         .case-card {
-            background: var(--cream); border: 1px solid var(--border);
+            background: var(--white); border: 1px solid var(--border);
             border-radius: var(--radius); padding: 24px; transition: all 0.2s;
             display: flex; flex-direction: column;
         }
@@ -204,7 +248,7 @@
         .case-company strong { color: var(--text-secondary); }
 
         /* === CALENDAR === */
-        .calendar-section { background: var(--cream); }
+        .calendar-section { background: var(--white); }
         .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
         .cal-card {
             background: var(--white); border: 1px solid var(--border);
@@ -222,7 +266,6 @@
         .cal-day.cyan { background: var(--cyan-bg); }
         .cal-day.green { background: var(--green-bg); }
         .cal-day.yellow { background: var(--yellow-bg); }
-        .cal-day.lavender { background: var(--lavender-bg); }
         .cal-meta { flex: 1; }
         .cal-type { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
         .cal-type.webinar { color: #0E7490; }
@@ -249,7 +292,7 @@
 
         /* === RESPONSIVE === */
         @media (max-width: 900px) {
-            .quiz-card { grid-template-columns: 1fr; }
+            .fl-card { grid-template-columns: 1fr; }
             .author-block { grid-template-columns: 1fr; text-align: center; }
             .author-photo { margin: 0 auto; }
             .author-credentials { align-items: center; }
@@ -258,8 +301,8 @@
             section { padding: 56px 0; }
             .nav-links { display: none; }
             .burger { display: block; }
-            .hero-topics { gap: 8px; }
             .hero-proof { gap: 24px; }
+            .jobs-grid { grid-template-columns: 1fr; }
             .cases-grid { grid-template-columns: 1fr; }
             .calendar-grid { grid-template-columns: 1fr; }
         }
@@ -272,10 +315,11 @@
     <nav class="container nav">
         <a href="/" class="nav-logo">Академия Ивана Замесина</a>
         <div class="nav-links">
+            <a href="#jobs">Задачи</a>
             <a href="#author">Автор</a>
             <a href="#cases">Кейсы</a>
             <a href="#calendar">События</a>
-            <a href="#quiz" class="nav-cta">В лист ожидания</a>
+            <a href="#free" class="nav-cta">Получить лекцию</a>
         </div>
         <button class="burger" aria-label="Меню">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -287,13 +331,13 @@
 <section class="hero">
     <div class="container hero-inner">
         <div class="hero-eyebrow">Академия Ивана Замесина</div>
-        <h1>Научись принимать продуктовые решения<br>и проверять их вайб-кодингом</h1>
+        <h1>Создавайте продукты,<br>которые покупают</h1>
         <div class="hero-topics">
             <span class="hero-topic">Advanced JTBD</span>
             <span class="hero-topic">Методология AURA</span>
             <span class="hero-topic">Вайб-кодинг</span>
         </div>
-        <p class="hero-sub">Методология AURA + вайб-кодинг. Принимаешь решения на данных и сразу проверяешь в коде. 13 000+ выпускников, оценка пользы — 9.2 из 10.</p>
+        <p class="hero-sub">Методология AURA + вайб-кодинг. Принимаешь решения на основе данных и сразу проверяешь в деле.</p>
         <div class="hero-proof">
             <div class="hero-proof-item"><div class="num">13 000+</div><div class="label">выпускников</div></div>
             <div class="hero-proof-item"><div class="num">9.2/10</div><div class="label">оценка пользы</div></div>
@@ -303,55 +347,151 @@
     </div>
 </section>
 
-<!-- ===== МЫ ГОТОВИМ НОВОЕ + ФОРМА ===== -->
-<section class="waitlist" id="waitlist">
+<!-- ===== КАКАЯ У ВАС ЗАДАЧА? ===== -->
+<section class="jobs" id="jobs">
     <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Что дальше</span>
-            <h2>Мы готовим для вас что-то новое</h2>
-        </div>
-        <div class="waitlist-story-block">
-            <p class="waitlist-story-text">
-                Курс &laquo;Как делать продукт&raquo; в старом формате больше не будет проводиться.
-                Это был путь длиной в 8 лет. 59 открытых потоков. 40 корпоративных обучений.
-                Больше 1500 воркшопов. Четырнадцать больших пересборок методологии и курса.
+        <div class="section-header" style="max-width: 720px;">
+            <p style="font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px;">
+                Курс &laquo;Как делать продукт&raquo; завершил свой путь. 8 лет, 59 потоков, 13 000+ выпускников. Мы пересобираем обучение — под каждую задачу отдельная программа. BOOST уже доступен, остальные скоро.
             </p>
-            <p class="waitlist-rebuild">
-                Сейчас мы собираем новый формат — короче, интенсивнее, с AI-инструментами внутри.
-            </p>
-            <div class="waitlist-nums">
-                <div class="waitlist-num"><div class="val">8 лет</div><div class="lbl">развития</div></div>
-                <div class="waitlist-num"><div class="val">59</div><div class="lbl">потоков</div></div>
-                <div class="waitlist-num"><div class="val">1 500+</div><div class="lbl">воркшопов</div></div>
-                <div class="waitlist-num"><div class="val">14</div><div class="lbl">пересборок</div></div>
-            </div>
+            <span class="section-tag">Программы</span>
+            <h2>Какая у вас задача?</h2>
         </div>
 
-        <div class="quiz-card" id="quiz">
-            <div class="quiz-left">
-                <h2>Хотите первыми узнать о новом формате?</h2>
-                <p>Ответьте на несколько вопросов — так мы поймём, что вам нужно, и вы получите лекцию, которую не получит больше никто.</p>
-                <div class="quiz-steps">
-                    <div class="quiz-step"><span class="quiz-step-num">1</span> Расскажите о своей роли</div>
-                    <div class="quiz-step"><span class="quiz-step-num">2</span> Опишите ситуацию с продуктом</div>
-                    <div class="quiz-step"><span class="quiz-step-num">3</span> Выберите, что нужно в первую очередь</div>
-                    <div class="quiz-step"><span class="quiz-step-num">4</span> Контекст: B2B/B2C, команда, бюджет</div>
-                    <div class="quiz-step"><span class="quiz-step-num">5</span> Опыт с обучением Замесина</div>
-                    <div class="quiz-step"><span class="quiz-step-num">6</span> Контакты</div>
-                    <div class="quiz-step"><span class="quiz-step-num">7</span> Получите рекомендацию + лекцию</div>
+        <div class="jobs-grid">
+            <!-- BOOST — активный -->
+            <div class="job-card boost-card">
+                <div class="job-top">
+                    <span class="job-emoji">&#x26A1;</span>
+                    <span class="job-tag job-tag-boost">Доступно сейчас</span>
+                </div>
+                <h3>Хочу создать продукт своими руками с AI</h3>
+                <p class="job-who">Для всех, кто хочет строить продукты руками с помощью AI</p>
+                <div class="boost-stats">
+                    <div class="boost-stat"><div class="val">9.3/10</div><div class="lbl">оценка</div></div>
+                    <div class="boost-stat"><div class="val">1 нед</div><div class="lbl">интенсив</div></div>
+                    <div class="boost-stat"><div class="val">29 900 &#8381;</div><div class="lbl">от</div></div>
+                </div>
+                <div class="job-result" style="background: rgba(234,139,14,0.1); border: 1px solid rgba(234,139,14,0.3); color: var(--orange); padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 600; margin-bottom: 16px;">
+                    &#x2192; От идеи до работающего MVP за неделю
+                </div>
+                <div class="job-magnet">
+                    <span class="job-magnet-text">Ближайшие потоки: 3 и 17 апреля</span>
+                    <a href="#" class="job-magnet-btn signup">Записаться &rarr;</a>
                 </div>
             </div>
-            <div class="quiz-right">
-                <h3>Список ожидания</h3>
+
+            <!-- Job 1 -->
+            <div class="job-card">
+                <div class="job-top">
+                    <span class="job-emoji">&#x1F680;</span>
+                    <span class="job-tag job-tag-launch">Запуск</span>
+                </div>
+                <h3>Хочу запустить свой продукт</h3>
+                <p class="job-who">Предприниматели, фаундеры, PM с идеей</p>
+                <div class="job-result-preview">&#x2192; Работающий MVP с первыми клиентами</div>
+                <div class="job-magnet">
+                    <span class="job-magnet-text">Программа скоро</span>
+                    <a href="#quiz" class="job-magnet-btn get">В лист ожидания &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Job 2 -->
+            <div class="job-card">
+                <div class="job-top">
+                    <span class="job-emoji">&#x1F9E0;</span>
+                    <span class="job-tag job-tag-system">Система</span>
+                </div>
+                <h3>Хочу перестать работать на чуйке</h3>
+                <p class="job-who">Продакты Middle / Senior / Head of Product</p>
+                <div class="job-result-preview">&#x2192; Единая система решений + AI-инструменты</div>
+                <div class="job-magnet">
+                    <span class="job-magnet-text">Программа скоро</span>
+                    <a href="#quiz" class="job-magnet-btn get">В лист ожидания &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Job 3 -->
+            <div class="job-card">
+                <div class="job-top">
+                    <span class="job-emoji">&#x1F527;</span>
+                    <span class="job-tag job-tag-fix">Починка</span>
+                </div>
+                <h3>Продукт не растёт — надо починить</h3>
+                <p class="job-who">PM или собственник с продуктом в стагнации</p>
+                <div class="job-result-preview">&#x2192; Диагноз + план роста продукта</div>
+                <div class="job-magnet">
+                    <span class="job-magnet-text">Программа скоро</span>
+                    <a href="#quiz" class="job-magnet-btn get">В лист ожидания &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Job 4 -->
+            <div class="job-card">
+                <div class="job-top">
+                    <span class="job-emoji">&#x1F4C8;</span>
+                    <span class="job-tag job-tag-career">Карьера</span>
+                </div>
+                <h3>Хочу войти в продакт-менеджмент</h3>
+                <p class="job-who">Аналитики, проджекты, маркетологи, дизайнеры</p>
+                <div class="job-result-preview">&#x2192; Кейс для портфолио + уверенность на собесах</div>
+                <div class="job-magnet">
+                    <span class="job-magnet-text">Программа скоро</span>
+                    <a href="#quiz" class="job-magnet-btn get">В лист ожидания &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Job 5 -->
+            <div class="job-card">
+                <div class="job-top">
+                    <span class="job-emoji">&#x1F4E3;</span>
+                    <span class="job-tag job-tag-marketing">Маркетинг</span>
+                </div>
+                <h3>Хочу упаковать продукт, чтобы продавался</h3>
+                <p class="job-who">CMO, маркетологи, руководители продаж</p>
+                <div class="job-result-preview">&#x2192; Маркетинг от работ клиента + готовые лендинги</div>
+                <div class="job-magnet">
+                    <span class="job-magnet-text">Программа скоро</span>
+                    <a href="#quiz" class="job-magnet-btn get">В лист ожидания &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== НАЧНИ СЕЙЧАС — БЕСПЛАТНАЯ ЛЕКЦИЯ ===== -->
+<section class="free-lecture" id="free">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Начни сейчас</span>
+            <h2>Получи бесплатную лекцию в подарок</h2>
+            <p>Пройди короткий квиз — мы подберём формат под твою задачу и дадим доступ к лекции, которую не получит больше никто</p>
+        </div>
+
+        <div class="fl-card" id="quiz">
+            <div class="fl-left">
+                <h2>Расскажи о себе — помоги нам сделать формат для тебя</h2>
+                <p>Мы пересобираем обучение. Твои ответы помогут создать программу, которая решает именно твою задачу.</p>
+                <div class="fl-steps">
+                    <div class="fl-step"><span class="fl-step-num">1</span> Расскажите о своей роли</div>
+                    <div class="fl-step"><span class="fl-step-num">2</span> Опишите ситуацию с продуктом</div>
+                    <div class="fl-step"><span class="fl-step-num">3</span> Выберите, что нужно в первую очередь</div>
+                    <div class="fl-step"><span class="fl-step-num">4</span> Контекст: B2B/B2C, команда, бюджет</div>
+                    <div class="fl-step"><span class="fl-step-num">5</span> Контакты</div>
+                    <div class="fl-step"><span class="fl-step-num">&#x2192;</span> Получите лекцию + рекомендацию формата</div>
+                </div>
+            </div>
+            <div class="fl-right">
+                <h3>Бесплатная лекция</h3>
                 <p>Оставьте контакт — или пройдите квиз и получите лекцию в подарок</p>
-                <form class="wl-form" onsubmit="return false;" style="margin-bottom: 14px;">
-                    <input class="wl-input" type="text" placeholder="Имя" required>
-                    <input class="wl-input" type="email" placeholder="Email" required>
-                    <input class="wl-input" type="text" placeholder="Telegram (@username)">
-                    <button type="submit" class="btn btn-orange btn-lg" style="width:100%;">Просто записаться &rarr;</button>
+                <form class="fl-form" onsubmit="return false;" style="margin-bottom: 14px;">
+                    <input class="fl-input" type="text" placeholder="Имя" required>
+                    <input class="fl-input" type="email" placeholder="Email" required>
+                    <input class="fl-input" type="text" placeholder="Telegram (@username)">
+                    <button type="submit" class="btn btn-orange btn-lg" style="width:100%;">Получить лекцию &rarr;</button>
                 </form>
-                <div class="wl-or">или</div>
-                <a href="#" class="btn btn-black btn-lg" style="width:100%;">Пройти квиз и получить лекцию &rarr;</a>
+                <div class="fl-or">или</div>
+                <a href="#" class="btn btn-black btn-lg" style="width:100%;">Пройти квиз за 3 минуты &rarr;</a>
             </div>
         </div>
     </div>
