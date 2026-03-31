@@ -165,74 +165,54 @@ CTA: "What lesson took you the longest to learn?"
 
 ## WORKFLOW: Step-by-Step Post Creation
 
-### INITIAL ROUND — Collect Input with UI
+### INITIAL ROUND — Collect All Input at Once
 
-Collect input step by step using AskUserQuestion for choice questions. This gives the author a proper UI with clickable options.
+**CRITICAL: Ask ALL questions in ONE message.** Do NOT split them across multiple messages. Do NOT think or generate intermediate responses between questions. Present everything below as a single message to the author.
 
-#### Step 1: Ask for raw content (text)
+#### Step 1: Display ALL questions in one message
 
-Display this prompt as plain text:
+Show this ENTIRE block as one message:
 
-**What is the post about?**
+---
+
+**1. What is the post about?**
 Dump your raw stream of consciousness — a story, insight, observation, case study, numbers, lesson learned. The more detail, the better. This is the most important input.
 
-If the author gives a very short answer, ask ONE follow-up to get more substance. Otherwise, proceed to Step 2.
+**2. Who is this post for?** (pick one, default: Product managers & product leaders)
+- A) Founders & indie hackers
+- B) Product managers & product leaders
+- C) Marketers & growth people
+- D) Engineers & technical leaders
 
-#### Step 2: Target audience (AskUserQuestion)
+**3. Content type?** (default: Useful)
+- A) Useful — reader learns something new (saves/reposts)
+- B) Positive — energizes, inspires
+- C) Both useful and positive
 
-Use AskUserQuestion:
-"Who is this post for?"
-Options:
-- "Founders & indie hackers"
-- "Product managers & product leaders"
-- "Marketers & growth people"
-- "Engineers & technical leaders"
+**4. Product integration?** (default: No integration)
+- A) Native story — product woven into narrative (best conversion, 5-10x better)
+- B) Post-script — add CTA if post goes viral
+- C) Links in profile only — no mention in post
+- D) No integration — pure brand/value post
 
-#### Step 3: Content type (AskUserQuestion)
+**5. Content format?** (default: Text + photo)
+- A) Text + photo (most effective)
+- B) Carousel / PDF slides (9 slides optimal)
+- C) Pure text
+- D) Text + video reference
 
-Use AskUserQuestion:
-"What type of content?"
-Options:
-- "Useful — reader learns something new" (description: "Recommended. Reader thinks 'wow, that's useful' — saves/reposts")
-- "Positive — energizes, inspires" (description: "Triggers positive emotions, energizes the reader")
-- "Both useful and positive"
+**6. Primary business goal?** (default: Maximum reach)
+- A) Maximum reach (likes, comments, reposts)
+- B) Warm up audience for future product
+- C) Give massive value to subscribers
+- D) Product/service sales or signups
 
-#### Step 4: Product integration (AskUserQuestion)
+**7. Reference post?** (optional)
+Paste a LinkedIn post that inspired you, or skip.
 
-Use AskUserQuestion:
-"Product integration level?"
-Options:
-- "Native story — product woven into narrative" (description: "Best conversion, 5-10x better than post-script")
-- "Post-script — add CTA if post goes viral"
-- "Links in profile only — no mention in post"
-- "No integration — pure brand/value post"
+---
 
-#### Step 5: Content format (AskUserQuestion)
-
-Use AskUserQuestion:
-"Content format?"
-Options:
-- "Text + photo" (description: "Recommended. Most effective format")
-- "Carousel (PDF slides)" (description: "9 slides optimal")
-- "Pure text"
-- "Text + video reference"
-
-#### Step 6: Business goals (AskUserQuestion)
-
-Use AskUserQuestion:
-"Primary business goal?"
-Options:
-- "Maximum reach (likes, comments, reposts)"
-- "Warm up audience for future product"
-- "Give massive value to subscribers"
-- "Product/service sales or signups"
-
-#### Step 7: Reference post (text, optional)
-
-Ask as plain text:
-"**Reference post?** (optional) Paste a LinkedIn post that inspired you, or type 'skip'."
-
-If the author skips or doesn't respond, proceed without a reference.
+**The author can answer in any format** — full answers, just letters ("B, A, C, D, A, A"), or only the raw content and skip the rest (defaults apply). If the author gives a very short raw content answer, ask ONE follow-up to get more substance. Otherwise, proceed immediately to the Thesis Stage.
 
 ---
 
