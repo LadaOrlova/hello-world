@@ -154,7 +154,7 @@ user_invocable: true
 
 ### 5.2. Структура файла
 
-Файл: `3-SMM/Telegram-posts/{YYYY-MM-DD}-{slug}.md`
+Файл: `3-Marketing/Telegram-posts/{YYYY-MM-DD}-{slug}.md`
 
 ```markdown
 ---
@@ -185,11 +185,11 @@ status: final
 
 ### 5.3. Сохранение
 
-1. Создай папку `3-SMM/Telegram-posts/` если она ещё не существует
+1. Создай папку `3-Marketing/Telegram-posts/` если она ещё не существует
 2. Запиши файл
 3. Выведи автору:
    - Финальную версию поста одним блоком (готовую к копированию в Telegram)
-   - Путь к сохранённому файлу: `3-SMM/Telegram-posts/{YYYY-MM-DD}-{slug}.md`
+   - Путь к сохранённому файлу: `3-Marketing/Telegram-posts/{YYYY-MM-DD}-{slug}.md`
 
 ---
 
