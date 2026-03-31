@@ -1164,6 +1164,10 @@
 - `4_Student_Records_Retention_Letter.docx` — 
 - `5_Ivan_Zamesin_CV.docx` — 
 
+*Delaware/*
+
+- `Zamesin Inc. Ltr..pdf`
+
 *Summary licenses/*
 
 - `Licenses_Summary.csv`
