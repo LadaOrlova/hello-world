@@ -1017,6 +1017,7 @@
 
 **3-Drafts/**
 
+- `AI-Doesnt-kill-PM.md` — Вводные про издание
 - `Changelog-v2-v3-drafts.md` — Changelog: что изменилось в новых драфтах v2/v3
 - `Draft-AI-Changes-PM-Role-MtP-v4.md` — Инструкция от Вани Замесина
 - `Draft-AI-Changes-PM-Role-MtP.md` — Инструкция от Вани Замесина
