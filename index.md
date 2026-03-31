@@ -1234,9 +1234,11 @@
 - `case-post-rules.md` — Правила структуры кейс-поста
 - `cases-page.html`
 - `content-platform-aura-brief.md` — Маркетинговая платформа: умный контент-план
+- `jobs-landing-visitors.md` — Работы посетителей лендинга Академии Ивана Замесина
 - `kdp-feedback-report.csv`
 - `landing-main-page-v2.html`
 - `landing-main-page-v3.html`
+- `landing-main-page-v4.html`
 - `landing-main-page.html`
 - `гипотеза-сайта.md` — Гипотеза единого сайта Zamesin Academy
 
