@@ -9,8 +9,8 @@
 | `.codex/` | — |
 | `1-Context/` | Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт" |
 | `2-Products/` | Продуктовые материалы и новые продукты |
-| `3-Marketing/` | Маркетинг: вебинары, идеи продвижения |
 | `3-Marketing/` | Контент: LinkedIn-посты, Telegram-посты, черновики статей |
+| `3-SMM/` | — |
 | `4-Hiring/` | — |
 | `4-Personal-files/` | Персональные рабочие папки участников команды |
 | `5-ZIS/` | Zamesin Innovation School: LMS и идеи |
@@ -880,7 +880,7 @@
 
 ## 3-Marketing/
 
-Маркетинг: вебинары, идеи продвижения
+Контент: LinkedIn-посты, Telegram-посты, черновики статей
 
 - `ideas.md` — Маркетинговые идеи: публичный календарь вебинаров, страница офферов компании, ежемесячные лид-магниты, скилл для написания PRD
 
@@ -1017,30 +1017,13 @@
 
 ---
 
-## 3-Marketing/
-
-Контент: LinkedIn-посты, Telegram-посты, черновики статей
+## 3-SMM/
 
 - `kdp-editor.skill`
 - `ref-bot-style.md`
 - `ref-vanya-channel-style.md` — vanya-channel-style
 - `tov-rules.md` — Правила TOV для рассылок курса «Как делать продукт»
 - `vanya-voice-guide-full.md` — Голос Вани Замесина: полный стилевой гайд
-
-### 3-Marketing/Bot/
-
-- `2026-03-11-last-kdp-cohort.md` — Telegram-пост: Последний поток КДП в этом формате
-
-### 3-Marketing/Telegram-posts/
-
-Telegram-посты.
-
-- `2026-03-17-kdp-prodlenie.md` — Telegram-пост: Продление продаж курса "Как делать продукт"
-- `2026-03-19-pleada-case-carousel.md` — Кейс PLEADA: как агентство недвижимости растёт на падающем рынке через AJTBD + AI
-
-### 3-Marketing/Сценарии для рилзов/
-
-- `сценарии-март-2026.md` — Сценарии рилзов — Март 2026
 
 ---
 
@@ -1204,7 +1187,7 @@ Telegram-посты.
 - `landing-main-page-v2.html`
 - `landing-main-page-v3.html`
 - `landing-main-page.html`
-- `referral-program-tz.md` — ТЗ: Реферальная программа в Telegram-боте
+- `referral-program-tz.md` — ТЗ: Реферальная программа для выпускников
 - `гипотеза-сайта.md` — Гипотеза единого сайта Zamesin Academy
 
 **аналитика/**
