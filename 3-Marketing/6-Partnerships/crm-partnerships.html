@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Партнёрств — Замесин Академия</title>
+<style>
+  :root {
+    --bg: #fef7ff;
+    --surface: #ffffff;
+    --surface2: #f5eeff;
+    --border: #e8d5f5;
+    --text: #2d1b4e;
+    --text-muted: #8b6aae;
+    --accent: #8b5cf6;
+    --accent-light: #a78bfa;
+    --green: #10b981;
+    --yellow: #f59e0b;
+    --red: #f43f5e;
+    --orange: #fb923c;
+    --blue: #06b6d4;
+    --purple: #c084fc;
+    --pink: #f472b6;
+    --gradient-1: linear-gradient(135deg, #c084fc 0%, #f472b6 50%, #fb923c 100%);
+    --gradient-2: linear-gradient(135deg, #a78bfa 0%, #06b6d4 100%);
+    --gradient-3: linear-gradient(135deg, #f472b6 0%, #f59e0b 100%);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: none;
+    background: var(--gradient-1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(192, 132, 252, 0.3);
+  }
+
+  .header h1 {
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  }
+
+  .header-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.2);
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+    backdrop-filter: blur(4px);
+  }
+
+  .btn:hover { background: rgba(255,255,255,0.35); transform: translateY(-1px); }
+
+  .btn-primary {
+    background: white;
+    border-color: white;
+    color: var(--accent);
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(255,255,255,0.3);
+  }
+
+  .btn-primary:hover { background: #f5eeff; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(255,255,255,0.4); }
+
+  /* ===== TABS ===== */
+  .tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    box-shadow: 0 1px 4px rgba(139, 92, 246, 0.04);
+  }
+
+  .tab {
+    padding: 12px 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+
+  .tab .badge {
+    background: var(--gradient-3);
+    color: white;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 6px;
+    font-weight: 700;
+  }
+
+  /* ===== LAYOUT ===== */
+  .layout {
+    display: flex;
+    height: calc(100vh - 97px);
+  }
+
+  .main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+  }
+
+  .sidebar {
+    width: 340px;
+    border-left: 1px solid var(--border);
+    background: linear-gradient(180deg, #fef7ff 0%, #f5eeff 100%);
+    overflow-y: auto;
+    padding: 20px;
+    flex-shrink: 0;
+  }
+
+  /* ===== REMINDERS PANEL (sidebar) ===== */
+  .reminders-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .reminders-title .count {
+    background: linear-gradient(135deg, #f43f5e, #fb7185);
+    color: white;
+    font-size: 11px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(244, 63, 94, 0.3);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 2px 8px rgba(244, 63, 94, 0.3); }
+    50% { box-shadow: 0 2px 16px rgba(244, 63, 94, 0.5); }
+  }
+
+  .reminder-group {
+    margin-bottom: 16px;
+  }
+
+  .reminder-group-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .reminder-card {
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-left: 3px solid var(--yellow);
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 1px 4px rgba(139, 92, 246, 0.06);
+  }
+
+  .reminder-card:hover { background: #efe4ff; transform: translateX(2px); }
+  .reminder-card.urgent { border-left-color: var(--red); background: #fff0f3; }
+  .reminder-card.urgent:hover { background: #ffe4ea; }
+  .reminder-card.info { border-left-color: var(--blue); }
+  .reminder-card.success { border-left-color: var(--green); background: #ecfdf5; }
+  .reminder-card.success:hover { background: #d1fae5; }
+
+  .reminder-card .r-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  .reminder-card .r-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .reminder-card .r-action {
+    margin-top: 8px;
+    display: flex;
+    gap: 6px;
+  }
+
+  .r-btn {
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.15s;
+  }
+
+  .r-btn:hover { border-color: var(--accent-light); color: var(--accent); background: #f3e8ff; }
+  .r-btn.done { border-color: var(--green); color: var(--green); }
+  .r-btn.done:hover { background: linear-gradient(135deg, #10b981, #34d399); color: white; border-color: transparent; transform: scale(1.05); }
+
+  /* ===== KANBAN VIEW ===== */
+  .kanban {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    min-height: 500px;
+  }
+
+  .kanban-col {
+    min-width: 260px;
+    width: 260px;
+    flex-shrink: 0;
+  }
+
+  .kanban-col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+  }
+
+  .kanban-col-header .col-count {
+    background: var(--surface2);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
+
+  .kanban-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.06);
+  }
+
+  .kanban-card:hover { border-color: var(--accent-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.12); }
+
+  .kanban-card .card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .card-category {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .cat-a { background: linear-gradient(135deg, #d1fae5, #a7f3d0); color: #047857; font-weight: 700; }
+  .cat-b { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #b45309; font-weight: 700; }
+  .cat-c { background: #f3e8ff; color: var(--text-muted); }
+
+  .card-type {
+    font-size: 10px;
+    color: var(--text-muted);
+    background: var(--surface2);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .kanban-card .card-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .kanban-card .card-contact {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+
+  .kanban-card .card-format {
+    font-size: 11px;
+    color: var(--accent-light);
+    margin-bottom: 10px;
+  }
+
+  .kanban-card .card-next {
+    font-size: 12px;
+    padding: 8px 10px;
+    background: var(--surface2);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(139, 92, 246, 0.08);
+  }
+
+  .kanban-card .card-next strong {
+    color: var(--text-muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .card-deadline { color: var(--yellow); }
+  .card-deadline.overdue { color: var(--red); font-weight: 600; }
+  .card-deadline.ok { color: var(--green); }
+
+  .card-flags {
+    display: flex;
+    gap: 6px;
+  }
+
+  .flag {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: var(--surface2);
+  }
+
+  .flag-usa { background: linear-gradient(135deg, #cffafe, #a5f3fc); color: #0891b2; font-weight: 600; }
+  .flag-vanya { background: linear-gradient(135deg, #f3e8ff, #e9d5ff); color: #7c3aed; font-weight: 600; }
+
+  /* ===== TABLE VIEW ===== */
+  .view-table { display: none; }
+  .view-kanban { display: flex; }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .data-table th {
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+  }
+
+  .data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+
+  .data-table tr:hover td { background: #f5eeff; }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 200;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    width: 640px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 28px;
+    box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2);
+  }
+
+  .modal h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .modal .close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 13px;
+    font-family: inherit;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  .form-group textarea { min-height: 80px; resize: vertical; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .form-section {
+    font-size: 13px;
+    font-weight: 700;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 20px 0 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ===== STATS BAR ===== */
+  .stats-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px 20px;
+    min-width: 140px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.1); }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gradient-1);
+    border-radius: 16px 16px 0 0;
+  }
+
+  .stat-card:nth-child(2)::before { background: var(--gradient-2); }
+  .stat-card:nth-child(3)::before { background: linear-gradient(135deg, #10b981, #34d399); }
+  .stat-card:nth-child(4)::before { background: var(--gradient-3); }
+  .stat-card:nth-child(5)::before { background: linear-gradient(135deg, #f43f5e, #fb7185); }
+
+  .stat-card .stat-value {
+    font-size: 28px;
+    font-weight: 800;
+  }
+
+  .stat-card .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+
+  /* ===== FILTER BAR ===== */
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .filter-bar input[type="search"] {
+    padding: 8px 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 13px;
+    width: 220px;
+  }
+
+  .filter-bar input:focus { outline: none; border-color: var(--accent); }
+
+  .filter-chip {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+
+  .filter-chip:hover {
+    border-color: var(--accent-light);
+    color: var(--accent);
+    background: #f3e8ff;
+    transform: translateY(-1px);
+  }
+
+  .filter-chip.active {
+    border-color: transparent;
+    color: white;
+    background: var(--gradient-1);
+    box-shadow: 0 2px 8px rgba(192, 132, 252, 0.3);
+    font-weight: 600;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .sidebar { display: none; }
+    .layout { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>CRM Партнёрств</h1>
+  <div class="header-actions">
+    <button class="btn" onclick="toggleView()">
+      <span id="viewToggleLabel">Таблица</span>
+    </button>
+    <button class="btn-primary btn" onclick="openModal()">+ Новый партнёр</button>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="switchTab(this, 'all')">Все</div>
+  <div class="tab" onclick="switchTab(this, 'incoming')">Входящие</div>
+  <div class="tab" onclick="switchTab(this, 'outgoing')">Исходящие</div>
+  <div class="tab" onclick="switchTab(this, 'ambassadors')">Амбассадоры</div>
+  <div class="tab" onclick="switchTab(this, 'vanya')">Нужен Ваня <span class="badge">2</span></div>
+  <div class="tab" onclick="switchTab(this, 'usa')">USA</div>
+  <div class="tab" onclick="switchTab(this, 'results')">Результаты</div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- MAIN AREA -->
+  <div class="main">
+
+    <!-- STATS -->
+    <div class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-value">24</div>
+        <div class="stat-label">Всего партнёров</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color: var(--accent-light)">7</div>
+        <div class="stat-label">В работе</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color: var(--green)">5</div>
+        <div class="stat-label">Завершено в марте</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color: var(--yellow)">3</div>
+        <div class="stat-label">Ждут ответа</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" style="color: var(--red)">2</div>
+        <div class="stat-label">Просрочено</div>
+      </div>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filter-bar">
+      <input type="search" placeholder="Поиск партнёра...">
+      <button class="filter-chip active">Все</button>
+      <button class="filter-chip">Категория A</button>
+      <button class="filter-chip">Категория B</button>
+      <button class="filter-chip">Медиа</button>
+      <button class="filter-chip">Подкасты</button>
+      <button class="filter-chip">Конференции</button>
+    </div>
+
+    <!-- KANBAN VIEW -->
+    <div class="kanban view-kanban" id="kanbanView">
+
+      <!-- Входящий -->
+      <div class="kanban-col">
+        <div class="kanban-col-header">Входящий <span class="col-count">2</span></div>
+
+        <div class="kanban-card" onclick="openDetailModal('avito')">
+          <div class="card-top">
+            <span class="card-category cat-b">B</span>
+            <span class="card-type">B2B</span>
+          </div>
+          <div class="card-name">Авито</div>
+          <div class="card-contact">Мария Козлова — @m_kozlova</div>
+          <div class="card-format">Выступление в коммьюнити маркетологов</div>
+          <div class="card-next">
+            <strong>Следующий шаг</strong>
+            Запросить детали: аудитория, формат, дата
+          </div>
+          <div class="card-bottom">
+            <span class="card-deadline">Дедлайн: 28 мар</span>
+            <div class="card-flags">
+              <span class="flag flag-vanya">Ваня</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="kanban-card">
+          <div class="card-top">
+            <span class="card-category cat-b">B</span>
+            <span class="card-type">Конференция</span>
+          </div>
+          <div class="card-name">ТехноНаучный форум</div>
+          <div class="card-contact">Оргкомитет — forum@techno.ru</div>
+          <div class="card-format">Лекция, 5-6 октября 2026</div>
+          <div class="card-next">
+            <strong>Следующий шаг</strong>
+            Квалифицировать: аудитория, охват, условия
+          </div>
+          <div class="card-bottom">
+            <span class="card-deadline ok">Дедлайн: 5 апр</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Квалификация -->
+      <div class="kanban-col">
+        <div class="kanban-col-header">Квалификация <span class="col-count">1</span></div>
+
+        <div class="kanban-card">
+          <div class="card-top">
+            <span class="card-category cat-a">A</span>
+            <span class="card-type">Конференция</span>
+          </div>
+          <div class="card-name">Конференция Сургая</div>
+          <div class="card-contact">Дмитрий Сургай — @surgay</div>
+          <div class="card-format">Выступление, 10 000+ участников</div>
+          <div class="card-next">
+            <strong>Следующий шаг</strong>
+            Подготовить бриф для Вани: аудитория, формат, трудозатраты
+          </div>
+          <div class="card-bottom">
+            <span class="card-deadline overdue">Просрочено: 24 мар</span>
+            <div class="card-flags">
+              <span class="flag flag-vanya">Ваня</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Переговоры -->
+      <div class="kanban-col">
+        <div class="kanban-col-header">Переговоры <span class="col-count">2</span></div>
+
+        <div class="kanban-card">
+          <div class="card-top">
+            <span class="card-category cat-a">A</span>
+            <span class="card-type">Медиа EN</span>
+          </div>
+          <div class="card-name">HackerNoon</div>
+          <div class="card-contact">Editor — via platform</div>
+          <div class="card-format">Статья от Вани (EN)</div>
+          <div class="card-next">
+            <strong>Следующий шаг</strong>
+            Получить от Вани черновик статьи
+          </div>
+          <div class="card-bottom">
+            <span class="card-deadline">Дедлайн: 1 апр</span>
+            <div class="card-flags">
+              <span class="flag flag-usa">USA</span>
+              <span class="flag flag-vanya">Ваня</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="kanban-card">
+          <div class="card-top">
+            <span class="card-category cat-b">B</span>
+            <span class="card-type">Эксперт</span>
+          </div>
+          <div class="card-name">Наташа Бабаева</div>
+          <div class="card-contact">@babayeva_n</div>
+          <div class="card-format">Совместный эфир / кросс-промо</div>
+          <div class="card-next">
+            <strong>Следующий шаг</strong>
+            Предложить 2-3 формата, согласовать дату
+          </div>
+          <div class="card-bottom">
+            <span class="card-deadline">Дедлайн: 30 мар</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- В работе -->
+      <div class="kanban-col">
+        <div class="kanban-col-header">В работе <span class="col-count">2</span></div>
+
+        <div class="kanban-card">
+          <div class="card-top">
+            <span class="card-category cat-a">A</span>
+            <span class="card-type">Медиа</span>
+          </div>
+          <div class="card-name">Forbes Russia</div>
+          <div class="card-contact">Юлия Смирнова — @yu_smirnova</div>
+          <div class="card-format">Статья — тезисный план согласован</div>
+          <div class="card-next">
+            <strong>Следующий шаг</strong>
+            Финализировать текст, отправить редактору
+          </div>
+          <div class="card-bottom">
+            <span class="card-deadline overdue">Просрочено: 22 мар</span>
+          </div>
+        </div>
+
+        <div class="kanban-card">
+          <div class="card-top">
+            <span class="card-category cat-a">A</span>
+            <span class="card-type">Амбассадор</span>
+          </div>
+          <div class="card-name">Миша Перегудов</div>
+          <div class="card-contact">@peregudov_m</div>
+          <div class="card-format">Проходит Boost → отзыв в канале (10К подп.)</div>
+          <div class="card-next">
+            <strong>Следующий шаг</strong>
+            Проверить прогресс обучения, подготовить просьбу об отзыве
+          </div>
+          <div class="card-bottom">
+            <span class="card-deadline ok">Дедлайн: 2 апр</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ждём публикации -->
+      <div class="kanban-col">
+        <div class="kanban-col-header">Ждём публикации <span class="col-count">1</span></div>
+
+        <div class="kanban-card">
+          <div class="card-top">
+            <span class="card-category cat-a">A</span>
+            <span class="card-type">Медиа</span>
+          </div>
+          <div class="card-name">Т-Бизнес Секреты</div>
+          <div class="card-contact">Редакция — @tbusiness_ed</div>
+          <div class="card-format">Статья #3 — фотосессия готова</div>
+          <div class="card-next">
+            <strong>Следующий шаг</strong>
+            Уточнить дату публикации
+          </div>
+          <div class="card-bottom">
+            <span class="card-deadline">Дедлайн: 31 мар</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Завершено -->
+      <div class="kanban-col">
+        <div class="kanban-col-header" style="color: var(--green)">Завершено <span class="col-count">3</span></div>
+
+        <div class="kanban-card" style="border-color: rgba(16,185,129,0.3); background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 100%)">
+          <div class="card-top">
+            <span class="card-category cat-a">A</span>
+            <span class="card-type">Медиа</span>
+          </div>
+          <div class="card-name">Т-Бизнес Секреты #1</div>
+          <div class="card-format">Статья: AJTBD для бизнеса</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; font-size: 11px;">
+            <div><span style="color: var(--text-muted)">Охват:</span> 45K</div>
+            <div><span style="color: var(--text-muted)">Переходы:</span> 380</div>
+            <div><span style="color: var(--text-muted)">Лиды:</span> 24</div>
+            <div><span style="color: var(--text-muted)">Продажи:</span> 3</div>
+          </div>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--green);">Работаем снова</div>
+        </div>
+
+        <div class="kanban-card" style="border-color: rgba(16,185,129,0.3); background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 100%)">
+          <div class="card-top">
+            <span class="card-category cat-a">A</span>
+            <span class="card-type">Вебинар</span>
+          </div>
+          <div class="card-name">Оля Соколова</div>
+          <div class="card-format">Совместный вебинар: AJTBD в маркетинге</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; font-size: 11px;">
+            <div><span style="color: var(--text-muted)">Регистрации:</span> 1 880</div>
+            <div><span style="color: var(--text-muted)">Присутствие:</span> ~940</div>
+            <div><span style="color: var(--text-muted)">Лиды:</span> 86</div>
+            <div><span style="color: var(--text-muted)">Продажи:</span> 11</div>
+          </div>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--green);">Работаем снова</div>
+        </div>
+
+        <div class="kanban-card" style="border-color: rgba(16,185,129,0.3); background: linear-gradient(135deg, #ffffff 0%, #ecfdf5 100%)">
+          <div class="card-top">
+            <span class="card-category cat-a">A</span>
+            <span class="card-type">Медиа</span>
+          </div>
+          <div class="card-name">Setters Media</div>
+          <div class="card-format">Победа в TGrammy 2025</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; font-size: 11px;">
+            <div><span style="color: var(--text-muted)">Охват:</span> 120K</div>
+            <div><span style="color: var(--text-muted)">Переходы:</span> 1 200</div>
+            <div><span style="color: var(--text-muted)">Лиды:</span> 150</div>
+            <div><span style="color: var(--text-muted)">Продажи:</span> 8</div>
+          </div>
+          <div style="margin-top: 8px; font-size: 11px; color: var(--green);">Работаем снова</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TABLE VIEW (hidden by default) -->
+    <div class="view-table" id="tableView">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Партнёр</th>
+            <th>Тип</th>
+            <th>Кат.</th>
+            <th>Статус</th>
+            <th>Формат</th>
+            <th>Следующий шаг</th>
+            <th>Дедлайн</th>
+            <th>Флаги</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Forbes Russia</strong><br><span style="color:var(--text-muted);font-size:11px">Юлия Смирнова</span></td>
+            <td><span class="card-type">Медиа</span></td>
+            <td><span class="card-category cat-a">A</span></td>
+            <td>В работе</td>
+            <td>Статья</td>
+            <td>Финализировать текст</td>
+            <td><span class="card-deadline overdue">22 мар</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><strong>HackerNoon</strong><br><span style="color:var(--text-muted);font-size:11px">Editor</span></td>
+            <td><span class="card-type">Медиа EN</span></td>
+            <td><span class="card-category cat-a">A</span></td>
+            <td>Переговоры</td>
+            <td>Статья EN</td>
+            <td>Получить черновик от Вани</td>
+            <td><span class="card-deadline">1 апр</span></td>
+            <td><span class="flag flag-usa">USA</span> <span class="flag flag-vanya">Ваня</span></td>
+          </tr>
+          <tr>
+            <td><strong>Конференция Сургая</strong><br><span style="color:var(--text-muted);font-size:11px">Дмитрий Сургай</span></td>
+            <td><span class="card-type">Конференция</span></td>
+            <td><span class="card-category cat-a">A</span></td>
+            <td>Квалификация</td>
+            <td>Выступление</td>
+            <td>Подготовить бриф для Вани</td>
+            <td><span class="card-deadline overdue">24 мар</span></td>
+            <td><span class="flag flag-vanya">Ваня</span></td>
+          </tr>
+          <tr>
+            <td><strong>Т-Бизнес Секреты</strong><br><span style="color:var(--text-muted);font-size:11px">Редакция</span></td>
+            <td><span class="card-type">Медиа</span></td>
+            <td><span class="card-category cat-a">A</span></td>
+            <td>Ждём публикации</td>
+            <td>Статья #3</td>
+            <td>Уточнить дату публикации</td>
+            <td><span class="card-deadline">31 мар</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><strong>Авито</strong><br><span style="color:var(--text-muted);font-size:11px">Мария Козлова</span></td>
+            <td><span class="card-type">B2B</span></td>
+            <td><span class="card-category cat-b">B</span></td>
+            <td>Входящий</td>
+            <td>Выступление</td>
+            <td>Запросить детали</td>
+            <td><span class="card-deadline">28 мар</span></td>
+            <td><span class="flag flag-vanya">Ваня</span></td>
+          </tr>
+          <tr>
+            <td><strong>Наташа Бабаева</strong><br><span style="color:var(--text-muted);font-size:11px">@babayeva_n</span></td>
+            <td><span class="card-type">Эксперт</span></td>
+            <td><span class="card-category cat-b">B</span></td>
+            <td>Переговоры</td>
+            <td>Эфир / кросс-промо</td>
+            <td>Предложить форматы</td>
+            <td><span class="card-deadline">30 мар</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><strong>Миша Перегудов</strong><br><span style="color:var(--text-muted);font-size:11px">@peregudov_m</span></td>
+            <td><span class="card-type">Амбассадор</span></td>
+            <td><span class="card-category cat-a">A</span></td>
+            <td>В работе</td>
+            <td>Boost → отзыв</td>
+            <td>Проверить прогресс обучения</td>
+            <td><span class="card-deadline ok">2 апр</span></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR: REMINDERS -->
+  <div class="sidebar">
+    <div class="reminders-title">
+      Напоминания <div class="count">7</div>
+    </div>
+
+    <div class="reminder-group">
+      <div class="reminder-group-title" style="color: var(--red)">Просрочено</div>
+
+      <div class="reminder-card urgent">
+        <div class="r-title">Forbes Russia — текст просрочен</div>
+        <div class="r-meta">Дедлайн был 22 марта (4 дня назад)</div>
+        <div class="r-action">
+          <button class="r-btn" onclick="alert('Открыть карточку Forbes')">Открыть</button>
+          <button class="r-btn done">Сделано</button>
+        </div>
+      </div>
+
+      <div class="reminder-card urgent">
+        <div class="r-title">Конференция Сургая — бриф не готов</div>
+        <div class="r-meta">Дедлайн квалификации был 24 марта</div>
+        <div class="r-action">
+          <button class="r-btn">Открыть</button>
+          <button class="r-btn done">Сделано</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="reminder-group">
+      <div class="reminder-group-title" style="color: var(--yellow)">Сегодня</div>
+
+      <div class="reminder-card">
+        <div class="r-title">Еженедельный отчёт для Лады</div>
+        <div class="r-meta">Пятница — день отчёта</div>
+        <div class="r-action">
+          <button class="r-btn">Шаблон отчёта</button>
+          <button class="r-btn done">Сделано</button>
+        </div>
+      </div>
+
+      <div class="reminder-card">
+        <div class="r-title">Авито — ответить на запрос</div>
+        <div class="r-meta">Входящий запрос, категория B — ответ в течение 48ч</div>
+        <div class="r-action">
+          <button class="r-btn">Шаблон ответа</button>
+          <button class="r-btn done">Сделано</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="reminder-group">
+      <div class="reminder-group-title" style="color: var(--blue)">Ближайшие</div>
+
+      <div class="reminder-card info">
+        <div class="r-title">Авито — дедлайн через 2 дня</div>
+        <div class="r-meta">28 мар — запросить детали: аудитория, формат</div>
+        <div class="r-action">
+          <button class="r-btn">Открыть</button>
+          <button class="r-btn done">Сделано</button>
+        </div>
+      </div>
+
+      <div class="reminder-card info">
+        <div class="r-title">Наташа Бабаева — предложить форматы</div>
+        <div class="r-meta">30 мар — согласовать формат и дату</div>
+        <div class="r-action">
+          <button class="r-btn">Открыть</button>
+          <button class="r-btn done">Сделано</button>
+        </div>
+      </div>
+
+      <div class="reminder-card info">
+        <div class="r-title">Т-Бизнес Секреты — уточнить дату</div>
+        <div class="r-meta">31 мар — публикация статьи #3</div>
+        <div class="r-action">
+          <button class="r-btn">Открыть</button>
+          <button class="r-btn done">Сделано</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="reminder-group">
+      <div class="reminder-group-title" style="color: var(--green)">Follow-up</div>
+
+      <div class="reminder-card success">
+        <div class="r-title">Даня Савченко — нет ответа 5 дней</div>
+        <div class="r-meta">Повторный follow-up: задай конкретный вопрос</div>
+        <div class="r-action">
+          <button class="r-btn">Написать</button>
+          <button class="r-btn done">Сделано</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL: New partner -->
+<div class="modal-overlay" id="newPartnerModal">
+  <div class="modal">
+    <h2>
+      Новый партнёр
+      <button class="close-btn" onclick="closeModal()">&times;</button>
+    </h2>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Название партнёра</label>
+        <input type="text" placeholder="Forbes Russia">
+      </div>
+      <div class="form-group">
+        <label>Тип</label>
+        <select>
+          <option>Медиа</option>
+          <option>Подкаст</option>
+          <option>Конференция</option>
+          <option>Эксперт</option>
+          <option>Амбассадор</option>
+          <option>B2B</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Контактное лицо</label>
+        <input type="text" placeholder="Имя">
+      </div>
+      <div class="form-group">
+        <label>Канал связи</label>
+        <input type="text" placeholder="Telegram @handle / email">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Направление</label>
+        <select>
+          <option>Входящее</option>
+          <option>Исходящее</option>
+          <option>Амбассадор</option>
+          <option>Вебинар</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Категория</label>
+        <select>
+          <option>A — Делаем обязательно</option>
+          <option>B — Делаем если есть ресурс</option>
+          <option>C — Отказываем</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Формат</label>
+        <select>
+          <option>Интервью</option>
+          <option>Статья</option>
+          <option>Подкаст</option>
+          <option>Вебинар / эфир</option>
+          <option>Кросс-промо</option>
+          <option>Лекция / выступление</option>
+          <option>Отзыв амбассадора</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Продукт</label>
+        <select>
+          <option>—</option>
+          <option>Boost</option>
+          <option>КДП</option>
+          <option>AURA</option>
+          <option>Мейкеры</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Нужен Ваня</label>
+        <select>
+          <option>Нет</option>
+          <option>Да — интервью</option>
+          <option>Да — выступление</option>
+          <option>Да — согласование</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>USA-релевантность</label>
+        <select>
+          <option>Нет</option>
+          <option>Да</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-section">Задача и сроки</div>
+
+    <div class="form-group">
+      <label>Следующий шаг</label>
+      <input type="text" placeholder="Что конкретно нужно сделать">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Дедлайн следующего шага</label>
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <label>Дата события / публикации</label>
+        <input type="date">
+      </div>
+    </div>
+
+    <div class="form-section">Аудитория и потенциал (для брифа Ване)</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Аудитория партнёра</label>
+        <input type="text" placeholder="Кто, сколько, совпадение с ЦА">
+      </div>
+      <div class="form-group">
+        <label>Охваты</label>
+        <input type="text" placeholder="Подписчики, просмотры, ERR">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Потенциал для нас</label>
+      <textarea placeholder="Сколько переходов, лидов, регистраций ожидаем"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Трудозатраты Вани</label>
+      <input type="text" placeholder="45 мин запись + 10 мин подготовка">
+    </div>
+
+    <div class="form-section">UTM-разметка</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>utm_source</label>
+        <input type="text" placeholder="forbes, glebkudr, sokolova">
+      </div>
+      <div class="form-group">
+        <label>utm_medium</label>
+        <select>
+          <option>article</option>
+          <option>podcast</option>
+          <option>webinar</option>
+          <option>telegram</option>
+          <option>collab</option>
+          <option>conference</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>utm_campaign</label>
+      <select>
+        <option>boost</option>
+        <option>kdp</option>
+        <option>ajtbd</option>
+        <option>aura</option>
+        <option>makers</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Комментарий</label>
+      <textarea placeholder="Дополнительная информация..."></textarea>
+    </div>
+
+    <div style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px;">
+      <button style="padding:10px 20px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);color:var(--text-muted);cursor:pointer;font-size:13px;font-weight:500" onclick="closeModal()">Отмена</button>
+      <button style="padding:10px 24px;border-radius:12px;border:none;background:var(--gradient-1);color:white;cursor:pointer;font-size:13px;font-weight:600;box-shadow:0 4px 15px rgba(192,132,252,0.3);transition:all 0.2s" onclick="closeModal()">Создать партнёра</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Toggle Kanban / Table view
+  function toggleView() {
+    const kanban = document.getElementById('kanbanView');
+    const table = document.getElementById('tableView');
+    const label = document.getElementById('viewToggleLabel');
+
+    if (kanban.style.display !== 'none') {
+      kanban.style.display = 'none';
+      table.style.display = 'block';
+      label.textContent = 'Канбан';
+    } else {
+      kanban.style.display = 'flex';
+      table.style.display = 'none';
+      label.textContent = 'Таблица';
+    }
+  }
+
+  // Tabs
+  function switchTab(el, filter) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    // In a real app, this would filter the data
+  }
+
+  // Modal
+  function openModal() {
+    document.getElementById('newPartnerModal').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('newPartnerModal').classList.remove('open');
+  }
+
+  // Close modal on overlay click
+  document.getElementById('newPartnerModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Close modal on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+
+</body>
+</html>

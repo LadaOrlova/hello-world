@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маркет-план — Zamesin Academy</title>
+<style>
+  :root {
+    --bg: #faf8ff;
+    --surface: #ffffff;
+    --surface2: #f0ecfa;
+    --border: #e4ddf5;
+    --text: #1a1033;
+    --text2: #7a6f99;
+    --pink: #e8368f;
+    --pink-bg: rgba(232,54,143,.08);
+    --violet: #8b5cf6;
+    --violet-bg: rgba(139,92,246,.08);
+    --cyan: #06b6a0;
+    --cyan-bg: rgba(6,182,160,.08);
+    --lime: #65a30d;
+    --lime-bg: rgba(101,163,13,.08);
+    --gold: #d97706;
+    --gold-bg: rgba(217,119,6,.08);
+    --coral: #ef4444;
+    --coral-bg: rgba(239,68,68,.08);
+    --sky: #3b82f6;
+    --sky-bg: rgba(59,130,246,.08);
+    --orange: #ea580c;
+    --orange-bg: rgba(234,88,12,.08);
+    --mint: #10b981;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, 'Inter', 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+  /* Header */
+  .header { display:flex; align-items:center; justify-content:space-between; padding:20px 32px; border-bottom:1px solid var(--border); background:linear-gradient(135deg, rgba(139,92,246,.04), rgba(232,54,143,.04)); }
+  .header h1 { font-size:22px; font-weight:700; background:linear-gradient(135deg,var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .tabs { display:flex; gap:4px; }
+  .tab { padding:8px 18px; border-radius:8px; font-size:14px; cursor:pointer; color:var(--text2); transition:.2s; }
+  .tab:hover { background:var(--surface2); color:var(--text); }
+  .tab.active { background:linear-gradient(135deg,var(--violet),var(--pink)); color:#fff; font-weight:600; box-shadow:0 2px 12px rgba(139,92,246,.2); }
+
+  /* Controls */
+  .controls { display:flex; align-items:center; gap:16px; padding:16px 32px; flex-wrap:wrap; }
+  .filter-group { display:flex; align-items:center; gap:8px; }
+  .filter-group label { font-size:11px; color:var(--text2); text-transform:uppercase; letter-spacing:.8px; font-weight:600; }
+  select, .search-input { background:var(--surface); border:1px solid var(--border); color:var(--text); padding:8px 14px; border-radius:8px; font-size:13px; outline:none; transition:.2s; }
+  select:focus, .search-input:focus { border-color:var(--violet); box-shadow:0 0 0 3px rgba(139,92,246,.1); }
+  .search-input { width:220px; }
+  .btn { padding:8px 18px; border-radius:8px; border:none; font-size:13px; font-weight:600; cursor:pointer; transition:.2s; }
+  .btn-primary { background:linear-gradient(135deg,var(--violet),var(--pink)); color:#fff; }
+  .btn-primary:hover { box-shadow:0 4px 20px rgba(139,92,246,.25); transform:translateY(-1px); }
+  .btn-ghost { background:transparent; border:1px solid var(--border); color:var(--text2); }
+  .btn-ghost:hover { border-color:var(--violet); color:var(--violet); }
+  .btn-chat { background:linear-gradient(135deg,#7c3aed,#db2777); color:#fff; padding:8px 16px; display:flex; align-items:center; gap:6px; }
+  .btn-chat:hover { box-shadow:0 4px 20px rgba(124,58,237,.3); transform:translateY(-1px); }
+  .spacer { flex:1; }
+
+  /* Launches */
+  .launches { display:flex; gap:16px; padding:0 32px 16px; overflow-x:auto; }
+  .launch-card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 20px; min-width:260px; flex-shrink:0; transition:.2s; box-shadow:0 1px 3px rgba(0,0,0,.04); }
+  .launch-card:hover { border-color:var(--violet); box-shadow:0 4px 20px rgba(139,92,246,.08); }
+  .launch-card .label { font-size:10px; text-transform:uppercase; letter-spacing:1px; color:var(--text2); margin-bottom:6px; font-weight:600; }
+  .launch-card .title { font-size:15px; font-weight:700; margin-bottom:4px; }
+  .launch-card .date { font-size:13px; color:var(--text2); margin-bottom:12px; }
+  .progress-bar { height:8px; background:var(--surface2); border-radius:4px; overflow:hidden; margin-bottom:6px; }
+  .progress-fill { height:100%; border-radius:4px; }
+  .progress-fill.good { background:linear-gradient(90deg,var(--cyan),var(--mint)); }
+  .progress-fill.warn { background:linear-gradient(90deg,var(--gold),var(--orange)); }
+  .progress-fill.danger { background:linear-gradient(90deg,var(--coral),var(--pink)); }
+  .launch-card .stats { display:flex; justify-content:space-between; font-size:12px; color:var(--text2); }
+  .launch-card .stats strong { color:var(--text); }
+
+  /* Legend */
+  .legend { display:flex; gap:20px; padding:8px 32px 16px; flex-wrap:wrap; }
+  .legend-item { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text2); }
+  .legend-dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+
+  /* Table */
+  .table-wrap { padding:0 32px 32px; overflow-x:auto; }
+  table { width:100%; border-collapse:separate; border-spacing:0; }
+  thead th { position:sticky; top:0; background:var(--surface); padding:12px 16px; text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.8px; color:var(--text2); border-bottom:2px solid var(--border); white-space:nowrap; font-weight:600; z-index:5; }
+  tbody tr { transition:.15s; }
+  tbody tr:hover { background:rgba(139,92,246,.03); }
+  tbody td { padding:11px 16px; border-bottom:1px solid var(--border); font-size:14px; vertical-align:middle; white-space:nowrap; }
+  tr.today { background:rgba(232,54,143,.04); }
+  tr.today td { border-bottom-color:var(--pink); }
+
+  .date-col { display:flex; flex-direction:column; min-width:70px; }
+  .date-col .day { font-weight:700; font-size:15px; }
+  .date-col .weekday { font-size:11px; color:var(--text2); }
+
+  /* Badges */
+  .badge { display:inline-flex; align-items:center; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600; }
+  .badge-webinar { background:var(--sky-bg); color:var(--sky); }
+  .badge-post { background:var(--violet-bg); color:var(--violet); }
+  .badge-broadcast { background:var(--cyan-bg); color:var(--cyan); }
+  .badge-email { background:var(--gold-bg); color:var(--gold); }
+  .badge-launch { background:var(--pink-bg); color:var(--pink); }
+  .badge-partner { background:var(--orange-bg); color:var(--orange); }
+  .badge-task { background:rgba(122,111,153,.08); color:var(--text2); }
+  .badge-case { background:var(--lime-bg); color:var(--lime); }
+  .badge-followup { background:var(--coral-bg); color:var(--coral); }
+
+  .channel { display:flex; align-items:center; gap:6px; font-size:13px; }
+  .channel-dot { width:8px; height:8px; border-radius:50%; }
+  .ch-tg { background:var(--sky); }
+  .ch-bot { background:var(--cyan); }
+  .ch-email { background:var(--gold); }
+  .ch-yt { background:var(--coral); }
+  .ch-partner { background:var(--orange); }
+  .ch-linkedin { background:var(--sky); }
+
+  /* Status dropdown */
+  .status-wrap { position:relative; display:inline-block; }
+  .status { display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:500; cursor:pointer; padding:4px 8px; border-radius:6px; transition:.15s; user-select:none; }
+  .status:hover { background:var(--surface2); }
+  .status::after { content:''; width:0; height:0; border-left:3px solid transparent; border-right:3px solid transparent; border-top:4px solid currentColor; margin-left:4px; opacity:.5; }
+  .status-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .status-done .status-dot { background:var(--cyan); }
+  .status-done { color:var(--cyan); }
+  .status-planned .status-dot { background:var(--gold); }
+  .status-planned { color:var(--gold); }
+  .status-draft .status-dot { background:var(--text2); }
+  .status-draft { color:var(--text2); }
+  .status-auto .status-dot { background:var(--violet); }
+  .status-auto { color:var(--violet); }
+  .status-live .status-dot { background:var(--pink); animation:pulse 1.5s infinite; }
+  .status-live { color:var(--pink); font-weight:700; }
+  .status-live::after { display:none; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+  .status-dropdown { display:none; position:absolute; top:100%; left:0; background:var(--surface); border:1px solid var(--border); border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,.1); padding:6px; z-index:20; min-width:160px; }
+  .status-wrap.open .status-dropdown { display:block; }
+  .status-option { display:flex; align-items:center; gap:8px; padding:8px 12px; border-radius:6px; font-size:13px; cursor:pointer; transition:.1s; }
+  .status-option:hover { background:var(--surface2); }
+  .status-option .status-dot { width:8px; height:8px; border-radius:50%; }
+
+  .result { font-size:13px; color:var(--text2); }
+  .result strong { color:var(--text); }
+
+  .linked { font-size:11px; padding:3px 8px; border-radius:5px; font-weight:600; }
+  .linked-webinar { background:var(--sky-bg); color:var(--sky); }
+  .linked-kdp { background:var(--pink-bg); color:var(--pink); }
+  .linked-boost { background:var(--lime-bg); color:var(--lime); }
+  .linked-makers { background:var(--orange-bg); color:var(--orange); }
+
+  .date-separator td { padding:6px 16px; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; color:var(--text2); background:var(--surface2); border-bottom:1px solid var(--border); }
+  .date-separator .week-label { background:linear-gradient(135deg,var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+
+  /* === MODAL === */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(26,16,51,.4); backdrop-filter:blur(4px); z-index:100; justify-content:center; align-items:center; }
+  .modal-overlay.open { display:flex; }
+  .modal { background:var(--surface); border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.15); width:560px; max-height:90vh; overflow-y:auto; }
+  .modal-header { padding:20px 24px 16px; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; }
+  .modal-header h2 { font-size:18px; font-weight:700; background:linear-gradient(135deg,var(--violet),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .modal-close { width:32px; height:32px; border:none; background:var(--surface2); border-radius:8px; font-size:18px; cursor:pointer; color:var(--text2); display:flex; align-items:center; justify-content:center; }
+  .modal-close:hover { background:var(--border); color:var(--text); }
+  .modal-body { padding:20px 24px; display:flex; flex-direction:column; gap:16px; }
+  .field { display:flex; flex-direction:column; gap:6px; }
+  .field label { font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:.5px; color:var(--text2); }
+  .field input, .field select, .field textarea { background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:10px 14px; border-radius:8px; font-size:14px; outline:none; font-family:inherit; }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color:var(--violet); box-shadow:0 0 0 3px rgba(139,92,246,.1); }
+  .field textarea { resize:vertical; min-height:80px; }
+  .field-row { display:flex; gap:12px; }
+  .field-row .field { flex:1; }
+  .modal-footer { padding:16px 24px 20px; display:flex; justify-content:flex-end; gap:10px; }
+  .modal-footer .btn { padding:10px 24px; font-size:14px; }
+
+  /* Auto-rules hint */
+  .auto-hint { background:rgba(139,92,246,.06); border:1px solid rgba(139,92,246,.15); border-radius:10px; padding:12px 16px; font-size:13px; color:var(--violet); display:flex; align-items:flex-start; gap:10px; }
+  .auto-hint strong { font-weight:700; }
+
+  /* === CHAT PANEL === */
+  .chat-toggle { position:fixed; bottom:24px; right:24px; z-index:50; width:56px; height:56px; border-radius:50%; background:linear-gradient(135deg,#7c3aed,#db2777); color:#fff; border:none; font-size:24px; cursor:pointer; box-shadow:0 4px 20px rgba(124,58,237,.3); transition:.2s; display:flex; align-items:center; justify-content:center; }
+  .chat-toggle:hover { transform:scale(1.08); box-shadow:0 6px 28px rgba(124,58,237,.4); }
+
+  .chat-panel { display:none; position:fixed; bottom:90px; right:24px; width:400px; height:500px; background:var(--surface); border:1px solid var(--border); border-radius:16px; box-shadow:0 12px 40px rgba(0,0,0,.12); z-index:50; flex-direction:column; overflow:hidden; }
+  .chat-panel.open { display:flex; }
+  .chat-header { padding:14px 18px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; background:linear-gradient(135deg, rgba(139,92,246,.04), rgba(232,54,143,.04)); }
+  .chat-header .chat-avatar { width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,#7c3aed,#db2777); display:flex; align-items:center; justify-content:center; color:#fff; font-size:14px; font-weight:700; }
+  .chat-header .chat-title { font-size:14px; font-weight:600; }
+  .chat-header .chat-sub { font-size:11px; color:var(--text2); }
+  .chat-messages { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; }
+  .chat-msg { max-width:85%; padding:10px 14px; border-radius:12px; font-size:13px; line-height:1.5; }
+  .chat-msg.bot { background:var(--surface2); color:var(--text); align-self:flex-start; border-bottom-left-radius:4px; }
+  .chat-msg.user { background:linear-gradient(135deg,var(--violet),var(--pink)); color:#fff; align-self:flex-end; border-bottom-right-radius:4px; }
+  .chat-msg .added-items { margin-top:8px; display:flex; flex-direction:column; gap:4px; }
+  .chat-msg .added-item { background:rgba(255,255,255,.15); padding:6px 10px; border-radius:6px; font-size:12px; }
+  .chat-msg.bot .added-item { background:rgba(139,92,246,.08); }
+  .chat-input-wrap { padding:12px 16px; border-top:1px solid var(--border); display:flex; gap:8px; }
+  .chat-input { flex:1; border:1px solid var(--border); background:var(--surface2); border-radius:10px; padding:10px 14px; font-size:13px; outline:none; color:var(--text); font-family:inherit; resize:none; height:40px; }
+  .chat-input:focus { border-color:var(--violet); box-shadow:0 0 0 3px rgba(139,92,246,.1); }
+  .chat-send { width:40px; height:40px; border-radius:10px; border:none; background:linear-gradient(135deg,var(--violet),var(--pink)); color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.15s; flex-shrink:0; }
+  .chat-send:hover { transform:scale(1.05); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Маркет-план — Zamesin Academy</h1>
+  <div class="tabs">
+    <div class="tab active">Маркет-план</div>
+    <div class="tab" onclick="window.open('view-analytics.html','_self')">Аналитика</div>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="filter-group">
+    <label>Период</label>
+    <select>
+      <option>Март 2026</option>
+      <option selected>Март — Апрель 2026</option>
+      <option>Апрель 2026</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Продукт</label>
+    <select>
+      <option selected>Все</option>
+      <option>КДП</option>
+      <option>BOOST</option>
+      <option>Вебинары</option>
+      <option>Конференции</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Канал</label>
+    <select>
+      <option selected>Все каналы</option>
+      <option>TG-канал</option>
+      <option>Бот</option>
+      <option>Email</option>
+      <option>Партнёры</option>
+    </select>
+  </div>
+  <input class="search-input" placeholder="Поиск..." />
+  <span class="spacer"></span>
+  <button class="btn btn-ghost">CSV</button>
+  <button class="btn btn-primary" onclick="openModal()">+ Активность</button>
+</div>
+
+<div class="launches">
+  <div class="launch-card">
+    <div class="label">Набор на поток</div>
+    <div class="title">КДП — Поток 54</div>
+    <div class="date">Старт 14 апреля &middot; 19 дней</div>
+    <div class="progress-bar"><div class="progress-fill warn" style="width:48%"></div></div>
+    <div class="stats"><span>Продано <strong>12</strong> / 25</span><span style="color:var(--gold)"><strong>13</strong> мест</span></div>
+  </div>
+  <div class="launch-card">
+    <div class="label">Набор на поток</div>
+    <div class="title">BOOST — Поток 8</div>
+    <div class="date">Старт 5 мая &middot; 40 дней</div>
+    <div class="progress-bar"><div class="progress-fill danger" style="width:20%"></div></div>
+    <div class="stats"><span>Продано <strong>3</strong> / 15</span><span style="color:var(--coral)"><strong>12</strong> мест</span></div>
+  </div>
+  <div class="launch-card">
+    <div class="label">Событие</div>
+    <div class="title">Вебинар «Разбор продуктов»</div>
+    <div class="date">26 марта &middot; СЕГОДНЯ</div>
+    <div class="progress-bar"><div class="progress-fill good" style="width:59%"></div></div>
+    <div class="stats"><span>Регистраций <strong>89</strong></span><span>Цель <strong>150</strong></span></div>
+  </div>
+  <div class="launch-card">
+    <div class="label">Событие</div>
+    <div class="title">Конференция Makers</div>
+    <div class="date">15 апреля &middot; 20 дней</div>
+    <div class="progress-bar"><div class="progress-fill danger" style="width:22%"></div></div>
+    <div class="stats"><span>Регистраций <strong>45</strong></span><span>Цель <strong>200</strong></span></div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><span class="legend-dot" style="background:var(--cyan)"></span> Готово</div>
+  <div class="legend-item"><span class="legend-dot" style="background:var(--gold)"></span> Запланировано</div>
+  <div class="legend-item"><span class="legend-dot" style="background:var(--violet)"></span> Авто</div>
+  <div class="legend-item"><span class="legend-dot" style="background:var(--text2)"></span> Черновик</div>
+  <div class="legend-item"><span class="legend-dot" style="background:var(--pink)"></span> Live</div>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+  <tr>
+    <th>Дата</th>
+    <th>Тип</th>
+    <th>Канал</th>
+    <th>Контент / Задача</th>
+    <th>Продукт</th>
+    <th>Статус</th>
+    <th>Результат</th>
+  </tr>
+</thead>
+<tbody>
+
+<tr class="date-separator"><td colspan="7"><span class="week-label">Неделя 11</span> &middot; 9 — 15 марта</td></tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">12 мар</span><span class="weekday">чт</span></div></td>
+  <td><span class="badge badge-post">Анонс</span></td>
+  <td><div class="channel"><span class="channel-dot ch-tg"></span>TG-канал</div></td>
+  <td>Пост-анонс вебинара + картинка + ссылка на регистрацию</td>
+  <td><span class="linked linked-webinar">Вебинар 26.03</span></td>
+  <td><div class="status-wrap"><span class="status status-done" onclick="toggleStatus(this)"><span class="status-dot"></span>Готово</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result"><strong>2.1K</strong> просмотров &middot; 34 рег.</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">12 мар</span><span class="weekday">чт</span></div></td>
+  <td><span class="badge badge-broadcast">Рассылка</span></td>
+  <td><div class="channel"><span class="channel-dot ch-bot"></span>Бот</div></td>
+  <td>Рассылка всем подписчикам — анонс вебинара</td>
+  <td><span class="linked linked-webinar">Вебинар 26.03</span></td>
+  <td><div class="status-wrap"><span class="status status-done" onclick="toggleStatus(this)"><span class="status-dot"></span>Готово</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result"><strong>89%</strong> доставлено &middot; <strong>34%</strong> кликнули</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">15 мар</span><span class="weekday">сб</span></div></td>
+  <td><span class="badge badge-launch">Запуск</span></td>
+  <td><div class="channel"><span class="channel-dot ch-tg"></span>TG-канал</div></td>
+  <td>Открытие набора — пост «Старт нового потока КДП»</td>
+  <td><span class="linked linked-kdp">КДП-54</span></td>
+  <td><div class="status-wrap"><span class="status status-done" onclick="toggleStatus(this)"><span class="status-dot"></span>Готово</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result"><strong>3.2K</strong> просмотров &middot; 4 продажи</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">15 мар</span><span class="weekday">сб</span></div></td>
+  <td><span class="badge badge-task">Задача</span></td>
+  <td><div class="channel"><span class="channel-dot ch-partner"></span>Партнёры</div></td>
+  <td>Пригласить 5 инфлюенсеров на разбор/рекомендацию</td>
+  <td><span class="linked linked-kdp">КДП-54</span></td>
+  <td><div class="status-wrap"><span class="status status-planned" onclick="toggleStatus(this)"><span class="status-dot"></span>2 из 5</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">ProductStar, GoPractice</span></td>
+</tr>
+
+<tr class="date-separator"><td colspan="7"><span class="week-label">Неделя 12</span> &middot; 16 — 22 марта</td></tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">19 мар</span><span class="weekday">чт</span></div></td>
+  <td><span class="badge badge-post">Анонс</span></td>
+  <td><div class="channel"><span class="channel-dot ch-tg"></span>TG-канал</div></td>
+  <td>Второй анонс вебинара — «осталось 5 дней, уже 60 участников»</td>
+  <td><span class="linked linked-webinar">Вебинар 26.03</span></td>
+  <td><div class="status-wrap"><span class="status status-done" onclick="toggleStatus(this)"><span class="status-dot"></span>Готово</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result"><strong>1.8K</strong> просмотров &middot; 21 рег.</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">19 мар</span><span class="weekday">чт</span></div></td>
+  <td><span class="badge badge-email">Email</span></td>
+  <td><div class="channel"><span class="channel-dot ch-email"></span>Email</div></td>
+  <td>Email-рассылка по лидам — анонс вебинара</td>
+  <td><span class="linked linked-webinar">Вебинар 26.03</span></td>
+  <td><div class="status-wrap"><span class="status status-done" onclick="toggleStatus(this)"><span class="status-dot"></span>Готово</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result"><strong>28%</strong> open &middot; <strong>12%</strong> click</span></td>
+</tr>
+
+<tr class="date-separator"><td colspan="7"><span class="week-label">Неделя 13</span> &middot; 23 — 29 марта</td></tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">24 мар</span><span class="weekday">пн</span></div></td>
+  <td><span class="badge badge-broadcast">Рассылка</span></td>
+  <td><div class="channel"><span class="channel-dot ch-bot"></span>Бот</div></td>
+  <td>Были на вебинарах, не купили — «Открыт набор КДП»</td>
+  <td><span class="linked linked-kdp">КДП-54</span></td>
+  <td><div class="status-wrap"><span class="status status-done" onclick="toggleStatus(this)"><span class="status-dot"></span>Готово</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result"><strong>85%</strong> дост. &middot; <strong>22%</strong> клик &middot; 3 покупки</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">25 мар</span><span class="weekday">ср</span></div></td>
+  <td><span class="badge badge-broadcast">Напоминание</span></td>
+  <td><div class="channel"><span class="channel-dot ch-bot"></span>Бот</div></td>
+  <td>Напоминание зарегистрированным: «Завтра в 19:00!»</td>
+  <td><span class="linked linked-webinar">Вебинар 26.03</span></td>
+  <td><div class="status-wrap"><span class="status status-done" onclick="toggleStatus(this)"><span class="status-dot"></span>Готово</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result"><strong>92%</strong> доставлено</span></td>
+</tr>
+
+<tr class="today">
+  <td><div class="date-col"><span class="day" style="color:var(--pink)">26 мар</span><span class="weekday" style="color:var(--pink)">чт — сегодня</span></div></td>
+  <td><span class="badge badge-webinar">Вебинар</span></td>
+  <td><div class="channel"><span class="channel-dot ch-yt"></span>YouTube Live</div></td>
+  <td>Вебинар «Разбор продуктов» — Ваня ведёт</td>
+  <td><span class="linked linked-webinar">Вебинар 26.03</span></td>
+  <td><span class="status status-live"><span class="status-dot"></span>LIVE</span></td>
+  <td><span class="result">89 рег. &middot; ожидаем ~50</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">27 мар</span><span class="weekday">пт</span></div></td>
+  <td><span class="badge badge-post">Пост</span></td>
+  <td><div class="channel"><span class="channel-dot ch-tg"></span>TG-канал</div></td>
+  <td>Запись вебинара + саммари + CTA на КДП</td>
+  <td><span class="linked linked-webinar">Вебинар 26.03</span></td>
+  <td><div class="status-wrap"><span class="status status-auto" onclick="toggleStatus(this)"><span class="status-dot"></span>Авто</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">29 мар</span><span class="weekday">вс</span></div></td>
+  <td><span class="badge badge-followup">Follow-up</span></td>
+  <td><div class="channel"><span class="channel-dot ch-bot"></span>Бот</div></td>
+  <td>Были на вебинаре, не купили — CTA на КДП</td>
+  <td><span class="linked linked-webinar">Вебинар 26.03</span></td>
+  <td><div class="status-wrap"><span class="status status-auto" onclick="toggleStatus(this)"><span class="status-dot"></span>Авто</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr class="date-separator"><td colspan="7"><span class="week-label">Неделя 14</span> &middot; 30 марта — 5 апреля</td></tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">31 мар</span><span class="weekday">пн</span></div></td>
+  <td><span class="badge badge-case">Кейс</span></td>
+  <td><div class="channel"><span class="channel-dot ch-tg"></span>TG-канал</div></td>
+  <td>Кейс выпускника — карусель + текст</td>
+  <td><span class="linked linked-kdp">КДП-54</span></td>
+  <td><div class="status-wrap"><span class="status status-draft" onclick="toggleStatus(this)"><span class="status-dot"></span>Черновик</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">1 апр</span><span class="weekday">вт</span></div></td>
+  <td><span class="badge badge-post">Пост</span></td>
+  <td><div class="channel"><span class="channel-dot ch-tg"></span>TG-канал</div></td>
+  <td>Экспертный пост Вани — тема TBD</td>
+  <td></td>
+  <td><div class="status-wrap"><span class="status status-draft" onclick="toggleStatus(this)"><span class="status-dot"></span>Черновик</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">1 апр</span><span class="weekday">вт</span></div></td>
+  <td><span class="badge badge-post">Анонс</span></td>
+  <td><div class="channel"><span class="channel-dot ch-tg"></span>TG-канал</div></td>
+  <td>Первый анонс конференции Makers + ранний доступ</td>
+  <td><span class="linked linked-makers">Makers 15.04</span></td>
+  <td><div class="status-wrap"><span class="status status-auto" onclick="toggleStatus(this)"><span class="status-dot"></span>Авто</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">3 апр</span><span class="weekday">чт</span></div></td>
+  <td><span class="badge badge-partner">Посев</span></td>
+  <td><div class="channel"><span class="channel-dot ch-partner"></span>TG ProductStar</div></td>
+  <td>Посев: пост в канале ProductStar + UTM</td>
+  <td></td>
+  <td><div class="status-wrap"><span class="status status-planned" onclick="toggleStatus(this)"><span class="status-dot"></span>Запланировано</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">5 апр</span><span class="weekday">сб</span></div></td>
+  <td><span class="badge badge-launch">Запуск</span></td>
+  <td><div class="channel"><span class="channel-dot ch-tg"></span>TG-канал</div></td>
+  <td>Открытие набора BOOST — пост + ссылка</td>
+  <td><span class="linked linked-boost">BOOST-8</span></td>
+  <td><div class="status-wrap"><span class="status status-auto" onclick="toggleStatus(this)"><span class="status-dot"></span>Авто</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">5 апр</span><span class="weekday">сб</span></div></td>
+  <td><span class="badge badge-broadcast">Upsell</span></td>
+  <td><div class="channel"><span class="channel-dot ch-bot"></span>Бот</div></td>
+  <td>Рассылка выпускникам КДП — «Следующий шаг: BOOST»</td>
+  <td><span class="linked linked-boost">BOOST-8</span></td>
+  <td><div class="status-wrap"><span class="status status-auto" onclick="toggleStatus(this)"><span class="status-dot"></span>Авто</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr class="date-separator"><td colspan="7"><span class="week-label">Неделя 15</span> &middot; 6 — 12 апреля</td></tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">7 апр</span><span class="weekday">пн</span></div></td>
+  <td><span class="badge badge-broadcast">Пуш</span></td>
+  <td><div class="channel"><span class="channel-dot ch-bot"></span>Бот + Email</div></td>
+  <td>«Осталось N мест» — рассылка по прогретым</td>
+  <td><span class="linked linked-kdp">КДП-54</span></td>
+  <td><div class="status-wrap"><span class="status status-auto" onclick="toggleStatus(this)"><span class="status-dot"></span>Авто</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">8 апр</span><span class="weekday">вт</span></div></td>
+  <td><span class="badge badge-post">Пост</span></td>
+  <td><div class="channel"><span class="channel-dot ch-tg"></span>TG-канал</div></td>
+  <td>Экспертный пост Вани — тема TBD</td>
+  <td></td>
+  <td><div class="status-wrap"><span class="status status-auto" onclick="toggleStatus(this)"><span class="status-dot"></span>Авто-напоминание</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">11 апр</span><span class="weekday">пт</span></div></td>
+  <td><span class="badge badge-followup">Дожим</span></td>
+  <td><div class="channel"><span class="channel-dot ch-bot"></span>Бот + Email</div></td>
+  <td>«Последний шанс — старт КДП через 3 дня»</td>
+  <td><span class="linked linked-kdp">КДП-54</span></td>
+  <td><div class="status-wrap"><span class="status status-auto" onclick="toggleStatus(this)"><span class="status-dot"></span>Авто</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">—</span></td>
+</tr>
+
+<tr>
+  <td><div class="date-col"><span class="day">15 апр</span><span class="weekday">вт</span></div></td>
+  <td><span class="badge badge-webinar">Конференция</span></td>
+  <td><div class="channel"><span class="channel-dot ch-yt"></span>Online</div></td>
+  <td>Конференция Makers — полный день</td>
+  <td><span class="linked linked-makers">Makers 15.04</span></td>
+  <td><div class="status-wrap"><span class="status status-planned" onclick="toggleStatus(this)"><span class="status-dot"></span>Запланировано</span><div class="status-dropdown"><div class="status-option" onclick="setStatus(this,'done','Готово')"><span class="status-dot" style="background:var(--cyan)"></span>Готово</div><div class="status-option" onclick="setStatus(this,'planned','Запланировано')"><span class="status-dot" style="background:var(--gold)"></span>Запланировано</div><div class="status-option" onclick="setStatus(this,'draft','Черновик')"><span class="status-dot" style="background:var(--text2)"></span>Черновик</div><div class="status-option" onclick="setStatus(this,'auto','Авто')"><span class="status-dot" style="background:var(--violet)"></span>Авто</div></div></div></td>
+  <td><span class="result">45 / 200 рег.</span></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+<!-- MODAL: Add activity -->
+<div class="modal-overlay" id="addModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Добавить активность</h2>
+      <button class="modal-close" onclick="closeModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="field-row">
+        <div class="field">
+          <label>Дата</label>
+          <input type="date" value="2026-04-02" />
+        </div>
+        <div class="field">
+          <label>Тип</label>
+          <select>
+            <option>Пост</option>
+            <option>Анонс</option>
+            <option selected>Вебинар</option>
+            <option>Рассылка (бот)</option>
+            <option>Email-рассылка</option>
+            <option>Follow-up</option>
+            <option>Посев</option>
+            <option>Кейс</option>
+            <option>Запуск</option>
+            <option>Задача</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Канал</label>
+          <select>
+            <option selected>TG-канал</option>
+            <option>Бот</option>
+            <option>Email</option>
+            <option>YouTube</option>
+            <option>Бот + Email</option>
+            <option>Партнёры</option>
+            <option>LinkedIn</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Продукт</label>
+          <select>
+            <option>—</option>
+            <option>КДП-54</option>
+            <option>BOOST-8</option>
+            <option selected>Вебинар</option>
+            <option>Makers</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Описание</label>
+        <textarea placeholder="Что публикуем / делаем...">Вебинар «Как найти Product-Market Fit» — Ваня ведёт, 19:00 МСК</textarea>
+      </div>
+      <div class="auto-hint">
+        <span style="font-size:18px">&#9889;</span>
+        <div>
+          <strong>Авто-правила сработают:</strong> при добавлении вебинара система автоматически создаст анонсы за 14 и 7 дней, напоминание за 1 день, follow-up через 1 день после.
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Отмена</button>
+      <button class="btn btn-primary" onclick="closeModal()">Добавить</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT with Claude -->
+<button class="chat-toggle" id="chatToggle" onclick="toggleChat()">&#10024;</button>
+
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="chat-avatar">C</div>
+    <div>
+      <div class="chat-title">Claude — маркет-план</div>
+      <div class="chat-sub">Добавляй активности голосом или текстом</div>
+    </div>
+  </div>
+  <div class="chat-messages" id="chatMessages">
+    <div class="chat-msg bot">
+      Привет! Я помогу с маркет-планом. Просто скажи или напиши, что нужно добавить. Например:<br><br>
+      <em>«Добавь вебинар на 10 апреля, тема — разбор воронок»</em><br><br>
+      <em>«Запланируй рассылку по боту на 3 апреля для выпускников КДП»</em><br><br>
+      <em>«Поставь кейс выпускника на 7 апреля в TG-канал»</em>
+    </div>
+    <div class="chat-msg user">Добавь вебинар на 10 апреля, тема «Как найти PMF». И сразу поставь анонсы</div>
+    <div class="chat-msg bot">
+      Готово! Добавила вебинар и автоматические анонсы:
+      <div class="added-items">
+        <div class="added-item">27 мар — Анонс в TG-канале (за 14 дней)</div>
+        <div class="added-item">27 мар — Рассылка по боту (за 14 дней)</div>
+        <div class="added-item">3 апр — Второй анонс в TG + email</div>
+        <div class="added-item">9 апр — Напоминание в боте</div>
+        <div class="added-item" style="font-weight:600">10 апр — Вебинар «Как найти PMF»</div>
+        <div class="added-item">11 апр — Пост с записью + follow-up</div>
+      </div>
+    </div>
+    <div class="chat-msg user">Ещё посев в канале GoPractice на 5 апреля, UTM utm_source=tg-gopractice</div>
+    <div class="chat-msg bot">
+      Добавила:
+      <div class="added-items">
+        <div class="added-item">5 апр — Посев в TG GoPractice (utm_source=tg-gopractice, utm_medium=post, utm_campaign=webinar-100426)</div>
+      </div>
+      UTM-метки проставила по справочнику.
+    </div>
+  </div>
+  <div class="chat-input-wrap">
+    <textarea class="chat-input" id="chatInput" placeholder="Напиши или наговори, что добавить..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendChat()}"></textarea>
+    <button class="chat-send" onclick="sendChat()">&#10148;</button>
+  </div>
+</div>
+
+<script>
+  // Status dropdown
+  function toggleStatus(el) {
+    const wrap = el.closest('.status-wrap');
+    document.querySelectorAll('.status-wrap.open').forEach(w => { if(w !== wrap) w.classList.remove('open'); });
+    wrap.classList.toggle('open');
+  }
+  function setStatus(optionEl, statusKey, label) {
+    const wrap = optionEl.closest('.status-wrap');
+    const statusEl = wrap.querySelector('.status');
+    statusEl.className = 'status status-' + statusKey;
+    const dot = statusEl.querySelector('.status-dot');
+    const textNode = statusEl.childNodes[statusEl.childNodes.length - 1];
+    if (textNode.nodeType === 3) textNode.textContent = label;
+    else statusEl.appendChild(document.createTextNode(label));
+    wrap.classList.remove('open');
+  }
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.status-wrap')) {
+      document.querySelectorAll('.status-wrap.open').forEach(w => w.classList.remove('open'));
+    }
+  });
+
+  // Modal
+  function openModal() { document.getElementById('addModal').classList.add('open'); }
+  function closeModal() { document.getElementById('addModal').classList.remove('open'); }
+  document.getElementById('addModal').addEventListener('click', function(e) { if(e.target === this) closeModal(); });
+
+  // Chat
+  function toggleChat() {
+    document.getElementById('chatPanel').classList.toggle('open');
+  }
+  function sendChat() {
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    const messages = document.getElementById('chatMessages');
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chat-msg user';
+    userMsg.textContent = text;
+    messages.appendChild(userMsg);
+    input.value = '';
+    setTimeout(() => {
+      const botMsg = document.createElement('div');
+      botMsg.className = 'chat-msg bot';
+      botMsg.innerHTML = 'Поняла! Добавляю в план... <em>(в реальной версии Claude обработает запрос и добавит строки в таблицу)</em>';
+      messages.appendChild(botMsg);
+      messages.scrollTop = messages.scrollHeight;
+    }, 800);
+    messages.scrollTop = messages.scrollHeight;
+  }
+</script>
+
+</body>
+</html>

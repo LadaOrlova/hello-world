@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Аналитика — Zamesin Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F7F0;
+    --surface: #ffffff;
+    --surface2: #F2F0E8;
+    --border: #E3E3E2;
+    --text: #1E1E1E;
+    --text2: rgba(0,0,0,0.5);
+    --text-secondary: rgba(0,0,0,0.7);
+    --accent: #EA8B0E;
+    --accent2: #D47D0D;
+    --green: #2D9F6F;
+    --green-bg: rgba(45,159,111,.08);
+    --yellow: #d97706;
+    --yellow-bg: rgba(217,119,6,.08);
+    --red: #ef4444;
+    --red-bg: rgba(239,68,68,.08);
+    --blue: #3b82f6;
+    --blue-bg: rgba(59,130,246,.08);
+    --orange: #ea580c;
+    --warm-dark: #3D3929;
+    --warm-mid: #6B6456;
+    --radius: 16px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.06);
+    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'IBM Plex Serif', Georgia, serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: var(--font-sans); background: var(--bg); color: var(--text); min-height:100vh; -webkit-font-smoothing:antialiased; }
+
+  /* Header */
+  .header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px; border-bottom:1px solid var(--border);
+    background: var(--surface);
+  }
+  .header h1 {
+    font-size:22px; font-weight:800; letter-spacing:-0.02em; color:var(--text);
+  }
+  .header h1 em { font-style:italic; font-family:var(--font-serif); font-weight:400; color:var(--accent); }
+  .tabs { display:flex; gap:4px; }
+  .tab {
+    padding:8px 18px; border-radius:var(--radius-sm); font-size:14px;
+    cursor:pointer; color:var(--text2); transition:.2s; font-family:var(--font-sans);
+  }
+  .tab:hover { background:var(--surface2); color:var(--text); }
+  .tab.active {
+    background:var(--text); color:#fff; font-weight:600;
+    box-shadow:0 2px 8px rgba(0,0,0,.12);
+  }
+
+  /* Controls */
+  .controls { display:flex; align-items:center; gap:16px; padding:16px 32px; flex-wrap:wrap; }
+  .filter-group { display:flex; align-items:center; gap:8px; }
+  .filter-group label { font-size:12px; color:var(--text2); text-transform:uppercase; letter-spacing:.5px; font-weight:600; }
+  select {
+    background:var(--surface); border:1px solid var(--border); color:var(--text);
+    padding:8px 14px; border-radius:var(--radius-sm); font-size:13px;
+    outline:none; transition:.2s; font-family:var(--font-sans);
+  }
+  select:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(234,139,14,.12); }
+  .btn {
+    padding:8px 18px; border-radius:var(--radius-sm); border:none;
+    font-size:13px; font-weight:600; cursor:pointer; transition:.2s;
+    font-family:var(--font-sans);
+  }
+  .btn-ghost { background:transparent; border:1px solid var(--border); color:var(--text2); }
+  .btn-ghost:hover { border-color:var(--text); color:var(--text); }
+  .spacer { flex:1; }
+
+  /* Grid layout */
+  .dashboard {
+    display:grid; grid-template-columns:1fr 1fr 1fr 1fr;
+    gap:16px; padding:0 32px 32px;
+  }
+  .dashboard > * {
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius); padding:20px 24px;
+    box-shadow:var(--shadow);
+  }
+
+  /* KPI cards */
+  .kpi { display:flex; flex-direction:column; }
+  .kpi .label { font-size:12px; text-transform:uppercase; letter-spacing:.5px; color:var(--text2); margin-bottom:8px; font-weight:600; }
+  .kpi .value { font-size:32px; font-weight:800; line-height:1; margin-bottom:6px; letter-spacing:-0.02em; }
+  .kpi .change { font-size:13px; display:flex; align-items:center; gap:4px; }
+  .kpi .change.up { color:var(--green); }
+  .kpi .change.down { color:var(--red); }
+  .kpi .sub { font-size:12px; color:var(--text2); margin-top:4px; }
+
+  /* Wide blocks */
+  .span-2 { grid-column: span 2; }
+  .span-3 { grid-column: span 3; }
+  .span-4 { grid-column: span 4; }
+
+  .section-title {
+    font-size:16px; font-weight:700; margin-bottom:16px;
+    display:flex; align-items:center; gap:8px; letter-spacing:-0.01em;
+  }
+  .section-title .badge-sm {
+    font-size:11px; background:var(--surface2); border:1px solid var(--border);
+    padding:3px 8px; border-radius:4px; color:var(--text2); font-weight:500;
+  }
+
+  /* Sources table */
+  .src-table { width:100%; border-collapse:collapse; }
+  .src-table th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--text2); padding:8px 0; border-bottom:1px solid var(--border); font-weight:600; }
+  .src-table td { padding:10px 0; border-bottom:1px solid var(--border); font-size:14px; }
+  .src-table tr:last-child td { border-bottom:none; }
+  .src-name { display:flex; align-items:center; gap:8px; }
+  .src-dot { width:10px; height:10px; border-radius:50%; }
+  .conv-bar { height:6px; background:var(--surface2); border-radius:3px; width:100px; overflow:hidden; display:inline-block; vertical-align:middle; margin-right:8px; }
+  .conv-fill { height:100%; border-radius:3px; background:var(--accent); }
+
+  /* Funnel */
+  .funnel { display:flex; flex-direction:column; gap:0; }
+  .funnel-step { display:flex; align-items:center; gap:16px; padding:10px 0; }
+  .funnel-bar-wrap { flex:1; position:relative; }
+  .funnel-bar {
+    height:36px; border-radius:var(--radius-sm);
+    display:flex; align-items:center; padding:0 14px;
+    font-size:13px; font-weight:500; color:#fff; position:relative; transition: width .5s;
+  }
+  .funnel-bar .num { position:absolute; right:14px; font-size:15px; font-weight:700; }
+  .funnel-label { width:200px; font-size:13px; color:var(--text2); flex-shrink:0; }
+  .funnel-pct { width:50px; text-align:right; font-size:13px; color:var(--text2); flex-shrink:0; }
+  .funnel-arrow { text-align:center; color:var(--text2); font-size:12px; padding:2px 0; margin-left:216px; }
+
+  /* Chart — weekly dynamics as line-style bars */
+  .week-grid { display:grid; grid-template-columns: 80px 1fr 80px 80px; gap:0; align-items:center; }
+  .week-grid .wg-header {
+    font-size:11px; text-transform:uppercase; letter-spacing:.5px;
+    color:var(--text2); padding:8px 0; border-bottom:1px solid var(--border); font-weight:600;
+  }
+  .week-grid .wg-cell { padding:10px 0; border-bottom:1px solid var(--border); font-size:14px; }
+  .week-grid .wg-bar-cell { padding:10px 8px; border-bottom:1px solid var(--border); }
+  .wg-bar-wrap { position:relative; height:24px; background:var(--surface2); border-radius:4px; overflow:hidden; }
+  .wg-bar-fill { position:absolute; left:0; top:0; height:100%; border-radius:4px; transition:width .4s; }
+  .wg-bar-leads { background:var(--accent); opacity:.7; }
+  .wg-bar-clients { background:var(--green); }
+  .wg-val { font-weight:600; }
+  .wg-forecast { opacity:.5; font-style:italic; }
+  .chart-legend { display:flex; gap:16px; margin-top:12px; }
+  .chart-legend-item { display:flex; align-items:center; gap:5px; font-size:12px; color:var(--text2); }
+  .chart-legend-dot { width:10px; height:10px; border-radius:3px; }
+
+  /* Channel cohort */
+  .cohort-grid { display:grid; grid-template-columns:140px repeat(6,1fr); gap:1px; }
+  .cohort-cell { padding:8px 10px; font-size:12px; text-align:center; border-radius:4px; }
+  .cohort-header { background:var(--surface2); color:var(--text2); font-weight:600; text-align:left; }
+  .cohort-label { background:var(--surface2); color:var(--text); font-weight:500; text-align:left; }
+  .heat-0 { background:rgba(234,139,14,.04); color:var(--text2); }
+  .heat-1 { background:rgba(234,139,14,.10); color:var(--text); }
+  .heat-2 { background:rgba(234,139,14,.18); color:var(--text); }
+  .heat-3 { background:rgba(234,139,14,.30); color:var(--text); }
+  .heat-4 { background:rgba(234,139,14,.45); color:#fff; }
+  .heat-5 { background:rgba(234,139,14,.65); color:#fff; }
+
+  /* Broadcast analytics */
+  .broadcast-list { display:flex; flex-direction:column; gap:12px; }
+  .broadcast-item {
+    display:flex; align-items:center; gap:16px; padding:12px 16px;
+    background:var(--surface2); border-radius:var(--radius-sm);
+    border:1px solid var(--border);
+  }
+  .broadcast-item .bi-title { flex:1; font-size:14px; }
+  .broadcast-item .bi-date { font-size:12px; color:var(--text2); width:80px; }
+  .broadcast-item .bi-metric { text-align:center; width:80px; }
+  .broadcast-item .bi-metric .val { font-size:16px; font-weight:600; }
+  .broadcast-item .bi-metric .lbl { font-size:10px; color:var(--text2); text-transform:uppercase; }
+
+  /* Audience cards */
+  .audience-grid { display:grid; grid-template-columns: repeat(5, 1fr); gap:12px; }
+  .aud-card {
+    background:var(--surface2); border:1px solid var(--border);
+    border-radius:var(--radius-sm); padding:16px;
+    display:flex; flex-direction:column;
+  }
+  .aud-card .aud-label { font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--text2); margin-bottom:6px; font-weight:600; }
+  .aud-card .aud-value { font-size:24px; font-weight:800; line-height:1; margin-bottom:4px; letter-spacing:-0.02em; }
+  .aud-card .aud-change { font-size:12px; display:flex; align-items:center; gap:3px; }
+  .aud-card .aud-change.up { color:var(--green); }
+  .aud-card .aud-change.down { color:var(--red); }
+  .aud-card .aud-change.flat { color:var(--text2); }
+  .aud-card .aud-sub { font-size:11px; color:var(--text2); margin-top:4px; }
+
+  /* Data sources */
+  .data-sources { display:flex; gap:12px; flex-wrap:wrap; }
+  .ds-card {
+    background:var(--surface2); border:1px solid var(--border);
+    border-radius:var(--radius-sm); padding:12px 16px;
+    display:flex; align-items:center; gap:10px; flex:1; min-width:200px;
+  }
+  .ds-icon {
+    width:36px; height:36px; border-radius:var(--radius-sm);
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; font-weight:700;
+  }
+  .ds-icon.ym { background:rgba(217,119,6,.1); color:#d97706; }
+  .ds-icon.ga { background:rgba(59,130,246,.1); color:#3b82f6; }
+  .ds-icon.bot { background:var(--green-bg); color:var(--green); }
+  .ds-icon.mg { background:var(--yellow-bg); color:var(--yellow); }
+  .ds-icon.crm { background:rgba(234,139,14,.1); color:var(--accent); }
+  .ds-info { display:flex; flex-direction:column; }
+  .ds-name { font-size:13px; font-weight:500; }
+  .ds-status { font-size:11px; color:var(--green); }
+  .ds-status.pending { color:var(--yellow); }
+
+  /* Weekly detail table */
+  .weekly-table { width:100%; border-collapse:collapse; }
+  .weekly-table th { text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--text2); padding:8px 12px; border-bottom:1px solid var(--border); font-weight:600; }
+  .weekly-table td { padding:10px 12px; border-bottom:1px solid var(--border); font-size:13px; }
+  .weekly-table tr:last-child td { border-bottom:none; }
+  .mini-bar { display:inline-block; height:8px; border-radius:4px; vertical-align:middle; margin-right:8px; }
+
+  /* Site metrics mini */
+  .site-metrics { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+  .site-metric-card {
+    background:var(--surface2); border-radius:var(--radius-sm);
+    padding:16px; border:1px solid var(--border);
+  }
+  .site-metric-card .sm-label { font-size:11px; text-transform:uppercase; letter-spacing:.5px; color:var(--text2); margin-bottom:6px; font-weight:600; }
+  .site-metric-card .sm-value { font-size:28px; font-weight:800; letter-spacing:-0.02em; line-height:1; margin-bottom:4px; }
+  .site-metric-card .sm-change { font-size:12px; }
+  .site-metric-card .sm-change.up { color:var(--green); }
+  .site-metric-card .sm-change.down { color:var(--red); }
+  .site-metric-card .sm-sub { font-size:11px; color:var(--text2); margin-top:4px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Аналитика — <em>Zamesin Academy</em></h1>
+  <div class="tabs">
+    <div class="tab" onclick="window.open('view-marketing-plan.html','_self')">Маркет-план</div>
+    <div class="tab active">Аналитика</div>
+  </div>
+</div>
+
+<div class="controls">
+  <div class="filter-group">
+    <label>Период</label>
+    <select>
+      <option>Последняя неделя</option>
+      <option selected>Март 2026</option>
+      <option>Февраль 2026</option>
+      <option>Q1 2026</option>
+      <option>Произвольный</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Продукт</label>
+    <select>
+      <option selected>Все</option>
+      <option>КДП</option>
+      <option>BOOST</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label>Сравнить с</label>
+    <select>
+      <option selected>Пред. месяц</option>
+      <option>Пред. год</option>
+      <option>Не сравнивать</option>
+    </select>
+  </div>
+  <span class="spacer"></span>
+  <button class="btn btn-ghost">Скачать отчёт</button>
+</div>
+
+<div class="dashboard">
+
+  <!-- KPI Row -->
+  <div class="kpi">
+    <div class="label">Новые лиды</div>
+    <div class="value">+324</div>
+    <div class="change up">&#9650; +18% vs февраль</div>
+    <div class="sub">Из них 280 — бот, 44 — лендинг</div>
+  </div>
+
+  <div class="kpi">
+    <div class="label">Новые клиенты</div>
+    <div class="value">+14</div>
+    <div class="change up">&#9650; +27% vs февраль</div>
+    <div class="sub">КДП: 9 &middot; BOOST: 3 &middot; Makers: 2</div>
+  </div>
+
+  <div class="kpi">
+    <div class="label">Конверсия лид &rarr; клиент</div>
+    <div class="value">4.3%</div>
+    <div class="change up">&#9650; +0.8pp vs февраль</div>
+    <div class="sub">Средн. время до покупки: 34 дня</div>
+  </div>
+
+  <div class="kpi">
+    <div class="label">Выручка (маркетинг-атрибуция)</div>
+    <div class="value">1.82M</div>
+    <div class="change up">&#9650; +340K vs февраль</div>
+    <div class="sub">LTV клиента: 130K &middot; CAC: 8.2K</div>
+  </div>
+
+  <!-- ===== Аудитория и сайт ===== -->
+  <div class="span-4">
+    <div class="section-title">Аудитория и сайт <span class="badge-sm">март 2026</span></div>
+    <div class="audience-grid">
+      <div class="aud-card">
+        <div class="aud-label">Посетители сайта</div>
+        <div class="aud-value">12 480</div>
+        <div class="aud-change up">&#9650; +22% vs февраль</div>
+        <div class="aud-sub">Уникальных за месяц</div>
+      </div>
+      <div class="aud-card">
+        <div class="aud-label">Конверсия сайта в заявку</div>
+        <div class="aud-value">2.6%</div>
+        <div class="aud-change up">&#9650; +0.3pp vs февраль</div>
+        <div class="aud-sub">324 заявки из 12 480 визитов</div>
+      </div>
+      <div class="aud-card">
+        <div class="aud-label">Telegram-канал</div>
+        <div class="aud-value">8 740</div>
+        <div class="aud-change up">&#9650; +320 за месяц</div>
+        <div class="aud-sub">@zamesin &middot; +3.8%</div>
+      </div>
+      <div class="aud-card">
+        <div class="aud-label">YouTube</div>
+        <div class="aud-value">3 210</div>
+        <div class="aud-change up">&#9650; +180 за месяц</div>
+        <div class="aud-sub">Подписчики &middot; +5.9%</div>
+      </div>
+      <div class="aud-card">
+        <div class="aud-label">Email + бот рассылка</div>
+        <div class="aud-value">15 240</div>
+        <div class="aud-change up">&#9650; +840 за месяц</div>
+        <div class="aud-sub">Активных подписчиков &middot; +5.8%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sources table -->
+  <div class="span-2">
+    <div class="section-title">Каналы трафика <span class="badge-sm">март 2026</span></div>
+    <table class="src-table">
+      <thead>
+        <tr><th>Канал</th><th>Лиды</th><th>Клиенты</th><th>Конверсия</th><th>Выручка</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:#29b6f6"></span>TG-канал @zamesin</div></td>
+          <td>98</td>
+          <td>5</td>
+          <td><span class="conv-bar"><span class="conv-fill" style="width:51%"></span></span>5.1%</td>
+          <td>650K</td>
+        </tr>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:var(--green)"></span>Бот (органика)</div></td>
+          <td>82</td>
+          <td>3</td>
+          <td><span class="conv-bar"><span class="conv-fill" style="width:37%"></span></span>3.7%</td>
+          <td>390K</td>
+        </tr>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:var(--orange)"></span>Посевы в TG-каналах</div></td>
+          <td>64</td>
+          <td>2</td>
+          <td><span class="conv-bar"><span class="conv-fill" style="width:31%"></span></span>3.1%</td>
+          <td>260K</td>
+        </tr>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:var(--red)"></span>YouTube</div></td>
+          <td>38</td>
+          <td>2</td>
+          <td><span class="conv-bar"><span class="conv-fill" style="width:53%"></span></span>5.3%</td>
+          <td>260K</td>
+        </tr>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:var(--yellow)"></span>Email-рассылки</div></td>
+          <td>22</td>
+          <td>1</td>
+          <td><span class="conv-bar"><span class="conv-fill" style="width:45%"></span></span>4.5%</td>
+          <td>130K</td>
+        </tr>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:var(--accent)"></span>Рефералы</div></td>
+          <td>12</td>
+          <td>1</td>
+          <td><span class="conv-bar"><span class="conv-fill" style="width:83%"></span></span>8.3%</td>
+          <td>130K</td>
+        </tr>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:#e040fb"></span>Instagram</div></td>
+          <td>8</td>
+          <td>0</td>
+          <td><span class="conv-bar"><span class="conv-fill" style="width:0%"></span></span>0%</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Weekly dynamics — table format (clearer than bars) -->
+  <div class="span-2">
+    <div class="section-title">Динамика по неделям <span class="badge-sm">лиды &middot; клиенты &middot; выручка</span></div>
+    <table class="weekly-table">
+      <thead>
+        <tr><th>Неделя</th><th>Лиды</th><th>Клиенты</th><th>Выручка</th><th>Конверсия</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2–8 мар</td>
+          <td><strong>58</strong></td>
+          <td><strong>2</strong></td>
+          <td>260K</td>
+          <td>3.4%</td>
+        </tr>
+        <tr>
+          <td>9–15 мар</td>
+          <td><strong>72</strong></td>
+          <td><strong>3</strong></td>
+          <td>390K</td>
+          <td>4.2%</td>
+        </tr>
+        <tr>
+          <td>16–22 мар</td>
+          <td><strong>96</strong></td>
+          <td><strong>5</strong></td>
+          <td>650K</td>
+          <td>5.2%</td>
+        </tr>
+        <tr>
+          <td>23–29 мар</td>
+          <td><strong>98</strong></td>
+          <td><strong>4</strong></td>
+          <td>520K</td>
+          <td>4.1%</td>
+        </tr>
+        <tr style="opacity:.5; font-style:italic;">
+          <td>30–31 мар</td>
+          <td>~12</td>
+          <td>0</td>
+          <td>—</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;font-size:12px;color:var(--text2)">
+      Пик на неделе 16–22: вебинар «Разбор продуктов» + рассылка follow-up дали максимальный приток.
+    </div>
+  </div>
+
+  <!-- Funnel -->
+  <div class="span-4">
+    <div class="section-title">Воронка конверсии <span class="badge-sm">полный путь &middot; март 2026</span></div>
+    <div class="funnel">
+      <div class="funnel-step">
+        <div class="funnel-label">Подписался / оставил контакт</div>
+        <div class="funnel-bar-wrap">
+          <div class="funnel-bar" style="width:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))">
+            <span class="num">15 240</span>
+          </div>
+        </div>
+        <div class="funnel-pct">100%</div>
+      </div>
+      <div class="funnel-arrow">&darr; 28% переходят</div>
+      <div class="funnel-step">
+        <div class="funnel-label">Забрал контент / гайд</div>
+        <div class="funnel-bar-wrap">
+          <div class="funnel-bar" style="width:28%;background:linear-gradient(90deg,#C47A0C,var(--accent))">
+            <span class="num">4 267</span>
+          </div>
+        </div>
+        <div class="funnel-pct">28%</div>
+      </div>
+      <div class="funnel-arrow">&darr; 42% переходят</div>
+      <div class="funnel-step">
+        <div class="funnel-label">Был на вебинаре</div>
+        <div class="funnel-bar-wrap">
+          <div class="funnel-bar" style="width:12%;background:linear-gradient(90deg,#A06A08,#C47A0C)">
+            <span class="num">1 812</span>
+          </div>
+        </div>
+        <div class="funnel-pct">12%</div>
+      </div>
+      <div class="funnel-arrow">&darr; 18% переходят</div>
+      <div class="funnel-step">
+        <div class="funnel-label">Прошёл диагностику</div>
+        <div class="funnel-bar-wrap">
+          <div class="funnel-bar" style="width:2.1%;min-width:80px;background:linear-gradient(90deg,#7A5006,#A06A08)">
+            <span class="num">324</span>
+          </div>
+        </div>
+        <div class="funnel-pct">2.1%</div>
+      </div>
+      <div class="funnel-arrow">&darr; 56% покупают</div>
+      <div class="funnel-step">
+        <div class="funnel-label" style="color:var(--green);font-weight:500">Купил</div>
+        <div class="funnel-bar-wrap">
+          <div class="funnel-bar" style="width:1.2%;min-width:70px;background:linear-gradient(90deg,var(--green),#55efc4)">
+            <span class="num">182</span>
+          </div>
+        </div>
+        <div class="funnel-pct" style="color:var(--green);font-weight:600">1.2%</div>
+      </div>
+      <div class="funnel-arrow">&darr; repeat</div>
+      <div class="funnel-step">
+        <div class="funnel-label">Купил второй продукт</div>
+        <div class="funnel-bar-wrap">
+          <div class="funnel-bar" style="width:0.25%;min-width:55px;background:linear-gradient(90deg,#009688,var(--green))">
+            <span class="num">38</span>
+          </div>
+        </div>
+        <div class="funnel-pct">0.25%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Channel cohort heatmap -->
+  <div class="span-4">
+    <div class="section-title">Когорта каналов <span class="badge-sm">сколько лидов из каждого канала конвертируются в N-й месяц</span></div>
+    <div class="cohort-grid">
+      <div class="cohort-cell cohort-header">Канал</div>
+      <div class="cohort-cell cohort-header">Месяц 1</div>
+      <div class="cohort-cell cohort-header">Месяц 2</div>
+      <div class="cohort-cell cohort-header">Месяц 3</div>
+      <div class="cohort-cell cohort-header">Месяц 4</div>
+      <div class="cohort-cell cohort-header">Месяц 5</div>
+      <div class="cohort-cell cohort-header">Месяц 6</div>
+
+      <div class="cohort-cell cohort-label">TG-канал</div>
+      <div class="cohort-cell heat-2">1.2%</div>
+      <div class="cohort-cell heat-3">2.8%</div>
+      <div class="cohort-cell heat-4">4.1%</div>
+      <div class="cohort-cell heat-4">5.0%</div>
+      <div class="cohort-cell heat-5">5.3%</div>
+      <div class="cohort-cell heat-5">5.4%</div>
+
+      <div class="cohort-cell cohort-label">YouTube</div>
+      <div class="cohort-cell heat-1">0.8%</div>
+      <div class="cohort-cell heat-2">1.5%</div>
+      <div class="cohort-cell heat-3">3.2%</div>
+      <div class="cohort-cell heat-4">4.5%</div>
+      <div class="cohort-cell heat-4">5.1%</div>
+      <div class="cohort-cell heat-5">5.6%</div>
+
+      <div class="cohort-cell cohort-label">Посевы</div>
+      <div class="cohort-cell heat-1">0.5%</div>
+      <div class="cohort-cell heat-2">1.8%</div>
+      <div class="cohort-cell heat-2">2.4%</div>
+      <div class="cohort-cell heat-3">3.0%</div>
+      <div class="cohort-cell heat-3">3.1%</div>
+      <div class="cohort-cell heat-3">3.1%</div>
+
+      <div class="cohort-cell cohort-label">Рефералы</div>
+      <div class="cohort-cell heat-3">3.2%</div>
+      <div class="cohort-cell heat-4">5.8%</div>
+      <div class="cohort-cell heat-5">7.4%</div>
+      <div class="cohort-cell heat-5">8.1%</div>
+      <div class="cohort-cell heat-5">8.3%</div>
+      <div class="cohort-cell heat-5">8.3%</div>
+
+      <div class="cohort-cell cohort-label">Email</div>
+      <div class="cohort-cell heat-1">0.9%</div>
+      <div class="cohort-cell heat-2">2.1%</div>
+      <div class="cohort-cell heat-3">3.5%</div>
+      <div class="cohort-cell heat-3">4.0%</div>
+      <div class="cohort-cell heat-4">4.4%</div>
+      <div class="cohort-cell heat-4">4.5%</div>
+
+      <div class="cohort-cell cohort-label">Instagram</div>
+      <div class="cohort-cell heat-0">0.2%</div>
+      <div class="cohort-cell heat-1">0.5%</div>
+      <div class="cohort-cell heat-1">0.8%</div>
+      <div class="cohort-cell heat-1">1.0%</div>
+      <div class="cohort-cell heat-1">1.1%</div>
+      <div class="cohort-cell heat-1">1.1%</div>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:var(--text2)">
+      Инсайт: рефералы конвертируются в 2x быстрее остальных каналов. YouTube догоняет TG к 5-му месяцу — длинный цикл прогрева, но высокая конверсия. Instagram — минимальный вклад.
+    </div>
+  </div>
+
+  <!-- Key B2B metrics -->
+  <div class="span-2">
+    <div class="section-title">Ключевые метрики B2B <span class="badge-sm">отдельная воронка</span></div>
+    <table class="weekly-table">
+      <thead><tr><th>Метрика</th><th>Значение</th><th>Тренд</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Среднее время до покупки</td>
+          <td><strong>34 дня</strong></td>
+          <td style="color:var(--green)">-5 дней vs Q4</td>
+        </tr>
+        <tr>
+          <td>Среднее кол-во касаний до покупки</td>
+          <td><strong>7.2 касания</strong></td>
+          <td style="color:var(--text2)">стабильно</td>
+        </tr>
+        <tr>
+          <td>Самый конвертирующий путь</td>
+          <td colspan="2"><strong>TG-пост &rarr; бот &rarr; вебинар &rarr; диагностика &rarr; покупка</strong></td>
+        </tr>
+        <tr>
+          <td>Repeat purchase rate</td>
+          <td><strong>21%</strong></td>
+          <td style="color:var(--green)">+3% vs Q4</td>
+        </tr>
+        <tr>
+          <td>Активные follow-up цепочки</td>
+          <td><strong>248 лидов</strong></td>
+          <td style="color:var(--text2)">в прогреве сейчас</td>
+        </tr>
+        <tr>
+          <td>LTV клиента (среднее)</td>
+          <td><strong>130K</strong></td>
+          <td style="color:var(--green)">+12K vs Q4</td>
+        </tr>
+        <tr>
+          <td>Лучший канал по LTV</td>
+          <td><strong>Рефералы — 185K</strong></td>
+          <td style="color:var(--green)">1.4x от среднего</td>
+        </tr>
+        <tr>
+          <td>Отток (остывшие за месяц)</td>
+          <td><strong>340 лидов</strong></td>
+          <td style="color:var(--red)">+12% vs февраль</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Broadcast analytics -->
+  <div class="span-2">
+    <div class="section-title">Последние рассылки <span class="badge-sm">бот + email</span></div>
+    <div class="broadcast-list">
+      <div class="broadcast-item">
+        <div class="bi-date">24 мар</div>
+        <div class="bi-title">Follow-up вебинара «Разбор продуктов»</div>
+        <div class="bi-metric"><div class="val" style="color:var(--green)">42%</div><div class="lbl">open</div></div>
+        <div class="bi-metric"><div class="val" style="color:var(--blue)">18%</div><div class="lbl">click</div></div>
+        <div class="bi-metric"><div class="val" style="color:var(--accent)">3</div><div class="lbl">покупки</div></div>
+      </div>
+      <div class="broadcast-item">
+        <div class="bi-date">20 мар</div>
+        <div class="bi-title">Набор КДП-54 — были на вебинарах</div>
+        <div class="bi-metric"><div class="val" style="color:var(--green)">38%</div><div class="lbl">open</div></div>
+        <div class="bi-metric"><div class="val" style="color:var(--blue)">22%</div><div class="lbl">click</div></div>
+        <div class="bi-metric"><div class="val" style="color:var(--accent)">2</div><div class="lbl">покупки</div></div>
+      </div>
+      <div class="broadcast-item">
+        <div class="bi-date">15 мар</div>
+        <div class="bi-title">Анонс конференции Makers</div>
+        <div class="bi-metric"><div class="val" style="color:var(--yellow)">15%</div><div class="lbl">open</div></div>
+        <div class="bi-metric"><div class="val" style="color:var(--blue)">3%</div><div class="lbl">click</div></div>
+        <div class="bi-metric"><div class="val" style="color:var(--text2)">0</div><div class="lbl">покупки</div></div>
+      </div>
+      <div class="broadcast-item">
+        <div class="bi-date">10 мар</div>
+        <div class="bi-title">Email: гайд по AJTBD для новых подписчиков</div>
+        <div class="bi-metric"><div class="val" style="color:var(--green)">35%</div><div class="lbl">open</div></div>
+        <div class="bi-metric"><div class="val" style="color:var(--blue)">28%</div><div class="lbl">click</div></div>
+        <div class="bi-metric"><div class="val" style="color:var(--text2)">0</div><div class="lbl">покупки</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-touch attribution -->
+  <div class="span-4">
+    <div class="section-title">Мультитач-атрибуция <span class="badge-sm">какие каналы участвуют в конверсии</span></div>
+    <table class="src-table">
+      <thead>
+        <tr>
+          <th>Канал</th>
+          <th>First touch (привёл)</th>
+          <th>Mid touch (прогрел)</th>
+          <th>Last touch (конвертировал)</th>
+          <th>Участие в покупках</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:#29b6f6"></span>TG-канал @zamesin</div></td>
+          <td><strong>42%</strong></td>
+          <td>28%</td>
+          <td>15%</td>
+          <td><span class="mini-bar" style="width:80px;background:var(--accent)"></span>68% покупок</td>
+        </tr>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:var(--green)"></span>Бот (рассылки)</div></td>
+          <td>18%</td>
+          <td><strong>45%</strong></td>
+          <td><strong>35%</strong></td>
+          <td><span class="mini-bar" style="width:90px;background:var(--green)"></span>78% покупок</td>
+        </tr>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:var(--red)"></span>YouTube</div></td>
+          <td>22%</td>
+          <td><strong>38%</strong></td>
+          <td>8%</td>
+          <td><span class="mini-bar" style="width:50px;background:var(--red)"></span>45% покупок</td>
+        </tr>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:var(--yellow)"></span>Email</div></td>
+          <td>5%</td>
+          <td>22%</td>
+          <td><strong>30%</strong></td>
+          <td><span class="mini-bar" style="width:45px;background:var(--yellow)"></span>38% покупок</td>
+        </tr>
+        <tr>
+          <td><div class="src-name"><span class="src-dot" style="background:var(--orange)"></span>Вебинары</div></td>
+          <td>8%</td>
+          <td>15%</td>
+          <td><strong>28%</strong></td>
+          <td><span class="mini-bar" style="width:42px;background:var(--orange)"></span>35% покупок</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;font-size:12px;color:var(--text2)">
+      Инсайт: TG-канал — главный источник первого касания (42%), но конвертирует бот (35% last touch). Без бота TG-канал выглядел бы бесполезным — но он критичен для верха воронки. Вебинары — сильный конвертер (28% last touch), хотя редко бывают первым касанием.
+    </div>
+  </div>
+
+  <!-- Data sources — moved to bottom -->
+  <div class="span-4" style="opacity:.85;">
+    <div class="section-title">Источники данных <span class="badge-sm">подключены</span></div>
+    <div class="data-sources">
+      <div class="ds-card">
+        <div class="ds-icon ym">Я</div>
+        <div class="ds-info">
+          <div class="ds-name">Яндекс.Метрика</div>
+          <div class="ds-status">UTM, визиты, цели</div>
+        </div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-icon ga">G</div>
+        <div class="ds-info">
+          <div class="ds-name">Google Analytics</div>
+          <div class="ds-status pending">Опционально (дублирует Я.М.)</div>
+        </div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-icon bot">B</div>
+        <div class="ds-info">
+          <div class="ds-name">BotHelp / ZIS Bot</div>
+          <div class="ds-status">Подписки, клики, цепочки</div>
+        </div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-icon mg">M</div>
+        <div class="ds-info">
+          <div class="ds-name">Mailgunner</div>
+          <div class="ds-status">Open rate, click rate, unsub</div>
+        </div>
+      </div>
+      <div class="ds-card">
+        <div class="ds-icon crm">Z</div>
+        <div class="ds-info">
+          <div class="ds-name">ZIS CRM</div>
+          <div class="ds-status">Лиды, продажи, enrollment</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

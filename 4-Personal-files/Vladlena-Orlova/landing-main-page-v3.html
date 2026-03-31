@@ -81,7 +81,7 @@
         .hero-eyebrow { font-size: 0.8rem; font-weight: 500; color: var(--text-muted); margin-bottom: 24px; }
         .hero h1 { color: var(--black); margin-bottom: 16px; max-width: 800px; }
         .hero h1 em { font-style: italic; font-family: var(--font-serif); font-weight: 400; }
-        .hero-sub { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 36px; max-width: 560px; line-height: 1.6; }
+        .hero-sub { font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 36px; max-width: 600px; line-height: 1.6; }
         .hero-topics {
             display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
             margin-bottom: 32px;
@@ -98,6 +98,42 @@
         .hero-proof-item { text-align: center; }
         .hero-proof-item .num { font-size: 1.8rem; font-weight: 800; color: var(--black); line-height: 1; }
         .hero-proof-item .label { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* === TWO PILLARS === */
+        .pillars { background: var(--white); }
+        .pillars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .pillar-card {
+            border-radius: var(--radius); padding: 36px; position: relative; overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .pillar-card:hover { transform: translateY(-3px); }
+        .pillar-card.pillar-aura { background: var(--cream); border: 1px solid var(--border); }
+        .pillar-card.pillar-boost { background: var(--black); }
+        .pillar-emoji { font-size: 2rem; margin-bottom: 16px; }
+        .pillar-tag {
+            display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; padding: 4px 10px; border-radius: 4px; margin-bottom: 16px;
+        }
+        .pillar-tag-aura { background: var(--cyan-bg); color: #0E7490; }
+        .pillar-tag-boost { background: var(--orange); color: var(--white); }
+        .pillar-card.pillar-aura h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--black); }
+        .pillar-card.pillar-aura p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px; }
+        .pillar-card.pillar-boost h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--white); }
+        .pillar-card.pillar-boost p { font-size: 0.95rem; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+        .pillar-features { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+        .pillar-features li { font-size: 0.88rem; padding-left: 20px; position: relative; }
+        .pillar-card.pillar-aura .pillar-features li { color: var(--text-secondary); }
+        .pillar-card.pillar-boost .pillar-features li { color: rgba(255,255,255,0.6); }
+        .pillar-features li::before { content: ''; position: absolute; left: 0; top: 8px; width: 6px; height: 6px; border-radius: 50%; }
+        .pillar-card.pillar-aura .pillar-features li::before { background: var(--black); }
+        .pillar-card.pillar-boost .pillar-features li::before { background: var(--orange); }
+        .pillar-stats { display: flex; gap: 24px; }
+        .pillar-stat .val { font-size: 1.2rem; font-weight: 800; line-height: 1; }
+        .pillar-stat .lbl { font-size: 0.7rem; margin-top: 2px; }
+        .pillar-card.pillar-aura .pillar-stat .val { color: var(--black); }
+        .pillar-card.pillar-aura .pillar-stat .lbl { color: var(--text-muted); }
+        .pillar-card.pillar-boost .pillar-stat .val { color: var(--orange); }
+        .pillar-card.pillar-boost .pillar-stat .lbl { color: rgba(255,255,255,0.35); }
 
         /* === SOCIAL PROOF TAGS === */
         .proof-tags-row { display: flex; flex-direction: column; gap: 16px; margin-top: 48px; }
@@ -178,14 +214,15 @@
         .author-block {
             background: var(--cream); border: 1px solid var(--border);
             border-radius: var(--radius); padding: 48px;
-            display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: start;
+            display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: start;
         }
         .author-photo {
-            width: 200px; height: 200px; border-radius: var(--radius);
+            width: 220px; height: 280px; border-radius: var(--radius);
             background: linear-gradient(135deg, var(--cyan-bg), var(--green-bg));
             display: flex; align-items: center; justify-content: center;
             font-size: 4rem; font-weight: 800; color: var(--black); overflow: hidden;
         }
+        .author-photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
         .author-info h3 { font-size: 1.5rem; margin-bottom: 4px; }
         .author-title { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; margin-bottom: 16px; }
         .author-bio { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.7; }
@@ -237,9 +274,7 @@
             display: flex; flex-direction: column; gap: 16px;
         }
         .cal-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-        .cal-date {
-            display: flex; align-items: center; gap: 12px;
-        }
+        .cal-date { display: flex; align-items: center; gap: 12px; }
         .cal-day {
             width: 52px; height: 52px; border-radius: var(--radius-sm);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -251,10 +286,7 @@
         .cal-day.yellow { background: var(--yellow-bg); }
         .cal-day.lavender { background: var(--lavender-bg); }
         .cal-meta { flex: 1; }
-        .cal-type {
-            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-            margin-bottom: 2px;
-        }
+        .cal-type { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 2px; }
         .cal-type.webinar { color: #0E7490; }
         .cal-type.boost { color: #5B21B6; }
         .cal-title { font-weight: 600; font-size: 1rem; line-height: 1.3; color: var(--text-primary); }
@@ -297,7 +329,8 @@
             .aura-grid { grid-template-columns: 1fr 1fr; }
             .author-block { grid-template-columns: 1fr; text-align: center; }
             .author-photo { margin: 0 auto; }
-            .calendar-grid { grid-template-columns: 1fr; }
+            .author-credentials { align-items: center; }
+            .pillars-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 768px) {
             section { padding: 56px 0; }
@@ -308,6 +341,7 @@
             .hero-topics { gap: 8px; }
             .cases-grid { grid-template-columns: 1fr; }
             .free-grid { grid-template-columns: 1fr; }
+            .calendar-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 480px) {
             .aura-grid { grid-template-columns: 1fr; }
@@ -321,11 +355,12 @@
     <nav class="container nav">
         <a href="/" class="nav-logo">Академия Ивана Замесина</a>
         <div class="nav-links">
+            <a href="#pillars">Чему учим</a>
             <a href="#method">Методология</a>
             <a href="#author">Автор</a>
-            <a href="#calendar">События</a>
             <a href="#cases">Кейсы</a>
-            <a href="#quiz" class="nav-cta">Записаться</a>
+            <a href="#calendar">События</a>
+            <a href="#quiz" class="nav-cta">В лист ожидания</a>
         </div>
         <button class="burger" aria-label="Меню">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -343,9 +378,9 @@
             <span class="hero-topic">Методология AURA</span>
             <span class="hero-topic">Вайб-кодинг</span>
         </div>
-        <p class="hero-sub">Система принятия продуктовых решений на основе исследований, а не интуиции. 11 000+ выпускников, оценка пользы — 9.2 из 10.</p>
+        <p class="hero-sub">От замысла до работающего продукта. Методология, стратегия, вайб-кодинг. 13 000+ выпускников, оценка пользы — 9.2 из 10.</p>
         <div class="hero-proof">
-            <div class="hero-proof-item"><div class="num">11 000+</div><div class="label">выпускников</div></div>
+            <div class="hero-proof-item"><div class="num">13 000+</div><div class="label">выпускников</div></div>
             <div class="hero-proof-item"><div class="num">9.2/10</div><div class="label">оценка пользы</div></div>
             <div class="hero-proof-item"><div class="num">59</div><div class="label">потоков проведено</div></div>
             <div class="hero-proof-item"><div class="num">#1</div><div class="label">продуктовый курс России</div></div>
@@ -353,13 +388,67 @@
     </div>
 </section>
 
-<!-- ===== METHODOLOGY ===== -->
+<!-- ===== ДВЕ СУПЕРСИЛЫ ===== -->
+<section class="pillars" id="pillars">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Чему учим</span>
+            <h2>Две суперсилы для тех, кто создаёт продукты</h2>
+            <p>Понять, что строить — и построить это руками</p>
+        </div>
+
+        <div class="pillars-grid">
+            <!-- AURA -->
+            <div class="pillar-card pillar-aura">
+                <span class="pillar-tag pillar-tag-aura">Методология</span>
+                <h3>AURA: пойми, что строить</h3>
+                <p>Мета-фреймворк, который синхронизирует продукт, маркетинг, продажи и разработку. Решения на основе исследований, а не интуиции.</p>
+                <ul class="pillar-features">
+                    <li>Advanced JTBD — реальные мотивы покупки</li>
+                    <li>Unit Economics — проверка гипотез цифрами</li>
+                    <li>Riskiest Assumption Test — что может убить продукт</li>
+                    <li>ABCDX-сегментация — фокус на прибыльных клиентах</li>
+                </ul>
+                <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-muted);">
+                    Встроена во все наши программы, включая BOOST
+                </div>
+            </div>
+
+            <!-- BOOST -->
+            <div class="pillar-card pillar-boost">
+                <span class="pillar-tag pillar-tag-boost">Интенсив</span>
+                <h3>BOOST: создай своими руками</h3>
+                <p>Вайб-кодинг на максималках. От идеи до работающего MVP за 1 неделю с помощью AI. Без опыта в программировании.</p>
+                <ul class="pillar-features">
+                    <li>Собираете MVP своего продукта с AI</li>
+                    <li>Лендинг, бот, CRM — за дни, не месяцы</li>
+                    <li>Работаете над реальным проектом, не учебным</li>
+                    <li>Навык, который останется навсегда</li>
+                </ul>
+                <div class="pillar-stats">
+                    <div class="pillar-stat"><div class="val">9.3/10</div><div class="lbl">оценка пользы</div></div>
+                    <div class="pillar-stat"><div class="val">1 нед</div><div class="lbl">интенсив</div></div>
+                </div>
+                <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1);">
+                    <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); margin-bottom: 8px;">Ближайшие потоки</div>
+                    <div style="display: flex; gap: 16px; margin-bottom: 20px;">
+                        <div style="font-size: 0.88rem; color: rgba(255,255,255,0.7);"><strong style="color: var(--white);">Поток 5:</strong> 3–11 апреля</div>
+                        <div style="font-size: 0.88rem; color: rgba(255,255,255,0.7);"><strong style="color: var(--white);">Поток 6:</strong> 17–25 апреля</div>
+                    </div>
+                    <a href="#" class="btn btn-orange" style="width: 100%;">Записаться на BOOST &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== METHODOLOGY (AURA detail) ===== -->
 <section class="method" id="method">
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Методология</span>
-            <h2>Почему это работает</h2>
-            <p>AURA — интегральный мета-фреймворк, который синхронизирует продукт, маркетинг, продажи и разработку</p>
+            <h2>Как устроена AURA</h2>
+            <p>Интегральный мета-фреймворк: каждая буква — этап системного продуктового мышления</p>
         </div>
         <div class="aura-grid">
             <div class="aura-card">
@@ -374,7 +463,7 @@
             </div>
             <div class="aura-card">
                 <div class="aura-letter">R</div>
-                <h3>Risk Assumption</h3>
+                <h3>Riskiest Assumption Test</h3>
                 <p>Приоритизация самых рискованных допущений. Тестируем то, что может убить продукт.</p>
             </div>
             <div class="aura-card">
@@ -418,65 +507,11 @@
     </div>
 </section>
 
-<!-- ===== МЫ ГОТОВИМ НОВОЕ + ФОРМА ===== -->
-<section class="waitlist" id="waitlist">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Что дальше</span>
-            <h2>Мы готовим для вас что-то новое</h2>
-        </div>
-        <div class="waitlist-story-block">
-            <p class="waitlist-story-text">
-                Курс &laquo;Как делать продукт&raquo; в старом формате больше не будет проводиться.
-                Это был путь длиной в 8 лет. 59 открытых потоков. 40 корпоративных обучений.
-                Больше 1500 воркшопов. Четырнадцать больших пересборок методологии и курса.
-            </p>
-            <p class="waitlist-rebuild">
-                Сейчас мы собираем новый формат — короче, интенсивнее, с AI-инструментами внутри.
-            </p>
-            <div class="waitlist-nums">
-                <div class="waitlist-num"><div class="val">8 лет</div><div class="lbl">развития</div></div>
-                <div class="waitlist-num"><div class="val">59</div><div class="lbl">потоков</div></div>
-                <div class="waitlist-num"><div class="val">1 500+</div><div class="lbl">воркшопов</div></div>
-                <div class="waitlist-num"><div class="val">14</div><div class="lbl">пересборок</div></div>
-            </div>
-        </div>
-
-        <div class="quiz-card" id="quiz">
-            <div class="quiz-left">
-                <h2>Хотите первыми узнать о новом формате?</h2>
-                <p>Ответьте на несколько вопросов — так мы поймём, что вам нужно, и вы получите лекцию, которую не получит больше никто.</p>
-                <div class="quiz-steps">
-                    <div class="quiz-step"><span class="quiz-step-num">1</span> Расскажите о своей роли</div>
-                    <div class="quiz-step"><span class="quiz-step-num">2</span> Опишите ситуацию с продуктом</div>
-                    <div class="quiz-step"><span class="quiz-step-num">3</span> Выберите, что нужно в первую очередь</div>
-                    <div class="quiz-step"><span class="quiz-step-num">4</span> Контекст: B2B/B2C, команда, бюджет</div>
-                    <div class="quiz-step"><span class="quiz-step-num">5</span> Опыт с обучением Замесина</div>
-                    <div class="quiz-step"><span class="quiz-step-num">6</span> Контакты</div>
-                    <div class="quiz-step"><span class="quiz-step-num">7</span> Получите рекомендацию + лекцию</div>
-                </div>
-            </div>
-            <div class="quiz-right">
-                <h3>Список ожидания</h3>
-                <p>Оставьте контакт — или пройдите квиз и получите лекцию в подарок</p>
-                <form class="wl-form" onsubmit="return false;" style="margin-bottom: 14px;">
-                    <input class="wl-input" type="text" placeholder="Имя" required>
-                    <input class="wl-input" type="email" placeholder="Email" required>
-                    <input class="wl-input" type="text" placeholder="Telegram (@username)">
-                    <button type="submit" class="btn btn-orange btn-lg" style="width:100%;">Просто записаться &rarr;</button>
-                </form>
-                <div class="wl-or">или</div>
-                <a href="#" class="btn btn-black btn-lg" style="width:100%;">Пройти квиз и получить лекцию &rarr;</a>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- ===== AUTHOR ===== -->
 <section class="author-section" id="author">
     <div class="container">
         <div class="author-block">
-            <div class="author-photo">ИЗ</div>
+            <div class="author-photo"><img src="ivan-zamesin.png" alt="Иван Замесин"></div>
             <div class="author-info">
                 <h3>Иван Замесин</h3>
                 <div class="author-title">Автор методологии AURA &middot; Эксперт #1 среди российских IT-продактов</div>
@@ -493,70 +528,11 @@
                     <li>Основатель крупнейшего сообщества продактов и исследователей</li>
                 </ul>
                 <div class="author-rating">
-                    <div class="author-rating-item"><div class="num">11 000+</div><div class="label">обучил специалистов</div></div>
+                    <div class="author-rating-item"><div class="num">13 000+</div><div class="label">обучил специалистов</div></div>
                     <div class="author-rating-item"><div class="num">9.2/10</div><div class="label">средняя оценка пользы</div></div>
                     <div class="author-rating-item"><div class="num">#1</div><div class="label">продуктовый курс в России</div></div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== CALENDAR ===== -->
-<section class="calendar-section" id="calendar">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Расписание</span>
-            <h2>Ближайшие события</h2>
-            <p>Вебинары и запуски — регистрация через бота</p>
-        </div>
-        <div class="calendar-grid">
-
-            <div class="cal-card">
-                <div class="cal-date">
-                    <div class="cal-day cyan">10<span>апр</span></div>
-                    <div class="cal-meta">
-                        <div class="cal-type webinar">Вебинар</div>
-                        <div class="cal-title">Как найти PMF с помощью Advanced JTBD</div>
-                    </div>
-                </div>
-                <div class="cal-desc">Разберём на реальном кейсе, как исследование работ клиента помогает найти product-market fit быстрее.</div>
-                <div class="cal-bottom">
-                    <span class="cal-time">19:00 MSK &middot; 60 мин</span>
-                    <a href="#" class="cal-btn">Записаться &rarr;</a>
-                </div>
-            </div>
-
-            <div class="cal-card">
-                <div class="cal-date">
-                    <div class="cal-day green">14<span>апр</span></div>
-                    <div class="cal-meta">
-                        <div class="cal-type boost">Запуск Boost</div>
-                        <div class="cal-title">Boost: Вайб-кодинг для продактов</div>
-                    </div>
-                </div>
-                <div class="cal-desc">Двухнедельный интенсив: собираете MVP своего продукта с помощью AI-кодинга. Без опыта в программировании.</div>
-                <div class="cal-bottom">
-                    <span class="cal-time">Старт 14 апреля</span>
-                    <a href="#" class="cal-btn">Подробнее &rarr;</a>
-                </div>
-            </div>
-
-            <div class="cal-card">
-                <div class="cal-date">
-                    <div class="cal-day yellow">24<span>апр</span></div>
-                    <div class="cal-meta">
-                        <div class="cal-type webinar">Вебинар</div>
-                        <div class="cal-title">ABCDX-сегментация: кому продавать, а кому нет</div>
-                    </div>
-                </div>
-                <div class="cal-desc">Как перестать распыляться и сфокусироваться на сегментах, которые приносят прибыль и рекомендации.</div>
-                <div class="cal-bottom">
-                    <span class="cal-time">19:00 MSK &middot; 60 мин</span>
-                    <a href="#" class="cal-btn">Записаться &rarr;</a>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
@@ -663,6 +639,119 @@
         </div>
         <div style="text-align: center; margin-top: 36px;">
             <a href="cases-page.html" class="btn btn-outline">Все кейсы выпускников &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CALENDAR ===== -->
+<section class="calendar-section" id="calendar">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Расписание</span>
+            <h2>Ближайшие события</h2>
+            <p>Вебинары и запуски — регистрация через бота</p>
+        </div>
+        <div class="calendar-grid">
+
+            <div class="cal-card">
+                <div class="cal-date">
+                    <div class="cal-day cyan">10<span>апр</span></div>
+                    <div class="cal-meta">
+                        <div class="cal-type webinar">Вебинар</div>
+                        <div class="cal-title">Как найти PMF с помощью Advanced JTBD</div>
+                    </div>
+                </div>
+                <div class="cal-desc">Разберём на реальном кейсе, как исследование работ клиента помогает найти product-market fit быстрее.</div>
+                <div class="cal-bottom">
+                    <span class="cal-time">19:00 MSK &middot; 60 мин</span>
+                    <a href="#" class="cal-btn">Записаться &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cal-card">
+                <div class="cal-date">
+                    <div class="cal-day green">14<span>апр</span></div>
+                    <div class="cal-meta">
+                        <div class="cal-type boost">Запуск Boost</div>
+                        <div class="cal-title">Boost: Вайб-кодинг для продактов</div>
+                    </div>
+                </div>
+                <div class="cal-desc">Недельный интенсив: собираете MVP своего продукта с помощью AI-кодинга. Без опыта в программировании.</div>
+                <div class="cal-bottom">
+                    <span class="cal-time">Старт 14 апреля</span>
+                    <a href="#" class="cal-btn">Подробнее &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cal-card">
+                <div class="cal-date">
+                    <div class="cal-day yellow">24<span>апр</span></div>
+                    <div class="cal-meta">
+                        <div class="cal-type webinar">Вебинар</div>
+                        <div class="cal-title">ABCDX-сегментация: кому продавать, а кому нет</div>
+                    </div>
+                </div>
+                <div class="cal-desc">Как перестать распыляться и сфокусироваться на сегментах, которые приносят прибыль и рекомендации.</div>
+                <div class="cal-bottom">
+                    <span class="cal-time">19:00 MSK &middot; 60 мин</span>
+                    <a href="#" class="cal-btn">Записаться &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ===== WAITLIST + QUIZ (CTA after all proof) ===== -->
+<section class="waitlist" id="waitlist">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Что дальше</span>
+            <h2>Мы готовим для вас что-то новое</h2>
+        </div>
+        <div class="waitlist-story-block">
+            <p class="waitlist-story-text">
+                Курс &laquo;Как делать продукт&raquo; в старом формате больше не будет проводиться.
+                Это был путь длиной в 8 лет. 59 открытых потоков. 40 корпоративных обучений.
+                Больше 1500 воркшопов. Четырнадцать больших пересборок методологии и курса.
+            </p>
+            <p class="waitlist-rebuild">
+                Сейчас мы собираем новый формат — короче, интенсивнее, с AI-инструментами внутри.
+            </p>
+            <div class="waitlist-nums">
+                <div class="waitlist-num"><div class="val">8 лет</div><div class="lbl">развития</div></div>
+                <div class="waitlist-num"><div class="val">59</div><div class="lbl">потоков</div></div>
+                <div class="waitlist-num"><div class="val">1 500+</div><div class="lbl">воркшопов</div></div>
+                <div class="waitlist-num"><div class="val">14</div><div class="lbl">пересборок</div></div>
+            </div>
+        </div>
+
+        <div class="quiz-card" id="quiz">
+            <div class="quiz-left">
+                <h2>Хотите первыми узнать о новом формате?</h2>
+                <p>Ответьте на несколько вопросов — так мы поймём, что вам нужно, и вы получите лекцию, которую не получит больше никто.</p>
+                <div class="quiz-steps">
+                    <div class="quiz-step"><span class="quiz-step-num">1</span> Расскажите о своей роли</div>
+                    <div class="quiz-step"><span class="quiz-step-num">2</span> Опишите ситуацию с продуктом</div>
+                    <div class="quiz-step"><span class="quiz-step-num">3</span> Выберите, что нужно в первую очередь</div>
+                    <div class="quiz-step"><span class="quiz-step-num">4</span> Контекст: B2B/B2C, команда, бюджет</div>
+                    <div class="quiz-step"><span class="quiz-step-num">5</span> Опыт с обучением Замесина</div>
+                    <div class="quiz-step"><span class="quiz-step-num">6</span> Контакты</div>
+                    <div class="quiz-step"><span class="quiz-step-num">7</span> Получите рекомендацию + лекцию</div>
+                </div>
+            </div>
+            <div class="quiz-right">
+                <h3>Список ожидания</h3>
+                <p>Оставьте контакт — или пройдите квиз и получите лекцию в подарок</p>
+                <form class="wl-form" onsubmit="return false;" style="margin-bottom: 14px;">
+                    <input class="wl-input" type="text" placeholder="Имя" required>
+                    <input class="wl-input" type="email" placeholder="Email" required>
+                    <input class="wl-input" type="text" placeholder="Telegram (@username)">
+                    <button type="submit" class="btn btn-orange btn-lg" style="width:100%;">Просто записаться &rarr;</button>
+                </form>
+                <div class="wl-or">или</div>
+                <a href="#" class="btn btn-black btn-lg" style="width:100%;">Пройти квиз и получить лекцию &rarr;</a>
+            </div>
         </div>
     </div>
 </section>

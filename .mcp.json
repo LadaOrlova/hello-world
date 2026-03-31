@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "telegram": {
+      "command": "npx",
+      "args": ["-y", "@chaindead/telegram-mcp@0.2.0"],
+      "env": {
+        "TG_APP_ID": "30682561",
+        "TG_API_HASH": "bb814d2368748a49ec3b4677ef79becc"
+      }
+    }
+  }
+}
