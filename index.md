@@ -10,12 +10,12 @@
 | `1-Context/` | Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт" |
 | `2-Products/` | Продуктовые материалы и новые продукты |
 | `3-Marketing/` | Контент: LinkedIn-посты, Telegram-посты, черновики статей |
-| `3-SMM/` | — |
 | `4-Hiring/` | — |
 | `4-Personal-files/` | Персональные рабочие папки участников команды |
 | `5-ZIS/` | Zamesin Innovation School: LMS и идеи |
 | `6-DEMO-Workshop/` | — |
 | `8-Prompts-and-Scripts/` | Промпты и скрипты для автоматизации |
+| `memory/` | — |
 
 ---
 
@@ -883,6 +883,7 @@
 Контент: LinkedIn-посты, Telegram-посты, черновики статей
 
 - `ideas.md` — Маркетинговые идеи: публичный календарь вебинаров, страница офферов компании, ежемесячные лид-магниты, скилл для написания PRD
+- `utm-system.md` — UTM-система Zamesin Academy
 
 ### 3-Marketing/1-SMM/
 
@@ -895,6 +896,15 @@
 - `job3-communication-strategy.md` — Коммуникативная карта: Job 3 — «Починить стагнирующий продукт»
 - `job4-communication-strategy.md` — Коммуникативная карта: Job 4 — «Перейти в продукт / вырасти по карьере»
 - `job5-communication-strategy.md` — Коммуникативная карта: Job 5 — «Усилить маркетинг и продажи через понимание клиента»
+- `kdp-editor.skill`
+- `ref-bot-style.md`
+- `ref-vanya-channel-style.md` — vanya-channel-style
+- `tov-rules.md` — Правила TOV для рассылок курса «Как делать продукт»
+- `vanya-voice-guide-full.md` — Голос Вани Замесина: полный стилевой гайд
+
+**Bot/**
+
+- `2026-03-20-webinar-6-strategies-cards.md` — Пост в бота после вебинара про 6 стратегий
 
 **Drafts/**
 
@@ -930,7 +940,11 @@
 
 - `2026-02-22-vibe-coding-love-work.md` — Telegram-пост: У меня безумная гипотеза про вайбкодинг
 
-### 3-Marketing/1-Webinars/
+**Сценарии для рилзов/**
+
+- `сценарии-март-2026.md` — Сценарии рилзов — Март 2026
+
+### 3-Marketing/2-Webinars/
 
 
 **web-120326/**
@@ -950,7 +964,7 @@
 
 - `web.md`
 
-### 3-Marketing/2-PR-Articles/
+### 3-Marketing/3-PR-Articles/
 
 - `pitch-topics-all-20.md` — Питч-темы: 19 изданий — уникальные углы
 - `pr-process.md` — PR-процесс по статьям
@@ -975,7 +989,7 @@
 - `Draft-How-to-Find-PMF-Fast-and-Pivot-the-Right-Way.md` — 📝 Инструкция от Вани Замесина
 - `Draft-How-to-Find-PMF-Fast-v3.md` — Инструкция от Вани Замесина
 
-### 3-Marketing/2-Writing-Book/
+### 3-Marketing/4-Writing-Book/
 
 - `bookconcept.md` — Концепт книги AURA Framework
 - `ideas.md`
@@ -1002,7 +1016,7 @@
 - `Draft-AI-Changes-PM-Role-old.md` — 📝 Инструкция от Вани Замесина
 - `Draft-From-PRDs-to-Pipelines-MtP.md` — 📝 Инструкция автора для итерации
 
-### 3-Marketing/2-YouTube/
+### 3-Marketing/5-YouTube/
 
 
 **New-Free-Lecture/**
@@ -1011,19 +1025,15 @@
 - `landing-b2b-marketplace.html`
 - `landing-edtech-ege.html`
 
-### 3-Marketing/3-Partnerships/
+### 3-Marketing/6-Partnerships/
 
+- `crm-partnerships.html`
 - `partnerships-pm-guide.md` — Партнёрства Замесин Академии: Операционный гайд
+- `webinar-reports.md` — Отчёты по вебинарам
 
----
+### 3-Marketing/7-Referral/
 
-## 3-SMM/
-
-- `kdp-editor.skill`
-- `ref-bot-style.md`
-- `ref-vanya-channel-style.md` — vanya-channel-style
-- `tov-rules.md` — Правила TOV для рассылок курса «Как делать продукт»
-- `vanya-voice-guide-full.md` — Голос Вани Замесина: полный стилевой гайд
+- `referral-program-tz.md` — ТЗ: Реферальная программа для выпускников
 
 ---
 
@@ -1037,6 +1047,7 @@
 - `screening-fullstack-builder.md` — Скоринговое интервью: Вайбкодящий фулл-стек билдер
 - `screening-project-manager.md` — Скоринговое интервью: Проектный менеджер
 - `screening-support-manager.md` — Скоринговое интервью: Support-менеджер
+- `tz-reelsmaker.md` — ТЗ: Рилзмейкер (Лиссабон)
 - `vacancy-fullstack-builder.md` — Full Stack Builder
 
 ---
@@ -1187,13 +1198,19 @@
 - `landing-main-page-v2.html`
 - `landing-main-page-v3.html`
 - `landing-main-page.html`
-- `referral-program-tz.md` — ТЗ: Реферальная программа для выпускников
 - `гипотеза-сайта.md` — Гипотеза единого сайта Zamesin Academy
+
+**content-system/**
+
+- `card-structures.md` — Структуры карточек для Telegram-каруселей
+- `view-analytics.html`
+- `view-marketing-plan.html`
 
 **аналитика/**
 
 - `bot-analytics.md` — Аналитика бота — Ботхелп
 - `kdp-feedback-report.md` — KDP Feedback Report
+- `utm-analytics-feb-mar-2026.md` — Аналитика UTM-трафика: 24 февраля – 23 марта 2026
 - `контент-из-заявок-веб-120326.md` — Контент-материалы из заявок на разбор продуктов 12.03.2026
 - `разбор-продуктов-12-марта-2026.md` — Разбор продуктов 12 марта 2026 — Заявки участников
 
@@ -1352,7 +1369,25 @@ Learning Management System.
 
 ---
 
+## memory/
+
+- `MEMORY.md` — Memory Index
+- `project_ai_scale_research.md`
+- `project_anna_partnerships.md`
+- `project_openclaw_bot.md`
+- `user_vladlena.md`
+
+---
+
 ## Корневые файлы
 
+- `.mcp.json`
+- `AGENTS.md` — AGENTS.md - Your Workspace
+- `BOOTSTRAP.md` — BOOTSTRAP.md - Hello, World
+- `HEARTBEAT.md` — HEARTBEAT.md
+- `IDENTITY.md` — IDENTITY.md - Who Am I?
+- `SOUL.md` — SOUL.md - Who You Are
+- `TOOLS.md` — TOOLS.md - Local Notes
+- `USER.md` — USER.md - About Your Human
 - `ideas-for-space.md` — Идеи по организации пространства: фреймворки через "what if" вопросы, документы по работе с каждым сотрудником
 - `space-todo.md` — Задачи: обновить сегменты клиентов для Figma-курса, экспортировать формы входа/выхода

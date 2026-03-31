@@ -425,6 +425,7 @@
 2-Products/US/BoostUS-main/03-landing-copy.md	LaunchPilot: Landing Page Copy
 2-Products/US/BoostUS-main/04-marketing-hypotheses.md	Маркетинговые гипотезы и стратегия воронки: LaunchPilot
 2-Products/US/BoostUS-main/05-unit-economics.md	Юнит-экономика: LaunchPilot
+3-Marketing/1-SMM/Bot/2026-03-20-webinar-6-strategies-cards.md	Пост в бота после вебинара про 6 стратегий
 3-Marketing/1-SMM/Drafts/future of Saas.md	Будущее SaaS: почему спрос изменится
 3-Marketing/1-SMM/Drafts/future-of-saas-2.md	TODO
 3-Marketing/1-SMM/Drafts/hackernoon-article-pmf-pivot-theses.md	How to Find Product-Market Fit Fast — and Pivot the Right Way
@@ -446,41 +447,45 @@
 3-Marketing/1-SMM/job3-communication-strategy.md	Коммуникативная карта: Job 3 — «Починить стагнирующий продукт»
 3-Marketing/1-SMM/job4-communication-strategy.md	Коммуникативная карта: Job 4 — «Перейти в продукт / вырасти по карьере»
 3-Marketing/1-SMM/job5-communication-strategy.md	Коммуникативная карта: Job 5 — «Усилить маркетинг и продажи через понимание клиента»
-3-Marketing/1-Webinars/web-120326/top-16-products.md	Топ-16 продуктов для разбора — Вебинар 12 марта 2026
-3-Marketing/1-Webinars/web-260626.md/deep-research-report.md	Новые принципы создания продуктов из первых принципов в мире, где «построить софт ≈ почти бесплатно»
-3-Marketing/1-Webinars/web-260626.md/first-principles-15.md	15 новых принципов создания продуктов (from first principles)
-3-Marketing/1-Webinars/web-260626.md/prompt-first-principles-analysis.md	Промпт: Анализ новых принципов создания продуктов из первых принципов
-3-Marketing/1-Webinars/web-260626.md/web-260226.md	TODO
-3-Marketing/2-PR-Articles/1-Thoughts/changes-how-we-make-products.md	Вводные
-3-Marketing/2-PR-Articles/1-Thoughts/how-to-find-pmf-hackernoon.md	Бриф от издания
-3-Marketing/2-PR-Articles/2-Theses/Theses-AI-Changes-PM-Role-MtP.md	Инструкция для draft-этапа
-3-Marketing/2-PR-Articles/2-Theses/Theses-How-to-Find-Product-Market-Fit-Fast-and-Pivot-the-Right-Way.md	📝 Инструкция для draft-этапа
-3-Marketing/2-PR-Articles/3-Drafts/Changelog-v2-v3-drafts.md	Changelog: что изменилось в новых драфтах v2/v3
-3-Marketing/2-PR-Articles/3-Drafts/Draft-AI-Changes-PM-Role-MtP-v4.md	Инструкция от Вани Замесина
-3-Marketing/2-PR-Articles/3-Drafts/Draft-AI-Changes-PM-Role-MtP.md	Инструкция от Вани Замесина
-3-Marketing/2-PR-Articles/3-Drafts/Draft-How-to-Find-PMF-Fast-and-Pivot-the-Right-Way.md	📝 Инструкция от Вани Замесина
-3-Marketing/2-PR-Articles/3-Drafts/Draft-How-to-Find-PMF-Fast-v3.md	Инструкция от Вани Замесина
-3-Marketing/2-PR-Articles/pitch-topics-all-20.md	Питч-темы: 19 изданий — уникальные углы
-3-Marketing/2-PR-Articles/pr-process.md	PR-процесс по статьям
-3-Marketing/2-PR-Articles/web-theses.md	Тезисы из вебинара: "Внедрение Jobs 3.0: кейс Дениса"
-3-Marketing/2-PR-Articles/web.md	Расшифровка: Внедрение Jobs 3.0: кейс Дениса
-3-Marketing/2-Writing-Book/1-Raw-Thoughts/changes-how-we-make-products.md	Вводные
-3-Marketing/2-Writing-Book/1-Raw-Thoughts/how-to-find-pmf-hackernoon.md	Бриф от издания
-3-Marketing/2-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-MtP.md	Инструкция для draft-этапа
-3-Marketing/2-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-condensed.md	📝 Инструкция для draft-этапа
-3-Marketing/2-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role.md	📝 Инструкция для draft-этапа
-3-Marketing/2-Writing-Book/2-Theses/Theses-How-to-Find-PMF-Fast.md	📝 Инструкция для draft-этапа
-3-Marketing/2-Writing-Book/3-Drafts/Draft-AI-Changes-PM-Role-old.md	📝 Инструкция от Вани Замесина
-3-Marketing/2-Writing-Book/3-Drafts/Draft-From-PRDs-to-Pipelines-MtP.md	📝 Инструкция автора для итерации
-3-Marketing/2-Writing-Book/bookconcept.md	Концепт книги AURA Framework
-3-Marketing/2-Writing-Book/linkedin-sprint-detailed-theses.md	LinkedIn Growth Sprint -- Детальные тезисы для скилла
-3-Marketing/2-Writing-Book/zamesin_top50_full.md	Топ 50 постов @zamesin (полные тексты)
-3-Marketing/2-YouTube/New-Free-Lecture/Theses.md	Тезисы — Дофаминовая лекция (YouTube)
-3-Marketing/3-Partnerships/partnerships-pm-guide.md	Партнёрства Замесин Академии: Операционный гайд
+3-Marketing/1-SMM/ref-vanya-channel-style.md	vanya-channel-style
+3-Marketing/1-SMM/tov-rules.md	Правила TOV для рассылок курса «Как делать продукт»
+3-Marketing/1-SMM/vanya-voice-guide-full.md	Голос Вани Замесина: полный стилевой гайд
+3-Marketing/1-SMM/Сценарии для рилзов/сценарии-март-2026.md	Сценарии рилзов — Март 2026
+3-Marketing/2-Webinars/web-120326/top-16-products.md	Топ-16 продуктов для разбора — Вебинар 12 марта 2026
+3-Marketing/2-Webinars/web-260626.md/deep-research-report.md	Новые принципы создания продуктов из первых принципов в мире, где «построить софт ≈ почти бесплатно»
+3-Marketing/2-Webinars/web-260626.md/first-principles-15.md	15 новых принципов создания продуктов (from first principles)
+3-Marketing/2-Webinars/web-260626.md/prompt-first-principles-analysis.md	Промпт: Анализ новых принципов создания продуктов из первых принципов
+3-Marketing/2-Webinars/web-260626.md/web-260226.md	TODO
+3-Marketing/3-PR-Articles/1-Thoughts/changes-how-we-make-products.md	Вводные
+3-Marketing/3-PR-Articles/1-Thoughts/how-to-find-pmf-hackernoon.md	Бриф от издания
+3-Marketing/3-PR-Articles/2-Theses/Theses-AI-Changes-PM-Role-MtP.md	Инструкция для draft-этапа
+3-Marketing/3-PR-Articles/2-Theses/Theses-How-to-Find-Product-Market-Fit-Fast-and-Pivot-the-Right-Way.md	📝 Инструкция для draft-этапа
+3-Marketing/3-PR-Articles/3-Drafts/Changelog-v2-v3-drafts.md	Changelog: что изменилось в новых драфтах v2/v3
+3-Marketing/3-PR-Articles/3-Drafts/Draft-AI-Changes-PM-Role-MtP-v4.md	Инструкция от Вани Замесина
+3-Marketing/3-PR-Articles/3-Drafts/Draft-AI-Changes-PM-Role-MtP.md	Инструкция от Вани Замесина
+3-Marketing/3-PR-Articles/3-Drafts/Draft-How-to-Find-PMF-Fast-and-Pivot-the-Right-Way.md	📝 Инструкция от Вани Замесина
+3-Marketing/3-PR-Articles/3-Drafts/Draft-How-to-Find-PMF-Fast-v3.md	Инструкция от Вани Замесина
+3-Marketing/3-PR-Articles/pitch-topics-all-20.md	Питч-темы: 19 изданий — уникальные углы
+3-Marketing/3-PR-Articles/pr-process.md	PR-процесс по статьям
+3-Marketing/3-PR-Articles/web-theses.md	Тезисы из вебинара: "Внедрение Jobs 3.0: кейс Дениса"
+3-Marketing/3-PR-Articles/web.md	Расшифровка: Внедрение Jobs 3.0: кейс Дениса
+3-Marketing/4-Writing-Book/1-Raw-Thoughts/changes-how-we-make-products.md	Вводные
+3-Marketing/4-Writing-Book/1-Raw-Thoughts/how-to-find-pmf-hackernoon.md	Бриф от издания
+3-Marketing/4-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-MtP.md	Инструкция для draft-этапа
+3-Marketing/4-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role-condensed.md	📝 Инструкция для draft-этапа
+3-Marketing/4-Writing-Book/2-Theses/Theses-AI-Changes-PM-Role.md	📝 Инструкция для draft-этапа
+3-Marketing/4-Writing-Book/2-Theses/Theses-How-to-Find-PMF-Fast.md	📝 Инструкция для draft-этапа
+3-Marketing/4-Writing-Book/3-Drafts/Draft-AI-Changes-PM-Role-old.md	📝 Инструкция от Вани Замесина
+3-Marketing/4-Writing-Book/3-Drafts/Draft-From-PRDs-to-Pipelines-MtP.md	📝 Инструкция автора для итерации
+3-Marketing/4-Writing-Book/bookconcept.md	Концепт книги AURA Framework
+3-Marketing/4-Writing-Book/linkedin-sprint-detailed-theses.md	LinkedIn Growth Sprint -- Детальные тезисы для скилла
+3-Marketing/4-Writing-Book/zamesin_top50_full.md	Топ 50 постов @zamesin (полные тексты)
+3-Marketing/5-YouTube/New-Free-Lecture/Theses.md	Тезисы — Дофаминовая лекция (YouTube)
+3-Marketing/6-Partnerships/partnerships-pm-guide.md	Партнёрства Замесин Академии: Операционный гайд
+3-Marketing/6-Partnerships/webinar-reports.md	Отчёты по вебинарам
+3-Marketing/7-Referral/referral-program-tz.md	ТЗ: Реферальная программа для выпускников
 3-Marketing/ideas.md	Маркетинговые идеи: публичный календарь вебинаров, страница офферов компании, ежемесячные лид-магниты, скилл для написания PRD
-3-SMM/ref-vanya-channel-style.md	vanya-channel-style
-3-SMM/tov-rules.md	Правила TOV для рассылок курса «Как делать продукт»
-3-SMM/vanya-voice-guide-full.md	Голос Вани Замесина: полный стилевой гайд
+3-Marketing/utm-system.md	UTM-система Zamesin Academy
 4-Hiring/hiring-requirements.md	Каких людей мы нанимаем
 4-Hiring/screening-boost-coordinator.md	Скоринговое интервью: Координатор интенсива BOOST
 4-Hiring/screening-community-manager.md	Скоринговое интервью: Коммьюнити-менеджер
@@ -489,6 +494,7 @@
 4-Hiring/screening-fullstack-builder.md	Скоринговое интервью: Вайбкодящий фулл-стек билдер
 4-Hiring/screening-project-manager.md	Скоринговое интервью: Проектный менеджер
 4-Hiring/screening-support-manager.md	Скоринговое интервью: Support-менеджер
+4-Hiring/tz-reelsmaker.md	ТЗ: Рилзмейкер (Лиссабон)
 4-Hiring/vacancy-fullstack-builder.md	Full Stack Builder
 4-Personal-files/Ilya-Izmaylov/aura-makers-separation-plan.md	План разделения AURA и Мейкеров
 4-Personal-files/Ilya-Izmaylov/idea-foreign-subscriptions-service.md	Идея: сервис оплаты зарубежных подписок
@@ -518,9 +524,10 @@
 4-Personal-files/Vladlena-Orlova/bot-analytics.md	Аналитика бота — Ботхелп
 4-Personal-files/Vladlena-Orlova/case-post-rules.md	Правила структуры кейс-поста
 4-Personal-files/Vladlena-Orlova/content-platform-aura-brief.md	Маркетинговая платформа: умный контент-план
-4-Personal-files/Vladlena-Orlova/referral-program-tz.md	ТЗ: Реферальная программа для выпускников
+4-Personal-files/Vladlena-Orlova/content-system/card-structures.md	Структуры карточек для Telegram-каруселей
 4-Personal-files/Vladlena-Orlova/аналитика/bot-analytics.md	Аналитика бота — Ботхелп
 4-Personal-files/Vladlena-Orlova/аналитика/kdp-feedback-report.md	KDP Feedback Report
+4-Personal-files/Vladlena-Orlova/аналитика/utm-analytics-feb-mar-2026.md	Аналитика UTM-трафика: 24 февраля – 23 марта 2026
 4-Personal-files/Vladlena-Orlova/аналитика/контент-из-заявок-веб-120326.md	Контент-материалы из заявок на разбор продуктов 12.03.2026
 4-Personal-files/Vladlena-Orlova/аналитика/разбор-продуктов-12-марта-2026.md	Разбор продуктов 12 марта 2026 — Заявки участников
 4-Personal-files/Vladlena-Orlova/гипотеза-сайта.md	Гипотеза единого сайта Zamesin Academy
@@ -639,6 +646,13 @@
 6-DEMO-Workshop/my-riskiest-assumptions.md	Top-5 рискованных предположений: сообщество Makers (Мейкеры)
 8-Prompts-and-Scripts/Prompts/generate-segment.md	Промт: Выбор 5 привлекательных сегментов по AJTBD
 8-Prompts-and-Scripts/Prompts/riskiest-assumption-test.md	Что делать первым сообщением
+AGENTS.md	AGENTS.md - Your Workspace
+BOOTSTRAP.md	BOOTSTRAP.md - Hello, World
+HEARTBEAT.md	HEARTBEAT.md
+IDENTITY.md	IDENTITY.md - Who Am I?
+SOUL.md	SOUL.md - Who You Are
+TOOLS.md	TOOLS.md - Local Notes
+USER.md	USER.md - About Your Human
 _dir_:1-Context	Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт"
 _dir_:1-Context/AURA-Theses	Тезисы методологии AJTBD и мета-фреймворка AURA, структурированные по темам
 _dir_:1-Context/boost-knowledge-base	База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.
@@ -660,4 +674,5 @@ _dir_:5-ZIS	Zamesin Innovation School: LMS и идеи
 _dir_:5-ZIS/LMS	Learning Management System.
 _dir_:8-Prompts-and-Scripts	Промпты и скрипты для автоматизации
 ideas-for-space.md	Идеи по организации пространства: фреймворки через "what if" вопросы, документы по работе с каждым сотрудником
+memory/MEMORY.md	Memory Index
 space-todo.md	Задачи: обновить сегменты клиентов для Figma-курса, экспортировать формы входа/выхода
