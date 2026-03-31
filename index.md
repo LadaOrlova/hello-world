@@ -842,7 +842,6 @@
 *Trailer/*
 
 - `BOOST-trailer-v10.mp4`
-- `BOOST-trailer-v9.mp4`
 - `messages-for-participants.md` — Сообщения участникам трейлера BOOST
 - `participants-for-approval.md` — Участники трейлера BOOST — согласование
 - `trailer-script-v6.md` — BOOST Trailer v6 — Сценарий
