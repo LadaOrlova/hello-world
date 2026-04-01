@@ -865,6 +865,7 @@
 - `ideas.md` — Идеи: КДП с 60-го потока — обучение через VS Code + Claude Code
 - `jobs.md` — Сегментация студентов КДП по Jobs
 - `new-courses.md` — Jobs студентов и линейка продуктов
+- `positioning-hypothesis.md` — Гипотеза позиционирования — Замесин Академия (NewKDP)
 - `students_export.csv`
 - `waitlist-quiz.md` — Quiz для списка ожидания КДП
 
