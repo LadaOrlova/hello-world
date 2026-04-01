@@ -1241,6 +1241,7 @@
 - `landing-main-page-v4.html`
 - `landing-main-page.html`
 - `гипотеза-сайта.md` — Гипотеза единого сайта Zamesin Academy
+- `звонок-по-стратегии-сайта.md` — Звонок по стратегии сайта
 
 **content-system/**
 
