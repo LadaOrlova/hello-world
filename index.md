@@ -1236,6 +1236,8 @@
 
 ### 4-Personal-files/Rublevsky-Ilya/
 
+- `boost-feedback-analysis.md` — Анализ обратной связи BOOST (62 ответа)
+- `boost-pro-hypotheses.md` — Boost Pro: гипотезы для обсуждения с Сашей
 - `jobs-v2-cohort59.md` — Сегментация студентов КДП: 59-й поток (отдельный анализ)
 - `jobs-v2.md` — Сегментация студентов КДП по Jobs (v2)
 - `new-courses-v2.md` — Линейка продуктов КДП v2.1
