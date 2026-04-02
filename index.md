@@ -1242,6 +1242,7 @@
 - `jobs-v2.md` — Сегментация студентов КДП по Jobs (v2)
 - `new-courses-v2.md` — Линейка продуктов КДП v2.1
 - `poc-two-products.md` — Proof of Concept: 2 коротких продукта из КДП
+- `roadmap-pochinka.md` — Починка продукта: план действий для обсуждения
 - `summary-for-vanya.md` — Презентация для Вани: тезисы
 
 ### 4-Personal-files/Ruslan-Zhuravskiy/
