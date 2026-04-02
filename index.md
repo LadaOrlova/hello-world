@@ -1245,6 +1245,7 @@
 - `poc-two-products.md` — Proof of Concept: 2 коротких продукта из КДП
 - `roadmap-pochinka.md` — Починка продукта: план действий для обсуждения
 - `summary-for-vanya.md` — Презентация для Вани: тезисы
+- `zvonok-ilya-zhenya-zis-02-04-2026.md` — Созвон Илья Рублевский — Женя (ЗИС)
 
 ### 4-Personal-files/Ruslan-Zhuravskiy/
 
