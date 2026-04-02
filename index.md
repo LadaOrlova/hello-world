@@ -1236,6 +1236,7 @@
 
 ### 4-Personal-files/Rublevsky-Ilya/
 
+- `2026-04-02-product-marketing-discussion.md` — Обсуждение Product Marketing — 02.04.2026
 - `boost-feedback-analysis.md` — Анализ обратной связи BOOST (62 ответа)
 - `boost-pro-hypotheses.md` — Boost Pro: гипотезы для обсуждения с Сашей
 - `jobs-v2-cohort59.md` — Сегментация студентов КДП: 59-й поток (отдельный анализ)
