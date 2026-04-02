@@ -1099,6 +1099,7 @@
 - `screening-fullstack-builder.md` — Скоринговое интервью: Вайбкодящий фулл-стек билдер
 - `screening-project-manager.md` — Скоринговое интервью: Проектный менеджер
 - `screening-support-manager.md` — Скоринговое интервью: Support-менеджер
+- `test-assignment-community-manager.md` — Тестовое задание: Коммьюнити-менеджер
 - `test-task-fullstack-builder.md` — Тестовое задание: Генератор гипотез сегментов с графами работ
 - `tz-reelsmaker.md` — ТЗ: Рилзмейкер (Лиссабон)
 - `vacancy-fullstack-builder.md` — Full Stack Builder
