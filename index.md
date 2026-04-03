@@ -853,6 +853,10 @@
 ### 2-Products/RU/
 
 
+**AURA/**
+
+- `ai-pipeline-eval-metrics.md` — Метрики оценки качества AI pipeline (AURA product)
+
 **Boost/**
 
 - `boost-feedback.csv` — ,Как вас зовут?,Ваш юзернейм в Telegram,"Насколько вы удовлетворены, насколько участие в интенсиве решило ваши задачи? Где 10 — 100% удовлетворил, 0 — всё очень плохо.",Готовы ли вы оставить отзыв для сайта?,В чём ценность участия в интенсиве?,"Что нам стоит доработать, чтобы интенсив стал ещё ценнее?",Response Type,Start Date (UTC),Stage Date (UTC),Submit Date (UTC),Network ID,Tags,Ending
