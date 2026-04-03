@@ -1088,6 +1088,10 @@
 
 - `referral-program-tz.md` — ТЗ: Реферальная программа для выпускников
 
+### 3-Marketing/cases/
+
+- `boost-cases.md` — Кейсы и отзывы участников Boost
+
 ---
 
 ## 4-Hiring/
