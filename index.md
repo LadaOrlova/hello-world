@@ -14,6 +14,7 @@
 | `4-Personal-files/` | Персональные рабочие папки участников команды |
 | `5-ZIS/` | Zamesin Innovation School: LMS и идеи |
 | `8-Prompts-and-Scripts/` | Промпты и скрипты для автоматизации |
+| `Product-Ilya-Vanya/` | — |
 | `memory/` | — |
 
 ---
@@ -1456,6 +1457,12 @@ Learning Management System.
 - `job-graph.md`
 - `landing-page-copy.md`
 - `riskiest-assumption-test.md` — Что делать первым сообщением
+
+---
+
+## Product-Ilya-Vanya/
+
+- `prompts-zapusk.md` — Промпты для курса «Запуск продукта»
 
 ---
 

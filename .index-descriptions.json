@@ -708,6 +708,7 @@
 5-ZIS/docs/bc/PAY-13.md	PAY-13: Финансовая аналитика — все данные по платежам, скидкам, комиссиям и возвратам доступны для построения финансовых отчётов
 8-Prompts-and-Scripts/Prompts/generate-segment.md	Промт: Выбор 5 привлекательных сегментов по AJTBD
 8-Prompts-and-Scripts/Prompts/riskiest-assumption-test.md	Что делать первым сообщением
+Product-Ilya-Vanya/prompts-zapusk.md	Промпты для курса «Запуск продукта»
 _dir_:1-Context	Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт"
 _dir_:1-Context/AURA-Theses	Тезисы методологии AJTBD и мета-фреймворка AURA, структурированные по темам
 _dir_:1-Context/boost-knowledge-base	База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.
