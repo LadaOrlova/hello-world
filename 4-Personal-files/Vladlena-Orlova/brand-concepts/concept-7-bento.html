@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Академия Вани Замесина — Concept 7: Bento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FAFAF7;
+  --card: #FFFFFF;
+  --border: #EEEEEE;
+  --dark: #111111;
+  --muted: #888888;
+  --orange: #F07020;
+  --orange-light: rgba(240,112,32,.08);
+  --radius: 16px;
+  --radius-sm: 12px;
+  --radius-pill: 100px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== FIXED LABEL ===== */
+.concept-label {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--dark);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  z-index: 9999;
+  letter-spacing: .3px;
+}
+
+/* ===== NAV ===== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.nav-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  color: var(--muted);
+  transition: color .2s;
+}
+
+.nav-links a:hover { color: var(--dark); }
+
+.nav-cta {
+  background: var(--dark);
+  color: #fff !important;
+  padding: 8px 20px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+  transition: opacity .2s;
+}
+
+.nav-cta:hover { opacity: .85; }
+
+/* ===== HERO ===== */
+.hero {
+  padding: 100px 0 80px;
+  text-align: center;
+  position: relative;
+  background: #111;
+  color: #fff;
+  overflow: hidden;
+  transition: background 2.5s ease, color 2s ease;
+}
+
+.hero.revealed {
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255,180,100,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 50% at 30% 60%, rgba(240,112,32,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 60% at 75% 40%, rgba(255,160,80,0.08) 0%, transparent 50%),
+    #FBF7F3;
+  color: var(--dark);
+}
+
+.hero-sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
+
+.hero.revealed .hero-sun {
+  opacity: 1;
+}
+
+.sun-ring {
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.3);
+  opacity: 0;
+  border: 1.5px solid rgba(240,130,50,0.15);
+}
+
+.hero.revealed .sun-ring {
+  opacity: 1;
+}
+
+.sun-ring-1 {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(255,160,60,0.5) 0%, rgba(240,112,32,0.2) 40%, transparent 70%);
+  border: none;
+  filter: blur(15px);
+  animation: sunPulse 4s ease-in-out infinite alternate;
+}
+.hero.revealed .sun-ring-1 {
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 1.5s cubic-bezier(0.16,1,0.3,1), opacity 1s ease;
+}
+
+.sun-ring-2 {
+  width: 360px; height: 360px;
+  border-color: rgba(240,130,50,0.2);
+}
+.hero.revealed .sun-ring-2 {
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 1.8s cubic-bezier(0.16,1,0.3,1) 0.2s, opacity 1.2s ease 0.2s;
+}
+
+.sun-ring-3 {
+  width: 540px; height: 540px;
+  border-color: rgba(240,130,50,0.14);
+}
+.hero.revealed .sun-ring-3 {
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 2s cubic-bezier(0.16,1,0.3,1) 0.4s, opacity 1.4s ease 0.4s;
+}
+
+.sun-ring-4 {
+  width: 740px; height: 740px;
+  border-color: rgba(240,130,50,0.1);
+}
+.hero.revealed .sun-ring-4 {
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 2.2s cubic-bezier(0.16,1,0.3,1) 0.6s, opacity 1.6s ease 0.6s;
+}
+
+.sun-ring-5 {
+  width: 960px; height: 960px;
+  border-color: rgba(240,130,50,0.06);
+}
+.hero.revealed .sun-ring-5 {
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 2.4s cubic-bezier(0.16,1,0.3,1) 0.8s, opacity 1.8s ease 0.8s;
+}
+
+@keyframes sunPulse {
+  0%   { filter: blur(20px) brightness(1); }
+  50%  { filter: blur(25px) brightness(1.15); }
+  100% { filter: blur(18px) brightness(0.95); }
+}
+
+.hero-light {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle,
+    rgba(255,140,50,0.7) 0%,
+    rgba(240,112,32,0.4) 20%,
+    rgba(255,180,100,0.15) 40%,
+    transparent 65%
+  );
+  filter: blur(10px);
+  transform: translate(-50%, -50%);
+  left: -300px;
+  top: -300px;
+  mix-blend-mode: screen;
+  transition: opacity 1s ease;
+}
+
+.hero.revealed .hero-light {
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+/* Dark overlay — fades out on reveal */
+.hero-dark {
+  position: absolute;
+  inset: 0;
+  background: #111;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 2.5s ease;
+}
+
+.hero.revealed .hero-dark {
+  opacity: 0;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 3;
+}
+
+/* Hero subtitle + stats adapt to light/dark */
+.hero .hero-subtitle {
+  transition: color 1s ease;
+}
+.hero.revealed .hero-subtitle {
+  color: var(--muted);
+}
+
+.hero .hero-stats-text {
+  transition: color 1s ease;
+}
+.hero.revealed .hero-stats-text {
+  color: var(--muted);
+}
+
+.hero .btn-outline-hero {
+  border-color: rgba(255,255,255,0.2);
+  color: #fff;
+  transition: border-color 1s ease, color 1s ease;
+}
+.hero.revealed .btn-outline-hero {
+  border-color: var(--border);
+  color: var(--dark);
+}
+
+.hero .hero-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 13px;
+  color: rgba(255,255,255,0.25);
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+.hero.revealed .hero-hint {
+  opacity: 0;
+}
+  text-shadow: 0 0 40px rgba(255,140,50,0.3);
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  max-width: 700px;
+  margin: 0 auto 20px;
+  letter-spacing: -.02em;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: rgba(255,255,255,0.5);
+  max-width: 520px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+
+.hero-pills {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.hero-pill {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  letter-spacing: .2px;
+}
+
+.pill-orange { background: rgba(240,112,32,.1); color: #c45a10; }
+.pill-green { background: rgba(76,175,80,.1); color: #2e7d32; }
+.pill-blue { background: rgba(66,133,244,.1); color: #1a56db; }
+.pill-pink { background: rgba(233,30,99,.08); color: #c2185b; }
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.btn-orange {
+  background: var(--orange);
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+
+.btn-orange:hover { opacity: .88; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--dark);
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  font-size: 15px;
+  font-weight: 500;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: border-color .2s;
+}
+
+.btn-outline:hover { border-color: #ccc; }
+
+.hero-stats {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* ===== SECTIONS ===== */
+.section {
+  padding: 60px 0;
+}
+
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 28px;
+}
+
+/* ===== BENTO CARDS ===== */
+.bento-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  transition: box-shadow .3s ease, filter .3s ease, border-color .3s ease;
+  position: relative;
+}
+
+/* ===== COURSES GRID ===== */
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.course-featured { grid-column: span 2; }
+
+.course-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 14px;
+}
+
+.tag-available {
+  background: var(--orange);
+  color: #fff;
+}
+
+.tag-soon {
+  background: #f0f0ed;
+  color: var(--muted);
+}
+
+.course-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.course-featured .course-title {
+  font-size: 22px;
+}
+
+.course-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.course-result {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--orange);
+  margin-top: 6px;
+}
+
+.course-featured-border {
+  border-color: rgba(240,112,32,.25);
+}
+
+/* ===== MINI COURSES ===== */
+.mini-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  margin-bottom: 16px;
+}
+
+.mini-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.mini-card {
+  padding: 22px;
+}
+
+.mini-card .mini-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.mini-card .mini-meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ===== CASES GRID ===== */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.case-featured { grid-column: span 2; }
+
+.case-metric {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: var(--orange);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.case-featured .case-metric { font-size: 56px; }
+
+.case-metric-label {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.case-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.case-role {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.case-quote {
+  font-size: 14px;
+  color: #555;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.case-small .case-metric {
+  font-size: 28px;
+  margin-bottom: 2px;
+}
+
+.cases-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--orange);
+  transition: opacity .2s;
+}
+
+.cases-link:hover { opacity: .7; }
+
+/* ===== EVENTS ===== */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.event-date {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.event-date-orange { color: var(--orange); }
+.event-date-dark { color: var(--dark); }
+
+.event-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.event-meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ===== CTA ===== */
+.cta-section {
+  padding: 60px 0;
+  text-align: center;
+}
+
+.cta-title {
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  margin-bottom: 10px;
+}
+
+.cta-sub {
+  font-size: 15px;
+  color: var(--muted);
+  margin-bottom: 24px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 0;
+  text-align: center;
+}
+
+.footer-brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 14px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--muted);
+  transition: color .2s;
+}
+
+.footer-links a:hover { color: var(--dark); }
+
+.footer-copy {
+  font-size: 12px;
+  color: #bbb;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .courses-grid { grid-template-columns: 1fr 1fr; }
+  .course-featured { grid-column: span 2; }
+  .mini-grid { grid-template-columns: 1fr 1fr; }
+  .cases-grid { grid-template-columns: 1fr 1fr; }
+  .case-featured { grid-column: span 2; }
+}
+
+@media (max-width: 640px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .courses-grid { grid-template-columns: 1fr; }
+  .course-featured { grid-column: span 1; }
+  .mini-grid { grid-template-columns: 1fr; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .case-featured { grid-column: span 1; }
+  .events-grid { grid-template-columns: 1fr; }
+  .hero { padding: 50px 0 40px; }
+  .section { padding: 40px 0; }
+  .bento-card { padding: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- FIXED LABEL -->
+<div class="concept-label">Concept 7: Bento</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="nav-brand">Академия Вани Замесина</div>
+    <div class="nav-links">
+      <a href="#">Методологии</a>
+      <a href="#">Курсы</a>
+      <a href="#">Кейсы</a>
+      <a href="#">Блог</a>
+      <a href="#">События</a>
+      <a href="#" class="nav-cta">Начать</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-sun">
+    <div class="sun-ring sun-ring-1"></div>
+    <div class="sun-ring sun-ring-2"></div>
+    <div class="sun-ring sun-ring-3"></div>
+    <div class="sun-ring sun-ring-4"></div>
+    <div class="sun-ring sun-ring-5"></div>
+  </div>
+  <div class="hero-light" id="heroLight"></div>
+  <div class="hero-dark" id="heroDark"></div>
+  <div class="container">
+    <h1>Создавай продукты<br>в новой реальности</h1>
+    <p class="hero-subtitle">Методология, инструменты и среда, чтобы пройти от идеи до результата</p>
+    <div class="hero-pills">
+      <span class="hero-pill pill-orange">AURA</span>
+      <span class="hero-pill pill-green">AJTBD</span>
+      <span class="hero-pill pill-blue">Вайбкодинг</span>
+      <span class="hero-pill pill-pink">Поддерживающая среда</span>
+    </div>
+    <div class="hero-buttons">
+      <button class="btn-orange" style="cursor:pointer;">Выбрать курс</button>
+      <button class="btn-outline btn-outline-hero" style="cursor:pointer;">Как это работает</button>
+    </div>
+    <p class="hero-stats hero-stats-text" style="color:rgba(255,255,255,0.4);">13 000+ выпускников &middot; 9.2/10 оценка</p>
+  </div>
+  <p class="hero-hint">подвигай мышкой ✦</p>
+</section>
+
+<!-- COURSES -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Какая у вас задача?</h2>
+    <div class="courses-grid">
+
+      <!-- BOOST — featured -->
+      <div class="bento-card course-featured course-featured-border">
+        <span class="course-tag tag-available">Доступно сейчас</span>
+        <div class="course-title">Хочу создавать продукты с AI</div>
+        <div class="course-meta">BOOST &middot; 1 неделя &middot; 29 900&#8381;</div>
+        <div class="course-result">&rarr; От идеи до работающего MVP за неделю</div>
+      </div>
+
+      <!-- Запуск -->
+      <div class="bento-card">
+        <span class="course-tag tag-soon">Скоро</span>
+        <div class="course-title">Хочу запустить MVP и получить первых клиентов</div>
+        <div class="course-meta">Запуск продукта &middot; 5 недель &middot; 60-75K</div>
+        <div class="course-result">&rarr; Работающий продукт + первые клиенты</div>
+      </div>
+
+      <!-- Починка -->
+      <div class="bento-card">
+        <span class="course-tag tag-soon">Скоро</span>
+        <div class="course-title">Продукт не растёт, не понимаю почему</div>
+        <div class="course-meta">Починка продукта &middot; 4 недели &middot; 60-80K</div>
+        <div class="course-result">&rarr; Диагноз + план роста</div>
+      </div>
+
+      <!-- AJTBD -->
+      <div class="bento-card">
+        <span class="course-tag tag-soon">Скоро</span>
+        <div class="course-title">Работаю на интуиции, хочу систему</div>
+        <div class="course-meta">Основы AJTBD &middot; 3 недели &middot; 35-50K</div>
+      </div>
+
+      <!-- Продакт с нуля -->
+      <div class="bento-card">
+        <span class="course-tag tag-soon">Скоро</span>
+        <div class="course-title">Хочу перейти в продакт</div>
+        <div class="course-meta">Продакт с нуля &middot; 3 недели &middot; 35-50K</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MINI COURSES -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="mini-label">Мини-курсы</div>
+    <div class="mini-grid">
+      <div class="bento-card mini-card">
+        <div class="mini-name">Автоматизация рутины с AI</div>
+        <div class="mini-meta">Гайд &middot; Бесплатно</div>
+      </div>
+      <div class="bento-card mini-card">
+        <div class="mini-name">AI-workflow для команды</div>
+        <div class="mini-meta">3 дня &middot; 9 000&#8381;</div>
+      </div>
+      <div class="bento-card mini-card">
+        <div class="mini-name">Промптинг для продактов</div>
+        <div class="mini-meta">2 дня &middot; 5 000&#8381;</div>
+      </div>
+      <div class="bento-card mini-card">
+        <div class="mini-name">CustDev за 3 дня</div>
+        <div class="mini-meta">Мини-курс &middot; 7 000&#8381;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Результаты выпускников</h2>
+    <div class="cases-grid">
+
+      <!-- Featured -->
+      <div class="bento-card case-featured">
+        <div class="case-metric">x13</div>
+        <div class="case-metric-label">рост выручки</div>
+        <div class="case-name">Тимур Абдужалилов</div>
+        <div class="case-role">CPO, Legal Resources &middot; LegalTech</div>
+        <div class="case-quote">&laquo;Выручка: 600K &rarr; 8M/мес. Конверсия 93%. Первая прибыль за 6 лет.&raquo;</div>
+      </div>
+
+      <!-- Medium -->
+      <div class="bento-card">
+        <div class="case-metric">+40%</div>
+        <div class="case-metric-label">конверсия</div>
+        <div class="case-name">Денис Леушин</div>
+        <div class="case-role">CEO, Pleada &middot; Недвижимость</div>
+        <div class="case-quote">&laquo;Пробили потолок 20M месячной выручки. ROMI: 800% &rarr; 1200%.&raquo;</div>
+      </div>
+
+      <!-- Medium -->
+      <div class="bento-card">
+        <div class="case-metric">2000%</div>
+        <div class="case-metric-label">ROMI</div>
+        <div class="case-name">Алексей Шомахов</div>
+        <div class="case-role">Head of Growth, Neginski &middot; ОАЭ</div>
+        <div class="case-quote">&laquo;$500K+ сделок на бюджете $5K.&raquo;</div>
+      </div>
+
+      <!-- Small -->
+      <div class="bento-card case-small">
+        <div class="case-metric">x6 доход</div>
+        <div class="case-name">Татьяна Безугляк</div>
+        <div class="case-role">Фотограф &rarr; Исследователь</div>
+        <div class="case-quote">&laquo;40K &rarr; 250K/мес&raquo;</div>
+      </div>
+
+      <!-- Small -->
+      <div class="bento-card case-small">
+        <div class="case-metric">x3 чек</div>
+        <div class="case-name">Анастасия Гусенцова</div>
+        <div class="case-role">CEO, LiFT</div>
+        <div class="case-quote">&laquo;150K &rarr; 450K&raquo;</div>
+      </div>
+
+      <!-- Small -->
+      <div class="bento-card case-small">
+        <div class="case-metric">Top-3</div>
+        <div class="case-name">Анастасия Капанина</div>
+        <div class="case-role">PM, JetBrains</div>
+        <div class="case-quote">&laquo;Kotlin MP в Top-3 кроссплатформенных&raquo;</div>
+      </div>
+
+    </div>
+    <a href="#" class="cases-link">Все кейсы &rarr;</a>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Ближайшие события</h2>
+    <div class="events-grid">
+
+      <div class="bento-card">
+        <div class="event-date event-date-orange">3 апреля</div>
+        <div class="event-title">BOOST Поток 5</div>
+        <div class="event-meta">3-11 апреля &middot; 29 900&#8381;</div>
+      </div>
+
+      <div class="bento-card">
+        <div class="event-date event-date-dark">10 апреля</div>
+        <div class="event-title">Вебинар PMF</div>
+        <div class="event-meta">19:00 MSK &middot; Бесплатно</div>
+      </div>
+
+      <div class="bento-card">
+        <div class="event-date event-date-orange">17 апреля</div>
+        <div class="event-title">BOOST Поток 6</div>
+        <div class="event-meta">17-25 апреля</div>
+      </div>
+
+      <div class="bento-card">
+        <div class="event-date event-date-dark">24 апреля</div>
+        <div class="event-title">Вебинар ABCDX</div>
+        <div class="event-meta">19:00 MSK &middot; Бесплатно</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="cta-title">Получи бесплатную лекцию в подарок</h2>
+    <p class="cta-sub">Узнай, как создавать продукты с AI и находить точки роста</p>
+    <button class="btn-orange">Получить &rarr;</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-brand">Академия Вани Замесина</div>
+    <div class="footer-links">
+      <a href="#">Курсы</a>
+      <a href="#">Кейсы</a>
+      <a href="#">Блог</a>
+      <a href="#">Telegram</a>
+      <a href="#">YouTube</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Академия Вани Замесина. Все права защищены.</div>
+  </div>
+</footer>
+
+<!-- GLOW EFFECT -->
+<script>
+(function() {
+  /* ====== HERO TORCH → REVEAL EFFECT ====== */
+  var hero = document.getElementById('hero');
+  var heroLight = document.getElementById('heroLight');
+  var heroDark = document.getElementById('heroDark');
+  var lightX = -300, lightY = -300;
+  var targetX = -300, targetY = -300;
+  var totalDist = 0;
+  var lastMX = -1, lastMY = -1;
+  var revealed = false;
+  var revealThreshold = 3000; /* pixels of mouse movement to fully reveal — slower */
+
+  hero.addEventListener('mousemove', function(e) {
+    var rect = hero.getBoundingClientRect();
+    targetX = e.clientX - rect.left;
+    targetY = e.clientY - rect.top;
+
+    if (!revealed) {
+      if (lastMX >= 0) {
+        totalDist += Math.hypot(e.clientX - lastMX, e.clientY - lastMY);
+      }
+      lastMX = e.clientX;
+      lastMY = e.clientY;
+
+      /* Gradually fade the dark overlay based on distance */
+      var progress = Math.min(1, totalDist / revealThreshold);
+      heroDark.style.opacity = 1 - progress;
+
+      /* When fully revealed, flip to light mode */
+      if (progress >= 1) {
+        revealed = true;
+        hero.classList.add('revealed');
+      }
+    }
+  });
+
+  hero.addEventListener('mouseleave', function() {
+    targetX = -300;
+    targetY = -300;
+  });
+
+  function animateLight() {
+    lightX += (targetX - lightX) * 0.08;
+    lightY += (targetY - lightY) * 0.08;
+
+    heroLight.style.left = lightX + 'px';
+    heroLight.style.top = lightY + 'px';
+
+    if (!revealed) {
+      /* Torch mask follows cursor */
+      var radius = 180 + totalDist * 0.15;
+      var mask = 'radial-gradient(circle ' + radius + 'px at ' + lightX + 'px ' + lightY + 'px, transparent 0%, rgba(0,0,0,0.85) 100%)';
+      heroDark.style.maskImage = mask;
+      heroDark.style.webkitMaskImage = mask;
+    }
+
+    requestAnimationFrame(animateLight);
+  }
+  animateLight();
+
+  /* ====== BENTO CARD GLOW EFFECT ====== */
+  var cards = document.querySelectorAll('.bento-card');
+  var mouseX = -1000, mouseY = -1000;
+
+  document.addEventListener('mousemove', function(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  document.addEventListener('mouseleave', function() {
+    mouseX = -1000;
+    mouseY = -1000;
+  });
+
+  function updateGlow() {
+    cards.forEach(function(card) {
+      var rect = card.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+      var dist = Math.hypot(mouseX - cx, mouseY - cy);
+      var maxDist = 400;
+      var intensity = Math.max(0, 1 - dist / maxDist);
+
+      if (intensity > 0) {
+        card.style.boxShadow = '0 0 ' + (30 * intensity) + 'px rgba(240,112,32,' + (0.15 * intensity) + '), 0 0 ' + (60 * intensity) + 'px rgba(255,160,80,' + (0.08 * intensity) + ')';
+        card.style.filter = 'brightness(' + (1 + 0.03 * intensity) + ')';
+        card.style.borderColor = 'rgba(240,112,32,' + (0.2 * intensity) + ')';
+      } else {
+        card.style.boxShadow = '';
+        card.style.filter = '';
+        card.style.borderColor = '';
+      }
+    });
+    requestAnimationFrame(updateGlow);
+  }
+  updateGlow();
+})();
+</script>
+
+</body>
+</html>

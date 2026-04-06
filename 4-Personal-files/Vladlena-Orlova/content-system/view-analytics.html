@@ -463,7 +463,7 @@
       <div class="funnel-step">
         <div class="funnel-label">Подписался / оставил контакт</div>
         <div class="funnel-bar-wrap">
-          <div class="funnel-bar" style="width:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))">
+          <div class="funnel-bar" style="width:100%;background:linear-gradient(90deg,#C8C3B8,#B5B0A3)">
             <span class="num">15 240</span>
           </div>
         </div>
@@ -473,7 +473,7 @@
       <div class="funnel-step">
         <div class="funnel-label">Забрал контент / гайд</div>
         <div class="funnel-bar-wrap">
-          <div class="funnel-bar" style="width:28%;background:linear-gradient(90deg,#C47A0C,var(--accent))">
+          <div class="funnel-bar" style="width:28%;background:linear-gradient(90deg,#B5B0A3,#9E9684)">
             <span class="num">4 267</span>
           </div>
         </div>
@@ -483,7 +483,7 @@
       <div class="funnel-step">
         <div class="funnel-label">Был на вебинаре</div>
         <div class="funnel-bar-wrap">
-          <div class="funnel-bar" style="width:12%;background:linear-gradient(90deg,#A06A08,#C47A0C)">
+          <div class="funnel-bar" style="width:12%;background:linear-gradient(90deg,#C4973A,#D4A544)">
             <span class="num">1 812</span>
           </div>
         </div>
@@ -493,7 +493,7 @@
       <div class="funnel-step">
         <div class="funnel-label">Прошёл диагностику</div>
         <div class="funnel-bar-wrap">
-          <div class="funnel-bar" style="width:2.1%;min-width:80px;background:linear-gradient(90deg,#7A5006,#A06A08)">
+          <div class="funnel-bar" style="width:2.1%;min-width:80px;background:linear-gradient(90deg,#D4A544,var(--accent))">
             <span class="num">324</span>
           </div>
         </div>
@@ -501,23 +501,23 @@
       </div>
       <div class="funnel-arrow">&darr; 56% покупают</div>
       <div class="funnel-step">
-        <div class="funnel-label" style="color:var(--green);font-weight:500">Купил</div>
+        <div class="funnel-label" style="color:var(--accent);font-weight:600">Купил</div>
         <div class="funnel-bar-wrap">
-          <div class="funnel-bar" style="width:1.2%;min-width:70px;background:linear-gradient(90deg,var(--green),#55efc4)">
+          <div class="funnel-bar" style="width:1.2%;min-width:70px;background:linear-gradient(90deg,var(--accent),#F5A623)">
             <span class="num">182</span>
           </div>
         </div>
-        <div class="funnel-pct" style="color:var(--green);font-weight:600">1.2%</div>
+        <div class="funnel-pct" style="color:var(--accent);font-weight:600">1.2%</div>
       </div>
       <div class="funnel-arrow">&darr; repeat</div>
       <div class="funnel-step">
-        <div class="funnel-label">Купил второй продукт</div>
+        <div class="funnel-label" style="color:var(--accent2);font-weight:600">Купил второй продукт</div>
         <div class="funnel-bar-wrap">
-          <div class="funnel-bar" style="width:0.25%;min-width:55px;background:linear-gradient(90deg,#009688,var(--green))">
+          <div class="funnel-bar" style="width:0.25%;min-width:55px;background:linear-gradient(90deg,#E87B00,#FF9F2E)">
             <span class="num">38</span>
           </div>
         </div>
-        <div class="funnel-pct">0.25%</div>
+        <div class="funnel-pct" style="color:var(--accent2);font-weight:600">0.25%</div>
       </div>
     </div>
   </div>
@@ -589,7 +589,7 @@
 
   <!-- Key B2B metrics -->
   <div class="span-2">
-    <div class="section-title">Ключевые метрики B2B <span class="badge-sm">отдельная воронка</span></div>
+    <div class="section-title">Ключевые метрики <span class="badge-sm">цикл продажи</span></div>
     <table class="weekly-table">
       <thead><tr><th>Метрика</th><th>Значение</th><th>Тренд</th></tr></thead>
       <tbody>
@@ -729,43 +729,35 @@
 
   <!-- Data sources — moved to bottom -->
   <div class="span-4" style="opacity:.85;">
-    <div class="section-title">Источники данных <span class="badge-sm">подключены</span></div>
+    <div class="section-title">Источники данных <span class="badge-sm">что откуда берём</span></div>
     <div class="data-sources">
       <div class="ds-card">
         <div class="ds-icon ym">Я</div>
         <div class="ds-info">
           <div class="ds-name">Яндекс.Метрика</div>
-          <div class="ds-status">UTM, визиты, цели</div>
-        </div>
-      </div>
-      <div class="ds-card">
-        <div class="ds-icon ga">G</div>
-        <div class="ds-info">
-          <div class="ds-name">Google Analytics</div>
-          <div class="ds-status pending">Опционально (дублирует Я.М.)</div>
+          <div class="ds-status">Посетители сайта, конверсия в заявку, UTM-разбивка по каналам, атрибуция first/last touch, понедельная динамика визитов</div>
         </div>
       </div>
       <div class="ds-card">
         <div class="ds-icon bot">B</div>
         <div class="ds-info">
-          <div class="ds-name">BotHelp / ZIS Bot</div>
-          <div class="ds-status">Подписки, клики, цепочки</div>
+          <div class="ds-name">BotHelp</div>
+          <div class="ds-status">Подписчики бота + UTM (API), цепочки через вебхуки. Open/click rate — только дашборд, API не отдаёт</div>
         </div>
       </div>
       <div class="ds-card">
         <div class="ds-icon mg">M</div>
         <div class="ds-info">
-          <div class="ds-name">Mailgunner</div>
-          <div class="ds-status">Open rate, click rate, unsub</div>
+          <div class="ds-name">Mailganer</div>
+          <div class="ds-status">Open rate, click rate, unsub, подписчики и динамика — всё через API</div>
         </div>
       </div>
-      <div class="ds-card">
-        <div class="ds-icon crm">Z</div>
-        <div class="ds-info">
-          <div class="ds-name">ZIS CRM</div>
-          <div class="ds-status">Лиды, продажи, enrollment</div>
-        </div>
-      </div>
+    </div>
+    <div style="margin-top:16px;font-size:12px;color:var(--text2);line-height:1.6;">
+      <strong style="color:var(--text)">Не покрыто этими источниками:</strong>
+      клиенты, выручка, LTV, CAC, repeat purchase, когорты, мультитач-атрибуция покупок — нужна <strong>CRM или платёжная система</strong>.
+      Подписчики YouTube — нужен <strong>YouTube Data API</strong>.
+      Подписчики TG-канала (не бота) — нужен <strong>Telegram Bot API</strong> (getChatMemberCount).
     </div>
   </div>
 

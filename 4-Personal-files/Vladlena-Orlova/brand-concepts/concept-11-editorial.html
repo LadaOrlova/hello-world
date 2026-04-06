@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Академия Вани Замесина — Concept 11: Editorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: #111;
+            background: #FFF;
+            line-height: 1.55;
+            font-weight: 400;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #E8E8E8;
+            margin: 0;
+        }
+
+        /* ── NAV ── */
+        .nav {
+            border-bottom: 1px solid #E8E8E8;
+            padding: 14px 0;
+        }
+        .nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.02em;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            font-size: 14px;
+            color: #555;
+        }
+        .nav-links a:hover { color: #111; }
+        .nav-cta {
+            background: #F07020;
+            color: #FFF !important;
+            padding: 7px 18px;
+            border-radius: 100px;
+            font-weight: 500;
+            font-size: 13px;
+            transition: background .2s;
+        }
+        .nav-cta:hover { background: #d9621a; }
+
+        /* ── HERO ── */
+        .hero {
+            padding: 64px 0 56px;
+        }
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            max-width: 700px;
+            margin-bottom: 20px;
+        }
+        .hero-sub {
+            font-size: 18px;
+            color: #777;
+            max-width: 560px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .btn-orange {
+            background: #F07020;
+            color: #FFF;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            transition: background .2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .btn-orange:hover { background: #d9621a; }
+        .btn-outline {
+            background: transparent;
+            color: #111;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 15px;
+            border: 1px solid #D0D0D0;
+            cursor: pointer;
+            transition: border-color .2s, background .2s;
+            font-family: 'DM Sans', sans-serif;
+        }
+        .btn-outline:hover { border-color: #999; background: #FAFAFA; }
+        .hero-stats {
+            display: flex;
+            gap: 24px;
+            font-size: 13px;
+            color: #999;
+        }
+        .hero-stats span { display: flex; align-items: center; gap: 6px; }
+        .hero-stats strong { color: #111; font-weight: 600; }
+
+        /* ── SECTION COMMON ── */
+        .section { padding: 60px 0; }
+        .section-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #999;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+
+        /* ── COURSES ── */
+        .course-row {
+            display: grid;
+            grid-template-columns: 90px 1fr auto auto 32px;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 0;
+            border-bottom: 1px solid #E8E8E8;
+            transition: background .15s;
+            cursor: pointer;
+        }
+        .course-row:hover { background: #FAF8F5; }
+        .course-tag {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .tag-live { background: #F07020; color: #FFF; }
+        .tag-soon { background: #F0F0F0; color: #999; }
+        .course-problem {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: -0.01em;
+            color: #111;
+        }
+        .course-result {
+            font-size: 14px;
+            color: #777;
+            min-width: 180px;
+        }
+        .course-result strong { color: #555; font-weight: 500; }
+        .course-meta {
+            font-size: 13px;
+            color: #999;
+            text-align: right;
+            white-space: nowrap;
+            min-width: 140px;
+        }
+        .course-arrow {
+            font-size: 18px;
+            color: #CCC;
+            transition: transform .2s, color .2s;
+        }
+        .course-row:hover .course-arrow { transform: translateX(4px); color: #F07020; }
+
+        /* ── MINI COURSES ── */
+        .mini-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .mini-card {
+            border: 1px solid #E8E8E8;
+            border-radius: 10px;
+            padding: 20px;
+            transition: border-color .2s;
+            cursor: pointer;
+        }
+        .mini-card:hover { border-color: #CCC; }
+        .mini-card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 8px;
+        }
+        .mini-card-meta {
+            font-size: 13px;
+            color: #999;
+        }
+        .mini-card-price {
+            font-weight: 600;
+            color: #F07020;
+        }
+
+        /* ── CASES ── */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .case-card {
+            border: 1px solid #E8E8E8;
+            border-radius: 10px;
+            padding: 28px 24px;
+        }
+        .case-metric {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: #F07020;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .case-metric-label {
+            font-size: 13px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .case-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 2px;
+        }
+        .case-role {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 12px;
+        }
+        .case-quote {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+            font-style: italic;
+        }
+        .cases-link {
+            font-size: 14px;
+            color: #F07020;
+            font-weight: 500;
+        }
+        .cases-link:hover { text-decoration: underline; }
+
+        /* ── CALENDAR ── */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+        .event-card {
+            border: 1px solid #E8E8E8;
+            border-radius: 10px;
+            padding: 20px 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: border-color .2s;
+            cursor: pointer;
+        }
+        .event-card:hover { border-color: #CCC; }
+        .event-badge {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 6px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            line-height: 1;
+        }
+        .badge-boost { background: #F07020; color: #FFF; }
+        .badge-webinar { background: #222; color: #FFF; }
+        .event-info { flex: 1; }
+        .event-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        .event-meta {
+            font-size: 13px;
+            color: #999;
+        }
+        .event-price {
+            font-weight: 600;
+            color: #111;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 28px;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+        .cta-section p {
+            color: #777;
+            font-size: 16px;
+            margin-bottom: 24px;
+            max-width: 440px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            padding: 48px 0 32px;
+            border-top: 1px solid #E8E8E8;
+            font-size: 13px;
+            color: #999;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 32px;
+            margin-bottom: 40px;
+        }
+        .footer-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #111;
+            margin-bottom: 8px;
+        }
+        .footer h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 13px;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 12px;
+        }
+        .footer ul { list-style: none; }
+        .footer li { margin-bottom: 6px; }
+        .footer a:hover { color: #111; }
+        .footer-copy { color: #BBB; font-size: 12px; }
+
+        /* ── CONCEPT LABEL ── */
+        .concept-label {
+            position: fixed;
+            bottom: 16px;
+            right: 20px;
+            background: #111;
+            color: #FFF;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 100px;
+            letter-spacing: 0.04em;
+            z-index: 100;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .mini-grid { grid-template-columns: repeat(2, 1fr); }
+            .cases-grid { grid-template-columns: 1fr; }
+            .calendar-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+        }
+        @media (max-width: 700px) {
+            .container { padding: 0 20px; }
+            .nav-links { gap: 16px; font-size: 13px; }
+            .course-row {
+                grid-template-columns: 1fr;
+                gap: 6px;
+                padding: 16px 0;
+            }
+            .course-tag { justify-self: start; }
+            .course-result, .course-meta { font-size: 13px; }
+            .course-arrow { display: none; }
+            .mini-grid { grid-template-columns: 1fr; }
+            .hero-buttons { flex-direction: column; }
+            .btn-orange, .btn-outline { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <div class="container">
+        <div class="nav-logo">Академия Вани Замесина</div>
+        <div class="nav-links">
+            <a href="#">Методологии</a>
+            <a href="#">Курсы</a>
+            <a href="#">Кейсы</a>
+            <a href="#">Блог</a>
+            <a href="#">События</a>
+            <a href="#" class="nav-cta">Начать</a>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <h1>Создавай продукты в&nbsp;новой реальности</h1>
+        <p class="hero-sub">Методология, инструменты и среда, чтобы пройти от идеи до результата. Система AURA + вайбкодинг + поддержка на&nbsp;каждом шаге.</p>
+        <div class="hero-buttons">
+            <button class="btn-orange">Выбрать курс</button>
+            <button class="btn-outline">Как это работает</button>
+        </div>
+        <div class="hero-stats">
+            <span><strong>13 000+</strong> выпускников</span>
+            <span><strong>9.2 / 10</strong> оценка</span>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- COURSES -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Какая у вас задача?</h2>
+
+        <div class="course-row">
+            <span class="course-tag tag-live">Доступно</span>
+            <span class="course-problem">Хочу создавать продукты с AI</span>
+            <span class="course-result">От идеи до MVP за неделю &middot; <strong>BOOST</strong></span>
+            <span class="course-meta">1 нед &middot; 29 900 &#8381;</span>
+            <span class="course-arrow">&rarr;</span>
+        </div>
+
+        <div class="course-row">
+            <span class="course-tag tag-soon">Скоро</span>
+            <span class="course-problem">Хочу запустить MVP и получить первых клиентов</span>
+            <span class="course-result">Работающий продукт &middot; <strong>Запуск</strong></span>
+            <span class="course-meta">5 нед &middot; 60-75K</span>
+            <span class="course-arrow">&rarr;</span>
+        </div>
+
+        <div class="course-row">
+            <span class="course-tag tag-soon">Скоро</span>
+            <span class="course-problem">Продукт не растёт, не понимаю почему</span>
+            <span class="course-result">Диагноз + план роста &middot; <strong>Починка</strong></span>
+            <span class="course-meta">4 нед &middot; 60-80K</span>
+            <span class="course-arrow">&rarr;</span>
+        </div>
+
+        <div class="course-row">
+            <span class="course-tag tag-soon">Скоро</span>
+            <span class="course-problem">Работаю на интуиции, хочу систему</span>
+            <span class="course-result">Система решений &middot; <strong>Основы AJTBD</strong></span>
+            <span class="course-meta">3 нед &middot; 35-50K</span>
+            <span class="course-arrow">&rarr;</span>
+        </div>
+
+        <div class="course-row">
+            <span class="course-tag tag-soon">Скоро</span>
+            <span class="course-problem">Хочу перейти в продакт-менеджмент</span>
+            <span class="course-result">Кейс для портфолио &middot; <strong>Продакт с нуля</strong></span>
+            <span class="course-meta">3 нед &middot; 35-50K</span>
+            <span class="course-arrow">&rarr;</span>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- MINI COURSES -->
+<section class="section">
+    <div class="container">
+        <div class="mini-label">Мини-курсы &middot; Быстрый старт</div>
+        <div class="mini-grid">
+            <div class="mini-card">
+                <div class="mini-card-title">AI-флоу за вечер</div>
+                <div class="mini-card-meta">1 день &middot; <span class="mini-card-price">5 000 &#8381;</span></div>
+            </div>
+            <div class="mini-card">
+                <div class="mini-card-title">Рабочий день на ИИ</div>
+                <div class="mini-card-meta">2 дня &middot; <span class="mini-card-price">5 000 &#8381;</span></div>
+            </div>
+            <div class="mini-card">
+                <div class="mini-card-title">Автоматизируй рутину</div>
+                <div class="mini-card-meta">Гайд &middot; <span class="mini-card-price">Бесплатно</span></div>
+            </div>
+            <div class="mini-card">
+                <div class="mini-card-title">Workflow для команды</div>
+                <div class="mini-card-meta">3 дня &middot; <span class="mini-card-price">9 000 &#8381;</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CASES -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Результаты выпускников</h2>
+        <div class="cases-grid">
+            <div class="case-card">
+                <div class="case-metric">x13</div>
+                <div class="case-metric-label">рост выручки</div>
+                <div class="case-name">Тимур Абдужалилов</div>
+                <div class="case-role">CPO, Legal Resources &middot; LegalTech</div>
+                <div class="case-quote">&laquo;Выручка: 600K &rarr; 8M/мес. Конверсия 93%. Первая прибыль за 6 лет.&raquo;</div>
+            </div>
+            <div class="case-card">
+                <div class="case-metric">2000%</div>
+                <div class="case-metric-label">ROMI рекламы</div>
+                <div class="case-name">Алексей Шомахов</div>
+                <div class="case-role">Head of Growth, Neginski &middot; ОАЭ</div>
+                <div class="case-quote">&laquo;$500K+ сделок на бюджете $5K. Лучший запуск рекламы в истории компании.&raquo;</div>
+            </div>
+            <div class="case-card">
+                <div class="case-metric">x6</div>
+                <div class="case-metric-label">рост дохода</div>
+                <div class="case-name">Татьяна Безугляк</div>
+                <div class="case-role">Фотограф &rarr; AJTBD-исследователь</div>
+                <div class="case-quote">&laquo;40K &rarr; 250K/мес. 140+ интервью, 12 проектов.&raquo;</div>
+            </div>
+        </div>
+        <a href="#" class="cases-link">Все кейсы &rarr;</a>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CALENDAR -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Ближайшие события</h2>
+        <div class="calendar-grid">
+            <div class="event-card">
+                <span class="event-badge badge-boost">3 апр</span>
+                <div class="event-info">
+                    <div class="event-title">BOOST Поток 5</div>
+                    <div class="event-meta">3-11 апреля &middot; <span class="event-price">29 900 &#8381;</span></div>
+                </div>
+            </div>
+            <div class="event-card">
+                <span class="event-badge badge-webinar">10 апр</span>
+                <div class="event-info">
+                    <div class="event-title">Вебинар PMF</div>
+                    <div class="event-meta">19:00 MSK &middot; <span class="event-price">Бесплатно</span></div>
+                </div>
+            </div>
+            <div class="event-card">
+                <span class="event-badge badge-boost">17 апр</span>
+                <div class="event-info">
+                    <div class="event-title">BOOST Поток 6</div>
+                    <div class="event-meta">17-25 апреля &middot; <span class="event-price">29 900 &#8381;</span></div>
+                </div>
+            </div>
+            <div class="event-card">
+                <span class="event-badge badge-webinar">24 апр</span>
+                <div class="event-info">
+                    <div class="event-title">Вебинар ABCDX</div>
+                    <div class="event-meta">19:00 MSK &middot; <span class="event-price">Бесплатно</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="container">
+        <h2>Получи бесплатную лекцию</h2>
+        <p>Разберём, как находить точки роста продукта с помощью AURA-фреймворка. 40 минут, без воды.</p>
+        <button class="btn-orange">Получить лекцию</button>
+    </div>
+</section>
+
+<hr class="divider">
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-brand">Академия Вани Замесина</div>
+                <p>Продуктовое образование нового поколения. Методология AURA, AI-инструменты, практика с первого дня.</p>
+            </div>
+            <div>
+                <h4>Курсы</h4>
+                <ul>
+                    <li><a href="#">BOOST</a></li>
+                    <li><a href="#">Запуск</a></li>
+                    <li><a href="#">Починка</a></li>
+                    <li><a href="#">Основы AJTBD</a></li>
+                    <li><a href="#">Продакт с нуля</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Ресурсы</h4>
+                <ul>
+                    <li><a href="#">Блог</a></li>
+                    <li><a href="#">Кейсы</a></li>
+                    <li><a href="#">Вебинары</a></li>
+                    <li><a href="#">Подкаст</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Контакты</h4>
+                <ul>
+                    <li><a href="#">Telegram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">hello@zamesin.ru</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copy">&copy; 2026 Академия Вани Замесина</div>
+    </div>
+</footer>
+
+<!-- CONCEPT LABEL -->
+<div class="concept-label">Concept 11: Editorial</div>
+
+</body>
+</html>

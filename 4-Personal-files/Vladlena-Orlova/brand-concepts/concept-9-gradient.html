@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Академия Замесина — Concept 9: Gradient Geo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===== GRADIENT MESH BACKGROUND ===== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: #111;
+  min-height: 100vh;
+  background: #FBF7F3;
+  overflow-x: hidden;
+}
+
+/* ===== GRAIN TEXTURE — only on hero ===== */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.3;
+  filter: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E#n");
+  mix-blend-mode: overlay;
+}
+.hero > * { position: relative; z-index: 2; }
+
+/* ===== CONCEPT LABEL ===== */
+.concept-label {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: #111;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 8px 14px;
+  border-radius: 100px;
+  z-index: 10000;
+  text-transform: uppercase;
+}
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: rgba(255,245,238,0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #111;
+  letter-spacing: -0.02em;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-icon {
+  font-size: 22px;
+  color: #111;
+  cursor: pointer;
+  line-height: 1;
+  transition: opacity 0.2s;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+}
+
+.nav-icon:hover { opacity: 0.5; }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 140px 40px 80px;
+  position: relative;
+  background: #FFF8F0;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 20%, #FFD4A8 0%, transparent 55%),
+    radial-gradient(ellipse 70% 70% at 85% 15%, #FF8A50 0%, transparent 45%),
+    radial-gradient(ellipse 60% 50% at 50% 80%, #E85A30 0%, transparent 40%),
+    radial-gradient(ellipse 50% 60% at 90% 85%, #FFC078 0%, transparent 45%),
+    radial-gradient(ellipse 60% 40% at 60% 30%, rgba(255,138,80,0.3) 0%, transparent 50%);
+  animation: fireGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes fireGlow {
+  0% {
+    opacity: 0.85;
+    filter: brightness(1) saturate(1);
+  }
+  30% {
+    opacity: 1;
+    filter: brightness(1.08) saturate(1.1);
+  }
+  60% {
+    opacity: 0.9;
+    filter: brightness(0.97) saturate(1.05);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1.05) saturate(1.15);
+  }
+}
+
+/* floating geometric decorations */
+.hero-deco {
+  position: absolute;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #111;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-deco.d1 { top: 15%; left: 5%; font-size: 48px; opacity: 0.15; }
+.hero-deco.d2 { top: 10%; right: 12%; font-size: 80px; opacity: 0.1; }
+.hero-deco.d3 { bottom: 20%; right: 5%; font-size: 60px; opacity: 0.12; }
+.hero-deco.d4 { bottom: 15%; left: 8%; font-size: 36px; opacity: 0.15; }
+.hero-deco.d5 { top: 40%; right: 3%; font-size: 100px; opacity: 0.07; }
+
+.hero-text {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-line {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-line + .hero-line {
+  margin-top: -10px;
+}
+
+.hero-word {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(4rem, 10vw, 9rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #111;
+}
+
+.hero-word.outline {
+  color: transparent;
+  -webkit-text-stroke: 2.5px #111;
+}
+
+.hero-word.shifted {
+  margin-left: clamp(40px, 8vw, 160px);
+}
+
+/* inline geometric shapes */
+.geo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #111;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.geo-sm { font-size: clamp(1.5rem, 3vw, 3rem); }
+.geo-md { font-size: clamp(2rem, 5vw, 4.5rem); }
+.geo-lg { font-size: clamp(3rem, 7vw, 6rem); }
+
+.geo-circle {
+  width: clamp(40px, 5vw, 80px);
+  height: clamp(40px, 5vw, 80px);
+  border-radius: 50%;
+  background: #111;
+  flex-shrink: 0;
+}
+
+.geo-circle.hollow {
+  background: transparent;
+  border: 3px solid #111;
+}
+
+.geo-circle.gradient {
+  background: linear-gradient(135deg, #E85A30, #FF8A50);
+  border: none;
+}
+
+.geo-semicircle {
+  width: clamp(40px, 5vw, 70px);
+  height: clamp(20px, 2.5vw, 35px);
+  border-radius: clamp(40px, 5vw, 70px) clamp(40px, 5vw, 70px) 0 0;
+  background: #111;
+  flex-shrink: 0;
+}
+
+.geo-triangle {
+  width: 0;
+  height: 0;
+  border-left: clamp(15px, 2vw, 30px) solid transparent;
+  border-right: clamp(15px, 2vw, 30px) solid transparent;
+  border-bottom: clamp(26px, 3.5vw, 52px) solid #111;
+  flex-shrink: 0;
+}
+
+/* Robot face */
+.robot-face {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 16px;
+  flex-shrink: 0;
+}
+
+.robot-eye {
+  width: clamp(18px, 2.5vw, 36px);
+  height: clamp(18px, 2.5vw, 36px);
+  border-radius: 50%;
+  background: #111;
+  position: relative;
+}
+
+.robot-eye::after {
+  content: '';
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  background: #FFF5EE;
+  top: 20%;
+  right: 20%;
+}
+
+.hero-sub {
+  margin-top: 48px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 320px;
+  color: #333;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #111;
+  border: 2px solid #111;
+  border-radius: 100px;
+  padding: 12px 28px;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: transparent;
+}
+
+.hero-btn:hover {
+  background: #111;
+  color: #fff;
+}
+
+/* ===== STATS STRIP ===== */
+.stats {
+  margin: 0 40px;
+  padding: 28px 40px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 40px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+}
+
+.stats-sep {
+  color: #FF8A50;
+  font-size: 20px;
+}
+
+/* ===== SECTION HEADING ===== */
+.section-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+  color: #111;
+  line-height: 1.1;
+}
+
+.section-heading .dot {
+  color: #E85A30;
+}
+
+/* ===== COURSES ===== */
+.courses {
+  padding: 100px 40px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.courses-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.course-card {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.course-card:hover {
+  transform: translateY(-4px);
+  animation: cardFireGlow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes cardFireGlow {
+  0% {
+    box-shadow:
+      0 8px 24px rgba(232,90,48,0.15),
+      0 16px 48px rgba(255,138,80,0.1);
+  }
+  50% {
+    box-shadow:
+      0 12px 32px rgba(232,90,48,0.25),
+      0 20px 56px rgba(255,160,96,0.15);
+  }
+  100% {
+    box-shadow:
+      0 6px 20px rgba(240,112,32,0.18),
+      0 14px 44px rgba(255,138,80,0.12);
+  }
+}
+
+.card-geo {
+  font-size: 36px;
+  line-height: 1;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.card-tag {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #111;
+  background: rgba(201,177,255,0.3);
+  padding: 4px 10px;
+  border-radius: 6px;
+  align-self: flex-start;
+}
+
+.card-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.card-meta {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.card-result {
+  font-size: 14px;
+  font-weight: 600;
+  color: #E85A30;
+  margin-top: 4px;
+}
+
+.card-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: auto;
+}
+
+/* ===== MINI COURSES ===== */
+.mini-courses {
+  padding: 0 40px 80px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.mini-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.mini-row {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+}
+
+.mini-pill {
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 100px;
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #111;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.mini-pill:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.mini-price {
+  color: #888;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* ===== CASES ===== */
+.cases {
+  padding: 80px 40px 100px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.cases-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.cases-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #111;
+  text-decoration: none;
+  border-bottom: 2px solid #111;
+  padding-bottom: 2px;
+  transition: opacity 0.2s;
+}
+
+.cases-link:hover { opacity: 0.5; }
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.case-card {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 20px;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.case-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+}
+
+.case-metric {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #E85A30, #FF8A50, #FFA060);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.case-metric-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #E85A30;
+  margin-top: -4px;
+}
+
+.case-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 8px;
+}
+
+.case-role {
+  font-size: 14px;
+  color: #777;
+}
+
+.case-quote {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #333;
+  font-style: italic;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: #111;
+  color: #fff;
+  padding: 48px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #fff;
+}
+
+.footer-links {
+  display: flex;
+  gap: 28px;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: #fff; }
+
+.footer-copy {
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+  width: 100%;
+  text-align: center;
+  margin-top: 12px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav { padding: 16px 20px; }
+  .hero { padding: 120px 20px 60px; }
+  .hero-line { gap: 10px; }
+  .hero-word { font-size: clamp(2.8rem, 12vw, 5rem); }
+  .geo-sm { font-size: 1.2rem; }
+  .geo-md { font-size: 1.8rem; }
+  .geo-lg { font-size: 2.5rem; }
+  .geo-circle { width: 30px; height: 30px; }
+  .geo-semicircle { width: 30px; height: 15px; }
+  .robot-face { gap: 4px; margin-left: 8px; }
+  .stats { margin: 0 20px; padding: 20px; gap: 8px 20px; font-size: 14px; }
+  .courses, .mini-courses, .cases { padding-left: 20px; padding-right: 20px; }
+  .courses-grid { grid-template-columns: 1fr; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .footer { padding: 32px 20px; }
+  .concept-label { top: auto; bottom: 16px; right: 16px; }
+  .hero-sub { margin-top: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- CONCEPT LABEL -->
+<div class="concept-label">Concept 9: Gradient Geo</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Академия Вани Замесина</div>
+  <div class="nav-right">
+    <span class="nav-icon" title="Search">&#9675;&#8212;</span>
+    <span class="nav-icon" title="Menu" style="font-size:28px;">&#8801;</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-line">
+      <span class="hero-word">создавай</span>
+    </div>
+
+    <div class="hero-line">
+      <span class="hero-word">продукты</span>
+    </div>
+
+    <div class="hero-line">
+      <span class="hero-word shifted">в&nbsp;новой</span>
+    </div>
+
+    <div class="hero-line">
+      <span class="hero-word shifted outline">реальности</span>
+      <span class="hero-word" style="color:#E85A30;">.</span>
+    </div>
+  </div>
+
+  <div class="hero-sub">
+    <p class="hero-desc">
+      Методология, инструменты и среда, чтобы пройти от идеи до результата
+    </p>
+    <a href="#courses" class="hero-btn">
+      Выбрать курс <span>&#8595;</span>
+    </a>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats">
+  <span>13 000+ выпускников</span>
+  <span class="stats-sep">&#9679;</span>
+  <span>9.2/10 средняя оценка</span>
+  <span class="stats-sep">&#9679;</span>
+  <span>Методология AURA</span>
+  <span class="stats-sep">&#9679;</span>
+  <span>AJTBD + вайбкодинг</span>
+</div>
+
+<!-- COURSES -->
+<section class="courses" id="courses">
+  <div class="courses-header">
+    <h2 class="section-heading">Какая у вас задача<span class="dot">?</span></h2>
+  </div>
+
+  <div class="courses-grid">
+    <!-- BOOST -->
+    <div class="course-card">
+      <span class="card-tag" style="background:rgba(232,90,48,0.15);color:#E85A30;">Доступно сейчас</span>
+      <div class="card-title">Хочу создавать продукты с&nbsp;AI</div>
+      <div class="card-meta">BOOST &middot; 1 неделя &middot; 29 900 &#8381;</div>
+      <div class="card-result">&#8594; От идеи до работающего MVP за&nbsp;неделю</div>
+    </div>
+
+    <!-- Запуск -->
+    <div class="course-card">
+      <span class="card-tag">Скоро</span>
+      <div class="card-title">Хочу запустить MVP и&nbsp;получить первых клиентов</div>
+      <div class="card-meta">Запуск продукта &middot; 5 недель &middot; 60–75K</div>
+      <div class="card-result">&#8594; Работающий продукт + первые клиенты</div>
+    </div>
+
+    <!-- Починка -->
+    <div class="course-card">
+      <span class="card-tag">Скоро</span>
+      <div class="card-title">Продукт не&nbsp;растёт, не&nbsp;понимаю почему</div>
+      <div class="card-meta">Починка продукта &middot; 4 недели &middot; 60–80K</div>
+      <div class="card-result">&#8594; Диагноз + план роста</div>
+    </div>
+
+    <!-- Основы AJTBD -->
+    <div class="course-card">
+      <span class="card-tag">Скоро</span>
+      <div class="card-title">Работаю на&nbsp;интуиции, хочу систему</div>
+      <div class="card-meta">Основы AJTBD &middot; 3 недели &middot; 35–50K</div>
+      <div class="card-result">&#8594; Система принятия решений</div>
+    </div>
+
+    <!-- Продакт с нуля -->
+    <div class="course-card">
+      <span class="card-tag">Скоро</span>
+      <div class="card-title">Хочу перейти в&nbsp;продакт-менеджмент</div>
+      <div class="card-meta">Продакт с нуля &middot; 3 недели &middot; 35–50K</div>
+      <div class="card-result">&#8594; Кейс для портфолио + уверенность на&nbsp;собесах</div>
+    </div>
+  </div>
+</section>
+
+<!-- MINI COURSES -->
+<section class="mini-courses">
+  <div class="mini-label">Мини-курсы и воркшопы</div>
+  <div class="mini-row">
+    <div class="mini-pill">
+      <span>AI-флоу</span>
+      <span class="mini-price">5 000 &#8381;</span>
+    </div>
+    <div class="mini-pill">
+      <span>Рабочий день на ИИ</span>
+      <span class="mini-price">5 000 &#8381;</span>
+    </div>
+    <div class="mini-pill">
+      <span>Автоматизируй рутину</span>
+      <span class="mini-price">бесплатно</span>
+    </div>
+    <div class="mini-pill">
+      <span>Workflow для команды</span>
+      <span class="mini-price">9 000 &#8381;</span>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="cases">
+  <div class="cases-header">
+    <h2 class="section-heading">Результаты выпускников</h2>
+    <a href="#" class="cases-link">Все кейсы &#8594;</a>
+  </div>
+
+  <div class="cases-grid">
+    <div class="case-card">
+      <div class="case-metric">x13</div>
+      <div class="case-metric-label">рост выручки</div>
+      <div class="case-name">Тимур Абдужалилов</div>
+      <div class="case-role">CPO, Legal Resources &middot; LegalTech</div>
+      <div class="case-quote">&laquo;Выручка выросла с 600K до 8M в месяц. Конверсия из встречи в сделку — 93%. Первая прибыль за 6 лет работы компании.&raquo;</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-metric">2000%</div>
+      <div class="case-metric-label">ROMI рекламы</div>
+      <div class="case-name">Алексей Шомахов</div>
+      <div class="case-role">Head of Growth, Neginski &middot; Недвижимость ОАЭ</div>
+      <div class="case-quote">&laquo;$500K+ сделок на рекламном бюджете $5K. Самый успешный запуск рекламы в Meta за всю историю компании.&raquo;</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-metric">x6</div>
+      <div class="case-metric-label">рост дохода</div>
+      <div class="case-name">Татьяна Безугляк</div>
+      <div class="case-role">Фотограф &#8594; AJTBD-исследователь</div>
+      <div class="case-quote">&laquo;Из фотографа с выгоранием — в исследователя. Доход: 40K &#8594; 250K/мес. 140+ интервью, 12 проектов (VkusVill, МТС).&raquo;</div>
+    </div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section class="courses" id="calendar">
+  <div class="courses-header">
+    <h2 class="section-heading">Ближайшие события</h2>
+  </div>
+  <div class="courses-grid" style="grid-template-columns: repeat(2, 1fr);">
+    <div class="course-card" style="flex-direction:row;gap:20px;align-items:center;">
+      <div style="background:#E85A30;color:#fff;padding:10px 16px;border-radius:14px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;line-height:1;text-align:center;min-width:56px;">3<span style="display:block;font-size:12px;font-weight:500;margin-top:2px;">апр</span></div>
+      <div>
+        <div style="font-weight:700;font-size:16px;margin-bottom:4px;">BOOST &middot; Поток 5</div>
+        <div class="card-meta">Вайб-кодинг: от идеи до MVP за неделю</div>
+        <div class="card-meta">3–11 апреля &middot; 29 900 &#8381;</div>
+      </div>
+    </div>
+    <div class="course-card" style="flex-direction:row;gap:20px;align-items:center;">
+      <div style="background:#111;color:#fff;padding:10px 16px;border-radius:14px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;line-height:1;text-align:center;min-width:56px;">10<span style="display:block;font-size:12px;font-weight:500;margin-top:2px;">апр</span></div>
+      <div>
+        <div style="font-weight:700;font-size:16px;margin-bottom:4px;">Вебинар</div>
+        <div class="card-meta">Как найти PMF с Advanced JTBD</div>
+        <div class="card-meta">19:00 MSK &middot; 60 мин &middot; Бесплатно</div>
+      </div>
+    </div>
+    <div class="course-card" style="flex-direction:row;gap:20px;align-items:center;">
+      <div style="background:#E85A30;color:#fff;padding:10px 16px;border-radius:14px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;line-height:1;text-align:center;min-width:56px;">17<span style="display:block;font-size:12px;font-weight:500;margin-top:2px;">апр</span></div>
+      <div>
+        <div style="font-weight:700;font-size:16px;margin-bottom:4px;">BOOST &middot; Поток 6</div>
+        <div class="card-meta">Вайб-кодинг: от идеи до MVP за неделю</div>
+        <div class="card-meta">17–25 апреля &middot; 29 900 &#8381;</div>
+      </div>
+    </div>
+    <div class="course-card" style="flex-direction:row;gap:20px;align-items:center;">
+      <div style="background:#111;color:#fff;padding:10px 16px;border-radius:14px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:22px;line-height:1;text-align:center;min-width:56px;">24<span style="display:block;font-size:12px;font-weight:500;margin-top:2px;">апр</span></div>
+      <div>
+        <div style="font-weight:700;font-size:16px;margin-bottom:4px;">Вебинар</div>
+        <div class="card-meta">ABCDX-сегментация: кому продавать, а кому нет</div>
+        <div class="card-meta">19:00 MSK &middot; 60 мин &middot; Бесплатно</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Академия Вани Замесина</div>
+  <div class="footer-links">
+    <a href="#">Telegram</a>
+    <a href="#">LinkedIn</a>
+  </div>
+  <div class="footer-copy">&copy; 2026 Академия Ивана Замесина</div>
+</footer>
+
+<div id="fire-cursor"></div>
+
+<style>
+#fire-cursor {
+  position: fixed;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(circle,
+    rgba(255,120,40,0.5) 0%,
+    rgba(232,90,48,0.3) 30%,
+    rgba(255,160,96,0.12) 55%,
+    transparent 70%
+  );
+  filter: blur(25px);
+  left: -200px;
+  top: -200px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#fire-cursor.visible {
+  animation: cursorFlicker 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes cursorFlicker {
+  0%   { opacity: 0.7; transform: scale(1); }
+  33%  { opacity: 1;   transform: scale(1.1); }
+  66%  { opacity: 0.6; transform: scale(0.95); }
+  100% { opacity: 0.85; transform: scale(1.06); }
+}
+</style>
+
+<script>
+(function() {
+  const fire = document.getElementById('fire-cursor');
+  let mouseX = 0, mouseY = 0;
+  let curX = 0, curY = 0;
+  let visible = false;
+
+  document.addEventListener('mousemove', function(e) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (!visible) {
+      visible = true;
+      fire.classList.add('visible');
+    }
+  });
+
+  document.addEventListener('mouseleave', function() {
+    visible = false;
+    fire.classList.remove('visible');
+  });
+
+  function animate() {
+    curX += (mouseX - curX) * 0.1;
+    curY += (mouseY - curY) * 0.1;
+    fire.style.left = (curX - 125) + 'px';
+    fire.style.top = (curY - 125) + 'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+
+</body>
+</html>
