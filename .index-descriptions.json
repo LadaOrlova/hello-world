@@ -439,6 +439,20 @@
 2-Products/RU/Exam/sample-questions.md	Примеры вопросов для подготовки к экзамену
 2-Products/RU/Exam/theory-questions-examples.md	Примеры экзаменационных билетов: теоретическая часть
 2-Products/RU/Exam/theory-questions.md	Теоретическая часть: 25 вопросов
+2-Products/RU/NewKDP/Product-Ilya-Vanya/action-items-pochinка.md	Починка продукта: план действий для обсуждения
+2-Products/RU/NewKDP/Product-Ilya-Vanya/boost-feedback-analysis.md	Анализ обратной связи BOOST (62 ответа)
+2-Products/RU/NewKDP/Product-Ilya-Vanya/boost-pro-hypotheses.md	Boost Pro: гипотезы для обсуждения с Сашей
+2-Products/RU/NewKDP/Product-Ilya-Vanya/course-zapusk/prompts-zapusk.md	Промпты для курса «Запуск продукта»
+2-Products/RU/NewKDP/Product-Ilya-Vanya/jobs-v2-cohort59.md	Сегментация студентов КДП: 59-й поток (отдельный анализ)
+2-Products/RU/NewKDP/Product-Ilya-Vanya/jobs-v2.md	Сегментация студентов КДП по Jobs (v2)
+2-Products/RU/NewKDP/Product-Ilya-Vanya/new-courses-v2.md	Линейка продуктов КДП v2.1
+2-Products/RU/NewKDP/Product-Ilya-Vanya/plan-kdp-full-v2.md	План запуска: КДП Полный (предзаписанный формат)
+2-Products/RU/NewKDP/Product-Ilya-Vanya/poc-two-products.md	Proof of Concept: 2 коротких продукта из КДП
+2-Products/RU/NewKDP/Product-Ilya-Vanya/roadmap-pochinка.md	Роадмап запуска: "Починка продукта"
+2-Products/RU/NewKDP/Product-Ilya-Vanya/summary-for-vanya.md	Презентация для Вани: тезисы
+2-Products/RU/NewKDP/Product-Ilya-Vanya/Курс Запуск/задачи-апрель.md	Илья Рублевский — Tasks апрель 2026
+2-Products/RU/NewKDP/Product-Ilya-Vanya/Курс Запуск/план-спринта.md	План целей на спринт: апрель — начало июня 2026
+2-Products/RU/NewKDP/Product-Ilya-Vanya/Курс Запуск/промпты.md	Промпты для курса «Запуск продукта»
 2-Products/RU/NewKDP/april-tasks.md	Задачи на апрель 2026: подготовка к отпуску Вани
 2-Products/RU/NewKDP/course-zapusk.md	Курс "Запуск продукта" — Программа
 2-Products/RU/NewKDP/ideas.md	Идеи: КДП с 60-го потока — обучение через VS Code + Claude Code
@@ -721,20 +735,6 @@
 5-ZIS/docs/bc/PAY-13.md	PAY-13: Финансовая аналитика — все данные по платежам, скидкам, комиссиям и возвратам доступны для построения финансовых отчётов
 8-Prompts-and-Scripts/Prompts/generate-segment.md	Промт: Выбор 5 привлекательных сегментов по AJTBD
 8-Prompts-and-Scripts/Prompts/riskiest-assumption-test.md	Что делать первым сообщением
-Product-Ilya-Vanya/action-items-pochinка.md	Починка продукта: план действий для обсуждения
-Product-Ilya-Vanya/boost-feedback-analysis.md	Анализ обратной связи BOOST (62 ответа)
-Product-Ilya-Vanya/boost-pro-hypotheses.md	Boost Pro: гипотезы для обсуждения с Сашей
-Product-Ilya-Vanya/course-zapusk/prompts-zapusk.md	Промпты для курса «Запуск продукта»
-Product-Ilya-Vanya/jobs-v2-cohort59.md	Сегментация студентов КДП: 59-й поток (отдельный анализ)
-Product-Ilya-Vanya/jobs-v2.md	Сегментация студентов КДП по Jobs (v2)
-Product-Ilya-Vanya/new-courses-v2.md	Линейка продуктов КДП v2.1
-Product-Ilya-Vanya/plan-kdp-full-v2.md	План запуска: КДП Полный (предзаписанный формат)
-Product-Ilya-Vanya/poc-two-products.md	Proof of Concept: 2 коротких продукта из КДП
-Product-Ilya-Vanya/roadmap-pochinка.md	Роадмап запуска: "Починка продукта"
-Product-Ilya-Vanya/summary-for-vanya.md	Презентация для Вани: тезисы
-Product-Ilya-Vanya/Курс Запуск/задачи-апрель.md	Илья Рублевский — Tasks апрель 2026
-Product-Ilya-Vanya/Курс Запуск/план-спринта.md	План целей на спринт: апрель — начало июня 2026
-Product-Ilya-Vanya/Курс Запуск/промпты.md	Промпты для курса «Запуск продукта»
 _dir_:1-Context	Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт"
 _dir_:1-Context/AURA-Theses	Тезисы методологии AJTBD и мета-фреймворка AURA, структурированные по темам
 _dir_:1-Context/boost-knowledge-base	База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.
