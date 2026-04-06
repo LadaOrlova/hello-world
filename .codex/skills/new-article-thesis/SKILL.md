@@ -39,7 +39,7 @@ mkdir -p "$THESIS_DIR"
 SLUG="$(printf '%s' "{название-главы}" \
   | tr '[:upper:]' '[:lower:]' \
   | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g; s/-+/-/g')"
-TEMP_DIR="$ROOT/.codex/temp/thesis-${SLUG}"
+TEMP_DIR="$ROOT/tmp/thesis-${SLUG}"
 mkdir -p "$TEMP_DIR"
 ```
 

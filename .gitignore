@@ -1,5 +1,6 @@
 .DS_Store
 .env
+tmp/
 
 # Personal AI assistant files (Clawd/Soul Architecture)
 AGENTS.md

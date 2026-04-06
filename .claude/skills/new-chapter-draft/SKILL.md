@@ -43,7 +43,7 @@ user-invocable: true
 
 В самом начале работы создай папку через Bash:
 ```bash
-mkdir -p /Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/draft-{название-главы}/
+mkdir -p /Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/draft-{название-главы}/
 ```
 
 ### Файл решений (_decision-log.md)
@@ -69,7 +69,7 @@ mkdir -p /Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/draft-{н
 
 **Также проверь**, есть ли temp-папка от предыдущего скилла thesis:
 ```
-/Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/thesis-{название-главы}/
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/thesis-{название-главы}/
 ```
 Если есть — прочитай оттуда `_spring-context.md` и все agent-отчёты. Это ЦЕННЫЙ контекст от фазы ресерча!
 
@@ -429,7 +429,7 @@ WebSearch и WebFetch:
 ⚠️ **Anti-Compaction Protocol:**
 Сохрани полный отчёт в файл через Write:
 ```
-/Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/draft-{название-главы}/agent-style-researcher.md
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/draft-{название-главы}/agent-style-researcher.md
 ```
 ЗАТЕМ отправь лиду (SendMessage) краткое резюме + путь к файлу.
 
@@ -503,7 +503,7 @@ WebSearch:
 ⚠️ **Anti-Compaction Protocol:**
 Сохрани полный отчёт в файл через Write:
 ```
-/Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/draft-{название-главы}/agent-case-hunter.md
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/draft-{название-главы}/agent-case-hunter.md
 ```
 ЗАТЕМ отправь лиду (SendMessage) краткое резюме + путь к файлу.
 
@@ -617,7 +617,7 @@ URL: {ссылка}
 ⚠️ **Anti-Compaction Protocol:**
 Сохрани полный отчёт в файл через Write:
 ```
-/Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/draft-{название-главы}/agent-narrative-architect.md
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/draft-{название-главы}/agent-narrative-architect.md
 ```
 ЗАТЕМ отправь лиду (SendMessage) краткое резюме + путь к файлу.
 
@@ -817,10 +817,10 @@ Must-include элементы: {список}
 
 Прочитай эти файлы (ВСЕ — по порядку):
 
-1. `/Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/draft-{название-главы}/02-section-briefs.md` — ГЛАВНЫЙ документ! Здесь Section Brief для каждой секции с must-include элементами, кейсами и нарративной аркой + Style Guide.
-2. `/Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/draft-{название-главы}/agent-style-researcher.md` — полный style guide (если нужны детали)
-3. `/Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/draft-{название-главы}/agent-case-hunter.md` — полные описания кейсов (если нужны детали)
-4. `/Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/draft-{название-главы}/agent-narrative-architect.md` — полный нарратив-план (если нужны детали)
+1. `/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/draft-{название-главы}/02-section-briefs.md` — ГЛАВНЫЙ документ! Здесь Section Brief для каждой секции с must-include элементами, кейсами и нарративной аркой + Style Guide.
+2. `/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/draft-{название-главы}/agent-style-researcher.md` — полный style guide (если нужны детали)
+3. `/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/draft-{название-главы}/agent-case-hunter.md` — полные описания кейсов (если нужны детали)
+4. `/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/draft-{название-главы}/agent-narrative-architect.md` — полный нарратив-план (если нужны детали)
 
 ## КАК ПИСАТЬ: ДВУХПРОХОДНАЯ ПОЛИРОВКА
 
@@ -865,7 +865,7 @@ Must-include элементы: {список}
 
 Сохрани полный черновик в файл:
 ```
-/Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/draft-{название-главы}/03-draft-progress.md
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/draft-{название-главы}/03-draft-progress.md
 ```
 ЗАТЕМ отправь лиду (SendMessage) краткое резюме:
 - Количество слов

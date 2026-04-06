@@ -24,7 +24,7 @@ user-invocable: true
 
 В самом начале работы создай папку через Bash:
 ```bash
-mkdir -p /Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/ref-{название-главы}/
+mkdir -p /Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/ref-{название-главы}/
 ```
 
 ### Файл пружинного контекста (_spring-context.md)

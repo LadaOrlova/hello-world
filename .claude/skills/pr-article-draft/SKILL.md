@@ -51,7 +51,7 @@ SLUG="$(printf '%s' "{article-slug}" \
   | tr '[:upper:]' '[:lower:]' \
   | sed -E 's/[^a-z0-9]+/-/g; s/^-+|-+$//g; s/-+/-/g')"
 
-TEMP="$ROOT/.claude/temp/pr-draft-${SLUG}"
+TEMP="$ROOT/tmp/pr-draft-${SLUG}"
 mkdir -p "$TEMP"
 ```
 

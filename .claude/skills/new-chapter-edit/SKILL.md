@@ -24,7 +24,7 @@ user-invocable: true
 
 В самом начале работы создай папку через Bash:
 ```bash
-mkdir -p /Users/zamesinivan/Documents/Cursor/My workspace/.claude/temp/edit-{название-главы}/
+mkdir -p /Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/edit-{название-главы}/
 ```
 
 **Также проверь**, есть ли temp-папки от предыдущих скиллов:

@@ -60,7 +60,7 @@ user-invocable: true
 
 В САМОМ НАЧАЛЕ работы создай папку через Bash:
 ```bash
-mkdir -p /Users/zamesinivan/Documents/Cursor/1-Zamesin/.claude/temp/thesis-{название-главы}/
+mkdir -p /Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/thesis-{название-главы}/
 ```
 
 ### Файл пружинного контекста (_spring-context.md)
@@ -452,7 +452,7 @@ temp-папка/01-raw-theses.md
 ⚠️ **КРИТИЧЕСКИ ВАЖНО — Anti-Compaction Protocol:**
 ОБЯЗАТЕЛЬНО сохрани полный отчёт в файл через Write. Путь к файлу:
 ```
-/Users/zamesinivan/Documents/Cursor/1-Zamesin/.claude/temp/thesis-{название-главы}/agent-knowledge-researcher.md
+/Users/zamesinivan/Documents/WORK/Zamesin-Academy-Team/tmp/thesis-{название-главы}/agent-knowledge-researcher.md
 ```
 ⚠️ **Claude Code:** при формировании промпта для Task tool, ЗАМЕНИ `{название-главы}` на реальное название. Агент должен получить ПОЛНЫЙ абсолютный путь, НЕ placeholder.
 
