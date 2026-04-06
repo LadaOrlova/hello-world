@@ -865,6 +865,8 @@
 
 **AURA/**
 
+- `AJTBD-RULES-FOR-AI-TOOL.md` — Правила AJTBD для AI-инструмента: Сегменты и Графы работ
+- `AJTBD_Graph_Visualization_Rules_Complete.md` — Полные правила формирования и визуализации графа работ AJTBD
 - `ai-pipeline-eval-metrics.md` — Метрики оценки качества AI pipeline (AURA product)
 
 **Boost/**
@@ -891,6 +893,10 @@
 - `theory-questions-examples.md` — Примеры экзаменационных билетов: теоретическая часть
 - `theory-questions-examples.pdf`
 - `theory-questions.md` — Теоретическая часть: 25 вопросов
+
+**Makers/**
+
+- `community-fails-facts.md`
 
 **NewKDP/**
 
@@ -930,6 +936,7 @@
 
 ### 2-Products/US/
 
+- `AURA - отчет по анализу в ЕС и США.pdf`
 
 **BoostUS-Course/**
 
@@ -1153,6 +1160,7 @@
 - `test-task-fullstack-builder.md` — Тестовое задание: Генератор гипотез сегментов с графами работ
 - `tz-reelsmaker.md` — ТЗ: Рилзмейкер (Лиссабон)
 - `vacancy-fullstack-builder.md` — Full Stack Builder
+- `найм_воронщика_план.md` — Найм воронщика: summary звонка, вакансия, собеседование, тестовое
 
 ---
 

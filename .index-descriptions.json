@@ -424,6 +424,8 @@
 1-Context/producthowto-knowledge-base/08-reviews.md	Отзывы: 12 000+ участников, средняя оценка 9.2/10
 1-Context/producthowto-knowledge-base/09-faq-kdp.md	FAQ — Часто задаваемые вопросы
 1-Context/producthowto-knowledge-base/README.md	База знаний: тренинг "Как делать продукт" Вани Замесина
+2-Products/RU/AURA/AJTBD-RULES-FOR-AI-TOOL.md	Правила AJTBD для AI-инструмента: Сегменты и Графы работ
+2-Products/RU/AURA/AJTBD_Graph_Visualization_Rules_Complete.md	Полные правила формирования и визуализации графа работ AJTBD
 2-Products/RU/AURA/ai-pipeline-eval-metrics.md	Метрики оценки качества AI pipeline (AURA product)
 2-Products/RU/Boost/Trailer/README.md	BOOST Trailer — Итоги работы
 2-Products/RU/Boost/Trailer/messages-for-participants.md	Сообщения участникам трейлера BOOST
@@ -567,6 +569,7 @@
 4-Hiring/test-task-fullstack-builder.md	Тестовое задание: Генератор гипотез сегментов с графами работ
 4-Hiring/tz-reelsmaker.md	ТЗ: Рилзмейкер (Лиссабон)
 4-Hiring/vacancy-fullstack-builder.md	Full Stack Builder
+4-Hiring/найм_воронщика_план.md	Найм воронщика: summary звонка, вакансия, собеседование, тестовое
 4-Personal-files/Ilya-Izmaylov/aura-makers-separation-plan.md	План разделения AURA и Мейкеров
 4-Personal-files/Ilya-Izmaylov/idea-foreign-subscriptions-service.md	Идея: сервис оплаты зарубежных подписок
 4-Personal-files/Ivan-Zamesin/0326-AlphaBank/program.md	Альфа-банк митап — 19 марта
