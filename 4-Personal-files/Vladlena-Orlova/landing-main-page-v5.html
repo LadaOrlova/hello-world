@@ -124,7 +124,7 @@
         .hero-proof-item .label { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; }
 
         /* === WAITLIST STORY === */
-        .waitlist { background: var(--white); }
+        .waitlist { background: var(--cream); }
         .waitlist-story-block { max-width: 720px; margin: -24px auto 48px; text-align: center; }
         .waitlist-story-text {
             font-family: var(--font-serif); font-style: italic;
@@ -197,10 +197,10 @@
         .author-rating-item .label { font-size: 0.78rem; color: var(--text-muted); }
 
         /* === CASES === */
-        .cases { background: var(--white); }
+        .cases { background: var(--cream); }
         .cases-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
         .case-card {
-            background: var(--cream); border: 1px solid var(--border);
+            background: var(--white); border: 1px solid var(--border);
             border-radius: var(--radius); padding: 24px; transition: all 0.2s;
             display: flex; flex-direction: column;
         }
@@ -229,7 +229,7 @@
         .case-company strong { color: var(--text-secondary); }
 
         /* === CALENDAR === */
-        .calendar-section { background: var(--cream); }
+        .calendar-section { background: var(--white); }
         .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
         .cal-card {
             background: var(--white); border: 1px solid var(--border);
@@ -349,6 +349,7 @@
             <span class="hero-topic">Методология AURA</span>
             <span class="hero-topic">Вайб-кодинг</span>
         </div>
+        <a href="#quiz" class="btn btn-black btn-lg" style="margin-bottom: 40px;">Записаться в лист ожидания &rarr;</a>
         <div class="hero-proof">
             <div class="hero-proof-item"><div class="num">13 000+</div><div class="label">выпускников</div></div>
             <div class="hero-proof-item"><div class="num">9.2/10</div><div class="label">оценка пользы</div></div>
@@ -369,9 +370,9 @@
                 <div class="quiz-steps">
                     <div class="quiz-step"><span class="quiz-step-num">1</span> Расскажите о своей роли</div>
                     <div class="quiz-step"><span class="quiz-step-num">2</span> Опишите ситуацию с продуктом</div>
-                    <div class="quiz-step"><span class="quiz-step-num">3</span> Выберите, что нужно в первую очередь</div>
+                    <div class="quiz-step"><span class="quiz-step-num">3</span> Выберите, что вам важно получить от обучения</div>
                     <div class="quiz-step"><span class="quiz-step-num">4</span> Контекст: B2B/B2C, команда, бюджет</div>
-                    <div class="quiz-step"><span class="quiz-step-num">5</span> Опыт с обучением Замесина</div>
+                    <div class="quiz-step"><span class="quiz-step-num">5</span> Опыт обучения у Вани Замесина</div>
                     <div class="quiz-step"><span class="quiz-step-num">6</span> Контакты</div>
                     <div class="quiz-step"><span class="quiz-step-num">7</span> Получите рекомендацию + лекцию</div>
                 </div>
@@ -381,6 +382,106 @@
                 <p>Пройдите квиз — так мы поймём, что вам нужно, и вы получите лекцию в подарок</p>
                 <a href="#" class="btn btn-orange btn-lg" style="width:100%;">Пройти квиз &rarr;</a>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CASES ===== -->
+<section class="cases" id="cases">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Кейсы</span>
+            <h2>Результаты выпускников нашего обучения</h2>
+        </div>
+        <div class="cases-grid">
+
+            <div class="case-card">
+                <div class="case-top">
+                    <div class="case-person">
+        <div><div class="case-name">Тимур Абдужалилов</div><div class="case-role">CPO, Legal Resources</div></div>
+                    </div>
+                </div>
+                <div class="case-quote">&laquo;Раньше мы попадали в цель 5% случаев. С Advanced AJTBD — 95%. Первая прибыль за 6 лет.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result"><span class="case-result-dot"></span>Выручка x13: 600K &rarr; 8M/мес</div>
+                    <div class="case-result"><span class="case-result-dot"></span>Конверсия из встречи в сделку — 93%</div>
+                </div>
+                <div class="case-company"><strong>Legal Resources</strong> &middot; LegalTech</div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-top">
+                    <div class="case-person">
+<div><div class="case-name">Денис Леушин</div><div class="case-role">CEO, Pleada</div></div>
+                    </div>
+                </div>
+                <div class="case-quote">&laquo;Мы наконец пробили потолок 20 миллионов месячной выручки.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result"><span class="case-result-dot"></span>Конверсия +40%, ROMI: 800% &rarr; 1200%</div>
+                    <div class="case-result"><span class="case-result-dot"></span>Выручка +20%</div>
+                </div>
+                <div class="case-company"><strong>Pleada</strong> &middot; Недвижимость, СПб</div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-top">
+                    <div class="case-person">
+<div><div class="case-name">Анастасия Капанина</div><div class="case-role">PM, JetBrains</div></div>
+                    </div>
+                </div>
+                <div class="case-quote">&laquo;Мы перестали делать продукт для всех. Понимание двух работ клиента изменило всё.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result"><span class="case-result-dot"></span>Kotlin MP в Top-3 кроссплатформенных технологий</div>
+                    <div class="case-result"><span class="case-result-dot"></span>Удовлетворённость пользователей +20%</div>
+                </div>
+                <div class="case-company"><strong>JetBrains</strong> &middot; Kotlin Multiplatform</div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-top">
+                    <div class="case-person">
+<div><div class="case-name">Татьяна Безугляк</div><div class="case-role">Фотограф &rarr; Исследователь</div></div>
+                    </div>
+                </div>
+                <div class="case-quote">&laquo;AJTBD — это чит-код. Из фотографа с выгоранием стала исследователем с доходом x6.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result"><span class="case-result-dot"></span>Доход: 40K &rarr; 250K/мес</div>
+                    <div class="case-result"><span class="case-result-dot"></span>140+ интервью, 12 проектов (VkusVill, МТС)</div>
+                </div>
+                <div class="case-company"><strong>Карьерный переход</strong> &middot; AJTBD-исследователь</div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-top">
+                    <div class="case-person">
+<div><div class="case-name">Алексей Шомахов</div><div class="case-role">Head of Growth, Neginski</div></div>
+                    </div>
+                </div>
+                <div class="case-quote">&laquo;Самый успешный запуск рекламы в Meta за всю историю компании. $500K+ сделок на бюджете $5K.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result"><span class="case-result-dot"></span>ROMI 2000%+</div>
+                    <div class="case-result"><span class="case-result-dot"></span>Лендинг по AJTBD за неделю</div>
+                </div>
+                <div class="case-company"><strong>Neginski</strong> &middot; Международная недвижимость, ОАЭ</div>
+            </div>
+
+            <div class="case-card">
+                <div class="case-top">
+                    <div class="case-person">
+<div><div class="case-name">Анастасия Гусенцова</div><div class="case-role">CEO, LiFT</div></div>
+                    </div>
+                </div>
+                <div class="case-quote">&laquo;Стали #1 в значительно более интересном сегменте. Средний чек вырос в 3 раза.&raquo;</div>
+                <div class="case-results">
+                    <div class="case-result"><span class="case-result-dot"></span>Средний чек: 150K &rarr; 450K</div>
+                    <div class="case-result"><span class="case-result-dot"></span>Выручка +65%, LTV: 1 мес &rarr; 1 год</div>
+                </div>
+                <div class="case-company"><strong>LiFT</strong> &middot; Медиа-агентство</div>
+            </div>
+
+        </div>
+        <div style="text-align: center; margin-top: 36px;">
+            <a href="cases-page.html" class="btn btn-outline">Все кейсы выпускников &rarr;</a>
         </div>
     </div>
 </section>
@@ -416,142 +517,78 @@
 </section>
 
 <!-- ===== BOOST ===== -->
-<section class="cases" id="boost">
+<section id="boost" style="background: var(--white); padding: 80px 0;">
     <div class="container">
         <div class="section-header">
-            <span class="section-tag">Уже можно записаться</span>
+            <span class="section-tag" style="color: var(--orange);">Уже можно записаться</span>
             <h2>BOOST — от идеи до работающего продукта за неделю</h2>
             <p>Недельный интенсив по вайб-кодингу. 7 практических воркшопов с кураторами. 95% участников без техбэкграунда. Оценка — 9.6/10.</p>
         </div>
 
         <div class="cases-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
 
-            <div class="case-card" style="background: var(--cyan-bg);">
+            <div class="case-card" style="background: var(--cyan-bg); border-color: transparent;">
                 <h3 style="margin-bottom: 8px;">Проверить идею за дни, а не месяцы</h3>
                 <p style="font-size: 0.9rem;">Есть идея продукта — собираете MVP и деплоите на свой сервер за неделю. Без опыта в программировании.</p>
             </div>
 
-            <div class="case-card" style="background: var(--green-bg);">
+            <div class="case-card" style="background: var(--green-bg); border-color: transparent;">
                 <h3 style="margin-bottom: 8px;">Перестать зависеть от разработчиков</h3>
                 <p style="font-size: 0.9rem;">Лендинги, боты, CRM, автоматизация — создаёте инструменты для бизнеса сами с помощью AI.</p>
             </div>
 
-            <div class="case-card" style="background: var(--yellow-bg);">
-                <h3 style="margin-bottom: 8px;">Освоить AI-навыки, которые уже требуют</h3>
-                <p style="font-size: 0.9rem;">Claude Code, агенты, скиллы, автоматизация — навыки, которые спрашивают на собеседованиях уже сейчас.</p>
+            <div class="case-card" style="background: var(--yellow-bg); border-color: transparent;">
+                <h3 style="margin-bottom: 8px;">Настроить агентов и скиллы, которые работают за вас</h3>
+                <p style="font-size: 0.9rem;">Автоматизация рутины, контент-пайплайны, анализ данных — AI-агенты берут на себя то, что раньше отнимало часы.</p>
             </div>
 
         </div>
 
-        <div style="text-align: center; margin-top: 36px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; align-items: center;">
-            <a href="https://boost-intensive.ru/" class="btn btn-black">Записаться на BOOST &rarr;</a>
-            <span style="font-size: 0.85rem; color: var(--text-muted);">Поток 6: 17–25 апреля &middot; 82 места из 140</span>
+        <div class="section-header" style="margin-top: 48px; margin-bottom: 32px;">
+            <span class="section-tag" style="color: var(--orange);">Результаты участников BOOST</span>
         </div>
-    </div>
-</section>
+        <div class="cases-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
 
-<!-- ===== CASES ===== -->
-<section class="cases" id="cases">
-    <div class="container">
-        <div class="section-header">
-            <span class="section-tag">Кейсы</span>
-            <h2>Результаты выпускников нашего обучения</h2>
-        </div>
-        <div class="cases-grid">
-
-            <div class="case-card">
+            <div class="case-card" style="background: var(--cream); border-color: var(--border);">
                 <div class="case-top">
                     <div class="case-person">
-                        <div class="case-avatar" style="background:#B91C1C;">ТА</div>
-                        <div><div class="case-name">Тимур Абдужалилов</div><div class="case-role">CPO, Legal Resources</div></div>
+                        <div><div class="case-name" ">Марина</div><div class="case-role" style="">Без опыта в программировании</div></div>
                     </div>
                 </div>
-                <div class="case-quote">&laquo;Раньше мы попадали в цель 5% случаев. С Advanced AJTBD — 95%. Первая прибыль за 6 лет.&raquo;</div>
+                <div class="case-quote" style="">&laquo;Создала подписной сервис с интерактивной картой и платежами за неделю.&raquo;</div>
                 <div class="case-results">
-                    <div class="case-result"><span class="case-result-dot"></span>Выручка x13: 600K &rarr; 8M/мес</div>
-                    <div class="case-result"><span class="case-result-dot"></span>Конверсия из встречи в сделку — 93%</div>
+                    <div class="case-result" ><span class="case-result-dot"></span>Работающий продукт с нуля за 7 дней</div>
                 </div>
-                <div class="case-company"><strong>Legal Resources</strong> &middot; LegalTech</div>
             </div>
 
-            <div class="case-card">
+            <div class="case-card" style="background: var(--cream); border-color: var(--border);">
                 <div class="case-top">
                     <div class="case-person">
-                        <div class="case-avatar" style="background:#0E7490;">ДЛ</div>
-                        <div><div class="case-name">Денис Леушин</div><div class="case-role">CEO, Pleada</div></div>
+                        <div><div class="case-name" ">Александр Гутман</div><div class="case-role" style="">Страхование, без опыта в программировании</div></div>
                     </div>
                 </div>
-                <div class="case-quote">&laquo;Мы наконец пробили потолок 20 миллионов месячной выручки.&raquo;</div>
+                <div class="case-quote" style="">&laquo;Запустил B2B-сервис по ДМС за неделю — без единой строчки кода вручную.&raquo;</div>
                 <div class="case-results">
-                    <div class="case-result"><span class="case-result-dot"></span>Конверсия +40%, ROMI: 800% &rarr; 1200%</div>
-                    <div class="case-result"><span class="case-result-dot"></span>Выручка +20%</div>
+                    <div class="case-result" ><span class="case-result-dot"></span>B2B-сервис задеплоен на свой сервер</div>
                 </div>
-                <div class="case-company"><strong>Pleada</strong> &middot; Недвижимость, СПб</div>
             </div>
 
-            <div class="case-card">
+            <div class="case-card" style="background: var(--cream); border-color: var(--border);">
                 <div class="case-top">
                     <div class="case-person">
-                        <div class="case-avatar" style="background:#3E34FF;">АК</div>
-                        <div><div class="case-name">Анастасия Капанина</div><div class="case-role">PM, JetBrains</div></div>
+                        <div><div class="case-name" ">Соня Белоцкая</div><div class="case-role" style="">Без опыта в программировании</div></div>
                     </div>
                 </div>
-                <div class="case-quote">&laquo;Мы перестали делать продукт для всех. Понимание двух работ клиента изменило всё.&raquo;</div>
+                <div class="case-quote" style="">&laquo;От нуля до задеплоенного продукта за 4 часа.&raquo;</div>
                 <div class="case-results">
-                    <div class="case-result"><span class="case-result-dot"></span>Kotlin MP в Top-3 кроссплатформенных технологий</div>
-                    <div class="case-result"><span class="case-result-dot"></span>Удовлетворённость пользователей +20%</div>
+                    <div class="case-result" ><span class="case-result-dot"></span>MVP за один воркшоп</div>
                 </div>
-                <div class="case-company"><strong>JetBrains</strong> &middot; Kotlin Multiplatform</div>
-            </div>
-
-            <div class="case-card">
-                <div class="case-top">
-                    <div class="case-person">
-                        <div class="case-avatar" style="background:#EA8B0E;">ТБ</div>
-                        <div><div class="case-name">Татьяна Безугляк</div><div class="case-role">Фотограф &rarr; Исследователь</div></div>
-                    </div>
-                </div>
-                <div class="case-quote">&laquo;AJTBD — это чит-код. Из фотографа с выгоранием стала исследователем с доходом x6.&raquo;</div>
-                <div class="case-results">
-                    <div class="case-result"><span class="case-result-dot"></span>Доход: 40K &rarr; 250K/мес</div>
-                    <div class="case-result"><span class="case-result-dot"></span>140+ интервью, 12 проектов (VkusVill, МТС)</div>
-                </div>
-                <div class="case-company"><strong>Карьерный переход</strong> &middot; AJTBD-исследователь</div>
-            </div>
-
-            <div class="case-card">
-                <div class="case-top">
-                    <div class="case-person">
-                        <div class="case-avatar" style="background:#047857;">АШ</div>
-                        <div><div class="case-name">Алексей Шомахов</div><div class="case-role">Head of Growth, Neginski</div></div>
-                    </div>
-                </div>
-                <div class="case-quote">&laquo;Самый успешный запуск рекламы в Meta за всю историю компании. $500K+ сделок на бюджете $5K.&raquo;</div>
-                <div class="case-results">
-                    <div class="case-result"><span class="case-result-dot"></span>ROMI 2000%+</div>
-                    <div class="case-result"><span class="case-result-dot"></span>Лендинг по AJTBD за неделю</div>
-                </div>
-                <div class="case-company"><strong>Neginski</strong> &middot; Международная недвижимость, ОАЭ</div>
-            </div>
-
-            <div class="case-card">
-                <div class="case-top">
-                    <div class="case-person">
-                        <div class="case-avatar" style="background:#5B21B6;">АГ</div>
-                        <div><div class="case-name">Анастасия Гусенцова</div><div class="case-role">CEO, LiFT</div></div>
-                    </div>
-                </div>
-                <div class="case-quote">&laquo;Стали #1 в значительно более интересном сегменте. Средний чек вырос в 3 раза.&raquo;</div>
-                <div class="case-results">
-                    <div class="case-result"><span class="case-result-dot"></span>Средний чек: 150K &rarr; 450K</div>
-                    <div class="case-result"><span class="case-result-dot"></span>Выручка +65%, LTV: 1 мес &rarr; 1 год</div>
-                </div>
-                <div class="case-company"><strong>LiFT</strong> &middot; Медиа-агентство</div>
             </div>
 
         </div>
+
         <div style="text-align: center; margin-top: 36px;">
-            <a href="cases-page.html" class="btn btn-outline">Все кейсы выпускников &rarr;</a>
+            <a href="https://boost-intensive.ru/" class="btn btn-orange btn-lg">Записаться на BOOST &rarr;</a>
         </div>
     </div>
 </section>
