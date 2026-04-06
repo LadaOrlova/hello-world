@@ -17,6 +17,13 @@ This skill turns ready-made theses and a media brief into a polished article dra
 5. **Cases = combo.** Ivan's cases from the repository first (first-person credibility), then fresh external ones (2025–2026) for broader context. Every case must pass the ARGUMENT TEST.
 6. **No AI-sounding English.** A dedicated language review step ensures the final text reads like a sharp native writer in tech/business — not a language model.
 7. **Every source needs a link.** Inline markdown links in the text body. No URL = don't mention the source. Every URL must be verified via WebFetch before inclusion.
+8. **Every named source needs credentials.** When a person or organization is mentioned inline, the reader must immediately understand WHY they are an authority. Not just `[Boris Cherny](url)` but `[Boris Cherny, creator of Claude Code at Anthropic](url)`. Not just `[Bessemer](url)` but `[Bessemer Venture Partners, one of Silicon Valley's oldest VC firms](url)`. If the person is unknown to the target audience and you can't explain their credentials in ≤8 words — cite the fact without naming them, or find a higher-tier source.
+9. **Source tiers determine citation style.** Every external source has a tier that dictates how it's used in the article:
+   - **Tier 1 (⭐⭐⭐):** Named experts (Marty Cagan, Bob Moesta), major research orgs, top-tier VC firms, definitive studies. → Cite by NAME + credentials + quote.
+   - **Tier 2 (⭐⭐):** Respected industry publications (HBR, First Round Review, a16z blog), large data reports (CB Insights, Gartner). → Cite by PUBLICATION name + key finding.
+   - **Tier 3 (⭐):** Medium posts, minor blogs, secondary aggregators, unknown authors. → Use the DATA or FACT only, do NOT cite the author by name. Attribute to the original source they reference, or state the fact without attribution if it's widely known.
+   
+   **Rule:** Never introduce an unknown person as if the reader should recognize them. "Random blogger says X" destroys credibility. If the insight is good but the source is Tier 3 — find the original Tier 1-2 source, or state the fact without a name.
 
 ---
 
@@ -398,6 +405,25 @@ What makes a good external case:
 6. URL verified via WebFetch ✅
 
 ⚠️ NO URL = NO CASE. NO ARGUMENT TEST = NO CASE. NO WEBFETCH VERIFICATION = NO CASE.
+
+## SOURCE TIER CLASSIFICATION (MANDATORY for every source)
+
+For EVERY external source (expert, study, publication), classify its tier:
+
+⭐⭐⭐ **Tier 1 — Authority sources:** Direct domain experts (Bob Moesta on JTBD, Marty Cagan on product), major VC firms whose audience recognizes them (a16z, Sequoia, Y Combinator), definitive studies (CB Insights failure report, Startup Genome). Rule: cite by NAME + short credential.
+
+⭐⭐ **Tier 2 — Respected publications:** First Round Review, HBR, Lenny's Newsletter, Reforge, MIT Sloan. Rule: cite by PUBLICATION name + finding.
+
+⭐ **Tier 3 — Minor sources:** Medium posts, personal blogs, unknown authors, secondary aggregators, TikTok threads. Rule: use the FACT only. Do NOT cite the author by name — the reader won't know them, and naming them weakens the article's credibility. Find the ORIGINAL source they reference, or state the fact without attribution.
+
+**CREDENTIAL CHECK:** For each named expert, provide a ≤8 word credential that answers "why should the reader care?" Examples:
+- ✅ "Rahul Vohra, CEO of Superhuman" — reader recognizes the company
+- ✅ "Elena Verna, Head of Growth at Lovable" — clear role at known company
+- ✅ "Bessemer Venture Partners, one of Silicon Valley's oldest VC firms" — context provided
+- ❌ "Ahmad Fiaz Jan" — who? Reader has no context. Use the data, drop the name
+- ❌ "According to a Medium post" — find the original research source instead
+
+Include tier + credential in the output format for every source.
 
 ## OUTPUT FORMAT
 
