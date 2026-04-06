@@ -720,10 +720,6 @@
 5-ZIS/docs/bc/PAY-13.md	PAY-13: Финансовая аналитика — все данные по платежам, скидкам, комиссиям и возвратам доступны для построения финансовых отчётов
 8-Prompts-and-Scripts/Prompts/generate-segment.md	Промт: Выбор 5 привлекательных сегментов по AJTBD
 8-Prompts-and-Scripts/Prompts/riskiest-assumption-test.md	Что делать первым сообщением
-AGENTS.md	AGENTS.md - Your Workspace
-BOOTSTRAP.md	BOOTSTRAP.md - Hello, World
-HEARTBEAT.md	HEARTBEAT.md
-IDENTITY.md	IDENTITY.md - Who Am I?
 Product-Ilya-Vanya/action-items-pochinка.md	Починка продукта: план действий для обсуждения
 Product-Ilya-Vanya/boost-feedback-analysis.md	Анализ обратной связи BOOST (62 ответа)
 Product-Ilya-Vanya/boost-pro-hypotheses.md	Boost Pro: гипотезы для обсуждения с Сашей
@@ -738,9 +734,6 @@ Product-Ilya-Vanya/summary-for-vanya.md	Презентация для Вани: 
 Product-Ilya-Vanya/Курс Запуск/задачи-апрель.md	Илья Рублевский — Tasks апрель 2026
 Product-Ilya-Vanya/Курс Запуск/план-спринта.md	План целей на спринт: апрель — начало июня 2026
 Product-Ilya-Vanya/Курс Запуск/промпты.md	Промпты для курса «Запуск продукта»
-SOUL.md	SOUL.md - Who You Are
-TOOLS.md	TOOLS.md - Local Notes
-USER.md	USER.md - About Your Human
 _dir_:1-Context	Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт"
 _dir_:1-Context/AURA-Theses	Тезисы методологии AJTBD и мета-фреймворка AURA, структурированные по темам
 _dir_:1-Context/boost-knowledge-base	База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.
