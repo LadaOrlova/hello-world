@@ -16,6 +16,7 @@
 | `8-Prompts-and-Scripts/` | Промпты и скрипты для автоматизации |
 | `Product-Ilya-Vanya/` | — |
 | `memory/` | — |
+| `zapusk-test/` | — |
 
 ---
 
@@ -86,6 +87,7 @@
 
 Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт"
 
+- `Untitled`
 
 ### 1-Context/AURA-Theses/
 
@@ -1481,7 +1483,27 @@ Learning Management System.
 
 ## Product-Ilya-Vanya/
 
+- `action-items-pochinка.md` — Починка продукта: план действий для обсуждения
+- `boost-feedback-analysis.md` — Анализ обратной связи BOOST (62 ответа)
+- `boost-pro-hypotheses.md` — Boost Pro: гипотезы для обсуждения с Сашей
+- `jobs-v2-cohort59.md` — Сегментация студентов КДП: 59-й поток (отдельный анализ)
+- `jobs-v2.md` — Сегментация студентов КДП по Jobs (v2)
+- `new-courses-v2.md` — Линейка продуктов КДП v2.1
+- `plan-kdp-full-v2.md` — План запуска: КДП Полный (предзаписанный формат)
+- `poc-two-products.md` — Proof of Concept: 2 коротких продукта из КДП
+- `roadmap-pochinка.md` — Роадмап запуска: "Починка продукта"
+- `summary-for-vanya.md` — Презентация для Вани: тезисы
+
+### Product-Ilya-Vanya/course-zapusk/
+
 - `prompts-zapusk.md` — Промпты для курса «Запуск продукта»
+
+### Product-Ilya-Vanya/Курс Запуск/
+
+- `задачи-апрель.html`
+- `задачи-апрель.md` — Илья Рублевский — Tasks апрель 2026
+- `план-спринта.md` — План целей на спринт: апрель — начало июня 2026
+- `промпты.md` — Промпты для курса «Запуск продукта»
 
 ---
 
@@ -1492,6 +1514,15 @@ Learning Management System.
 - `project_anna_partnerships.md`
 - `project_openclaw_bot.md`
 - `user_vladlena.md`
+
+---
+
+## zapusk-test/
+
+
+### zapusk-test/research/
+
+- `my-product.md` — Мой продукт
 
 ---
 
