@@ -1256,6 +1256,7 @@
 ### 4-Personal-files/Rublevsky-Ilya/
 
 - `2026-04-02-product-marketing-discussion.md` — Обсуждение Product Marketing — 02.04.2026
+- `aura-vs-makers-positioning.md` — Разведение позиционирования: AURA и Makers
 - `boost-feedback-analysis.md` — Анализ обратной связи BOOST (62 ответа)
 - `boost-pro-hypotheses.md` — Boost Pro: гипотезы для обсуждения с Сашей
 - `ilya-rublevsky-tasks-april.md` — Илья Рублевский — Tasks апрель 2026
@@ -1263,10 +1264,17 @@
 - `jobs-v2.md` — Сегментация студентов КДП по Jobs (v2)
 - `new-courses-v2.md` — Линейка продуктов КДП v2.1
 - `poc-two-products.md` — Proof of Concept: 2 коротких продукта из КДП
+- `questions-for-zhenya-zis.md` — Вопросы к Жене Васеву (ZIS) — подготовка к созвону
 - `roadmap-pochinka.md` — Починка продукта: план действий для обсуждения
 - `summary-for-vanya.md` — Презентация для Вани: тезисы
 - `zvonok-ilya-zhenya-zis-02-04-2026.md` — Созвон Илья Рублевский — Женя (ЗИС)
 - `план-целей-на-спринт.md` — План целей на спринт: апрель — начало июня 2026
+
+**Курс Запуск/**
+
+- `задачи-апрель.md` — Илья Рублевский — Tasks апрель 2026
+- `план-спринта.md` — План целей на спринт: апрель — начало июня 2026
+- `промпты.md` — Промпты для курса «Запуск продукта»
 
 ### 4-Personal-files/Ruslan-Zhuravskiy/
 
