@@ -64,7 +64,7 @@
             position: fixed; top: 0; left: 0; bottom: 0; width: 92px;
             background: var(--white); border-right: 1px solid var(--border);
             z-index: 101; display: flex; flex-direction: column; align-items: center;
-            padding: 18px 0;
+            padding: 18px 0; justify-content: space-between;
         }
         .sidebar-logo { margin-bottom: 32px; }
         .sidebar-logo img { width: 68px; }
@@ -313,11 +313,13 @@
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             Книга
         </a>
+    </nav>
+    <div class="sidebar-nav" style="padding-bottom: 18px;">
         <a href="https://zamesin.ru/producthowto/course" class="sidebar-item">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             Кабинет
         </a>
-    </nav>
+    </div>
 </aside>
 
 <!-- ===== HEADER ===== -->
@@ -327,7 +329,7 @@
         <div class="nav-links">
             <a href="#cases">Кейсы</a>
             <a href="#calendar">События</a>
-            <a href="#quiz" class="nav-cta">Получить лекцию</a>
+            <a href="#quiz" class="nav-cta">Записаться в лист ожидания</a>
         </div>
         <button class="burger" aria-label="Меню">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -341,12 +343,12 @@
 <section class="hero">
     <div class="container hero-inner">
         <h1>Собираем для вас<br>линейку новых курсов</h1>
+        <p class="hero-sub">Курс &laquo;Как делать продукт&raquo; в старом формате больше проводиться не будет. Мы создаём новый формат &mdash; быстрее, интенсивнее, с AI-инструментами внутри.</p>
         <div class="hero-topics">
             <span class="hero-topic">Advanced JTBD</span>
             <span class="hero-topic">Методология AURA</span>
             <span class="hero-topic">Вайб-кодинг</span>
         </div>
-        <p class="hero-sub">Мы создаём новый формат — быстрее, интенсивнее, с AI-инструментами внутри.</p>
         <div class="hero-proof">
             <div class="hero-proof-item"><div class="num">13 000+</div><div class="label">выпускников</div></div>
             <div class="hero-proof-item"><div class="num">9.2/10</div><div class="label">оценка пользы</div></div>
@@ -356,21 +358,44 @@
     </div>
 </section>
 
-<!-- ===== МЫ ГОТОВИМ НОВОЕ + ФОРМА ===== -->
-<section class="waitlist" id="waitlist">
+<!-- ===== BOOST ===== -->
+<section class="cases" id="boost">
     <div class="container">
         <div class="section-header">
-            <span class="section-tag">Новая реальность &mdash; новые возможности</span>
-            <h2>Мы готовим для вас что-то новое</h2>
+            <span class="section-tag">Уже можно записаться</span>
+            <h2>BOOST — от идеи до работающего продукта за неделю</h2>
+            <p>Недельный интенсив по вайб-кодингу. 7 практических воркшопов с кураторами. 95% участников без техбэкграунда. Оценка — 9.6/10.</p>
         </div>
-        <div class="waitlist-story-block">
-            <p class="waitlist-story-text">
-                Курс &laquo;Как делать продукт&raquo; в старом формате больше не будет проводиться.
-                Новые технологии меняют и то, как создаются продукты, и то, как люди работают.
-                Это открывает уникальные возможности &mdash; и мы создаём курсы,
-                чтобы вы чувствовали себя уверенно в новой реальности.
-            </p>
+
+        <div class="cases-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+
+            <div class="case-card" style="background: var(--cyan-bg);">
+                <h3 style="margin-bottom: 8px;">Проверить идею за дни, а не месяцы</h3>
+                <p style="font-size: 0.9rem;">Есть идея продукта — собираете MVP и деплоите на свой сервер за неделю. Без опыта в программировании.</p>
+            </div>
+
+            <div class="case-card" style="background: var(--green-bg);">
+                <h3 style="margin-bottom: 8px;">Перестать зависеть от разработчиков</h3>
+                <p style="font-size: 0.9rem;">Лендинги, боты, CRM, автоматизация — создаёте инструменты для бизнеса сами с помощью AI.</p>
+            </div>
+
+            <div class="case-card" style="background: var(--yellow-bg);">
+                <h3 style="margin-bottom: 8px;">Освоить AI-навыки, которые уже требуют</h3>
+                <p style="font-size: 0.9rem;">Claude Code, агенты, скиллы, автоматизация — навыки, которые спрашивают на собеседованиях уже сейчас.</p>
+            </div>
+
         </div>
+
+        <div style="text-align: center; margin-top: 36px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; align-items: center;">
+            <a href="https://boost-intensive.ru/" class="btn btn-black">Записаться на BOOST &rarr;</a>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">Поток 6: 17–25 апреля &middot; 82 места из 140</span>
+        </div>
+    </div>
+</section>
+
+<!-- ===== КВИЗ + ФОРМА ===== -->
+<section class="waitlist" id="waitlist">
+    <div class="container">
 
         <div class="quiz-card" id="quiz">
             <div class="quiz-left">
@@ -387,16 +412,9 @@
                 </div>
             </div>
             <div class="quiz-right">
-                <h3>Список ожидания</h3>
-                <p>Оставьте контакт — или пройдите квиз и получите лекцию в подарок</p>
-                <form class="wl-form" onsubmit="return false;" style="margin-bottom: 14px;">
-                    <input class="wl-input" type="text" placeholder="Имя" required>
-                    <input class="wl-input" type="email" placeholder="Email" required>
-                    <input class="wl-input" type="text" placeholder="Telegram (@username)">
-                    <button type="submit" class="btn btn-orange btn-lg" style="width:100%;">Просто записаться &rarr;</button>
-                </form>
-                <div class="wl-or">или</div>
-                <a href="#" class="btn btn-black btn-lg" style="width:100%;">Пройти квиз и получить лекцию &rarr;</a>
+                <h3>Записаться в лист ожидания</h3>
+                <p>Пройдите квиз — так мы поймём, что вам нужно, и вы получите лекцию в подарок</p>
+                <a href="#" class="btn btn-orange btn-lg" style="width:100%;">Пройти квиз &rarr;</a>
             </div>
         </div>
     </div>
@@ -437,7 +455,7 @@
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Кейсы</span>
-            <h2>Результаты наших выпускников</h2>
+            <h2>Результаты выпускников нашего обучения</h2>
         </div>
         <div class="cases-grid">
 
@@ -549,30 +567,15 @@
 
             <div class="cal-card">
                 <div class="cal-date">
-                    <div class="cal-day cyan">3<span>апр</span></div>
+                    <div class="cal-day cyan">16<span>апр</span></div>
                     <div class="cal-meta">
-                        <div class="cal-type boost">BOOST &middot; Поток 5</div>
-                        <div class="cal-title">Вайб-кодинг: от идеи до MVP за неделю</div>
+                        <div class="cal-type webinar">Вебинар 1 из 3</div>
+                        <div class="cal-title">Новая реальность: почему сейчас лучшее время создавать продукты</div>
                     </div>
                 </div>
-                <div class="cal-desc">Недельный интенсив: собираете работающий продукт с помощью AI. Без опыта в программировании. Оценка — 9.3/10.</div>
+                <div class="cal-desc">Рефрейм страха в мотивацию. Формула «голова + руки»: AJTBD + вайб-кодинг. Живой разбор идеи участника.</div>
                 <div class="cal-bottom">
-                    <span class="cal-time">3–11 апреля</span>
-                    <a href="#" class="cal-btn">Записаться &rarr;</a>
-                </div>
-            </div>
-
-            <div class="cal-card">
-                <div class="cal-date">
-                    <div class="cal-day cyan">10<span>апр</span></div>
-                    <div class="cal-meta">
-                        <div class="cal-type webinar">Вебинар</div>
-                        <div class="cal-title">Как найти PMF с помощью Advanced JTBD</div>
-                    </div>
-                </div>
-                <div class="cal-desc">Разберём на реальном кейсе, как исследование работ клиента помогает найти product-market fit быстрее.</div>
-                <div class="cal-bottom">
-                    <span class="cal-time">19:00 MSK &middot; 60 мин</span>
+                    <span class="cal-time">19:00 MSK &middot; 75 мин</span>
                     <a href="#" class="cal-btn">Записаться &rarr;</a>
                 </div>
             </div>
@@ -585,24 +588,39 @@
                         <div class="cal-title">Вайб-кодинг: от идеи до MVP за неделю</div>
                     </div>
                 </div>
-                <div class="cal-desc">Следующий поток интенсива. Создаёте свой продукт с AI-кодингом — лендинг, бот, CRM. Оценка — 9.3/10.</div>
+                <div class="cal-desc">Создаёте свой продукт с AI-кодингом — лендинг, бот, CRM. 95% участников без техбэкграунда. Оценка — 9.6/10.</div>
                 <div class="cal-bottom">
                     <span class="cal-time">17–25 апреля</span>
+                    <a href="https://boost-intensive.ru/" class="cal-btn">Записаться &rarr;</a>
+                </div>
+            </div>
+
+            <div class="cal-card">
+                <div class="cal-date">
+                    <div class="cal-day yellow">23<span>апр</span></div>
+                    <div class="cal-meta">
+                        <div class="cal-type webinar">Вебинар 2 из 3</div>
+                        <div class="cal-title">Навайбкоди MVP за вечер: живое демо + кейсы команды</div>
+                    </div>
+                </div>
+                <div class="cal-desc">Иван в прямом эфире собирает продукт с нуля за 40 минут. Кейсы команды: маркетолог, куратор, основатель — все вайбкодят в прод.</div>
+                <div class="cal-bottom">
+                    <span class="cal-time">19:00 MSK &middot; 90 мин</span>
                     <a href="#" class="cal-btn">Записаться &rarr;</a>
                 </div>
             </div>
 
             <div class="cal-card">
                 <div class="cal-date">
-                    <div class="cal-day yellow">24<span>апр</span></div>
+                    <div class="cal-day lavender">30<span>апр</span></div>
                     <div class="cal-meta">
-                        <div class="cal-type webinar">Вебинар</div>
-                        <div class="cal-title">ABCDX-сегментация: кому продавать, а кому нет</div>
+                        <div class="cal-type webinar">Вебинар 3 из 3</div>
+                        <div class="cal-title">От идеи до первых клиентов: собираем систему</div>
                     </div>
                 </div>
-                <div class="cal-desc">Как перестать распыляться и сфокусироваться на сегментах, которые приносят прибыль и рекомендации.</div>
+                <div class="cal-desc">Полная система: AJTBD + вайб-кодинг + среда. Кейсы выпускников с цифрами. Ваша дорожная карта на месяц.</div>
                 <div class="cal-bottom">
-                    <span class="cal-time">19:00 MSK &middot; 60 мин</span>
+                    <span class="cal-time">19:00 MSK &middot; 75 мин</span>
                     <a href="#" class="cal-btn">Записаться &rarr;</a>
                 </div>
             </div>
