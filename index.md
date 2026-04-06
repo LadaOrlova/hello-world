@@ -1328,7 +1328,7 @@
 - `landing-main-page.html`
 - `landing-webinar-series.html`
 - `site-strategy-draft.md` — Черновик стратегии сайта Zamesin Academy
-- `webinar-series-theses.md` — Серия вебинаров «Продукт в новой реальности»
+- `webinar-series-theses.md` — Серия вебинаров «Как делать продукты, когда код стал бесплатным»
 - `гипотеза-сайта.md` — Гипотеза единого сайта Zamesin Academy
 - `звонок-по-стратегии-сайта.md` — Звонок по стратегии сайта
 
