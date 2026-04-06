@@ -1076,14 +1076,14 @@
 
 **3-Drafts/**
 
-- `Changelog-v2-v3-drafts.md` — Changelog: что изменилось в новых драфтах v2/v3
-- `Draft-AI-Changes-PM-Role-MtP-v4.md` — Инструкция от Вани Замесина
-- `Draft-AI-Changes-PM-Role-MtP.md` — Инструкция от Вани Замесина
-- `Draft-How-to-Find-PMF-Fast-and-Pivot-the-Right-Way.md` — 📝 Инструкция от Вани Замесина
-- `Draft-How-to-Find-PMF-Fast-v3.md` — Инструкция от Вани Замесина
 - `PR-Mashable-AI-Product-Teams.md` — Notes before sending to editor
 - `PR-StartupGrowthGuide-AI-Doesnt-Kill-PM.md` — Notes before sending to editor
 - `PR-StartupNation-Product-Strategy.md` — 📝 Notes before sending to editor
+
+**4-Done/**
+
+- `Draft-AI-Changes-PM-Role-MtP-v4.md` — Инструкция от Вани Замесина
+- `Draft-How-to-Find-PMF-Fast-v3.md` — Инструкция от Вани Замесина
 
 ### 3-Marketing/4-Writing-Book/
 
