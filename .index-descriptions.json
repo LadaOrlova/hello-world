@@ -587,6 +587,8 @@
 4-Personal-files/Vladlena-Orlova/content-platform-aura-brief.md	Маркетинговая платформа: умный контент-план
 4-Personal-files/Vladlena-Orlova/content-system/card-structures.md	Структуры карточек для Telegram-каруселей
 4-Personal-files/Vladlena-Orlova/jobs-landing-visitors.md	Работы посетителей лендинга Академии Ивана Замесина
+4-Personal-files/Vladlena-Orlova/site-strategy-draft.md	Черновик стратегии сайта Zamesin Academy
+4-Personal-files/Vladlena-Orlova/webinar-series-theses.md	Серия вебинаров «Продукт в новой реальности»
 4-Personal-files/Vladlena-Orlova/аналитика/bot-analytics.md	Аналитика бота — Ботхелп
 4-Personal-files/Vladlena-Orlova/аналитика/kdp-feedback-report.md	KDP Feedback Report
 4-Personal-files/Vladlena-Orlova/аналитика/utm-analytics-feb-mar-2026.md	Аналитика UTM-трафика: 24 февраля – 23 марта 2026
@@ -708,7 +710,14 @@
 5-ZIS/docs/bc/PAY-13.md	PAY-13: Финансовая аналитика — все данные по платежам, скидкам, комиссиям и возвратам доступны для построения финансовых отчётов
 8-Prompts-and-Scripts/Prompts/generate-segment.md	Промт: Выбор 5 привлекательных сегментов по AJTBD
 8-Prompts-and-Scripts/Prompts/riskiest-assumption-test.md	Что делать первым сообщением
+AGENTS.md	AGENTS.md - Your Workspace
+BOOTSTRAP.md	BOOTSTRAP.md - Hello, World
+HEARTBEAT.md	HEARTBEAT.md
+IDENTITY.md	IDENTITY.md - Who Am I?
 Product-Ilya-Vanya/prompts-zapusk.md	Промпты для курса «Запуск продукта»
+SOUL.md	SOUL.md - Who You Are
+TOOLS.md	TOOLS.md - Local Notes
+USER.md	USER.md - About Your Human
 _dir_:1-Context	Базы знаний: AJTBD-методология, интенсив BOOST, тренинг "Как делать продукт"
 _dir_:1-Context/AURA-Theses	Тезисы методологии AJTBD и мета-фреймворка AURA, структурированные по темам
 _dir_:1-Context/boost-knowledge-base	База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.

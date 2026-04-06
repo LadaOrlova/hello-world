@@ -1293,9 +1293,20 @@
 - `landing-main-page-v2.html`
 - `landing-main-page-v3.html`
 - `landing-main-page-v4.html`
+- `landing-main-page-v5.html`
 - `landing-main-page.html`
+- `landing-webinar-series.html`
+- `site-strategy-draft.md` — Черновик стратегии сайта Zamesin Academy
+- `webinar-series-theses.md` — Серия вебинаров «Продукт в новой реальности»
 - `гипотеза-сайта.md` — Гипотеза единого сайта Zamesin Academy
 - `звонок-по-стратегии-сайта.md` — Звонок по стратегии сайта
+
+**brand-concepts/**
+
+- `concept-10-hybrid.html`
+- `concept-11-editorial.html`
+- `concept-7-bento.html`
+- `concept-9-gradient.html`
 
 **content-system/**
 
@@ -1479,5 +1490,12 @@ Learning Management System.
 ## Корневые файлы
 
 - `.mcp.json`
+- `AGENTS.md` — AGENTS.md - Your Workspace
+- `BOOTSTRAP.md` — BOOTSTRAP.md - Hello, World
+- `HEARTBEAT.md` — HEARTBEAT.md
+- `IDENTITY.md` — IDENTITY.md - Who Am I?
+- `SOUL.md` — SOUL.md - Who You Are
+- `TOOLS.md` — TOOLS.md - Local Notes
+- `USER.md` — USER.md - About Your Human
 - `ideas-for-space.md` — Идеи по организации пространства: фреймворки через "what if" вопросы, документы по работе с каждым сотрудником
 - `space-todo.md` — Задачи: обновить сегменты клиентов для Figma-курса, экспортировать формы входа/выхода
