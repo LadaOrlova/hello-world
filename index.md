@@ -1030,7 +1030,7 @@
 
 ### 3-Marketing/2-Webinars/
 
-- `ideas.md`
+- `ideas.md` — Изучить
 
 **web-120326/**
 
@@ -1076,6 +1076,7 @@
 
 **3-Drafts/**
 
+- `PR-GritDaily-PMF-Algorithm.md` — Notes before sending to editor
 - `PR-Mashable-AI-Product-Teams.md` — Notes before sending to editor
 - `PR-StartupGrowthGuide-AI-Doesnt-Kill-PM.md` — Notes before sending to editor
 - `PR-StartupNation-Product-Strategy.md` — 📝 Notes before sending to editor
