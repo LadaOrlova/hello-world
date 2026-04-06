@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Илья Рублевский — Tasks апрель 2026</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    max-width: 860px;
+    margin: 40px auto;
+    padding: 0 24px;
+    color: #1a1a1a;
+    background: #fff;
+    line-height: 1.6;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 4px; }
+  .meta { color: #666; font-size: 0.9rem; margin-bottom: 32px; }
+  h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #444;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 6px;
+    margin-top: 36px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.92rem;
+  }
+  th {
+    text-align: left;
+    padding: 8px 12px;
+    background: #f7f7f7;
+    border-bottom: 2px solid #ddd;
+    font-weight: 600;
+    color: #555;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid #efefef;
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fafafa; }
+
+  .task-label { cursor: pointer; display: flex; align-items: flex-start; gap: 8px; }
+  .task-label input[type="checkbox"] {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: #2563eb;
+  }
+  .task-text { transition: all 0.15s; }
+  .task-label input:checked + .task-text {
+    text-decoration: line-through;
+    color: #aaa;
+  }
+  tr.done td { background: #fafafa; }
+
+  .num { color: #888; font-size: 0.82rem; white-space: nowrap; }
+  .who { color: #555; font-size: 0.85rem; white-space: nowrap; }
+  .src { color: #999; font-size: 0.8rem; white-space: nowrap; }
+
+  .progress-bar-wrap {
+    margin: 20px 0 0 0;
+    background: #eee;
+    border-radius: 6px;
+    height: 6px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 6px;
+    background: #2563eb;
+    border-radius: 6px;
+    transition: width 0.3s;
+  }
+  .progress-label {
+    font-size: 0.82rem;
+    color: #888;
+    margin-top: 6px;
+  }
+  .reset-btn {
+    float: right;
+    font-size: 0.78rem;
+    color: #ccc;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    margin-top: 2px;
+  }
+  .reset-btn:hover { color: #e55; }
+</style>
+</head>
+<body>
+
+<h1>Илья Рублевский — Tasks апрель 2026</h1>
+<div class="meta">
+  Источник: april-tasks.md &nbsp;·&nbsp; Дедлайн: 30 апреля 2026
+  <button class="reset-btn" onclick="resetAll()">сбросить всё</button>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
+<div class="progress-label" id="progressLabel"></div>
+
+<!-- БЛОК 1 -->
+<h2>Неделя 1–2: до 14 апреля</h2>
+<table>
+  <thead><tr><th>#</th><th>Задача</th><th>С кем</th><th>§</th></tr></thead>
+  <tbody>
+    <tr><td class="num">1.1 / 6.1</td><td><label class="task-label"><input type="checkbox" data-id="t1"><span class="task-text">Найти и нанять тренера на BOOST</span></label></td><td class="who">Ваня</td><td class="src">§1, §6</td></tr>
+    <tr><td class="num">3A.4</td><td><label class="task-label"><input type="checkbox" data-id="t2"><span class="task-text">Инвентаризация лекций КДП — что переиспользовать для «Запуска», что перезаписать</span></label></td><td class="who">+ Лера</td><td class="src">§3A</td></tr>
+    <tr><td class="num">3B.2</td><td><label class="task-label"><input type="checkbox" data-id="t3"><span class="task-text">Инвентаризация контента КДП для «Починки»</span></label></td><td class="who">только Илья Р.</td><td class="src">§3B</td></tr>
+    <tr><td class="num">3C.1</td><td><label class="task-label"><input type="checkbox" data-id="t4"><span class="task-text">Получить от Вани материалы по AI Evaluation и Pipeline Engineer</span></label></td><td class="who">Ваня → Илья Р.</td><td class="src">§3C</td></tr>
+    <tr><td class="num">4.1</td><td><label class="task-label"><input type="checkbox" data-id="t5"><span class="task-text">Провести исследование для позиционирования — валидировать гипотезу «проводник через технологический переход»</span></label></td><td class="who">+ Влада</td><td class="src">§4</td></tr>
+    <tr><td class="num">5.1</td><td><label class="task-label"><input type="checkbox" data-id="t6"><span class="task-text">Получить от Вани описание механик вовлечения (энергия, безопасность, кейсы)</span></label></td><td class="who">Ваня → Илья Р.</td><td class="src">§5</td></tr>
+  </tbody>
+</table>
+
+<!-- БЛОК 2 -->
+<h2>Неделя 2–3: до 18 апреля</h2>
+<table>
+  <thead><tr><th>#</th><th>Задача</th><th>С кем</th><th>§</th></tr></thead>
+  <tbody>
+    <tr><td class="num">4.4</td><td><label class="task-label"><input type="checkbox" data-id="t7"><span class="task-text">Развести позиционирование Aura и Makers — разные ЦА, ценности, цены</span></label></td><td class="who">+ Илья Изм.</td><td class="src">§4</td></tr>
+    <tr><td class="num">5.2</td><td><label class="task-label"><input type="checkbox" data-id="t8"><span class="task-text">Сформулировать гипотезы процессов вовлечения без Вани (пары, соревнования, демо)</span></label></td><td class="who">только Илья Р.</td><td class="src">§5</td></tr>
+    <tr><td class="num">5.4</td><td><label class="task-label"><input type="checkbox" data-id="t9"><span class="task-text">Определить модель кураторства — сколько кураторов, нагрузка, оплата</span></label></td><td class="who">+ Лера</td><td class="src">§5</td></tr>
+    <tr><td class="num">8.3</td><td><label class="task-label"><input type="checkbox" data-id="t10"><span class="task-text">Запустить вейтлист для новых курсов (квиз на 7 шагов)</span></label></td><td class="who">+ Влада</td><td class="src">§8</td></tr>
+    <tr><td class="num">8.5</td><td><label class="task-label"><input type="checkbox" data-id="t11"><span class="task-text">Передать Владе описания продуктов, портреты аудиторий, ключевые сообщения</span></label></td><td class="who">Илья Р. → Влада</td><td class="src">§8</td></tr>
+  </tbody>
+</table>
+
+<!-- БЛОК 3 -->
+<h2>Неделя 3: до 21 апреля</h2>
+<table>
+  <thead><tr><th>#</th><th>Задача</th><th>С кем</th><th>§</th></tr></thead>
+  <tbody>
+    <tr><td class="num">3C.2</td><td><label class="task-label"><input type="checkbox" data-id="t12"><span class="task-text">Оценить готовность AI Evaluation и Pipeline Engineer к MVP-запуску</span></label></td><td class="who">только Илья Р.</td><td class="src">§3C</td></tr>
+    <tr><td class="num">5.3</td><td><label class="task-label"><input type="checkbox" data-id="t13"><span class="task-text">Провести 5–10 интервью с выпускниками self-paced курсов</span></label></td><td class="who">только Илья Р.</td><td class="src">§5</td></tr>
+  </tbody>
+</table>
+
+<!-- БЛОК 4 -->
+<h2>Неделя 3–4: до 25 апреля</h2>
+<table>
+  <thead><tr><th>#</th><th>Задача</th><th>С кем</th><th>§</th></tr></thead>
+  <tbody>
+    <tr><td class="num">3A.6</td><td><label class="task-label"><input type="checkbox" data-id="t14"><span class="task-text">Создать 30+ промптов для заданий в Claude Code (по модулю «Запуска»)</span></label></td><td class="who">только Илья Р.</td><td class="src">§3A</td></tr>
+    <tr><td class="num">3A.7</td><td><label class="task-label"><input type="checkbox" data-id="t15"><span class="task-text">Создать AI-скиллы для курсовых заданий (ABCDX-анализ, interview-analyzer, граф джобов)</span></label></td><td class="who">+ Илья Изм.</td><td class="src">§3A</td></tr>
+    <tr><td class="num">3A.8</td><td><label class="task-label"><input type="checkbox" data-id="t16"><span class="task-text">Создать тезисы и квизы (1–2 вопроса на модуль)</span></label></td><td class="who">только Илья Р.</td><td class="src">§3A</td></tr>
+    <tr><td class="num">3A.9</td><td><label class="task-label"><input type="checkbox" data-id="t17"><span class="task-text">Собрать шаблон проекта — структура папок (onboarding → week 1–4, README, CLAUDE.md, скиллы)</span></label></td><td class="who">только Илья Р.</td><td class="src">§3A</td></tr>
+    <tr><td class="num">3B.4</td><td><label class="task-label"><input type="checkbox" data-id="t18"><span class="task-text">Создать промпты, скиллы и задания для «Починки» (аналогично 3A.6–3A.7)</span></label></td><td class="who">только Илья Р.</td><td class="src">§3B</td></tr>
+    <tr><td class="num">4.6</td><td><label class="task-label"><input type="checkbox" data-id="t19"><span class="task-text">Лендинги для «Запуска» и «Починки» — хотя бы драфты для тестовых продаж</span></label></td><td class="who">+ Влада</td><td class="src">§4</td></tr>
+    <tr><td class="num">6.4</td><td><label class="task-label"><input type="checkbox" data-id="t20"><span class="task-text">Принять от Вани экспертизу по Q&amp;A сессиям КДП</span></label></td><td class="who">Ваня → Илья Р.</td><td class="src">§6</td></tr>
+    <tr><td class="num">8.6</td><td><label class="task-label"><input type="checkbox" data-id="t21"><span class="task-text">Подготовить скрипты продаж — ответы на возражения для новых курсов</span></label></td><td class="who">+ Настя Д.</td><td class="src">§8</td></tr>
+  </tbody>
+</table>
+
+<!-- БЛОК 5 -->
+<h2>Неделя 4: до 28 апреля</h2>
+<table>
+  <thead><tr><th>#</th><th>Задача</th><th>С кем</th><th>§</th></tr></thead>
+  <tbody>
+    <tr><td class="num">3A.10</td><td><label class="task-label"><input type="checkbox" data-id="t22"><span class="task-text">Прогнать тестовый воркшоп «Запуска» в VS Code — пройти 2–3 модуля как студент</span></label></td><td class="who">+ Саша З.</td><td class="src">§3A</td></tr>
+    <tr><td class="num">3B.5</td><td><label class="task-label"><input type="checkbox" data-id="t23"><span class="task-text">Прогнать тестовый воркшоп «Починки» в VS Code — пройти 2–3 модуля как студент</span></label></td><td class="who">только Илья Р.</td><td class="src">§3B</td></tr>
+    <tr><td class="num">5.5</td><td><label class="task-label"><input type="checkbox" data-id="t24"><span class="task-text">Обучить 2–3 кураторов (прохождение 3–4 модулей нового курса)</span></label></td><td class="who">только Илья Р.</td><td class="src">§5</td></tr>
+    <tr><td class="num">8.7</td><td><label class="task-label"><input type="checkbox" data-id="t25"><span class="task-text">Бета-тест с 5–10 выпускниками КДП (бесплатно / со скидкой) — собрать обратную связь</span></label></td><td class="who">только Илья Р.</td><td class="src">§8</td></tr>
+  </tbody>
+</table>
+
+<script>
+  const STORAGE_KEY = 'tasks-april-2026';
+  const total = 25;
+
+  function save() {
+    const state = {};
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      state[cb.dataset.id] = cb.checked;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    updateProgress();
+  }
+
+  function load() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      if (state[cb.dataset.id]) {
+        cb.checked = true;
+        cb.closest('tr').classList.add('done');
+      }
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+    const pct = Math.round((checked / total) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = `Выполнено ${checked} из ${total} задач (${pct}%)`;
+  }
+
+  function resetAll() {
+    if (!confirm('Сбросить все галочки?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.checked = false;
+      cb.closest('tr').classList.remove('done');
+    });
+    updateProgress();
+  }
+
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', function() {
+      this.closest('tr').classList.toggle('done', this.checked);
+      save();
+    });
+  });
+
+  load();
+</script>
+</body>
+</html>
