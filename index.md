@@ -1030,6 +1030,7 @@
 
 ### 3-Marketing/2-Webinars/
 
+- `ideas.md`
 
 **web-120326/**
 
@@ -1057,22 +1058,32 @@
 
 **1-Thoughts/**
 
+- `AI-Doesnt-kill-PM.md` — Вводные про издание
+- `Startup-nation-theses.md`
 - `changes-how-we-make-products.md` — Вводные
-- `how-to-find-pmf-hackernoon.md` — Бриф от издания
+- `grit-daily-theses.md`
+- `mashable-thesis.md`
 
 **2-Theses/**
 
 - `Theses-AI-Changes-PM-Role-MtP.md` — Инструкция для draft-этапа
+- `Theses-AI-Doesnt-Kill-PM.md` — 📝 Инструкция для draft-этапа
+- `Theses-Grit-Daily-PMF-Algorithm.md` — 📝 Инструкция для draft-этапа
 - `Theses-How-to-Find-Product-Market-Fit-Fast-and-Pivot-the-Right-Way.md` — 📝 Инструкция для draft-этапа
+- `Theses-Mashable-AI-Product-Teams.md` — 📝 Инструкция для draft-этапа
+- `Theses-Startup-Nation-Product-Strategy.md` — 📝 Инструкция для draft-этапа
+- `Theses-Startup-PMF-Algorithm-Grit-Daily.md` — 📝 Инструкция для draft-этапа
 
 **3-Drafts/**
 
-- `AI-Doesnt-kill-PM.md` — Вводные про издание
 - `Changelog-v2-v3-drafts.md` — Changelog: что изменилось в новых драфтах v2/v3
 - `Draft-AI-Changes-PM-Role-MtP-v4.md` — Инструкция от Вани Замесина
 - `Draft-AI-Changes-PM-Role-MtP.md` — Инструкция от Вани Замесина
 - `Draft-How-to-Find-PMF-Fast-and-Pivot-the-Right-Way.md` — 📝 Инструкция от Вани Замесина
 - `Draft-How-to-Find-PMF-Fast-v3.md` — Инструкция от Вани Замесина
+- `PR-Mashable-AI-Product-Teams.md` — Notes before sending to editor
+- `PR-StartupGrowthGuide-AI-Doesnt-Kill-PM.md` — Notes before sending to editor
+- `PR-StartupNation-Product-Strategy.md` — 📝 Notes before sending to editor
 
 ### 3-Marketing/4-Writing-Book/
 
