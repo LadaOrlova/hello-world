@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Продукт в новой реальности — 4 бесплатных вебинара | Zamesin</title>
-    <meta name="description" content="Серия из 4 бесплатных вебинаров: как создавать продукты в эпоху ИИ. Методология AJTBD + вайбкодинг. Иван Замесин, 13 000+ выпускников.">
+    <title>Продукт в новой реальности — 3 бесплатных вебинара | Zamesin</title>
+    <meta name="description" content="Серия из 3 бесплатных вебинаров: как создавать продукты в эпоху ИИ. Методология AJTBD + вайбкодинг. Иван Замесин, 13 000+ выпускников.">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700;800&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,7 +28,6 @@
             --radius-sm: 8px;
             --radius-btn: 4px;
             --shadow: 0 7px 22px rgba(0,0,0,0.08);
-            --shadow-lg: 0 7px 22px rgba(0,0,0,0.15);
             --max-w: 1136px;
             --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-serif: 'IBM Plex Serif', Georgia, serif;
@@ -98,7 +97,6 @@
             display: grid; grid-template-columns: 80px 1fr; gap: 32px;
             padding: 40px; border-radius: var(--radius); border: 1px solid var(--border);
             transition: box-shadow 0.3s, border-color 0.3s;
-            position: relative;
         }
         .webinar-card:hover { box-shadow: var(--shadow); border-color: var(--orange); }
         .webinar-num {
@@ -110,7 +108,6 @@
         .webinar-card:nth-child(1) .webinar-num { background: var(--cyan-bg); }
         .webinar-card:nth-child(2) .webinar-num { background: var(--green-bg); }
         .webinar-card:nth-child(3) .webinar-num { background: var(--yellow-bg); }
-        .webinar-card:nth-child(4) .webinar-num { background: var(--lavender-bg); }
         .webinar-content h3 { font-size: 1.4rem; margin-bottom: 4px; }
         .webinar-meta { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; font-weight: 500; }
         .webinar-desc { margin-bottom: 16px; }
@@ -140,15 +137,37 @@
         .whom-card p { font-size: 0.9rem; }
         .whom-card .situation { font-size: 0.85rem; color: var(--text-muted); margin-top: 12px; font-style: italic; font-family: var(--font-serif); }
 
+        /* === TEAM CASES === */
+        .team-section { background: var(--white); }
+        .team-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .team-card {
+            padding: 28px; border-radius: var(--radius); background: var(--cream);
+            border: 1px solid var(--border);
+        }
+        .team-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .team-avatar {
+            width: 48px; height: 48px; border-radius: 50%; background: var(--white);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; font-weight: 700; color: var(--orange);
+            border: 2px solid var(--border);
+        }
+        .team-name { font-weight: 700; font-size: 0.95rem; }
+        .team-role { font-size: 0.8rem; color: var(--text-muted); }
+        .team-card p { font-size: 0.9rem; }
+        .team-result {
+            margin-top: 12px; padding: 10px 16px; border-radius: var(--radius-sm);
+            background: var(--white); font-size: 0.85rem; font-weight: 600; color: var(--orange);
+        }
+
         /* === SPEAKER === */
-        .speaker-section { background: var(--white); }
+        .speaker-section { background: var(--cream); }
         .speaker-card {
             display: grid; grid-template-columns: 200px 1fr; gap: 40px;
             align-items: start; max-width: 800px; margin: 0 auto;
         }
         .speaker-photo {
             width: 200px; height: 200px; border-radius: var(--radius);
-            background: var(--cream); display: flex; align-items: center; justify-content: center;
+            background: var(--white); display: flex; align-items: center; justify-content: center;
             font-size: 0.85rem; color: var(--text-muted); overflow: hidden;
         }
         .speaker-info h3 { font-size: 1.5rem; margin-bottom: 8px; }
@@ -176,6 +195,17 @@
         .cta-detail { text-align: center; }
         .cta-detail .value { font-size: 1.2rem; font-weight: 700; color: var(--white); }
         .cta-detail .desc { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-top: 4px; }
+
+        /* === SHARE === */
+        .share-section { background: var(--lavender-bg); }
+        .share-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .share-card {
+            padding: 28px; border-radius: var(--radius); background: var(--white);
+            text-align: center;
+        }
+        .share-icon { font-size: 2.5rem; margin-bottom: 12px; line-height: 1; }
+        .share-card h3 { margin-bottom: 8px; }
+        .share-card p { font-size: 0.9rem; }
 
         /* === FAQ === */
         .faq-section { background: var(--cream); }
@@ -213,6 +243,8 @@
             .webinar-card { grid-template-columns: 1fr; gap: 16px; padding: 24px; }
             .webinar-num { width: 56px; height: 56px; font-size: 1.4rem; }
             .whom-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .share-grid { grid-template-columns: 1fr; }
             .speaker-card { grid-template-columns: 1fr; text-align: center; }
             .speaker-photo { margin: 0 auto; width: 140px; height: 140px; }
             .hero-proof { gap: 24px; }
@@ -237,7 +269,7 @@
 <section class="hero">
     <div class="container">
         <div class="hero-inner">
-            <div class="hero-eyebrow">4 бесплатных вебинара</div>
+            <div class="hero-eyebrow">3 бесплатных вебинара — 16, 23, 30 апреля</div>
             <h1>Продукт в новой реальности</h1>
             <p class="hero-sub">Как находить идеи, которые выстрелят, и превращать их в работающие продукты с помощью ИИ. Система, которую используют 13 000+ выпускников Замесина.</p>
             <div class="hero-tags">
@@ -260,8 +292,8 @@
                     <div class="label">NPS курса BOOST</div>
                 </div>
                 <div class="hero-proof-item">
-                    <div class="num">4 часа</div>
-                    <div class="label">от идеи до MVP</div>
+                    <div class="num">0 разработчиков</div>
+                    <div class="label">в команде — все вайбкодят</div>
                 </div>
             </div>
         </div>
@@ -276,7 +308,7 @@
                 ИИ уронил порог «построить» почти до нуля. Любой человек может навайбкодить MVP за выходные. Но порог «понять, что строить и для кого» остался прежним.
             </p>
             <p style="font-size: 1.05rem; margin-top: 20px; color: var(--text-secondary);">
-                Скорость без направления бесполезна. На этих четырёх вебинарах вы получите и то, и другое: систему, чтобы находить правильные идеи, и инструменты, чтобы быстро превращать их в работающие продукты.
+                Скорость без направления бесполезна. На этих трёх вебинарах вы получите и то, и другое: систему, чтобы находить правильные идеи, и инструменты, чтобы быстро превращать их в работающие продукты.
             </p>
         </div>
     </div>
@@ -287,8 +319,8 @@
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Программа</span>
-            <h2>4 вебинара, одна система</h2>
-            <p>Каждый вебинар самостоятельный, но вместе они складываются в полную картину: от контекста — к идее, от идеи — к MVP, от MVP — к первым клиентам.</p>
+            <h2>3 вебинара, одна система</h2>
+            <p>Каждый вебинар самостоятельный, но вместе они складываются в полную картину: зачем и что строить — как строить — система и следующий шаг.</p>
         </div>
 
         <div class="webinar-grid">
@@ -297,17 +329,17 @@
             <div class="webinar-card">
                 <div class="webinar-num">1</div>
                 <div class="webinar-content">
-                    <h3>Почему сейчас лучшее время создавать продукты</h3>
-                    <div class="webinar-meta">Вторник, 22 апреля — 19:00 MSK — 60 минут</div>
-                    <p class="webinar-desc">Разберёмся, что на самом деле происходит с рынком, почему это не угроза, а окно возможностей, и как устроена новая реальность создания продуктов.</p>
+                    <h3>Новая реальность: почему сейчас лучшее время создавать продукты и как найти идею</h3>
+                    <div class="webinar-meta">Среда, 16 апреля — 19:00 MSK — 75 минут</div>
+                    <p class="webinar-desc">Разберёмся, что на самом деле происходит с рынком, почему это не угроза, а окно возможностей. И сразу перейдём к практике: как с помощью метода AJTBD найти идею продукта, который будут покупать.</p>
                     <ul class="webinar-theses">
                         <li>Почему 90% людей боятся ИИ, хотя стоит радоваться: рефрейм технологического сдвига</li>
-                        <li>«Код стал бесплатным» — что это значит для тех, кто не программист</li>
-                        <li>Три типа людей в новой реальности: кто выиграет, а кто нет (и почему дело не в технических навыках)</li>
-                        <li>Формула «голова + руки»: почему одного вайбкодинга недостаточно, и что нужно добавить</li>
-                        <li>Разбор: как наш маркетолог без технического бэкграунда собрала дашборд аналитики за 2 вечера</li>
+                        <li>«Код стал бесплатным» — формула «голова + руки» и почему одного вайбкодинга недостаточно</li>
+                        <li>Метод AJTBD на пальцах: что такое «работа клиента» и как её найти без 50 интервью</li>
+                        <li>Живой разбор: берём идею участника и за 15 минут находим сегмент и работу</li>
+                        <li>Как вся команда Zamesin вайбкодит без единого разработчика — и почему это работает</li>
                     </ul>
-                    <div class="webinar-takeaway">Вы уйдёте с ясным пониманием: какие возможности открылись прямо сейчас и как ими воспользоваться.</div>
+                    <div class="webinar-takeaway">Вы уйдёте с чеклистом валидации идей из 3 вопросов и пониманием формулы «голова + руки».</div>
                 </div>
             </div>
 
@@ -315,17 +347,17 @@
             <div class="webinar-card">
                 <div class="webinar-num">2</div>
                 <div class="webinar-content">
-                    <h3>Как найти идею продукта, который купят</h3>
-                    <div class="webinar-meta">Четверг, 24 апреля — 19:00 MSK — 75 минут</div>
-                    <p class="webinar-desc">Живое демо методологии AJTBD: как за 60 минут определить сегмент, найти «работу» клиента и сформулировать идею продукта, который решает реальную проблему.</p>
+                    <h3>Навайбкоди MVP за вечер: живое демо + кейсы команды</h3>
+                    <div class="webinar-meta">Среда, 23 апреля — 19:00 MSK — 90 минут</div>
+                    <p class="webinar-desc">Иван в прямом эфире покажет, как за 40 минут собрать работающий продукт. Плюс — разбор реальных кейсов: как каждый член команды Zamesin вайбкодит в продакшен.</p>
                     <ul class="webinar-theses">
-                        <li>Почему «мне кажется, людям нужно X» — причина смерти 90% продуктов</li>
-                        <li>Метод AJTBD на пальцах: что такое «работа клиента» и как её найти без 50 интервью</li>
-                        <li>Живой разбор: берём реальную идею участника и за 15 минут находим сегмент и работу</li>
-                        <li>Как отличить хорошую идею от плохой за 3 вопроса (чеклист, который вы заберёте с собой)</li>
-                        <li>Что писать на лендинге, если вы поняли работу клиента — формула ценностного предложения</li>
+                        <li>Вайбкодинг — не «поиграться с ChatGPT»: какие инструменты реально работают в 2026</li>
+                        <li>Живая сборка: от пустого экрана до задеплоенного MVP за 40 минут (Cursor + Claude Code)</li>
+                        <li>Кейсы команды: маркетолог собрала дашборд за 2 вечера, основатель подключил оплату за 3 часа, куратор создал Telegram-бота за один воркшоп</li>
+                        <li>5 вещей, которые точно пойдут не так, и как с ними справляться</li>
+                        <li>Что можно навайбкодить, а что нельзя — честно, без хайпа</li>
                     </ul>
-                    <div class="webinar-takeaway">Вы уйдёте с конкретным чеклистом валидации идей и пониманием, как формулировать ценность продукта на языке клиента.</div>
+                    <div class="webinar-takeaway">Вы увидите своими глазами, как создаётся продукт с ИИ, и узнаете, как команда из 7 нетехнических людей обходится без разработчиков.</div>
                 </div>
             </div>
 
@@ -333,33 +365,15 @@
             <div class="webinar-card">
                 <div class="webinar-num">3</div>
                 <div class="webinar-content">
-                    <h3>Навайбкоди MVP за вечер: живое демо</h3>
-                    <div class="webinar-meta">Вторник, 29 апреля — 19:00 MSK — 90 минут</div>
-                    <p class="webinar-desc">Иван в прямом эфире покажет, как за 40 минут собрать работающий продукт с регистрацией, оплатой и задеплоить его в интернет. Без единой строчки кода руками.</p>
-                    <ul class="webinar-theses">
-                        <li>Вайбкодинг — это не «поиграться с ChatGPT»: какие инструменты реально работают в 2026</li>
-                        <li>Живая сборка: от пустого экрана до задеплоенного MVP за 40 минут (Cursor + Claude Code)</li>
-                        <li>5 вещей, которые точно пойдут не так, и как с ними справляться (из опыта 4 потоков BOOST)</li>
-                        <li>Что можно навайбкодить, а что нельзя: границы технологии (честно, без хайпа)</li>
-                        <li>Как человек без технического бэкграунда за 4 часа собрал продукт, который используют реальные клиенты</li>
-                    </ul>
-                    <div class="webinar-takeaway">Вы увидите своими глазами, как создаётся продукт с ИИ, и поймёте — это реально даже если вы ни разу не писали код.</div>
-                </div>
-            </div>
-
-            <!-- WEBINAR 4 -->
-            <div class="webinar-card">
-                <div class="webinar-num">4</div>
-                <div class="webinar-content">
                     <h3>От идеи до первых клиентов: собираем систему</h3>
-                    <div class="webinar-meta">Четверг, 1 мая — 19:00 MSK — 75 минут</div>
+                    <div class="webinar-meta">Среда, 30 апреля — 19:00 MSK — 75 минут</div>
                     <p class="webinar-desc">Соединяем всё вместе: как пройти путь от «у меня есть идея» до «у меня есть клиенты, которые платят». Разбор кейсов выпускников и дорожная карта действий.</p>
                     <ul class="webinar-theses">
-                        <li>Полная система: AJTBD (голова) + вайбкодинг (руки) + среда (поддержка) — как это работает вместе</li>
-                        <li>3 кейса выпускников: от идеи до работающего продукта за 1-5 недель (с цифрами и ошибками)</li>
-                        <li>Самая частая ошибка: строить продукт до того, как поговорил с клиентами (и как её избежать)</li>
-                        <li>Дорожная карта: ваши конкретные шаги после серии — что делать завтра, через неделю, через месяц</li>
-                        <li>Q&A: ответы на ваши вопросы и разбор ваших идей в прямом эфире</li>
+                        <li>Полная система: AJTBD (голова) + вайбкодинг (руки) + среда (поддержка) — как работает вместе</li>
+                        <li>Кейсы выпускников: MVP за 4 часа, B2B-сервис за неделю, баг стоимостью 180К руб/год</li>
+                        <li>Самая частая ошибка: строить продукт до того, как поговорил с клиентами</li>
+                        <li>Дорожная карта: что делать завтра, через неделю, через месяц</li>
+                        <li>Q&A: разбор ваших идей в прямом эфире</li>
                     </ul>
                     <div class="webinar-takeaway">Вы уйдёте с готовой дорожной картой и пониманием, какой следующий шаг подходит именно вам.</div>
                 </div>
@@ -368,7 +382,86 @@
         </div>
 
         <div style="text-align: center; margin-top: 48px;">
-            <a href="#register" class="btn btn-black btn-lg">Записаться на все 4 вебинара</a>
+            <a href="#register" class="btn btn-black btn-lg">Записаться на все 3 вебинара</a>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM CASES -->
+<section class="team-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Кейсы команды</span>
+            <h2>У нас нет разработчиков. Все 7 человек вайбкодят в прод</h2>
+            <p>Это не теория. Это рабочий процесс команды Zamesin каждый день.</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-card-header">
+                    <div class="team-avatar">ИЗ</div>
+                    <div>
+                        <div class="team-name">Иван Замесин</div>
+                        <div class="team-role">Основатель</div>
+                    </div>
+                </div>
+                <p>Запустил 10 ИИ-агентов, которые за 30 минут проанализировали 1 000 анкет студентов — и нашли 5 новых продуктов внутри одного курса.</p>
+                <div class="team-result">30 минут вместо 2 недель ручного анализа</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-header">
+                    <div class="team-avatar">ИЗ</div>
+                    <div>
+                        <div class="team-name">Иван Замесин</div>
+                        <div class="team-role">Основатель</div>
+                    </div>
+                </div>
+                <p>Сделал лендинг + текст + подключил Stripe-оплату для нового курса. Первые два потока sold out за 24 часа каждый.</p>
+                <div class="team-result">~10 часов от нуля до работающих продаж</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-header">
+                    <div class="team-avatar">Э</div>
+                    <div>
+                        <div class="team-name">Элла</div>
+                        <div class="team-role">Маркетолог</div>
+                    </div>
+                </div>
+                <p>Собрала дашборд аналитики контента: какие посты приводят к регистрациям, а какие — нет. Без разработчика, без ТЗ, с помощью Claude.</p>
+                <div class="team-result">2 вечера вместо 200-300К на аутсорсе</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-header">
+                    <div class="team-avatar">ИМ</div>
+                    <div>
+                        <div class="team-name">Илья Мохов</div>
+                        <div class="team-role">Куратор BOOST</div>
+                    </div>
+                </div>
+                <p>За один воркшоп с нуля собрал Telegram-бота с обработкой изображений через нейросеть — OpenRouter + Google Gemini.</p>
+                <div class="team-result">1 воркшоп — работающий бот с AI</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-header">
+                    <div class="team-avatar">Н</div>
+                    <div>
+                        <div class="team-name">Настя</div>
+                        <div class="team-role">Команда</div>
+                    </div>
+                </div>
+                <p>Никогда не писала код — собрала Telegram-бота для внутренней коммуникации команды. Работает в продакшене.</p>
+                <div class="team-result">0 опыта в коде — бот работает</div>
+            </div>
+            <div class="team-card">
+                <div class="team-card-header">
+                    <div class="team-avatar">В</div>
+                    <div>
+                        <div class="team-name">Владлена</div>
+                        <div class="team-role">Маркетинг</div>
+                    </div>
+                </div>
+                <p>Вайбкодит лендинги, HTML-страницы и контент-систему для маркетинга. Этот лендинг — тоже навайбкожен.</p>
+                <div class="team-result">Лендинги без дизайнера и верстальщика</div>
+            </div>
         </div>
     </div>
 </section>
@@ -431,9 +524,9 @@
                 <div class="role">Основатель Zamesin Academy, автор методологии AURA</div>
                 <ul class="speaker-facts">
                     <li>8 лет учит людей создавать продукты. 60 потоков. 13 000+ выпускников.</li>
-                    <li>Автор методологии AURA (Advanced Unified Research Architecture) — системного подхода к исследованию клиентов</li>
-                    <li>Соединил AJTBD-методологию с вайбкодингом — создал формат, где нетехнические люди запускают продукты за 1-5 недель</li>
-                    <li>Практик: команда Zamesin сама использует вайбкодинг в продакшене каждый день</li>
+                    <li>Автор методологии AURA — системного подхода к исследованию клиентов</li>
+                    <li>Соединил AJTBD с вайбкодингом — нетехнические люди запускают продукты за 1-5 недель</li>
+                    <li>Практик: сам вайбкодит в продакшен каждый день (лендинги, аналитика, автоматизация)</li>
                     <li>Психотерапевтический бэкграунд: без манипуляций страхом, с поддержкой и честностью</li>
                 </ul>
             </div>
@@ -442,7 +535,7 @@
 </section>
 
 <!-- SOCIAL PROOF / CASES -->
-<section style="background: var(--cream);">
+<section style="background: var(--white);">
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Результаты выпускников</span>
@@ -450,20 +543,20 @@
             <p>Не абстрактные обещания — конкретные результаты реальных людей</p>
         </div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-            <div style="padding: 28px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--border);">
-                <p style="font-family: var(--font-serif); font-style: italic; margin-bottom: 16px;">«Подключила phpMyAdmin за 3 минуты. Раньше я бы ждала разработчика 3 недели.»</p>
-                <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Виктория Шишкина</p>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Маркетолог, BOOST Поток #3</p>
-            </div>
-            <div style="padding: 28px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--border);">
+            <div style="padding: 28px; border-radius: var(--radius); background: var(--cream); border: 1px solid var(--border);">
                 <p style="font-family: var(--font-serif); font-style: italic; margin-bottom: 16px;">«Собрал и задеплоил B2B-сервис по ДМС за неделю. 20 лет в страховании — впервые могу сам.»</p>
                 <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Александр Гутман</p>
                 <p style="font-size: 0.8rem; color: var(--text-muted);">Страховой бизнес, BOOST Поток #4</p>
             </div>
-            <div style="padding: 28px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--border);">
-                <p style="font-family: var(--font-serif); font-style: italic; margin-bottom: 16px;">«Нашла баг в биллинге, который стоил нам 48.6% оттока. Это 120-180К рублей в год.»</p>
-                <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Коллективный воркшоп</p>
-                <p style="font-size: 0.8rem; color: var(--text-muted);">Анализ данных, BOOST Поток #4</p>
+            <div style="padding: 28px; border-radius: var(--radius); background: var(--cream); border: 1px solid var(--border);">
+                <p style="font-family: var(--font-serif); font-style: italic; margin-bottom: 16px;">«От нуля до задеплоенного продукта за 4 часа. Я не верила, что это возможно.»</p>
+                <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Соня Белоцкая</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">BOOST Поток #3</p>
+            </div>
+            <div style="padding: 28px; border-radius: var(--radius); background: var(--cream); border: 1px solid var(--border);">
+                <p style="font-family: var(--font-serif); font-style: italic; margin-bottom: 16px;">«Подключила phpMyAdmin за 3 минуты. Раньше я бы ждала разработчика 3 недели.»</p>
+                <p style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">Виктория Шишкина</p>
+                <p style="font-size: 0.8rem; color: var(--text-muted);">Маркетолог, BOOST Поток #3</p>
             </div>
         </div>
         <div style="text-align: center; margin-top: 32px;">
@@ -473,7 +566,7 @@
 </section>
 
 <!-- WHAT'S NEXT -->
-<section style="background: var(--white);">
+<section style="background: var(--cream);">
     <div class="container">
         <div class="section-header">
             <span class="section-tag">Что дальше</span>
@@ -503,6 +596,116 @@
     </div>
 </section>
 
+<!-- SHARE / REFERRAL -->
+<section class="share-section" id="share">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Приведите друга</span>
+            <h2>Расскажите друзьям — получите бонусы</h2>
+            <p>После регистрации вы получите персональную реферальную ссылку. Делитесь ей — и получайте бонусы за каждого друга.</p>
+        </div>
+        <div class="share-grid">
+            <div class="share-card">
+                <div class="share-icon">1</div>
+                <h3>1 друг</h3>
+                <p>Доступ к записям всех вебинаров (обычно только live)</p>
+            </div>
+            <div class="share-card">
+                <div class="share-icon">3</div>
+                <h3>3 друга</h3>
+                <p>PDF-гайд «Чеклист валидации идеи: 10 вопросов перед тем, как строить»</p>
+            </div>
+            <div class="share-card">
+                <div class="share-icon">5</div>
+                <h3>5 друзей</h3>
+                <p>Скидка 10% на любой курс Zamesin Academy</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 32px;">
+            <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 560px; margin: 0 auto;">После регистрации бот пришлёт вашу персональную ссылку и готовое сообщение для пересылки друзьям.</p>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE CARDS FOR SHARING -->
+<section style="background: var(--white);">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Карточки для шеринга</span>
+            <h2>Сохрани и поделись</h2>
+            <p>Яркие тезисы, которые можно репостнуть в сторис или переслать другу. На каждой — QR-код для регистрации.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+            <div style="padding: 32px 24px; border-radius: var(--radius); background: var(--cyan-bg); text-align: center;">
+                <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); line-height: 1.4; font-family: var(--font-serif);">Код стал бесплатным. Понимание клиента — нет. И это ваш шанс.</p>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">zamesin.ru/webinars</p>
+            </div>
+            <div style="padding: 32px 24px; border-radius: var(--radius); background: var(--green-bg); text-align: center;">
+                <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); line-height: 1.4; font-family: var(--font-serif);">В нашей команде 7 человек. Разработчиков — ноль. Все вайбкодят в прод.</p>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">zamesin.ru/webinars</p>
+            </div>
+            <div style="padding: 32px 24px; border-radius: var(--radius); background: var(--yellow-bg); text-align: center;">
+                <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); line-height: 1.4; font-family: var(--font-serif);">Навайбкодить лендинг — 20 минут. Понять, для кого он — 20 интервью.</p>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">zamesin.ru/webinars</p>
+            </div>
+            <div style="padding: 32px 24px; border-radius: var(--radius); background: var(--lavender-bg); text-align: center;">
+                <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); line-height: 1.4; font-family: var(--font-serif);">90% продуктов умирают не потому что люди глупые — а потому что нет системы.</p>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">zamesin.ru/webinars</p>
+            </div>
+            <div style="padding: 32px 24px; border-radius: var(--radius); background: var(--cream); text-align: center; border: 1px solid var(--border);">
+                <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); line-height: 1.4; font-family: var(--font-serif);">Порог «построить» упал. Порог «понять что строить» — остался прежним.</p>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">zamesin.ru/webinars</p>
+            </div>
+            <div style="padding: 32px 24px; border-radius: var(--radius); background: var(--cyan-bg); text-align: center;">
+                <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); line-height: 1.4; font-family: var(--font-serif);">Наш маркетолог собрала дашборд за 2 вечера. Без разработчика. Без ТЗ.</p>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 16px;">zamesin.ru/webinars</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CHALLENGES AFTER WEBINARS -->
+<section style="background: var(--cream);">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-tag">Практика между вебинарами</span>
+            <h2>Челлендж после каждого вебинара</h2>
+            <p>Мини-задание, которое можно выполнить за вечер. Лучшие работы Иван разберёт на следующем вебинаре.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+            <div style="padding: 28px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--border);">
+                <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px;">После вебинара 1</div>
+                <h3 style="margin-bottom: 12px;">Сформулируйте идею</h3>
+                <p style="font-size: 0.9rem;">Ответьте на 3 вопроса чеклиста для своей идеи продукта. Пришлите в чат — Иван разберёт лучшие на вебинаре 2.</p>
+                <p style="font-size: 0.85rem; color: var(--orange); font-weight: 600; margin-top: 12px;">Поделитесь в сторис с хештегом #ПродуктВНовойРеальности</p>
+            </div>
+            <div style="padding: 28px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--border);">
+                <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px;">После вебинара 2</div>
+                <h3 style="margin-bottom: 12px;">Навайбкодите что-нибудь</h3>
+                <p style="font-size: 0.9rem;">Соберите что угодно с помощью ИИ — лендинг, бот, калькулятор. Пришлите скриншот. Лучшие покажем на вебинаре 3.</p>
+                <p style="font-size: 0.85rem; color: var(--orange); font-weight: 600; margin-top: 12px;">Покажите результат друзьям — пусть тоже попробуют</p>
+            </div>
+            <div style="padding: 28px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--border);">
+                <div style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px;">После вебинара 3</div>
+                <h3 style="margin-bottom: 12px;">Перешлите другу</h3>
+                <p style="font-size: 0.9rem;">У вас есть друг, который думает, что ИИ — это страшно? Перешлите ему запись любого вебинара — пусть посмотрит сам.</p>
+                <p style="font-size: 0.85rem; color: var(--orange); font-weight: 600; margin-top: 12px;">Каждый пересланный друг = бонус по реферальной программе</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EARLY ACCESS -->
+<section style="background: var(--white);">
+    <div class="container">
+        <div style="max-width: 640px; margin: 0 auto; text-align: center; padding: 48px 32px; border-radius: var(--radius); background: var(--lavender-bg);">
+            <h3 style="font-size: 1.3rem; margin-bottom: 12px;">Ранний доступ к записи за репост</h3>
+            <p style="font-size: 1rem; color: var(--text-secondary); margin-bottom: 8px;">Запись вебинара выходит через 48 часов. Но если вы репостнете анонс следующего вебинара и пришлёте скриншот в бота — получите запись через 2 часа.</p>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 16px;">Репост в сторис, канал или чат — подойдёт любой формат. Бот проверит автоматически.</p>
+        </div>
+    </div>
+</section>
+
 <!-- REGISTER CTA -->
 <section class="cta-section" id="register">
     <div class="container">
@@ -510,16 +713,16 @@
         <p>Бесплатно. Онлайн. С записью для тех, кто не сможет прийти вживую.</p>
         <div class="cta-details">
             <div class="cta-detail">
-                <div class="value">4 вебинара</div>
-                <div class="desc">22, 24, 29 апреля и 1 мая</div>
+                <div class="value">3 вебинара</div>
+                <div class="desc">16, 23, 30 апреля</div>
             </div>
             <div class="cta-detail">
                 <div class="value">19:00 MSK</div>
-                <div class="desc">60-90 минут</div>
+                <div class="desc">75-90 минут</div>
             </div>
             <div class="cta-detail">
                 <div class="value">Бесплатно</div>
-                <div class="desc">включая записи</div>
+                <div class="desc">включая реферальные бонусы</div>
             </div>
         </div>
         <a href="https://t.me/zamesin_bot?start=webinar_series_0426&utm_source=site&utm_medium=social&utm_campaign=webinar_series_0426&utm_content=cta_main" class="btn btn-orange btn-lg">Зарегистрироваться через Telegram-бот</a>
@@ -540,12 +743,12 @@
                 <div class="faq-a">Нет. 95% участников наших курсов — нетехнические специалисты: маркетологи, предприниматели, менеджеры, нутрициологи, HR. Вебинары построены так, чтобы быть понятными без опыта в программировании.</div>
             </div>
             <div class="faq-item">
-                <button class="faq-q">Обязательно приходить на все 4 вебинара?</button>
-                <div class="faq-a">Каждый вебинар самостоятельный — можно прийти на один и получить пользу. Но серия построена как путь: контекст → идея → инструменты → система. Максимум ценности — на всех четырёх.</div>
+                <button class="faq-q">Обязательно приходить на все 3 вебинара?</button>
+                <div class="faq-a">Каждый вебинар самостоятельный — можно прийти на один и получить пользу. Но серия построена как путь: зачем + что строить &rarr; как строить &rarr; система. Максимум ценности — на всех трёх.</div>
             </div>
             <div class="faq-item">
                 <button class="faq-q">Будет ли запись?</button>
-                <div class="faq-a">Да, записи будут доступны всем зарегистрированным. Но живые вебинары ценнее: можно задать вопрос, поучаствовать в разборе идей и получить обратную связь от Ивана.</div>
+                <div class="faq-a">Да, записи будут доступны зарегистрированным (или тем, кто привёл хотя бы 1 друга по реферальной ссылке). Но живые вебинары ценнее: можно задать вопрос, поучаствовать в разборе идей и получить обратную связь от Ивана.</div>
             </div>
             <div class="faq-item">
                 <button class="faq-q">Это бесплатно? В чём подвох?</button>
@@ -553,11 +756,15 @@
             </div>
             <div class="faq-item">
                 <button class="faq-q">Что такое AJTBD?</button>
-                <div class="faq-a">Advanced Jobs To Be Done — методология исследования клиентов, которая помогает понять, какую «работу» выполняет ваш продукт в жизни человека. Это альтернатива интуитивному подходу «мне кажется, людям нужно X». Иван развивает и преподаёт AJTBD 8 лет.</div>
+                <div class="faq-a">Advanced Jobs To Be Done — методология исследования клиентов, которая помогает понять, какую «работу» выполняет ваш продукт в жизни человека. Иван развивает и преподаёт AJTBD 8 лет.</div>
             </div>
             <div class="faq-item">
                 <button class="faq-q">Что такое вайбкодинг?</button>
                 <div class="faq-a">Создание программных продуктов с помощью ИИ-инструментов (Cursor, Claude Code) без написания кода руками. Вы описываете, что хотите, а ИИ генерирует код. Наши студенты без технического бэкграунда создают работающие MVP за 4-24 часа.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-q">Как работает реферальная программа?</button>
+                <div class="faq-a">После регистрации бот пришлёт вашу персональную ссылку. Поделитесь ей с друзьями. За 1 друга — записи всех вебинаров. За 3 — PDF-гайд по валидации идей. За 5 — скидка 10% на любой курс.</div>
             </div>
         </div>
     </div>
@@ -572,7 +779,7 @@
 
 <!-- STICKY CTA -->
 <div class="sticky-cta" id="stickyCta">
-    <p>Серия из 4 бесплатных вебинаров — старт 22 апреля</p>
+    <p>3 бесплатных вебинара — старт 16 апреля</p>
     <a href="#register" class="btn btn-orange">Записаться</a>
 </div>
 
