@@ -1176,6 +1176,8 @@
 ### 4-Personal-files/Alena-Mins/
 
 - `curator-role.md` — Куратор новых курсов — Должностная инструкция и Регламент подбора
+- `vacancy-trainer-boost.md` — Тренер BOOST — Вакансия
+- `vacancy-trainer-boost.pdf`
 
 **diagnostics-12.03/**
 
