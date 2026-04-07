@@ -828,6 +828,11 @@
 - `саммари — Обсуждение системы построения графов работ.md` — [Продуктовый-созвон] Обсуждение системы построения графов работ
 - `саммари — Обсуждение упаковки позиционирования бренда.md` — [Продуктовый-созвон] Обсуждение упаковки позиционирования бренда
 
+*2026-04-07 — Стратегия развития продукта по клиентским сегментам/*
+
+- `расшифровка — Стратегия развития продукта по клиентским сегментам.md` — Расшифровка: Стратегия развития продукта по клиентским сегментам
+- `саммари — Стратегия развития продукта по клиентским сегментам.md` — [Продуктовый-созвон] Стратегия развития продукта по клиентским сегментам
+
 ### 1-Context/boost-knowledge-base/
 
 База знаний об интенсиве BOOST — вайб-кодинг для создания продуктов с AI. Cohort-4, 20–28 марта 2026.
@@ -935,6 +940,10 @@
 - `curriculum.md` — Teen Boost Curriculum
 - `teen-coding-AI-education-market-research-2026.md` — Teen Coding & AI Education Market Research
 
+**ЧДКЖ/**
+
+- `TODO.md`
+
 ### 2-Products/US/
 
 - `AURA - отчет по анализу в ЕС и США.pdf`
@@ -1013,6 +1022,10 @@
 
 - `boris_cherny_interview_transcript.txt`
 - `marc_andreessen_transcript.txt`
+
+**Ideas/**
+
+- `2026-04-07-podcast-vanya-zhenya-dima-kat-drafts.md` — Черновики постов из подкаста 07.04.2026
 
 **Linkedin-posts/**
 
@@ -1211,6 +1224,7 @@
 ### 4-Personal-files/Ivan-Zamesin/
 
 - `2026-03-17-podcast-kira-kuzmenko-transcript.md`
+- `AJTBD_Graph_Visualization_Rules_Complete.md` — Полные правила формирования и визуализации графа работ AJTBD
 - `TODO.md` — Идеи
 - `partnership-payment-services.md` — Партнёрство: оплата зарубежных сервисов для студентов BOOST
 - `partnership-payment-services.pdf`
@@ -1223,6 +1237,22 @@
 **0326-AlphaBank/**
 
 - `program.md` — Альфа-банк митап — 19 марта
+
+**Consulting/**
+
+- `Mednikova.md` — Следующие шаги — «Управленческий цикл» (500 тыс. руб.)
+
+*Mednikova 0426/*
+
+- `Mednikova-landing-mba-segment.md` — Текст лендинга: «Управленческий цикл» для сегмента «Выпускник MBA»
+- `Mednikova-landing.html`
+- `Mednikova-next-steps.pdf`
+- `Mednikova.md` — Дизайн исследования
+
+*Uralsib 0426/*
+
+- `2026-04-07-uralsib-rko-strategy-session.md` — Итоговый документ: Стратегическая сессия Уралсиб — РКО
+- `2026-04-07-uralsib-rko-strategy-session.pdf`
 
 **DEMO-MFS/**
 
