@@ -1161,6 +1161,9 @@
 - `test-task-fullstack-builder.md` — Тестовое задание: Генератор гипотез сегментов с графами работ
 - `tz-reelsmaker.md` — ТЗ: Рилзмейкер (Лиссабон)
 - `vacancy-fullstack-builder.md` — Full Stack Builder
+- `vacancy-trainer-boost.html`
+- `vacancy-trainer-boost.md` — Тренер BOOST — Вакансия
+- `vacancy-trainer-boost.pdf`
 - `найм_воронщика_план.md` — Найм воронщика: summary звонка, вакансия, собеседование, тестовое
 
 ---
@@ -1172,6 +1175,7 @@
 
 ### 4-Personal-files/Alena-Mins/
 
+- `curator-role.md` — Куратор новых курсов — Должностная инструкция и Регламент подбора
 
 **diagnostics-12.03/**
 
