@@ -443,6 +443,14 @@ Include tier + credential in the output format for every source.
   Year: {year}
   ARGUMENT TEST: "This case proves that ___" → ✅
   Why it fits: {one sentence connection to thesis}
+  **Tier:** ⭐⭐⭐ / ⭐⭐ / ⭐
+  **Credential for inline use:** "{Name}, {≤8 word credential}" — e.g. "Elena Verna, Head of Growth at Lovable"
+
+**All sources used in cases (with tiers):**
+| Source | Tier | Credential (≤8 words) | Can name inline? |
+|--------|------|----------------------|-----------------|
+| {name} | ⭐⭐⭐ | {credential} | ✅ Yes |
+| {name} | ⭐ | {none — unknown author} | ❌ Use fact only |
 
 ## SAVE (REQUIRED)
 
@@ -815,6 +823,25 @@ Examples:
 
 NO "naked" source mentions without a clickable link. If there's no URL — don't mention the source by name.
 
+### ⚠️ SOURCE CREDENTIALING — MANDATORY
+
+When naming a person or organization inline, the reader must IMMEDIATELY understand why they matter. Apply the tier rules from the case-hunter:
+
+**Tier 1 (⭐⭐⭐) — Name + credential inline:**
+- ✅ `[Boris Cherny, creator of Claude Code at Anthropic](url)` — reader knows Anthropic + Claude Code
+- ✅ `[Elena Verna, Head of Growth at Lovable](url)` — role + company in the link text
+- ✅ `[Bessemer Venture Partners, one of Silicon Valley's oldest VC firms](url)` — context for those who don't know BVP
+
+**Tier 2 (⭐⭐) — Publication name + finding:**
+- ✅ `[CB Insights' startup failure report](url) found that 42%...` — reader trusts CB Insights
+- ✅ `A [First Round Review analysis of 20 PMF stories](url) showed...` — publication carries weight
+
+**Tier 3 (⭐) — Fact only, NO author name:**
+- ❌ `[Ahmad Fiaz Jan warns](url) that technical debt...` — WHO? Reader loses trust
+- ✅ `Technical debt from AI-generated code can [drop velocity 50-70%](url)` — fact stands on its own
+
+**LINK-THESIS ALIGNMENT CHECK:** Before including ANY link in a section, ask: "Does the CONTENT behind this URL directly support the thesis of THIS section?" If the link is topically adjacent but argues a different point — remove it or move it to the section where it belongs. A link about "AI developer productivity" does NOT belong in a section about "choosing the right customer segment."
+
 ### ⚠️ URL VERIFICATION — MANDATORY
 
 BEFORE including ANY URL in the text — verify it via WebFetch:
@@ -910,6 +937,8 @@ For each section:
 - [ ] ARGUMENT TEST passed for every case
 - [ ] All sources have inline markdown links
 - [ ] All URLs verified via WebFetch
+- [ ] **SOURCE CREDENTIALING:** every named person has ≤8 word credential inline; no Tier-3 authors named
+- [ ] **LINK-THESIS ALIGNMENT:** every URL's content directly supports this section's thesis
 - [ ] Transitions in place
 - [ ] No banned phrases anywhere
 - [ ] Word count close to budget
@@ -1123,6 +1152,31 @@ If < 5 — add directly. If ≥ 5 — launch writer agent with specific list.
 **Priority 3 — `[DROPPED AT BRIEF]`:**
 Review whether top-3 dropped elements can be restored. If word budget allows — add them.
 
+### LEVEL 3.5: Source quality and credentialing check
+
+For EACH named source (person or organization) in the draft:
+
+1. **Is the source Tier 1, 2, or 3?**
+2. **If named inline — does the reader know who they are?**
+   - Is there a credential in the link text or surrounding sentence? (role, company, achievement)
+   - Would a smart generalist reader say "I know why this person matters" after reading the sentence?
+3. **LINK-THESIS ALIGNMENT:** Does the content behind this URL directly argue the thesis of its section?
+
+```
+### Source: {name}
+- Tier: ⭐⭐⭐ / ⭐⭐ / ⭐
+- Credential present inline: ✅ / ❌
+- Link-thesis alignment: ✅ ARGUES / ❌ TOPICALLY ADJACENT
+```
+
+**Violations:**
+- `[UNCREDENTIALED SOURCE]` — named person with no context → add credential or remove name
+- `[TIER 3 NAMED]` — unknown author cited by name → remove name, keep fact
+- `[LINK MISALIGNED]` — URL content doesn't argue the section's thesis → remove or relocate
+- `[ORPHAN CREDENTIAL]` — org mentioned without explaining what it is (e.g. "Bessemer" without "VC firm") → add context
+
+**Fix all violations before proceeding to LEVEL 4.**
+
 ### LEVEL 4: "So what?" check
 
 For EACH section in the draft, ask: **"So what does this mean for the reader — practically, today?"**
@@ -1177,12 +1231,22 @@ Save to `{temp}/04-quality-report.md`:
 - URLs verified ✅: {N}
 - BAD URL ❌: {N} (removed/replaced: {N})
 
+### LEVEL 3.5: Source quality
+- Total named sources in draft: {N}
+- Tier 1 (⭐⭐⭐): {N} — all credentialed inline ✅/❌
+- Tier 2 (⭐⭐): {N} — publication named ✅/❌
+- Tier 3 (⭐): {N} — NONE named by author ✅ / {N} violations ❌
+- UNCREDENTIALED SOURCE: {N} (fixed: {N})
+- TIER 3 NAMED: {N} (fixed: {N})
+- LINK MISALIGNED: {N} (fixed: {N})
+- ORPHAN CREDENTIAL: {N} (fixed: {N})
+
 ### Humanity Risk: {score}/100
 
 ### Brief compliance: {pass/fail with notes}
 ```
 
-**Thresholds:** Body coverage ≥ 70% for EACH thesis. Brief coverage ≥ 90%. ARGUMENT TEST — 100% cases must pass. BAD URL — 0 in final draft. Humanity Risk ≤ 20.
+**Thresholds:** Body coverage ≥ 70% for EACH thesis. Brief coverage ≥ 90%. ARGUMENT TEST — 100% cases must pass. BAD URL — 0 in final draft. UNCREDENTIALED SOURCE — 0 in final draft. TIER 3 NAMED — 0 in final draft. LINK MISALIGNED — 0 in final draft. Humanity Risk ≤ 20.
 
 Update `_spring-context.md`.
 
@@ -1371,6 +1435,7 @@ Do NOT relaunch the full pipeline unless necessary.
 - [ ] LEVEL 1: Body preservation ≥ 70% for each thesis
 - [ ] LEVEL 2: Brief coverage ≥ 90%
 - [ ] LEVEL 3: 0 irrelevant cases, 0 bad URLs
+- [ ] LEVEL 3.5: 0 uncredentialed sources, 0 Tier-3 authors named, 0 misaligned links, 0 orphan credentials
 - [ ] LEVEL 4: "So what?" explicit in every section
 
 ### Brief compliance

@@ -27,14 +27,19 @@
 * в скиллы генерации текстов лендинга и любых материалов вставить футер что это сделано с помощью такой то методологии и таких-то скиллов 
 * взять за основу https://github.com/garrytan/gstack 
 
-# 07/04/26
+## 08/04/26
+* попросить Алёну посмотреть Настю Даценко 
+* сделать агента Ваню Замесина 
 * пост в линкедин написать 
+* посмотреть гайд интервью 
+
+## 07/04/26
 * посмотреть письма от fi.co про приглашения * Насте две статьи отдать 
 * придумать цену и позиционирование Makers 
 * сделать лендос для мейкеров 
-* по вебам Ладе ответить https://github.com/zamesin/Zamesin-Academy-Team/blob/main/4-Personal-files/Vladlena-Orlova/webinar-series-theses.md 
 
 ## 06/04/26 
+DONE * по вебам Ладе ответить https://github.com/zamesin/Zamesin-Academy-Team/blob/main/4-Personal-files/Vladlena-Orlova/webinar-series-theses.md 
 DONE * Насте обновить статьи 
 DONE * Ладе дать обновлённый квиз 
 DONE * фидбек студентам дать
