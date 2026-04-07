@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Следующие шаги — Управленческий цикл</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; line-height: 1.6; padding: 48px; max-width: 800px; margin: 0 auto; font-size: 14px; }
+  h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.02em; }
+  h2 { font-size: 20px; font-weight: 700; margin-top: 40px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #f97316; letter-spacing: -0.01em; }
+  h3 { font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 12px; }
+  p { margin-bottom: 12px; color: #333; }
+  .date { color: #888; font-size: 13px; margin-bottom: 32px; }
+  .context-box { background: #f8f8f8; border-left: 4px solid #f97316; padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+  .context-box p { margin-bottom: 6px; }
+  .context-box strong { color: #1a1a1a; }
+  .risk-box { background: #fff5f5; border-left: 4px solid #ef4444; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .risk-box p { color: #991b1b; margin: 0; }
+  .track { background: #f8f8f8; border-radius: 12px; padding: 24px; margin: 16px 0; }
+  .track h3 { margin-top: 0; color: #f97316; }
+  .track-b { background: #f0fdf4; }
+  .track-b h3 { color: #16a34a; }
+  ol, ul { margin: 8px 0 16px 24px; }
+  li { margin-bottom: 6px; color: #333; }
+  .criterion { background: #fefce8; border: 1px solid #fde68a; padding: 12px 16px; border-radius: 8px; margin: 12px 0; }
+  .criterion strong { color: #92400e; }
+  hr { border: none; border-top: 1px solid #e5e5e5; margin: 32px 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .col-card { background: #f8f8f8; border-radius: 10px; padding: 20px; }
+  .col-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .col-card ul { margin-left: 16px; }
+  .checklist { list-style: none; margin-left: 0; padding: 0; }
+  .checklist li { padding: 8px 0; border-bottom: 1px solid #f0f0f0; padding-left: 24px; position: relative; }
+  .checklist li::before { content: '☐'; position: absolute; left: 0; color: #999; }
+  .segment { page-break-inside: avoid; margin: 24px 0; border: 1px solid #e5e5e5; border-radius: 12px; padding: 24px; }
+  .segment h3 { margin-top: 0; font-size: 15px; color: #1a1a1a; }
+  .segment-label { display: inline-block; background: #f97316; color: white; font-size: 11px; font-weight: 700; padding: 2px 10px; border-radius: 100px; margin-bottom: 8px; letter-spacing: 0.03em; }
+  .job-block { margin: 12px 0; }
+  .job-block strong { font-size: 13px; color: #666; text-transform: uppercase; letter-spacing: 0.04em; }
+  .job-item { padding: 6px 0; font-size: 13px; border-bottom: 1px solid #f5f5f5; }
+  .tam-block { background: #f8f8f8; border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 13px; }
+  .attractive { background: #f0fdf4; border-radius: 8px; padding: 12px 16px; margin: 12px 0; font-size: 13px; }
+  .page-break { page-break-before: always; }
+  .section-divider { border-top: 3px solid #1a1a1a; margin: 48px 0 32px; padding-top: 8px; }
+  .note { font-style: italic; color: #888; font-size: 13px; margin-top: 24px; }
+  @media print {
+    body { padding: 24px; font-size: 12px; }
+    .track, .segment, .col-card { break-inside: avoid; }
+    h1 { font-size: 24px; }
+    h2 { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Следующие шаги — «Управленческий цикл»</h1>
+<p class="date">Созвон: 7 апреля 2026 | Чек: 500 000 руб.</p>
+
+<h2>Контекст и ситуация</h2>
+
+<div class="context-box">
+  <p><strong>Продукт:</strong> «Управленческий цикл» — онлайн-обучение по выстраиванию управленческой системы. Сокращённая версия продукта за 1,5 млн (убрана очная часть).</p>
+  <p><strong>Чек:</strong> 500 000 руб.</p>
+  <p><strong>ЦА (гипотеза):</strong> собственники с выручкой 2–5 млн руб./мес, от 3 сотрудников.</p>
+  <p><strong>База:</strong> 2 000+ лидов с намерением, но без покупки (дорого).</p>
+</div>
+
+<div class="risk-box">
+  <p><strong>Ключевой риск:</strong> 2 000 лидов имеют намерение, но не факт оплаты. Намерение ≠ покупка. Продукт на этот сегмент ещё не продавался.</p>
+</div>
+
+<h2>Стратегия: два параллельных трека</h2>
+
+<div class="track">
+  <h3>Трек А — Низковисящий фрукт (внутри базы)</h3>
+  <p><strong>Что:</strong> 15–20 интервью + продажа с лидами из базы.</p>
+  <p><strong>Цель:</strong> проверить, превращается ли намерение в оплату.</p>
+  <ol>
+    <li>Берём лида из базы</li>
+    <li>Проводим интервью (Core Jobs, Big Jobs, личные джобы, критерии успеха)</li>
+    <li>В конце — оффер: «500 тыс. руб. Переводи первые 50–100 тыс. прямо сейчас»</li>
+    <li>Фиксируем: купил / не купил / что остановило / что зацепило</li>
+    <li>После каждого интервью дорабатываем оффер и лендинг</li>
+  </ol>
+  <div class="criterion">
+    <strong>Критерий успеха:</strong> 5–7 продаж из 20 интервью = позитивный сигнал, можно масштабировать.<br>
+    <strong>Если 0–1 продажа:</strong> разбираемся — неверные джобы? слабая ценность? плохая коммуникация? не сняты барьеры? Если всё починено, а продаж нет — это не тот сегмент → Трек Б.
+  </div>
+</div>
+
+<div class="track track-b">
+  <h3>Трек Б — Поиск сегмента с нуля (за пределами базы)</h3>
+  <p><strong>Что:</strong> 20–30 интервью + продажа с клиентами конкурирующих решений (уже заплатили 500 тыс. – 1 млн).</p>
+  <p><strong>Цель:</strong> найти платящие сегменты с подтверждённой готовностью платить.</p>
+  <p><strong>Почему точнее:</strong> люди, прошедшие обучение, осознают реальные задачи. Вы вытащите больше джобов, и они будут точнее.</p>
+  <p><strong>Важно:</strong> искать НЕ только представителей текущего сегмента, а вообще всех, кто заплатил сравнимый чек. Это могут быть другие люди — и это хорошо (глобальный оптимум).</p>
+</div>
+
+<h2>Локальный vs глобальный оптимум</h2>
+<div class="two-col">
+  <div class="col-card">
+    <h4>Локальный (Трек А)</h4>
+    <p>Быстро монетизировать базу. Потолок: +30–40% к выручке. Ограничен размером сегмента.</p>
+  </div>
+  <div class="col-card" style="background:#f0fdf4;">
+    <h4>Глобальный (Трек Б)</h4>
+    <p>Найти лучший сегмент на рынке. Потенциально другой продукт, другая ценность, другие каналы. Потолок выше.</p>
+  </div>
+</div>
+<p><strong>Рекомендация:</strong> делать оба параллельно, если есть ресурс. Это не «или/или» — это вопрос ресурсов.</p>
+
+<h2>Важно: личные джобы</h2>
+<p>При проведении интервью обязательно копайте и бизнесовые, и личные джобы.</p>
+<div class="two-col">
+  <div class="col-card">
+    <h4>У собственников</h4>
+    <ul>
+      <li>Самореализация и миссия</li>
+      <li>Выдохнуть: стабильный бизнес, а не тянущий энергию</li>
+      <li>Команда работает без него → отпуск</li>
+      <li>Финансовая свобода</li>
+    </ul>
+  </div>
+  <div class="col-card">
+    <h4>У наёмников</h4>
+    <ul>
+      <li>Безопасность: не провалиться</li>
+      <li>Влияние: принимать решения</li>
+      <li>Доход: премия, процент</li>
+      <li>Кейс: доказать, что умеешь</li>
+    </ul>
+  </div>
+</div>
+<p><strong>Продажи идут через личные джобы.</strong> Бизнесовые — то, что продаёте. Личные — то, зачем покупают.</p>
+
+<h2>Дизайн исследования</h2>
+
+<div class="context-box">
+  <p><strong>Критерий выборки:</strong> люди, которые платят за выстраивание управленческой системы конкурирующим решениям.</p>
+  <p><strong>Сколько платят:</strong> 500 000 – 1 000 000 руб.</p>
+  <p><strong>Частота:</strong> как правило, одноразово. Возможны повторные покупки (апсейл).</p>
+  <p><strong>Доп. факторы:</strong> собственники или GD, компании 3–50 чел., выручка от 2 млн/мес, Россия.</p>
+</div>
+
+<h3>Конкурирующие решения (где искать)</h3>
+<ul>
+  <li>MBA: Сколково, Синергия, РАНХиГС</li>
+  <li>Масштабирование: Like Центр, Greenfield Project</li>
+  <li>Акселераторы: ФРИИ, Сколково Startup Academy</li>
+  <li>Бизнес-клубы: Атланты, EO, Клуб 500, Бизнес-Среда</li>
+  <li>Executive-коучинг: частные практики, 50–150 тыс./мес</li>
+  <li>Мастермайнд-группы и менторские программы</li>
+</ul>
+
+<h3>Как адаптировать гайд</h3>
+<ol>
+  <li><strong>Core Jobs конкурирующих решений:</strong> критерии успеха, активирующее знание, ценность и ага-момент, барьеры, удовлетворённость</li>
+  <li><strong>Big Jobs</strong> с критериями успеха</li>
+  <li><strong>Личные джобы</strong> — обязательно!</li>
+  <li>Соседние Small Jobs (если время)</li>
+  <li><strong>Продажа на решенческом интервью</strong> — оффер после изучения джобов</li>
+</ol>
+
+<h3>На выходе вы узнаете</h3>
+<ul>
+  <li>Сегменты и подсегменты по работам</li>
+  <li>Core Jobs, Big Jobs, личные джобы</li>
+  <li>Ценность решений, ага-моменты, барьеры</li>
+  <li>Незакрытые джобы у конкурирующих решений</li>
+</ul>
+
+<h3>На выходе вы сможете</h3>
+<ul>
+  <li>Выбирать сегменты по реакции на оффер</li>
+  <li>Дорабатывать ценностное предложение</li>
+  <li>Доработать лендинг 20–30 раз на основе интервью</li>
+</ul>
+
+<p>Как находить респондентов: глава «Как находить респондентов» или промпт на <strong>https://ajtbd.ru</strong></p>
+
+<h2>Как работать с лендингами</h2>
+<ol>
+  <li>Под каждый сегмент — отдельный лендинг</li>
+  <li>На интервью определяете сегмент → показываете соответствующий лендинг</li>
+  <li>Делаете оффер, фиксируете реакцию</li>
+  <li>За 20–30 интервью лендинг дорабатывается 20–30 раз</li>
+  <li>Под конец — либо продаётся, либо понятно, почему нет</li>
+</ol>
+
+<h2>Чек-лист: что делать после созвона</h2>
+<ul class="checklist">
+  <li>Попросить Леру открыть модуль «Запуск нового продукта» (записи прошлых потоков)</li>
+  <li>Составить список конкурирующих решений в диапазоне 500 тыс. – 1 млн руб.</li>
+  <li><strong>Трек А:</strong> отобрать 15–20 лидов из базы для интервью + продажа</li>
+  <li><strong>Трек Б:</strong> найти 20–30 клиентов конкурирующих решений для интервью + продажа</li>
+  <li>Сгенерировать лендинги под гипотезы сегментов</li>
+  <li>Запросить у кураторов обратную связь на первые 2–3 интервью</li>
+  <li>Проводить интервью с продажей. После каждого — дорабатывать оффер</li>
+  <li>Копать и бизнесовые, и личные джобы на каждом интервью</li>
+  <li>Приходить в чат курса с результатами — будем корректировать</li>
+  <li>Определиться с названием после того, как станут понятны сегменты и джобы</li>
+</ul>
+
+<h2>После 20–30 интервью: что на руках</h2>
+<p>Сегменты по джобам (и внутри базы, и вне), реакция на офферы, и понимание:</p>
+<ul>
+  <li>За какие сегменты, джобы и ценность выгоднее конкурировать</li>
+  <li>Какой сегмент большой, платёжеспособный, с доступными каналами</li>
+  <li>Где можно создать добавочную ценность, снизить барьеры</li>
+  <li>Как привлекать этих людей</li>
+</ul>
+<p>Если всё сделано качественно — что делать дальше будет очевидно. Если не понятно — ошибка чаще всего на этапе интервью.</p>
+
+<!-- ============================================ -->
+<div class="section-divider"></div>
+
+<h1>Гипотезы сегментов</h1>
+<p class="date">Люди, которые уже платили 500 тыс. – 1 млн руб. за бизнес-обучение в России</p>
+<p>Конкурирующие решения: Сколково, Синергия, Like Центр, ФРИИ, Атланты, EO, Клуб 500, executive-коучинг, мастермайнды.</p>
+
+<!-- Segment 1 -->
+<div class="segment">
+  <div class="segment-label">Сегмент 1</div>
+  <h3>Собственник, купивший MBA-лайт — и не внедривший</h3>
+  <div class="job-block">
+    <strong>Core Jobs:</strong>
+    <div class="job-item">Прошёл MBA за 500–900 тыс., получил теорию корпораций, но не применимо к компании из 5–15 человек → хочу конкретные инструменты для малого бизнеса</div>
+    <div class="job-item">Преподаватели про Unilever, а у меня некому отгрузить заказ → хочу систему без HR-отдела и SAP</div>
+    <div class="job-item">Потратил полгода и 700 тыс., ничего не изменилось → хочу внедрить что-то с измеримым результатом</div>
+  </div>
+  <div class="job-block">
+    <strong>Критерии успеха:</strong> внедрение за 1–2 недели; под малый бизнес (3–15 чел.); сопровождение при внедрении
+  </div>
+  <div class="job-block">
+    <strong>Что за люди:</strong> Собственник 35–50 лет, бизнес 5–10 лет, выручка 3–10 млн/мес. Триггер: «много знаю, ничего не работает»
+  </div>
+  <div class="job-block">
+    <strong>Big Job:</strong> Превратить знания в работающую систему, чтобы бизнес рос предсказуемо
+  </div>
+  <div class="tam-block">
+    TAM: ~150 тыс. | SAM: ~40 тыс. | SOM: ~1 000–2 500 за 1–2 года
+  </div>
+  <div class="attractive">
+    Доказанная готовность платить. Барьер не в деньгах, а в доверии. Канал: «MBA не работает для малого бизнеса».
+  </div>
+</div>
+
+<!-- Segment 2 -->
+<div class="segment">
+  <div class="segment-label">Сегмент 2</div>
+  <h3>Собственник из акселератора / программы масштабирования — без системы внутри</h3>
+  <div class="job-block">
+    <strong>Core Jobs:</strong>
+    <div class="job-item">Научился считать unit-экономику, но внутри хаос → хочу операционную систему</div>
+    <div class="job-item">Выручка растёт, прибыль падает → хочу команду и процессы, которые масштабируются</div>
+    <div class="job-item">Акселератор дал стратегию роста, но не инструменты управления → хочу закрыть разрыв</div>
+  </div>
+  <div class="job-block">
+    <strong>Что за люди:</strong> 28–42 года, стартапер/фрилансер, 2–7 млн выручки, IT/EdTech/e-com. Триггер: кассовый разрыв или хаос
+  </div>
+  <div class="job-block">
+    <strong>Big Job:</strong> Бизнес растёт управляемо → свобода и деньги, а не хаос
+  </div>
+  <div class="tam-block">TAM: ~100 тыс. | SAM: ~30 тыс. | SOM: ~800–2 000</div>
+  <div class="attractive">Разогреты, осознают проблему, платили сопоставимые чеки. Канал: бизнес-комьюнити, TG-каналы.</div>
+</div>
+
+<!-- Segment 3 -->
+<div class="segment">
+  <div class="segment-label">Сегмент 3</div>
+  <h3>Наёмный GD/COO — без управленческой школы</h3>
+  <div class="job-block">
+    <strong>Core Jobs:</strong>
+    <div class="job-item">Назначен управлять, вырос из линейных → хочу фреймворк, чтобы не провалиться</div>
+    <div class="job-item">Собственник ожидает рост на 30–50% → хочу декомпозировать цели в задачи</div>
+    <div class="job-item">Коллеги про OKR/KPI, я интуитивно → хочу систематизировать</div>
+  </div>
+  <div class="job-block">
+    <strong>Что за люди:</strong> 30–45 лет, назначен 6–18 мес. назад, компания 10–50 чел. Триггер: давление собственника
+  </div>
+  <div class="job-block">
+    <strong>Big Job:</strong> Стать профессиональным управленцем → рост дохода и свобода выбора
+  </div>
+  <div class="tam-block">TAM: ~500 тыс. | SAM: ~80 тыс. | SOM: ~500–1 500</div>
+  <div class="attractive">Двойная монетизация: наёмник платит за карьеру, компания может оплатить. Реферальный эффект.</div>
+</div>
+
+<!-- Segment 4 -->
+<div class="segment">
+  <div class="segment-label">Сегмент 4</div>
+  <h3>Собственник из бизнес-клуба — ищущий систему, а не нетворкинг</h3>
+  <div class="job-block">
+    <strong>Core Jobs:</strong>
+    <div class="job-item">Состою в клубе за 500–800 тыс./год, получаю нетворкинг, но не инструменты → хочу систему</div>
+    <div class="job-item">На мастермайнде инсайты, но не понимаю, как внедрить → хочу программу внедрения</div>
+    <div class="job-item">Коллеги растут, я топчусь → хочу понять, чего не хватает</div>
+  </div>
+  <div class="job-block">
+    <strong>Что за люди:</strong> 35–50 лет, 5–15 млн/мес, 10–30 сотрудников. Триггер: нетворкинг без системы = развлечение
+  </div>
+  <div class="job-block">
+    <strong>Big Job:</strong> От «успешного знакомства» к «успешному управлению»
+  </div>
+  <div class="tam-block">TAM: ~80 тыс. | SAM: ~25 тыс. | SOM: ~500–1 200</div>
+  <div class="attractive">Высочайшая платёжеспособность. Точный канал: спикерские слоты в клубах. Формат привычен.</div>
+</div>
+
+<!-- Segment 5 -->
+<div class="segment">
+  <div class="segment-label">Сегмент 5</div>
+  <h3>Собственник после executive-коучинга — хочет систему, а не «сессии»</h3>
+  <div class="job-block">
+    <strong>Core Jobs:</strong>
+    <div class="job-item">Работал с коучем за 600 тыс.+/год, получил инсайты, но не систему → хочу работу над компанией</div>
+    <div class="job-item">Коуч помог понять, чего хочу, но не дал инструментов → хочу фреймворк</div>
+    <div class="job-item">Устал от «ты сам знаешь ответ» → хочу эксперта, который скажет «делай так»</div>
+  </div>
+  <div class="job-block">
+    <strong>Что за люди:</strong> 33–48 лет, 3–8 млн/мес, работал с 1–3 коучами. Триггер: «коучинг — про голову, мне нужно про бизнес»
+  </div>
+  <div class="job-block">
+    <strong>Big Job:</strong> Перестать «разбираться в себе», начать строить систему → рост компании
+  </div>
+  <div class="tam-block">TAM: ~200 тыс. | SAM: ~50 тыс. | SOM: ~400–1 000</div>
+  <div class="attractive">Привычка платить 600 тыс.+/год. Чёткий незакрытый job. «Следующий шаг после коучинга».</div>
+</div>
+
+<p class="note">Сегменты сгенерированы по AJTBD. Гипотезы требуют валидации через интервью с представителями каждого сегмента. Цифры TAM/SAM/SOM — ориентировочные.</p>
+
+</body>
+</html>
