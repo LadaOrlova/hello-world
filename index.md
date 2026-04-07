@@ -1031,7 +1031,7 @@
 
 **Ideas/**
 
-- `2026-04-07-podcast-vanya-zhenya-dima-kat-drafts.md` — Черновики постов из подкаста 07.04.2026
+- `2026-04-07-podcast-vanya-zhenya-dima-kat-drafts.md` — Черновики постов из подкаста GConf (07.04.2026)
 
 **Linkedin-posts/**
 
@@ -1252,8 +1252,9 @@
 
 - `Mednikova-landing-mba-segment.md` — Текст лендинга: «Управленческий цикл» для сегмента «Выпускник MBA»
 - `Mednikova-landing.html`
+- `Mednikova-next-steps.html`
 - `Mednikova-next-steps.pdf`
-- `Mednikova.md` — Дизайн исследования
+- `Mednikova.md` — Следующие шаги — «Управленческий цикл» (500 тыс. руб.)
 
 *Uralsib 0426/*
 
