@@ -904,6 +904,7 @@
 - `course-zapusk.md` — Курс "Запуск продукта" — Программа
 - `ideas.md` — Идеи: КДП с 60-го потока — обучение через VS Code + Claude Code
 - `jobs.md` — Сегментация студентов КДП по Jobs
+- `marketing-brief.md` — Маркетинговый бриф: Курсы «Запуск продукта» и «Починка продукта»
 - `new-courses.md` — Jobs студентов и линейка продуктов
 - `positioning-hypothesis.md` — Гипотеза позиционирования — Замесин Академия (NewKDP)
 - `students_export.csv`
@@ -1304,6 +1305,7 @@
 - `ilya-rublevsky-tasks-april.md` — Илья Рублевский — Tasks апрель 2026
 - `jobs-v2-cohort59.md` — Сегментация студентов КДП: 59-й поток (отдельный анализ)
 - `jobs-v2.md` — Сегментация студентов КДП по Jobs (v2)
+- `marketing-brief-courses.md` — Маркетинговый бриф: Курсы «Запуск продукта» и «Починка продукта»
 - `new-courses-v2.md` — Линейка продуктов КДП v2.1
 - `poc-two-products.md` — Proof of Concept: 2 коротких продукта из КДП
 - `questions-for-zhenya-zis.md` — Вопросы к Жене Васеву (ZIS) — подготовка к созвону
@@ -1347,6 +1349,7 @@
 - `landing-main-page-v5.html`
 - `landing-main-page.html`
 - `landing-webinar-series.html`
+- `marketing-brief-courses.md` — Маркетинговый бриф: Курсы «Запуск продукта» и «Починка продукта»
 - `site-strategy-draft.md` — Черновик стратегии сайта Zamesin Academy
 - `webinar-series-theses.md` — Серия вебинаров «Как делать продукты, когда код стал бесплатным»
 - `гипотеза-сайта.md` — Гипотеза единого сайта Zamesin Academy
