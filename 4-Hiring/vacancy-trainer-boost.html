@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тренер BOOST — Замесин Академия</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #d4d4d4;
+  color: #1a1a1a;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* PAGE */
+.page {
+  width: 794px;
+  min-height: 1123px;
+  background: #fff;
+  margin: 32px auto;
+  padding: 52px 56px 80px;
+  position: relative;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+}
+
+/* COVER */
+.cover {
+  background: #0A0A0A;
+  color: #fff;
+  padding: 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 1123px;
+  width: 794px;
+  margin: 32px auto;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+}
+.cover-eyebrow { font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#FFD600; margin-bottom:64px; }
+.cover-title { font-size:58px; font-weight:900; line-height:1.0; letter-spacing:-2.5px; margin-bottom:16px; }
+.cover-title span { color:#FFD600; }
+.cover-sub { font-size:14px; color:rgba(255,255,255,0.4); font-weight:400; margin-bottom:48px; line-height:1.6; }
+.cover-stats { display:flex; gap:12px; margin-bottom:48px; flex-wrap:wrap; }
+.stat-box { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:10px; padding:16px 20px; min-width:110px; }
+.stat-num { font-size:30px; font-weight:800; color:#FFD600; line-height:1; margin-bottom:4px; }
+.stat-lbl { font-size:10px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:1px; line-height:1.3; }
+.cover-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:56px; }
+.cover-tag { background:rgba(255,214,0,0.1); color:#FFD600; border:1px solid rgba(255,214,0,0.2); border-radius:4px; padding:4px 12px; font-size:10px; font-weight:600; letter-spacing:1px; text-transform:uppercase; }
+.cover-quote { border-left: 3px solid rgba(255,214,0,0.4); padding-left:20px; margin-bottom:48px; }
+.cover-quote p { font-size:16px; font-style:italic; color:rgba(255,255,255,0.6); line-height:1.6; margin-bottom:8px; }
+.cover-quote cite { font-size:11px; color:rgba(255,255,255,0.25); }
+.cover-footer { border-top:1px solid rgba(255,255,255,0.08); padding-top:16px; display:flex; justify-content:space-between; font-size:10px; color:rgba(255,255,255,0.2); }
+
+/* PAGE HEADER */
+.ph { display:flex; justify-content:space-between; align-items:flex-end; border-bottom:2px solid #0A0A0A; padding-bottom:12px; margin-bottom:28px; }
+.ph h1 { font-size:22px; font-weight:800; letter-spacing:-0.5px; }
+.ph .lbl { font-size:10px; color:#999; text-transform:uppercase; letter-spacing:2px; }
+
+/* PAGE FOOTER */
+.pf { position:absolute; bottom:24px; left:56px; right:56px; display:flex; justify-content:space-between; font-size:10px; color:#bbb; border-top:1px solid #eee; padding-top:10px; }
+
+/* SECTION CARD */
+.sc { border:1.5px solid #e8e8e8; border-radius:10px; padding:18px 20px; margin-bottom:14px; background:#fff; break-inside:avoid; page-break-inside:avoid; }
+.sc-title { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#999; display:flex; align-items:center; gap:6px; margin-bottom:14px; }
+.dot { width:7px; height:7px; border-radius:50%; display:inline-block; flex-shrink:0; }
+.dot-y { background:#FFD600; }
+.dot-g { background:#22c55e; }
+.dot-r { background:#ef4444; }
+.dot-b { background:#6366f1; }
+.dot-o { background:#f59e0b; }
+
+/* ABOUT BLOCK */
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.about-box { background:#f8f8f8; border-radius:8px; padding:14px 16px; }
+.about-box h3 { font-size:11px; font-weight:700; color:#1a1a1a; margin-bottom:6px; }
+.about-box p { font-size:11px; color:#555; line-height:1.5; }
+.about-accent { background:#0A0A0A; color:#fff; }
+.about-accent h3 { color:#FFD600; }
+.about-accent p { color:rgba(255,255,255,0.65); }
+
+/* WORKSHOPS TABLE */
+.wtbl { width:100%; border-collapse:collapse; margin-bottom:4px; }
+.wtbl th { background:#0A0A0A; color:#fff; padding:9px 12px; text-align:left; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; }
+.wtbl th:last-child { text-align:right; }
+.wtbl td { padding:9px 12px; border-bottom:1px solid #f0f0f0; vertical-align:middle; font-size:11px; }
+.wtbl tr:last-child td { border-bottom:none; }
+.wtbl td:last-child { text-align:right; color:#999; font-size:10px; white-space:nowrap; }
+.wnum { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; background:#FFD600; border-radius:50%; font-size:10px; font-weight:800; color:#0A0A0A; }
+.wname { font-size:11px; font-weight:600; color:#1a1a1a; }
+.wzero .wnum { background:#333; color:#fff; }
+
+/* RHYTHM BLOCK */
+.rhythm { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+.rbox { background:#f8f8f8; border-radius:8px; padding:14px; text-align:center; }
+.rbox .rnum { font-size:26px; font-weight:800; color:#0A0A0A; line-height:1; margin-bottom:4px; }
+.rbox .rlbl { font-size:10px; color:#888; text-transform:uppercase; letter-spacing:0.8px; line-height:1.3; }
+.rbox.accent { background:#FFD600; }
+.rbox.accent .rnum { color:#0A0A0A; }
+.rbox.accent .rlbl { color:rgba(0,0,0,0.5); }
+
+/* REQUIREMENTS */
+.req-block { margin-bottom:16px; break-inside:avoid; page-break-inside:avoid; }
+.req-block:last-child { margin-bottom:0; }
+.req-header { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.req-icon { width:28px; height:28px; background:#0A0A0A; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0; }
+.req-title { font-size:12px; font-weight:700; color:#1a1a1a; }
+.req-items { padding-left:38px; }
+.req-items li { font-size:11px; color:#444; line-height:1.55; margin-bottom:4px; list-style:none; padding-left:12px; position:relative; }
+.req-items li::before { content:'—'; position:absolute; left:0; color:#ccc; }
+
+/* MUST / PLUS / NO */
+.b { display:inline-block; padding:3px 10px; border-radius:20px; font-size:10px; font-weight:700; white-space:nowrap; }
+.b-y  { background:#fef9c3; color:#a16207; }
+.b-g  { background:#dcfce7; color:#15803d; }
+.b-r  { background:#fee2e2; color:#b91c1c; }
+
+/* OFFER GRID */
+.offer-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.offer-item { background:#f8f8f8; border-radius:8px; padding:14px 16px; }
+.offer-item .oi-lbl { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#bbb; margin-bottom:4px; }
+.offer-item .oi-val { font-size:11px; color:#1a1a1a; line-height:1.5; }
+.offer-item.dark { background:#0A0A0A; }
+.offer-item.dark .oi-lbl { color:rgba(255,255,255,0.3); }
+.offer-item.dark .oi-val { color:#FFD600; font-weight:700; }
+
+/* PROCESS STEPS */
+.steps { }
+.step { display:flex; gap:16px; margin-bottom:16px; break-inside:avoid; page-break-inside:avoid; }
+.step:last-child { margin-bottom:0; }
+.step-num { width:32px; height:32px; background:#FFD600; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:800; color:#0A0A0A; flex-shrink:0; margin-top:2px; }
+.step-body { flex:1; }
+.step-title { font-size:12px; font-weight:700; color:#1a1a1a; margin-bottom:4px; }
+.step-meta { font-size:10px; color:#FFD600; font-weight:600; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:6px; }
+.step-text { font-size:11px; color:#555; line-height:1.55; }
+.step-q { background:#f8f8f8; border-radius:6px; padding:8px 12px; margin-top:8px; }
+.step-q .ql { font-size:9px; font-weight:700; color:#bbb; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px; }
+.step-q ol { padding-left:14px; }
+.step-q li { font-size:11px; color:#444; line-height:1.5; margin-bottom:4px; }
+.step-q li:last-child { margin-bottom:0; }
+
+/* NOT LOOKING FOR */
+.nolook { background:#fff8f8; border:1.5px solid #fecaca; border-radius:8px; padding:14px 16px; }
+.nolook ul { padding:0; list-style:none; }
+.nolook li { font-size:11px; color:#444; padding:6px 0 6px 16px; border-bottom:1px solid #fee2e2; position:relative; line-height:1.45; }
+.nolook li:last-child { border-bottom:none; padding-bottom:0; }
+.nolook li::before { content:'✕'; position:absolute; left:0; color:#ef4444; font-weight:700; font-size:10px; top:7px; }
+
+/* QUOTES */
+.quotes { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; }
+.quote-box { background:#f8f8f8; border-radius:8px; padding:14px 16px; border-left:3px solid #FFD600; }
+.quote-box p { font-size:11px; color:#333; line-height:1.55; font-style:italic; }
+
+/* RATING BAR */
+.rating-bar { background:#0A0A0A; border-radius:10px; padding:18px 20px; display:flex; align-items:center; gap:24px; }
+.rating-num { font-size:42px; font-weight:900; color:#FFD600; line-height:1; }
+.rating-lbl { font-size:11px; color:rgba(255,255,255,0.45); line-height:1.5; }
+.rating-lbl strong { color:#fff; display:block; font-size:13px; margin-bottom:2px; }
+
+/* PRINT */
+@page { size: A4; margin: 14mm 16mm 16mm; }
+@media print {
+  body { background: #fff; }
+  .page { margin:0; box-shadow:none; width:100%; min-height:0; padding:0 0 40px 0; page-break-after:always; }
+  .cover { margin:0; box-shadow:none; width:100%; min-height:0; padding:14mm 0 10mm 0; page-break-after:always; }
+  .pf { position:static; margin-top:16px; left:auto; right:auto; bottom:auto; }
+  .page:last-child { page-break-after:avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div>
+    <div class="cover-eyebrow">Замесин Академия · Апрель 2026</div>
+    <div class="cover-title">Тренер<br><span>BOOST</span></div>
+    <div class="cover-sub">Ищем человека, который будет вести воркшопы<br>вместо Вани Замесина или вместе с ним</div>
+    <div class="cover-stats">
+      <div class="stat-box">
+        <div class="stat-num">120</div>
+        <div class="stat-lbl">студентов в потоке</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">7</div>
+        <div class="stat-lbl">воркшопов за неделю</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">9.6</div>
+        <div class="stat-lbl">средняя оценка потоков</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">12K+</div>
+        <div class="stat-lbl">выпускников КДП</div>
+      </div>
+    </div>
+    <div class="cover-tags">
+      <span class="cover-tag">Онлайн</span>
+      <span class="cover-tag">Вайб-кодинг</span>
+      <span class="cover-tag">Claude Code</span>
+      <span class="cover-tag">VS Code</span>
+      <span class="cover-tag">AJTBD</span>
+      <span class="cover-tag">Фикс за поток</span>
+    </div>
+    <div class="cover-quote">
+      <p>«Заряжает так, что хочется делать прямо сейчас»</p>
+      <cite>— из отзывов студентов BOOST</cite>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <span>Конфиденциально · только для внутреннего использования</span>
+    <span>Апрель 2026</span>
+  </div>
+</div>
+
+<!-- PAGE 1: О НАС + ЧТО ДЕЛАЕШЬ -->
+<div class="page">
+  <div class="ph">
+    <h1>О нас и роли</h1>
+    <span class="lbl">Контекст</span>
+  </div>
+
+  <div class="sc" style="margin-bottom:14px;">
+    <div class="sc-title"><span class="dot dot-y"></span> Замесин Академия</div>
+    <div class="about-grid">
+      <div class="about-box about-accent">
+        <h3>BOOST</h3>
+        <p>Флагманский интенсив по вайб-кодингу. За одну неделю участники без технического бэкграунда создают работающий продукт: лендинг, MVP, деплой, автоматизацию.</p>
+      </div>
+      <div class="about-box">
+        <h3>Кто приходит</h3>
+        <p>95% студентов — без техбэкграунда. Продакты, предприниматели, маркетологи, аналитики. Работают над своими реальными идеями, не учебными.</p>
+      </div>
+      <div class="about-box">
+        <h3>Масштаб</h3>
+        <p>~120 студентов в потоке. Потоки каждые 4-6 недель. До сих пор все воркшопы вёл Ваня Замесин лично.</p>
+      </div>
+      <div class="about-box">
+        <h3>Зачем эта роль</h3>
+        <p>Спрос растёт. Масштабироваться без тренера невозможно. Нужен человек, который понимает продукт на уровне автора и умеет держать зал.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc" style="margin-bottom:14px;">
+    <div class="sc-title"><span class="dot dot-b"></span> Программа — 7 воркшопов за неделю</div>
+    <table class="wtbl">
+      <thead>
+        <tr>
+          <th style="width:44px;">#</th>
+          <th>Воркшоп</th>
+          <th>Длительность</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="wzero">
+          <td><span class="wnum" style="background:#333;color:#fff;">0</span></td>
+          <td><span class="wname">Установка инструментов</span></td>
+          <td>60 мин</td>
+        </tr>
+        <tr>
+          <td><span class="wnum">1</span></td>
+          <td><span class="wname">PRD и лендинг продукта</span></td>
+          <td>150 мин</td>
+        </tr>
+        <tr>
+          <td><span class="wnum">2</span></td>
+          <td><span class="wname">Создание и деплой MVP</span></td>
+          <td>150 мин</td>
+        </tr>
+        <tr>
+          <td><span class="wnum">3</span></td>
+          <td><span class="wname">Работа с данными и исследование рынка</span></td>
+          <td>150 мин</td>
+        </tr>
+        <tr>
+          <td><span class="wnum">4</span></td>
+          <td><span class="wname">Автоматизация: субагенты, скиллы, агенты</span></td>
+          <td>150 мин</td>
+        </tr>
+        <tr>
+          <td><span class="wnum">5</span></td>
+          <td><span class="wname">AI-продукты и команды агентов</span></td>
+          <td>150 мин</td>
+        </tr>
+        <tr>
+          <td><span class="wnum">6</span></td>
+          <td><span class="wname">Демо продуктов и подведение итогов</span></td>
+          <td>150 мин</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sc">
+    <div class="sc-title"><span class="dot dot-o"></span> Нагрузка и ритм</div>
+    <div class="rhythm">
+      <div class="rbox accent">
+        <div class="rnum">~16</div>
+        <div class="rlbl">часов в эфире за поток</div>
+      </div>
+      <div class="rbox">
+        <div class="rnum">4-6</div>
+        <div class="rlbl">недель между потоками</div>
+      </div>
+      <div class="rbox">
+        <div class="rnum">1 нед</div>
+        <div class="rlbl">интенсив + подготовка</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pf"><span>Замесин Академия · Тренер BOOST · Апрель 2026</span><span>1 / 3</span></div>
+</div>
+
+<!-- PAGE 2: ТРЕБОВАНИЯ -->
+<div class="page">
+  <div class="ph">
+    <h1>Кого мы ищем</h1>
+    <span class="lbl">Обязательные требования</span>
+  </div>
+
+  <div class="sc" style="margin-bottom:14px;">
+    <div class="sc-title"><span class="dot dot-y"></span> Обязательно — must have</div>
+
+    <div class="req-block">
+      <div class="req-header">
+        <div class="req-icon">🎤</div>
+        <div class="req-title">Харизма и удержание зала</div>
+      </div>
+      <ul class="req-items">
+        <li>Умеешь держать внимание 120 человек на протяжении 2.5 часов онлайн</li>
+        <li>Не теряешься при неожиданных вопросах — берёшь паузу, думаешь, отвечаешь</li>
+        <li>Вдохновляешь, а не пугаешь. «У тебя получится» — не лозунг, а способ говорить</li>
+        <li>Мягко держишь тайминги — без авторитарности</li>
+      </ul>
+    </div>
+
+    <div class="req-block">
+      <div class="req-header">
+        <div class="req-icon">💻</div>
+        <div class="req-title">Техническая компетенция</div>
+      </div>
+      <ul class="req-items">
+        <li>Уверенно работаешь в VS Code + Claude Code — это твои рабочие инструменты прямо сейчас, не потенциал</li>
+        <li>Активно вайбкодишь: есть реальные проекты, которые ты собрал сам</li>
+        <li>Понимаешь веб-деплой на базовом уровне: сервер, домен, HTML</li>
+        <li>Понимаешь концепции MCP, агентов, скилл-агентов — или готов глубоко изучить до старта</li>
+      </ul>
+    </div>
+
+    <div class="req-block">
+      <div class="req-header">
+        <div class="req-icon">🧠</div>
+        <div class="req-title">Продуктовое мышление</div>
+      </div>
+      <ul class="req-items">
+        <li>Прошёл курс «Как делать продукт» (поток 50+) или понимаешь AJTBD на эквивалентном уровне</li>
+        <li>Умеешь объяснить, зачем нужно исследование клиентов — на живых примерах, не из учебника</li>
+        <li>Видишь разницу между «фичи» и «ценность для пользователя»</li>
+      </ul>
+    </div>
+
+    <div class="req-block">
+      <div class="req-header">
+        <div class="req-icon">📚</div>
+        <div class="req-title">Педагогические навыки</div>
+      </div>
+      <ul class="req-items">
+        <li>Умеешь обучать просто: если человек не понял — объяснишь по-другому, а не повторишь громче</li>
+        <li>Терпелив с людьми, которые видят код впервые</li>
+        <li>Работаешь с разным уровнем: от новичка до опытного продакта в одном зале</li>
+      </ul>
+    </div>
+
+    <div class="req-block">
+      <div class="req-header">
+        <div class="req-icon">🧘</div>
+        <div class="req-title">Стрессоустойчивость</div>
+      </div>
+      <ul class="req-items">
+        <li>Не тушуешься, когда что-то падает прямо на демо (а это бывает всегда)</li>
+        <li>Умеешь импровизировать, если план пошёл не так</li>
+        <li>Спокойно реагируешь на конфликтных участников и неудобные вопросы</li>
+      </ul>
+    </div>
+
+    <div class="req-block">
+      <div class="req-header">
+        <div class="req-icon">❤️</div>
+        <div class="req-title">Искреннее желание помочь</div>
+      </div>
+      <ul class="req-items">
+        <li>Для тебя это не «работа за деньги» — это возможность помочь людям изменить то, как они работают</li>
+        <li>Тебе важен результат каждого студента, а не средняя оценка по потоку</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sc" style="margin-bottom:14px;">
+    <div class="sc-title"><span class="dot dot-g"></span> Хорошим плюсом будет</div>
+    <ul class="req-items" style="padding-left:0;">
+      <li>Опыт преподавания, менторства, фасилитации в онлайне</li>
+      <li>Прошёл BOOST как участник — знаешь продукт изнутри</li>
+      <li>Опыт работы продактом или основателем — говоришь с аудиторией на одном языке</li>
+      <li>Портфолио реальных продуктов, собранных через Claude Code</li>
+    </ul>
+  </div>
+
+  <div class="sc">
+    <div class="sc-title"><span class="dot dot-r"></span> Кого мы НЕ ищем</div>
+    <div class="nolook">
+      <ul>
+        <li>Тех, кто «быстро обучится» VS Code и Claude Code — нужна реальная практика, не потенциал</li>
+        <li>Тех, кто хочет читать лекции — BOOST это живая практика, студенты работают руками</li>
+        <li>Тех, кто теряется на 120 людях — масштаб аудитории нужно уметь держать</li>
+        <li>Тех, для кого это просто подработка — студенты чувствуют разницу между «отработать» и «помочь»</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="pf"><span>Замесин Академия · Тренер BOOST · Апрель 2026</span><span>2 / 3</span></div>
+</div>
+
+<!-- PAGE 3: УСЛОВИЯ + КАК ОТКЛИК + ОТЗЫВЫ -->
+<div class="page">
+  <div class="ph">
+    <h1>Условия и процесс</h1>
+    <span class="lbl">Как мы работаем и знакомимся</span>
+  </div>
+
+  <div class="sc" style="margin-bottom:14px;">
+    <div class="sc-title"><span class="dot dot-y"></span> Что мы предлагаем</div>
+    <div class="offer-grid">
+      <div class="offer-item dark">
+        <div class="oi-lbl">Оплата</div>
+        <div class="oi-val">Фикс за поток — обсуждается индивидуально на финальном интервью</div>
+      </div>
+      <div class="offer-item">
+        <div class="oi-lbl">Формат</div>
+        <div class="oi-val">Полностью онлайн. Одна интенсивная неделя + несколько дней подготовки</div>
+      </div>
+      <div class="offer-item">
+        <div class="oi-lbl">Обучение</div>
+        <div class="oi-val">Погружение в методологию, 1-2 совместных воркшопа с Ваней перед самостоятельным ведением</div>
+      </div>
+      <div class="offer-item">
+        <div class="oi-lbl">Доступ к материалам</div>
+        <div class="oi-val">Курс «Как делать продукт», BOOST, вся база знаний AURA — бесплатно</div>
+      </div>
+      <div class="offer-item" style="grid-column:1/span 2;">
+        <div class="oi-lbl">Рост</div>
+        <div class="oi-val">Возможность стать основным тренером BOOST и влиять на развитие продукта — вместе с Ваней</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc" style="margin-bottom:14px;">
+    <div class="sc-title"><span class="dot dot-b"></span> Как мы знакомимся — 4 шага</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-meta">15-20 минут · письменно</div>
+          <div class="step-title">Отклик — три вопроса</div>
+          <div class="step-q">
+            <div class="ql">Ответь письменно:</div>
+            <ol>
+              <li><strong>Покажи, что ты вайбкодишь.</strong> Ссылка на живой продукт, который ты собрал через Claude Code или Cursor.</li>
+              <li><strong>На воркшопе студент пишет:</strong> «У меня деплой не работает, уже 20 минут, всё сломалось». Ты в эфире, рядом 120 человек. Что делаешь прямо сейчас?</li>
+              <li><strong>Почему BOOST, а не другой формат?</strong> Что в этом продукте тебя зацепило.</li>
+            </ol>
+          </div>
+          <div class="step-text" style="margin-top:8px;">👉 Написать Илье Рублевскому в Telegram: <strong>@rublevsky_ilya</strong></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-meta">2-3 часа · онлайн</div>
+          <div class="step-title">Тестовое задание — мини-воркшоп</div>
+          <div class="step-text">Провести 30-минутный воркшоп с 3-5 нашими студентами или коллегами. Тема: «Создай лендинг для своей идеи за 30 минут через Claude Code». Мы смотрим: удерживаешь ли внимание, помогаешь ли разблокироваться — или читаешь лекцию.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-meta">30-45 минут</div>
+          <div class="step-title">Интервью с Ваней Замесиным</div>
+          <div class="step-text">Разбор тестового воркшопа + разговор про мотивацию и видение.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-meta">3 рабочих дня</div>
+          <div class="step-title">Решение</div>
+          <div class="step-text">В течение 3 рабочих дней после интервью.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-title"><span class="dot dot-o"></span> Что говорят студенты BOOST</div>
+    <div class="quotes">
+      <div class="quote-box">
+        <p>«Заряжает так, что хочется делать прямо сейчас»</p>
+      </div>
+      <div class="quote-box">
+        <p>«Объясняет сложное на пальцах — ни разу не было ощущения, что я тупой»</p>
+      </div>
+      <div class="quote-box">
+        <p>«Когда что-то не работало, не паниковал — разбирался вместе с нами»</p>
+      </div>
+      <div class="quote-box">
+        <p>«Чувствовалось, что ему реально важно, что у нас получится»</p>
+      </div>
+    </div>
+    <div class="rating-bar">
+      <div class="rating-num">9.6</div>
+      <div class="rating-lbl">
+        <strong>Средняя оценка потоков BOOST</strong>
+        Это планка, которую тренер должен держать — и лучше превышать.
+      </div>
+    </div>
+  </div>
+
+  <div class="pf"><span>Замесин Академия · Тренер BOOST · Апрель 2026</span><span>3 / 3</span></div>
+</div>
+
+</body>
+</html>
