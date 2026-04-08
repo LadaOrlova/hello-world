@@ -1214,6 +1214,7 @@
 
 ### 4-Personal-files/Alena-Zamesina/
 
+- `ideas-zamesina.md`
 
 ### 4-Personal-files/Alina-Kovkova/
 
