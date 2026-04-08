@@ -1360,6 +1360,7 @@
 - `aura-vs-makers-positioning.md` — Разведение позиционирования: AURA и Makers
 - `boost-feedback-analysis.md` — Анализ обратной связи BOOST (62 ответа)
 - `boost-pro-hypotheses.md` — Boost Pro: гипотезы для обсуждения с Сашей
+- `boost-without-vanya-concepts.md` — BOOST Without Vanya — Concepts
 - `ilya-rublevsky-tasks-april.md` — Илья Рублевский — Tasks апрель 2026
 - `jobs-v2-cohort59.md` — Сегментация студентов КДП: 59-й поток (отдельный анализ)
 - `jobs-v2.md` — Сегментация студентов КДП по Jobs (v2)
