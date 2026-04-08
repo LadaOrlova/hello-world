@@ -1224,6 +1224,7 @@
 **agentic-pipelines-research/**
 
 - `consultation-nikolay-senin-2026-04-06.md` — Транскрипция — 2026-04-06 16:00:48
+- `summary-graph-rules-call-2026-04-07.md` — Саммари: Обсуждение правил формирования графов работ
 
 ### 4-Personal-files/Ilya-Mokhov/
 
