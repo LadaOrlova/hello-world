@@ -28,10 +28,18 @@
 * взять за основу https://github.com/garrytan/gstack 
 
 ## 08/04/26
+* скиллы сделать? 
+
+* добавить скилл в сегодняшний воркшоп 
 * попросить Алёну посмотреть Настю Даценко 
 * сделать агента Ваню Замесина 
 * пост в линкедин написать 
+* дать фидбек Рублёвскому на программу курса https://github.com/zamesin/Zamesin-Academy-Team/blob/main/4-Personal-files/Rublevsky-Ilya/poc-two-products.md 
 * посмотреть гайд интервью 
+* датиь фидбек Ладе 
+* фидбек на гайды дать 
+* записать лум по экзамену 
+* доработать док с правилами графа https://github.com/zamesin/Zamesin-Academy-Team/blob/main/4-Personal-files/Ivan-Zamesin/AJTBD_Graph_Visualization_Rules_Complete.md
 
 ## 07/04/26
 * посмотреть письма от fi.co про приглашения * Насте две статьи отдать 
