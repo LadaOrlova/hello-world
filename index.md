@@ -1053,6 +1053,10 @@
 - `linkedin-post-2026-02-20-pm-hypothesis-factory.md` — LinkedIn Post: PM as Hypothesis Factory Operator
 - `linkedin-post-2026-02-21-ceo-vibe-coding.md`
 
+**Repurpose/**
+
+- `2026-04-08-podcast-gconf-vibe-coding-repurpose.md` — Repurpose: Подкаст GConf — Ваня, Женя Курышев, Дима Мацкевич
+
 **Telegram-posts/**
 
 - `2026-02-22-vibe-coding-love-work.md` — Telegram-пост: У меня безумная гипотеза про вайбкодинг
@@ -1060,6 +1064,7 @@
 **Сценарии для рилзов/**
 
 - `сценарии-март-2026.md` — Сценарии рилзов — Март 2026
+- `сценарии-подкаст-gconf-апрель-2026.md` — Сценарии рилзов — Подкаст GConf (апрель 2026)
 
 ### 3-Marketing/2-Webinars/
 
@@ -1160,6 +1165,7 @@
 
 - `crm-partnerships.html`
 - `partnerships-pm-guide.md` — Партнёрства Замесин Академии: Операционный гайд
+- `podcast-vanya-zhenya-dima-transcript.txt`
 - `webinar-reports.md` — Отчёты по вебинарам
 
 ### 3-Marketing/7-Referral/
@@ -1413,6 +1419,7 @@
 - `case-post-rules.md` — Правила структуры кейс-поста
 - `cases-page.html`
 - `content-platform-aura-brief.md` — Маркетинговая платформа: умный контент-план
+- `email-quiz-lecture.html`
 - `jobs-landing-visitors.md` — Работы посетителей лендинга Академии Ивана Замесина
 - `kdp-feedback-report.csv`
 - `landing-main-page-v2.html`
